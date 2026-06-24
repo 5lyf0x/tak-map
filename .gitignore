@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+ENV/
+
+# Runtime/generated files
+*.log
+*.pid
+*.tmp
+*.bak.local
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+runtime/
+var/
+dist/
+build/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+config.local.json
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+
+# Packaged release artifacts
+tak-map-v*.zip
+tak-server-dash-v*.zip
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node/package manager noise if tooling is added later
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,1 @@
+(function(){try{localStorage.setItem('takmap.adsb.localDisabled','1')}catch(_){ }window._takMapAdsbDefaultOff=true;window._v283AdsbEnabled=false;})();

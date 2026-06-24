@@ -1,0 +1,3 @@
+TAK Map
+
+This project contains application code, generated/embedded web assets, and icon/image assets for a standalone TAK Map interface. Do not commit runtime certificates, private keys, credentials, local data packages, local map packages, logs, or operational configuration.

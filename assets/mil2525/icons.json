@@ -1,0 +1,8994 @@
+[
+  {
+    "name": "friendly-ground-equipment-ground-vehicle",
+    "sidc": "SFGPEV---------",
+    "label": "GND VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-ground-vehicle",
+    "sidc": "SNGPEV---------",
+    "label": "GND VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-ground-vehicle",
+    "sidc": "SHGPEV---------",
+    "label": "GND VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-ground-vehicle",
+    "sidc": "SUGPEV---------",
+    "label": "GND VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-armored-vehicle",
+    "sidc": "SFGPEVA--------",
+    "label": "ARMORED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-armored-vehicle",
+    "sidc": "SNGPEVA--------",
+    "label": "ARMORED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-armored-vehicle",
+    "sidc": "SHGPEVA--------",
+    "label": "ARMORED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-armored-vehicle",
+    "sidc": "SUGPEVA--------",
+    "label": "ARMORED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-tank",
+    "sidc": "SFGPEVAT-------",
+    "label": "TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-tank",
+    "sidc": "SNGPEVAT-------",
+    "label": "TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-tank",
+    "sidc": "SHGPEVAT-------",
+    "label": "TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-tank",
+    "sidc": "SUGPEVAT-------",
+    "label": "TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-light-tank",
+    "sidc": "SFGPEVATL------",
+    "label": "LT TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-light-tank",
+    "sidc": "SNGPEVATL------",
+    "label": "LT TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-light-tank",
+    "sidc": "SHGPEVATL------",
+    "label": "LT TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-light-tank",
+    "sidc": "SUGPEVATL------",
+    "label": "LT TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-medium-tank",
+    "sidc": "SFGPEVATM------",
+    "label": "MED TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-medium-tank",
+    "sidc": "SNGPEVATM------",
+    "label": "MED TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-medium-tank",
+    "sidc": "SHGPEVATM------",
+    "label": "MED TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-medium-tank",
+    "sidc": "SUGPEVATM------",
+    "label": "MED TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-heavy-tank",
+    "sidc": "SFGPEVATH------",
+    "label": "HVY TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-heavy-tank",
+    "sidc": "SNGPEVATH------",
+    "label": "HVY TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-heavy-tank",
+    "sidc": "SHGPEVATH------",
+    "label": "HVY TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-heavy-tank",
+    "sidc": "SUGPEVATH------",
+    "label": "HVY TANK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-apc",
+    "sidc": "SFGPEVAA-------",
+    "label": "APC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-apc",
+    "sidc": "SNGPEVAA-------",
+    "label": "APC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-apc",
+    "sidc": "SHGPEVAA-------",
+    "label": "APC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-apc",
+    "sidc": "SUGPEVAA-------",
+    "label": "APC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-armored-infantry",
+    "sidc": "SFGPEVAI-------",
+    "label": "ARM INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-armored-infantry",
+    "sidc": "SNGPEVAI-------",
+    "label": "ARM INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-armored-infantry",
+    "sidc": "SHGPEVAI-------",
+    "label": "ARM INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-armored-infantry",
+    "sidc": "SUGPEVAI-------",
+    "label": "ARM INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-command-tank",
+    "sidc": "SFGPEVAC-------",
+    "label": "CMD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-command-tank",
+    "sidc": "SNGPEVAC-------",
+    "label": "CMD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-command-tank",
+    "sidc": "SHGPEVAC-------",
+    "label": "CMD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-command-tank",
+    "sidc": "SUGPEVAC-------",
+    "label": "CMD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-light-armored-vehicle",
+    "sidc": "SFGPEVAL-------",
+    "label": "LAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-light-armored-vehicle",
+    "sidc": "SNGPEVAL-------",
+    "label": "LAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-light-armored-vehicle",
+    "sidc": "SHGPEVAL-------",
+    "label": "LAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-light-armored-vehicle",
+    "sidc": "SUGPEVAL-------",
+    "label": "LAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-utility-vehicle",
+    "sidc": "SFGPEVU--------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-utility-vehicle",
+    "sidc": "SNGPEVU--------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-utility-vehicle",
+    "sidc": "SHGPEVU--------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-utility-vehicle",
+    "sidc": "SUGPEVU--------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-bus",
+    "sidc": "SFGPEVUB-------",
+    "label": "BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-bus",
+    "sidc": "SNGPEVUB-------",
+    "label": "BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-bus",
+    "sidc": "SHGPEVUB-------",
+    "label": "BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-bus",
+    "sidc": "SUGPEVUB-------",
+    "label": "BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-semi",
+    "sidc": "SFGPEVUS-------",
+    "label": "SEMI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-semi",
+    "sidc": "SNGPEVUS-------",
+    "label": "SEMI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-semi",
+    "sidc": "SHGPEVUS-------",
+    "label": "SEMI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-semi",
+    "sidc": "SUGPEVUS-------",
+    "label": "SEMI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-limited-cross-country-truck",
+    "sidc": "SFGPEVUL-------",
+    "label": "LCC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-limited-cross-country-truck",
+    "sidc": "SNGPEVUL-------",
+    "label": "LCC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-limited-cross-country-truck",
+    "sidc": "SHGPEVUL-------",
+    "label": "LCC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-limited-cross-country-truck",
+    "sidc": "SUGPEVUL-------",
+    "label": "LCC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-cross-country-truck",
+    "sidc": "SFGPEVUX-------",
+    "label": "CC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-cross-country-truck",
+    "sidc": "SNGPEVUX-------",
+    "label": "CC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-cross-country-truck",
+    "sidc": "SHGPEVUX-------",
+    "label": "CC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-cross-country-truck",
+    "sidc": "SUGPEVUX-------",
+    "label": "CC TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-tow-truck",
+    "sidc": "SFGPEVUT-------",
+    "label": "TOW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-tow-truck",
+    "sidc": "SNGPEVUT-------",
+    "label": "TOW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-tow-truck",
+    "sidc": "SHGPEVUT-------",
+    "label": "TOW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-tow-truck",
+    "sidc": "SUGPEVUT-------",
+    "label": "TOW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-ambulance",
+    "sidc": "SFGPEVUA-------",
+    "label": "AMB",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-ambulance",
+    "sidc": "SNGPEVUA-------",
+    "label": "AMB",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-ambulance",
+    "sidc": "SHGPEVUA-------",
+    "label": "AMB",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-ambulance",
+    "sidc": "SUGPEVUA-------",
+    "label": "AMB",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-engineer-vehicle",
+    "sidc": "SFGPEVE--------",
+    "label": "ENG VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-engineer-vehicle",
+    "sidc": "SNGPEVE--------",
+    "label": "ENG VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-engineer-vehicle",
+    "sidc": "SHGPEVE--------",
+    "label": "ENG VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-engineer-vehicle",
+    "sidc": "SUGPEVE--------",
+    "label": "ENG VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-construction-vehicle",
+    "sidc": "SFGPEVEC-------",
+    "label": "CONST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-construction-vehicle",
+    "sidc": "SNGPEVEC-------",
+    "label": "CONST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-construction-vehicle",
+    "sidc": "SHGPEVEC-------",
+    "label": "CONST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-construction-vehicle",
+    "sidc": "SUGPEVEC-------",
+    "label": "CONST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-earthmover",
+    "sidc": "SFGPEVEE-------",
+    "label": "EARTH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-earthmover",
+    "sidc": "SNGPEVEE-------",
+    "label": "EARTH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-earthmover",
+    "sidc": "SHGPEVEE-------",
+    "label": "EARTH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-earthmover",
+    "sidc": "SUGPEVEE-------",
+    "label": "EARTH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-train-locomotive",
+    "sidc": "SFGPEVT--------",
+    "label": "TRAIN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-train-locomotive",
+    "sidc": "SNGPEVT--------",
+    "label": "TRAIN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-train-locomotive",
+    "sidc": "SHGPEVT--------",
+    "label": "TRAIN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-train-locomotive",
+    "sidc": "SUGPEVT--------",
+    "label": "TRAIN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-sensor",
+    "sidc": "SFGPES---------",
+    "label": "SENSOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-sensor",
+    "sidc": "SNGPES---------",
+    "label": "SENSOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-sensor",
+    "sidc": "SHGPES---------",
+    "label": "SENSOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-sensor",
+    "sidc": "SUGPES---------",
+    "label": "SENSOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-radar",
+    "sidc": "SFGPESR--------",
+    "label": "RADAR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-radar",
+    "sidc": "SNGPESR--------",
+    "label": "RADAR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-radar",
+    "sidc": "SHGPESR--------",
+    "label": "RADAR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-radar",
+    "sidc": "SUGPESR--------",
+    "label": "RADAR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-vehicle",
+    "sidc": "SFGPEVC--------",
+    "label": "CIV VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-vehicle",
+    "sidc": "SNGPEVC--------",
+    "label": "CIV VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-vehicle",
+    "sidc": "SHGPEVC--------",
+    "label": "CIV VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-vehicle",
+    "sidc": "SUGPEVC--------",
+    "label": "CIV VEH",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-automobile",
+    "sidc": "SFGPEVCA-------",
+    "label": "AUTO",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-automobile",
+    "sidc": "SNGPEVCA-------",
+    "label": "AUTO",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-automobile",
+    "sidc": "SHGPEVCA-------",
+    "label": "AUTO",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-automobile",
+    "sidc": "SUGPEVCA-------",
+    "label": "AUTO",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-compact-auto",
+    "sidc": "SFGPEVCAL------",
+    "label": "COMPACT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-compact-auto",
+    "sidc": "SNGPEVCAL------",
+    "label": "COMPACT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-compact-auto",
+    "sidc": "SHGPEVCAL------",
+    "label": "COMPACT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-compact-auto",
+    "sidc": "SUGPEVCAL------",
+    "label": "COMPACT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-midsize-auto",
+    "sidc": "SFGPEVCAM------",
+    "label": "MIDSIZE",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-midsize-auto",
+    "sidc": "SNGPEVCAM------",
+    "label": "MIDSIZE",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-midsize-auto",
+    "sidc": "SHGPEVCAM------",
+    "label": "MIDSIZE",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-midsize-auto",
+    "sidc": "SUGPEVCAM------",
+    "label": "MIDSIZE",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-sedan",
+    "sidc": "SFGPEVCAH------",
+    "label": "SEDAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-sedan",
+    "sidc": "SNGPEVCAH------",
+    "label": "SEDAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-sedan",
+    "sidc": "SHGPEVCAH------",
+    "label": "SEDAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-sedan",
+    "sidc": "SUGPEVCAH------",
+    "label": "SEDAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-open-bed-truck",
+    "sidc": "SFGPEVCO-------",
+    "label": "OPEN BED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-open-bed-truck",
+    "sidc": "SNGPEVCO-------",
+    "label": "OPEN BED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-open-bed-truck",
+    "sidc": "SHGPEVCO-------",
+    "label": "OPEN BED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-open-bed-truck",
+    "sidc": "SUGPEVCO-------",
+    "label": "OPEN BED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-pickup",
+    "sidc": "SFGPEVCOL------",
+    "label": "PICKUP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-pickup",
+    "sidc": "SNGPEVCOL------",
+    "label": "PICKUP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-pickup",
+    "sidc": "SHGPEVCOL------",
+    "label": "PICKUP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-pickup",
+    "sidc": "SUGPEVCOL------",
+    "label": "PICKUP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-small-open-bed-truck",
+    "sidc": "SFGPEVCOM------",
+    "label": "SM TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-small-open-bed-truck",
+    "sidc": "SNGPEVCOM------",
+    "label": "SM TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-small-open-bed-truck",
+    "sidc": "SHGPEVCOM------",
+    "label": "SM TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-small-open-bed-truck",
+    "sidc": "SUGPEVCOM------",
+    "label": "SM TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-large-open-bed-truck",
+    "sidc": "SFGPEVCOH------",
+    "label": "LG TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-large-open-bed-truck",
+    "sidc": "SNGPEVCOH------",
+    "label": "LG TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-large-open-bed-truck",
+    "sidc": "SHGPEVCOH------",
+    "label": "LG TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-large-open-bed-truck",
+    "sidc": "SUGPEVCOH------",
+    "label": "LG TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-multi-passenger-vehicle",
+    "sidc": "SFGPEVCM-------",
+    "label": "MPV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-multi-passenger-vehicle",
+    "sidc": "SNGPEVCM-------",
+    "label": "MPV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-multi-passenger-vehicle",
+    "sidc": "SHGPEVCM-------",
+    "label": "MPV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-multi-passenger-vehicle",
+    "sidc": "SUGPEVCM-------",
+    "label": "MPV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-van",
+    "sidc": "SFGPEVCML------",
+    "label": "VAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-van",
+    "sidc": "SNGPEVCML------",
+    "label": "VAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-van",
+    "sidc": "SHGPEVCML------",
+    "label": "VAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-van",
+    "sidc": "SUGPEVCML------",
+    "label": "VAN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-small-bus",
+    "sidc": "SFGPEVCMM------",
+    "label": "SM BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-small-bus",
+    "sidc": "SNGPEVCMM------",
+    "label": "SM BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-small-bus",
+    "sidc": "SHGPEVCMM------",
+    "label": "SM BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-small-bus",
+    "sidc": "SUGPEVCMM------",
+    "label": "SM BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-large-bus",
+    "sidc": "SFGPEVCMH------",
+    "label": "LG BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-large-bus",
+    "sidc": "SNGPEVCMH------",
+    "label": "LG BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-large-bus",
+    "sidc": "SHGPEVCMH------",
+    "label": "LG BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-large-bus",
+    "sidc": "SUGPEVCMH------",
+    "label": "LG BUS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-utility-vehicle",
+    "sidc": "SFGPEVCU-------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-utility-vehicle",
+    "sidc": "SNGPEVCU-------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-utility-vehicle",
+    "sidc": "SHGPEVCU-------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-utility-vehicle",
+    "sidc": "SUGPEVCU-------",
+    "label": "UTIL",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-suv",
+    "sidc": "SFGPEVCUL------",
+    "label": "SUV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-suv",
+    "sidc": "SNGPEVCUL------",
+    "label": "SUV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-suv",
+    "sidc": "SHGPEVCUL------",
+    "label": "SUV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-suv",
+    "sidc": "SUGPEVCUL------",
+    "label": "SUV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-small-box-truck",
+    "sidc": "SFGPEVCUM------",
+    "label": "BOX TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-small-box-truck",
+    "sidc": "SNGPEVCUM------",
+    "label": "BOX TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-small-box-truck",
+    "sidc": "SHGPEVCUM------",
+    "label": "BOX TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-small-box-truck",
+    "sidc": "SUGPEVCUM------",
+    "label": "BOX TRK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-large-box-truck",
+    "sidc": "SFGPEVCUH------",
+    "label": "LG BOX",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-large-box-truck",
+    "sidc": "SNGPEVCUH------",
+    "label": "LG BOX",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-large-box-truck",
+    "sidc": "SHGPEVCUH------",
+    "label": "LG BOX",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-large-box-truck",
+    "sidc": "SUGPEVCUH------",
+    "label": "LG BOX",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-jeep",
+    "sidc": "SFGPEVCJ-------",
+    "label": "JEEP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-jeep",
+    "sidc": "SNGPEVCJ-------",
+    "label": "JEEP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-jeep",
+    "sidc": "SHGPEVCJ-------",
+    "label": "JEEP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-jeep",
+    "sidc": "SUGPEVCJ-------",
+    "label": "JEEP",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-tractor-trailer-box",
+    "sidc": "SFGPEVCT-------",
+    "label": "TRAILER",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-tractor-trailer-box",
+    "sidc": "SNGPEVCT-------",
+    "label": "TRAILER",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-tractor-trailer-box",
+    "sidc": "SHGPEVCT-------",
+    "label": "TRAILER",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-tractor-trailer-box",
+    "sidc": "SUGPEVCT-------",
+    "label": "TRAILER",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-civilian-tractor-trailer-flatbed",
+    "sidc": "SFGPEVCF-------",
+    "label": "FLATBED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-equipment-civilian-tractor-trailer-flatbed",
+    "sidc": "SNGPEVCF-------",
+    "label": "FLATBED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-equipment-civilian-tractor-trailer-flatbed",
+    "sidc": "SHGPEVCF-------",
+    "label": "FLATBED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-equipment-civilian-tractor-trailer-flatbed",
+    "sidc": "SUGPEVCF-------",
+    "label": "FLATBED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-combat",
+    "sidc": "SFGPUC---------",
+    "label": "COMBAT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-combat",
+    "sidc": "SNGPUC---------",
+    "label": "COMBAT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-combat",
+    "sidc": "SHGPUC---------",
+    "label": "COMBAT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-combat",
+    "sidc": "SUGPUC---------",
+    "label": "COMBAT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-air-defense",
+    "sidc": "SFGPUCD--------",
+    "label": "AD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-air-defense",
+    "sidc": "SNGPUCD--------",
+    "label": "AD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-air-defense",
+    "sidc": "SHGPUCD--------",
+    "label": "AD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-air-defense",
+    "sidc": "SUGPUCD--------",
+    "label": "AD",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-armor",
+    "sidc": "SFGPUCA--------",
+    "label": "ARMOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-armor",
+    "sidc": "SNGPUCA--------",
+    "label": "ARMOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-armor",
+    "sidc": "SHGPUCA--------",
+    "label": "ARMOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-armor",
+    "sidc": "SUGPUCA--------",
+    "label": "ARMOR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-armor-track",
+    "sidc": "SFGPUCAT-------",
+    "label": "TRACK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-armor-track",
+    "sidc": "SNGPUCAT-------",
+    "label": "TRACK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-armor-track",
+    "sidc": "SHGPUCAT-------",
+    "label": "TRACK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-armor-track",
+    "sidc": "SUGPUCAT-------",
+    "label": "TRACK",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-armor-wheeled",
+    "sidc": "SFGPUCAW-------",
+    "label": "WHEELED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-armor-wheeled",
+    "sidc": "SNGPUCAW-------",
+    "label": "WHEELED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-armor-wheeled",
+    "sidc": "SHGPUCAW-------",
+    "label": "WHEELED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-armor-wheeled",
+    "sidc": "SUGPUCAW-------",
+    "label": "WHEELED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-anti-armor",
+    "sidc": "SFGPUCAA-------",
+    "label": "AT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-anti-armor",
+    "sidc": "SNGPUCAA-------",
+    "label": "AT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-anti-armor",
+    "sidc": "SHGPUCAA-------",
+    "label": "AT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-anti-armor",
+    "sidc": "SUGPUCAA-------",
+    "label": "AT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-infantry",
+    "sidc": "SFGPUCI--------",
+    "label": "INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-infantry",
+    "sidc": "SNGPUCI--------",
+    "label": "INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-infantry",
+    "sidc": "SHGPUCI--------",
+    "label": "INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-infantry",
+    "sidc": "SUGPUCI--------",
+    "label": "INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-infantry-light",
+    "sidc": "SFGPUCIL-------",
+    "label": "LT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-infantry-light",
+    "sidc": "SNGPUCIL-------",
+    "label": "LT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-infantry-light",
+    "sidc": "SHGPUCIL-------",
+    "label": "LT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-infantry-light",
+    "sidc": "SUGPUCIL-------",
+    "label": "LT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-infantry-motorized",
+    "sidc": "SFGPUCIM-------",
+    "label": "MOT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-infantry-motorized",
+    "sidc": "SNGPUCIM-------",
+    "label": "MOT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-infantry-motorized",
+    "sidc": "SHGPUCIM-------",
+    "label": "MOT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-infantry-motorized",
+    "sidc": "SUGPUCIM-------",
+    "label": "MOT INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-infantry-mechanized",
+    "sidc": "SFGPUCIZ-------",
+    "label": "MECH INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-infantry-mechanized",
+    "sidc": "SNGPUCIZ-------",
+    "label": "MECH INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-infantry-mechanized",
+    "sidc": "SHGPUCIZ-------",
+    "label": "MECH INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-infantry-mechanized",
+    "sidc": "SUGPUCIZ-------",
+    "label": "MECH INF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-engineer",
+    "sidc": "SFGPUCE--------",
+    "label": "ENG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-engineer",
+    "sidc": "SNGPUCE--------",
+    "label": "ENG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-engineer",
+    "sidc": "SHGPUCE--------",
+    "label": "ENG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-engineer",
+    "sidc": "SUGPUCE--------",
+    "label": "ENG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-field-artillery",
+    "sidc": "SFGPUCF--------",
+    "label": "FA",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-field-artillery",
+    "sidc": "SNGPUCF--------",
+    "label": "FA",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-field-artillery",
+    "sidc": "SHGPUCF--------",
+    "label": "FA",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-field-artillery",
+    "sidc": "SUGPUCF--------",
+    "label": "FA",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-reconnaissance",
+    "sidc": "SFGPUCR--------",
+    "label": "RECON",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-reconnaissance",
+    "sidc": "SNGPUCR--------",
+    "label": "RECON",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-reconnaissance",
+    "sidc": "SHGPUCR--------",
+    "label": "RECON",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-reconnaissance",
+    "sidc": "SUGPUCR--------",
+    "label": "RECON",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-cavalry",
+    "sidc": "SFGPUCRV-------",
+    "label": "CAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-cavalry",
+    "sidc": "SNGPUCRV-------",
+    "label": "CAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-cavalry",
+    "sidc": "SHGPUCRV-------",
+    "label": "CAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-cavalry",
+    "sidc": "SUGPUCRV-------",
+    "label": "CAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-internal-security-forces",
+    "sidc": "SFGPUCS--------",
+    "label": "ISF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-internal-security-forces",
+    "sidc": "SNGPUCS--------",
+    "label": "ISF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-internal-security-forces",
+    "sidc": "SHGPUCS--------",
+    "label": "ISF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-internal-security-forces",
+    "sidc": "SUGPUCS--------",
+    "label": "ISF",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-combat-support",
+    "sidc": "SFGPUU---------",
+    "label": "CS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-combat-support",
+    "sidc": "SNGPUU---------",
+    "label": "CS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-combat-support",
+    "sidc": "SHGPUU---------",
+    "label": "CS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-combat-support",
+    "sidc": "SUGPUU---------",
+    "label": "CS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-cbrn",
+    "sidc": "SFGPUUA--------",
+    "label": "CBRN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-cbrn",
+    "sidc": "SNGPUUA--------",
+    "label": "CBRN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-cbrn",
+    "sidc": "SHGPUUA--------",
+    "label": "CBRN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-cbrn",
+    "sidc": "SUGPUUA--------",
+    "label": "CBRN",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-military-intelligence",
+    "sidc": "SFGPUUM--------",
+    "label": "MI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-military-intelligence",
+    "sidc": "SNGPUUM--------",
+    "label": "MI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-military-intelligence",
+    "sidc": "SHGPUUM--------",
+    "label": "MI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-military-intelligence",
+    "sidc": "SUGPUUM--------",
+    "label": "MI",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-signal",
+    "sidc": "SFGPUUS--------",
+    "label": "SIG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-signal",
+    "sidc": "SNGPUUS--------",
+    "label": "SIG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-signal",
+    "sidc": "SHGPUUS--------",
+    "label": "SIG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-signal",
+    "sidc": "SUGPUUS--------",
+    "label": "SIG",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-medical",
+    "sidc": "SFGPUSM--------",
+    "label": "MED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-medical",
+    "sidc": "SNGPUSM--------",
+    "label": "MED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-medical",
+    "sidc": "SHGPUSM--------",
+    "label": "MED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-medical",
+    "sidc": "SUGPUSM--------",
+    "label": "MED",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-supply",
+    "sidc": "SFGPUSS--------",
+    "label": "SUPPLY",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-supply",
+    "sidc": "SNGPUSS--------",
+    "label": "SUPPLY",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-supply",
+    "sidc": "SHGPUSS--------",
+    "label": "SUPPLY",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-supply",
+    "sidc": "SUGPUSS--------",
+    "label": "SUPPLY",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-transportation",
+    "sidc": "SFGPUST--------",
+    "label": "TRANS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-transportation",
+    "sidc": "SNGPUST--------",
+    "label": "TRANS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-transportation",
+    "sidc": "SHGPUST--------",
+    "label": "TRANS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-transportation",
+    "sidc": "SUGPUST--------",
+    "label": "TRANS",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-unit-maintenance",
+    "sidc": "SFGPUSX--------",
+    "label": "MAINT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-unit-maintenance",
+    "sidc": "SNGPUSX--------",
+    "label": "MAINT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-unit-maintenance",
+    "sidc": "SHGPUSX--------",
+    "label": "MAINT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-unit-maintenance",
+    "sidc": "SUGPUSX--------",
+    "label": "MAINT",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-civil-aircraft",
+    "sidc": "SFAPC----------",
+    "label": "CIV AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-civil-aircraft",
+    "sidc": "SNAPC----------",
+    "label": "CIV AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-civil-aircraft",
+    "sidc": "SHAPC----------",
+    "label": "CIV AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-civil-aircraft",
+    "sidc": "SUAPC----------",
+    "label": "CIV AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-civil-fixed-wing",
+    "sidc": "SFAPCF---------",
+    "label": "CIV FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-civil-fixed-wing",
+    "sidc": "SNAPCF---------",
+    "label": "CIV FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-civil-fixed-wing",
+    "sidc": "SHAPCF---------",
+    "label": "CIV FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-civil-fixed-wing",
+    "sidc": "SUAPCF---------",
+    "label": "CIV FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-civil-rotary-wing",
+    "sidc": "SFAPCH---------",
+    "label": "CIV RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-civil-rotary-wing",
+    "sidc": "SNAPCH---------",
+    "label": "CIV RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-civil-rotary-wing",
+    "sidc": "SHAPCH---------",
+    "label": "CIV RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-civil-rotary-wing",
+    "sidc": "SUAPCH---------",
+    "label": "CIV RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-military-fixed-wing",
+    "sidc": "SFAPMF---------",
+    "label": "FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-military-fixed-wing",
+    "sidc": "SNAPMF---------",
+    "label": "FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-military-fixed-wing",
+    "sidc": "SHAPMF---------",
+    "label": "FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-military-fixed-wing",
+    "sidc": "SUAPMF---------",
+    "label": "FW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-military-rotary-wing",
+    "sidc": "SFAPMH---------",
+    "label": "RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-military-rotary-wing",
+    "sidc": "SNAPMH---------",
+    "label": "RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-military-rotary-wing",
+    "sidc": "SHAPMH---------",
+    "label": "RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-military-rotary-wing",
+    "sidc": "SUAPMH---------",
+    "label": "RW",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-drone-fixed-wing",
+    "sidc": "SFAPMFQ--------",
+    "label": "UAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-drone-fixed-wing",
+    "sidc": "SNAPMFQ--------",
+    "label": "UAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-drone-fixed-wing",
+    "sidc": "SHAPMFQ--------",
+    "label": "UAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-drone-fixed-wing",
+    "sidc": "SUAPMFQ--------",
+    "label": "UAV",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-installation",
+    "sidc": "SFGPI-----H----",
+    "label": "INST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-installation",
+    "sidc": "SNGPI-----H----",
+    "label": "INST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-installation",
+    "sidc": "SHGPI-----H----",
+    "label": "INST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-installation",
+    "sidc": "SUGPI-----H----",
+    "label": "INST",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-installation-processing-facility",
+    "sidc": "SFGPIP----H----",
+    "label": "FAC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-installation-processing-facility",
+    "sidc": "SNGPIP----H----",
+    "label": "FAC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-installation-processing-facility",
+    "sidc": "SHGPIP----H----",
+    "label": "FAC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-installation-processing-facility",
+    "sidc": "SUGPIP----H----",
+    "label": "FAC",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-generic",
+    "sidc": "SFGP-----------",
+    "label": "GROUND",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-ground-generic",
+    "sidc": "SNGP-----------",
+    "label": "GROUND",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-ground-generic",
+    "sidc": "SHGP-----------",
+    "label": "GROUND",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-ground-generic",
+    "sidc": "SUGP-----------",
+    "label": "GROUND",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-air-generic",
+    "sidc": "SFAP-----------",
+    "label": "AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "neutral-air-generic",
+    "sidc": "SNAP-----------",
+    "label": "AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "hostile-air-generic",
+    "sidc": "SHAP-----------",
+    "label": "AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "unknown-air-generic",
+    "sidc": "SUAP-----------",
+    "label": "AIR",
+    "size": 48,
+    "pngSize": 64
+  },
+  {
+    "name": "friendly-ground-equipment-sedan",
+    "sidc": "SFGPEVCVS------",
+    "label": "SEDAN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-sedan",
+    "sidc": "SHGPEVCVS------",
+    "label": "SEDAN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-sedan",
+    "sidc": "SNGPEVCVS------",
+    "label": "SEDAN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-sedan",
+    "sidc": "SUGPEVCVS------",
+    "label": "SEDAN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-hatchback",
+    "sidc": "SFGPEVCVH------",
+    "label": "HATCH",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-hatchback",
+    "sidc": "SHGPEVCVH------",
+    "label": "HATCH",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-hatchback",
+    "sidc": "SNGPEVCVH------",
+    "label": "HATCH",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-hatchback",
+    "sidc": "SUGPEVCVH------",
+    "label": "HATCH",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-station-wagon",
+    "sidc": "SFGPEVCVW------",
+    "label": "WAGON",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-station-wagon",
+    "sidc": "SHGPEVCVW------",
+    "label": "WAGON",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-station-wagon",
+    "sidc": "SNGPEVCVW------",
+    "label": "WAGON",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-station-wagon",
+    "sidc": "SUGPEVCVW------",
+    "label": "WAGON",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-coupe",
+    "sidc": "SFGPEVCVC------",
+    "label": "COUPE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-coupe",
+    "sidc": "SHGPEVCVC------",
+    "label": "COUPE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-coupe",
+    "sidc": "SNGPEVCVC------",
+    "label": "COUPE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-coupe",
+    "sidc": "SUGPEVCVC------",
+    "label": "COUPE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-convertible",
+    "sidc": "SFGPEVCVR------",
+    "label": "CONV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-convertible",
+    "sidc": "SHGPEVCVR------",
+    "label": "CONV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-convertible",
+    "sidc": "SNGPEVCVR------",
+    "label": "CONV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-convertible",
+    "sidc": "SUGPEVCVR------",
+    "label": "CONV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-suv",
+    "sidc": "SFGPEVCVU------",
+    "label": "SUV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-suv",
+    "sidc": "SHGPEVCVU------",
+    "label": "SUV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-suv",
+    "sidc": "SNGPEVCVU------",
+    "label": "SUV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-suv",
+    "sidc": "SUGPEVCVU------",
+    "label": "SUV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-crossover",
+    "sidc": "SFGPEVCVX------",
+    "label": "CROSS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-crossover",
+    "sidc": "SHGPEVCVX------",
+    "label": "CROSS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-crossover",
+    "sidc": "SNGPEVCVX------",
+    "label": "CROSS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-crossover",
+    "sidc": "SUGPEVCVX------",
+    "label": "CROSS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-pickup",
+    "sidc": "SFGPEVCVP------",
+    "label": "PICKUP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-pickup",
+    "sidc": "SHGPEVCVP------",
+    "label": "PICKUP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-pickup",
+    "sidc": "SNGPEVCVP------",
+    "label": "PICKUP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-pickup",
+    "sidc": "SUGPEVCVP------",
+    "label": "PICKUP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-pickup-light",
+    "sidc": "SFGPEVCVPL-----",
+    "label": "LT PICK",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-pickup-light",
+    "sidc": "SHGPEVCVPL-----",
+    "label": "LT PICK",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-pickup-light",
+    "sidc": "SNGPEVCVPL-----",
+    "label": "LT PICK",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-pickup-light",
+    "sidc": "SUGPEVCVPL-----",
+    "label": "LT PICK",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-pickup-heavy",
+    "sidc": "SFGPEVCVPH-----",
+    "label": "HV PICK",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-pickup-heavy",
+    "sidc": "SHGPEVCVPH-----",
+    "label": "HV PICK",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-pickup-heavy",
+    "sidc": "SNGPEVCVPH-----",
+    "label": "HV PICK",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-pickup-heavy",
+    "sidc": "SUGPEVCVPH-----",
+    "label": "HV PICK",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-van",
+    "sidc": "SFGPEVCVV------",
+    "label": "VAN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-van",
+    "sidc": "SHGPEVCVV------",
+    "label": "VAN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-van",
+    "sidc": "SNGPEVCVV------",
+    "label": "VAN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-van",
+    "sidc": "SUGPEVCVV------",
+    "label": "VAN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-minivan",
+    "sidc": "SFGPEVCVM------",
+    "label": "MINIVAN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-minivan",
+    "sidc": "SHGPEVCVM------",
+    "label": "MINIVAN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-minivan",
+    "sidc": "SNGPEVCVM------",
+    "label": "MINIVAN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-minivan",
+    "sidc": "SUGPEVCVM------",
+    "label": "MINIVAN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-school-bus",
+    "sidc": "SFGPEVCVBS-----",
+    "label": "SCH BUS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-school-bus",
+    "sidc": "SHGPEVCVBS-----",
+    "label": "SCH BUS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-school-bus",
+    "sidc": "SNGPEVCVBS-----",
+    "label": "SCH BUS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-school-bus",
+    "sidc": "SUGPEVCVBS-----",
+    "label": "SCH BUS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-motorcycle",
+    "sidc": "SFGPEVCVT------",
+    "label": "MOTO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-motorcycle",
+    "sidc": "SHGPEVCVT------",
+    "label": "MOTO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-motorcycle",
+    "sidc": "SNGPEVCVT------",
+    "label": "MOTO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-motorcycle",
+    "sidc": "SUGPEVCVT------",
+    "label": "MOTO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-atv",
+    "sidc": "SFGPEVCVAT-----",
+    "label": "ATV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-atv",
+    "sidc": "SHGPEVCVAT-----",
+    "label": "ATV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-atv",
+    "sidc": "SNGPEVCVAT-----",
+    "label": "ATV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-atv",
+    "sidc": "SUGPEVCVAT-----",
+    "label": "ATV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-utv",
+    "sidc": "SFGPEVCVUT-----",
+    "label": "UTV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-utv",
+    "sidc": "SHGPEVCVUT-----",
+    "label": "UTV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-utv",
+    "sidc": "SNGPEVCVUT-----",
+    "label": "UTV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-utv",
+    "sidc": "SUGPEVCVUT-----",
+    "label": "UTV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-snowmobile",
+    "sidc": "SFGPEVCVSN-----",
+    "label": "SNOW",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-snowmobile",
+    "sidc": "SHGPEVCVSN-----",
+    "label": "SNOW",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-snowmobile",
+    "sidc": "SNGPEVCVSN-----",
+    "label": "SNOW",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-snowmobile",
+    "sidc": "SUGPEVCVSN-----",
+    "label": "SNOW",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-bicycle",
+    "sidc": "SFGPEVCVBC-----",
+    "label": "BIKE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-bicycle",
+    "sidc": "SHGPEVCVBC-----",
+    "label": "BIKE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-bicycle",
+    "sidc": "SNGPEVCVBC-----",
+    "label": "BIKE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-bicycle",
+    "sidc": "SUGPEVCVBC-----",
+    "label": "BIKE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-semi-tractor",
+    "sidc": "SFGPEVTRS------",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-semi-tractor",
+    "sidc": "SHGPEVTRS------",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-semi-tractor",
+    "sidc": "SNGPEVTRS------",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-semi-tractor",
+    "sidc": "SUGPEVTRS------",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-box-truck",
+    "sidc": "SFGPEVTRB------",
+    "label": "BOX TRK",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-box-truck",
+    "sidc": "SHGPEVTRB------",
+    "label": "BOX TRK",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-box-truck",
+    "sidc": "SNGPEVTRB------",
+    "label": "BOX TRK",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-box-truck",
+    "sidc": "SUGPEVTRB------",
+    "label": "BOX TRK",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-cargo-truck",
+    "sidc": "SFGPEVTRC------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-cargo-truck",
+    "sidc": "SHGPEVTRC------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-cargo-truck",
+    "sidc": "SNGPEVTRC------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-cargo-truck",
+    "sidc": "SUGPEVTRC------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-fuel-truck",
+    "sidc": "SFGPEVTRF------",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-fuel-truck",
+    "sidc": "SHGPEVTRF------",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-fuel-truck",
+    "sidc": "SNGPEVTRF------",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-fuel-truck",
+    "sidc": "SUGPEVTRF------",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-water-truck",
+    "sidc": "SFGPEVTRW------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-water-truck",
+    "sidc": "SHGPEVTRW------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-water-truck",
+    "sidc": "SNGPEVTRW------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-water-truck",
+    "sidc": "SUGPEVTRW------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-dump-truck",
+    "sidc": "SFGPEVTRD------",
+    "label": "DUMP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-dump-truck",
+    "sidc": "SHGPEVTRD------",
+    "label": "DUMP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-dump-truck",
+    "sidc": "SNGPEVTRD------",
+    "label": "DUMP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-dump-truck",
+    "sidc": "SUGPEVTRD------",
+    "label": "DUMP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-garbage-truck",
+    "sidc": "SFGPEVTRG------",
+    "label": "GARBAGE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-garbage-truck",
+    "sidc": "SHGPEVTRG------",
+    "label": "GARBAGE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-garbage-truck",
+    "sidc": "SNGPEVTRG------",
+    "label": "GARBAGE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-garbage-truck",
+    "sidc": "SUGPEVTRG------",
+    "label": "GARBAGE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-flatbed-truck",
+    "sidc": "SFGPEVTRT------",
+    "label": "FLATBED",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-flatbed-truck",
+    "sidc": "SHGPEVTRT------",
+    "label": "FLATBED",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-flatbed-truck",
+    "sidc": "SNGPEVTRT------",
+    "label": "FLATBED",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-flatbed-truck",
+    "sidc": "SUGPEVTRT------",
+    "label": "FLATBED",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-wrecker",
+    "sidc": "SFGPEVTRWR-----",
+    "label": "WRECKER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-wrecker",
+    "sidc": "SHGPEVTRWR-----",
+    "label": "WRECKER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-wrecker",
+    "sidc": "SNGPEVTRWR-----",
+    "label": "WRECKER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-wrecker",
+    "sidc": "SUGPEVTRWR-----",
+    "label": "WRECKER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-cement-mixer",
+    "sidc": "SFGPEVTRCM-----",
+    "label": "MIXER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-cement-mixer",
+    "sidc": "SHGPEVTRCM-----",
+    "label": "MIXER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-cement-mixer",
+    "sidc": "SNGPEVTRCM-----",
+    "label": "MIXER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-cement-mixer",
+    "sidc": "SUGPEVTRCM-----",
+    "label": "MIXER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-tanker-truck",
+    "sidc": "SFGPEVTRTK-----",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-tanker-truck",
+    "sidc": "SHGPEVTRTK-----",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-tanker-truck",
+    "sidc": "SNGPEVTRTK-----",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-tanker-truck",
+    "sidc": "SUGPEVTRTK-----",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-fire-engine",
+    "sidc": "SFGPEVFRE------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-fire-engine",
+    "sidc": "SHGPEVFRE------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-fire-engine",
+    "sidc": "SNGPEVFRE------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-fire-engine",
+    "sidc": "SUGPEVFRE------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-ladder-truck",
+    "sidc": "SFGPEVFRL------",
+    "label": "LADDER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-ladder-truck",
+    "sidc": "SHGPEVFRL------",
+    "label": "LADDER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-ladder-truck",
+    "sidc": "SNGPEVFRL------",
+    "label": "LADDER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-ladder-truck",
+    "sidc": "SUGPEVFRL------",
+    "label": "LADDER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-command-vehicle",
+    "sidc": "SFGPEVCVCM-----",
+    "label": "CMD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-command-vehicle",
+    "sidc": "SHGPEVCVCM-----",
+    "label": "CMD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-command-vehicle",
+    "sidc": "SNGPEVCVCM-----",
+    "label": "CMD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-command-vehicle",
+    "sidc": "SUGPEVCVCM-----",
+    "label": "CMD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-utility-truck",
+    "sidc": "SFGPEVUTR------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-utility-truck",
+    "sidc": "SHGPEVUTR------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-utility-truck",
+    "sidc": "SNGPEVUTR------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-utility-truck",
+    "sidc": "SUGPEVUTR------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-service-truck",
+    "sidc": "SFGPEVSVT------",
+    "label": "SERVICE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-service-truck",
+    "sidc": "SHGPEVSVT------",
+    "label": "SERVICE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-service-truck",
+    "sidc": "SNGPEVSVT------",
+    "label": "SERVICE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-service-truck",
+    "sidc": "SUGPEVSVT------",
+    "label": "SERVICE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-maintenance-truck",
+    "sidc": "SFGPEVMNT------",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-maintenance-truck",
+    "sidc": "SHGPEVMNT------",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-maintenance-truck",
+    "sidc": "SNGPEVMNT------",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-maintenance-truck",
+    "sidc": "SUGPEVMNT------",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mobile-workshop",
+    "sidc": "SFGPEVMWS------",
+    "label": "WORKSHOP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mobile-workshop",
+    "sidc": "SHGPEVMWS------",
+    "label": "WORKSHOP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mobile-workshop",
+    "sidc": "SNGPEVMWS------",
+    "label": "WORKSHOP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mobile-workshop",
+    "sidc": "SUGPEVMWS------",
+    "label": "WORKSHOP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-generator-trailer",
+    "sidc": "SFGPEVGTR------",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-generator-trailer",
+    "sidc": "SHGPEVGTR------",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-generator-trailer",
+    "sidc": "SNGPEVGTR------",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-generator-trailer",
+    "sidc": "SUGPEVGTR------",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-trailer",
+    "sidc": "SFGPEVTRL------",
+    "label": "TRAILER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-trailer",
+    "sidc": "SHGPEVTRL------",
+    "label": "TRAILER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-trailer",
+    "sidc": "SNGPEVTRL------",
+    "label": "TRAILER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-trailer",
+    "sidc": "SUGPEVTRL------",
+    "label": "TRAILER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-covered-trailer",
+    "sidc": "SFGPEVTRLC-----",
+    "label": "COV TRL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-covered-trailer",
+    "sidc": "SHGPEVTRLC-----",
+    "label": "COV TRL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-covered-trailer",
+    "sidc": "SNGPEVTRLC-----",
+    "label": "COV TRL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-covered-trailer",
+    "sidc": "SUGPEVTRLC-----",
+    "label": "COV TRL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-flatbed-trailer",
+    "sidc": "SFGPEVTRLF-----",
+    "label": "FLAT TRL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-flatbed-trailer",
+    "sidc": "SHGPEVTRLF-----",
+    "label": "FLAT TRL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-flatbed-trailer",
+    "sidc": "SNGPEVTRLF-----",
+    "label": "FLAT TRL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-flatbed-trailer",
+    "sidc": "SUGPEVTRLF-----",
+    "label": "FLAT TRL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-lowboy-trailer",
+    "sidc": "SFGPEVTRLL-----",
+    "label": "LOWBOY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-lowboy-trailer",
+    "sidc": "SHGPEVTRLL-----",
+    "label": "LOWBOY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-lowboy-trailer",
+    "sidc": "SNGPEVTRLL-----",
+    "label": "LOWBOY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-lowboy-trailer",
+    "sidc": "SUGPEVTRLL-----",
+    "label": "LOWBOY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-bulldozer",
+    "sidc": "SFGPEVENGD-----",
+    "label": "DOZER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-bulldozer",
+    "sidc": "SHGPEVENGD-----",
+    "label": "DOZER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-bulldozer",
+    "sidc": "SNGPEVENGD-----",
+    "label": "DOZER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-bulldozer",
+    "sidc": "SUGPEVENGD-----",
+    "label": "DOZER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-excavator",
+    "sidc": "SFGPEVENGE-----",
+    "label": "EXCAV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-excavator",
+    "sidc": "SHGPEVENGE-----",
+    "label": "EXCAV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-excavator",
+    "sidc": "SNGPEVENGE-----",
+    "label": "EXCAV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-excavator",
+    "sidc": "SUGPEVENGE-----",
+    "label": "EXCAV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-front-loader",
+    "sidc": "SFGPEVENGL-----",
+    "label": "LOADER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-front-loader",
+    "sidc": "SHGPEVENGL-----",
+    "label": "LOADER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-front-loader",
+    "sidc": "SNGPEVENGL-----",
+    "label": "LOADER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-front-loader",
+    "sidc": "SUGPEVENGL-----",
+    "label": "LOADER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-grader",
+    "sidc": "SFGPEVENGG-----",
+    "label": "GRADER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-grader",
+    "sidc": "SHGPEVENGG-----",
+    "label": "GRADER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-grader",
+    "sidc": "SNGPEVENGG-----",
+    "label": "GRADER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-grader",
+    "sidc": "SUGPEVENGG-----",
+    "label": "GRADER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-roller",
+    "sidc": "SFGPEVENGR-----",
+    "label": "ROLLER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-roller",
+    "sidc": "SHGPEVENGR-----",
+    "label": "ROLLER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-roller",
+    "sidc": "SNGPEVENGR-----",
+    "label": "ROLLER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-roller",
+    "sidc": "SUGPEVENGR-----",
+    "label": "ROLLER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-backhoe",
+    "sidc": "SFGPEVENGB-----",
+    "label": "BACKHOE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-backhoe",
+    "sidc": "SHGPEVENGB-----",
+    "label": "BACKHOE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-backhoe",
+    "sidc": "SNGPEVENGB-----",
+    "label": "BACKHOE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-backhoe",
+    "sidc": "SUGPEVENGB-----",
+    "label": "BACKHOE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-crane",
+    "sidc": "SFGPEVENGC-----",
+    "label": "CRANE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-crane",
+    "sidc": "SHGPEVENGC-----",
+    "label": "CRANE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-crane",
+    "sidc": "SNGPEVENGC-----",
+    "label": "CRANE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-crane",
+    "sidc": "SUGPEVENGC-----",
+    "label": "CRANE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-forklift",
+    "sidc": "SFGPEVENGF-----",
+    "label": "FORKLFT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-forklift",
+    "sidc": "SHGPEVENGF-----",
+    "label": "FORKLFT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-forklift",
+    "sidc": "SNGPEVENGF-----",
+    "label": "FORKLFT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-forklift",
+    "sidc": "SUGPEVENGF-----",
+    "label": "FORKLFT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-tractor",
+    "sidc": "SFGPEVENGT-----",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-tractor",
+    "sidc": "SHGPEVENGT-----",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-tractor",
+    "sidc": "SNGPEVENGT-----",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-tractor",
+    "sidc": "SUGPEVENGT-----",
+    "label": "TRACTOR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-skid-steer",
+    "sidc": "SFGPEVENGS-----",
+    "label": "SKID",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-skid-steer",
+    "sidc": "SHGPEVENGS-----",
+    "label": "SKID",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-skid-steer",
+    "sidc": "SNGPEVENGS-----",
+    "label": "SKID",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-skid-steer",
+    "sidc": "SUGPEVENGS-----",
+    "label": "SKID",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-armored-bulldozer",
+    "sidc": "SFGPEVENGA-----",
+    "label": "ARMD DOZ",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-armored-bulldozer",
+    "sidc": "SHGPEVENGA-----",
+    "label": "ARMD DOZ",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-armored-bulldozer",
+    "sidc": "SNGPEVENGA-----",
+    "label": "ARMD DOZ",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-armored-bulldozer",
+    "sidc": "SUGPEVENGA-----",
+    "label": "ARMD DOZ",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-bridge-layer",
+    "sidc": "SFGPEVENGBR----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-bridge-layer",
+    "sidc": "SHGPEVENGBR----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-bridge-layer",
+    "sidc": "SNGPEVENGBR----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-bridge-layer",
+    "sidc": "SUGPEVENGBR----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mine-plow",
+    "sidc": "SFGPEVENGMP----",
+    "label": "MINE PLW",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mine-plow",
+    "sidc": "SHGPEVENGMP----",
+    "label": "MINE PLW",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mine-plow",
+    "sidc": "SNGPEVENGMP----",
+    "label": "MINE PLW",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mine-plow",
+    "sidc": "SUGPEVENGMP----",
+    "label": "MINE PLW",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mine-roller",
+    "sidc": "SFGPEVENGMR----",
+    "label": "MINE RLR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mine-roller",
+    "sidc": "SHGPEVENGMR----",
+    "label": "MINE RLR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mine-roller",
+    "sidc": "SNGPEVENGMR----",
+    "label": "MINE RLR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mine-roller",
+    "sidc": "SUGPEVENGMR----",
+    "label": "MINE RLR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mine-breaching-vehicle",
+    "sidc": "SFGPEVENGMB----",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mine-breaching-vehicle",
+    "sidc": "SHGPEVENGMB----",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mine-breaching-vehicle",
+    "sidc": "SNGPEVENGMB----",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mine-breaching-vehicle",
+    "sidc": "SUGPEVENGMB----",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-ifv",
+    "sidc": "SFGPEVARMIF----",
+    "label": "IFV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-ifv",
+    "sidc": "SHGPEVARMIF----",
+    "label": "IFV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-ifv",
+    "sidc": "SNGPEVARMIF----",
+    "label": "IFV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-ifv",
+    "sidc": "SUGPEVARMIF----",
+    "label": "IFV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-afv",
+    "sidc": "SFGPEVARMAF----",
+    "label": "AFV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-afv",
+    "sidc": "SHGPEVARMAF----",
+    "label": "AFV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-afv",
+    "sidc": "SNGPEVARMAF----",
+    "label": "AFV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-afv",
+    "sidc": "SUGPEVARMAF----",
+    "label": "AFV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-scout-vehicle",
+    "sidc": "SFGPEVARMSC----",
+    "label": "SCOUT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-scout-vehicle",
+    "sidc": "SHGPEVARMSC----",
+    "label": "SCOUT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-scout-vehicle",
+    "sidc": "SNGPEVARMSC----",
+    "label": "SCOUT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-scout-vehicle",
+    "sidc": "SUGPEVARMSC----",
+    "label": "SCOUT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-recon-vehicle",
+    "sidc": "SFGPEVARMRC----",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-recon-vehicle",
+    "sidc": "SHGPEVARMRC----",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-recon-vehicle",
+    "sidc": "SNGPEVARMRC----",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-recon-vehicle",
+    "sidc": "SUGPEVARMRC----",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-command-post-vehicle",
+    "sidc": "SFGPEVARMCP----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-command-post-vehicle",
+    "sidc": "SHGPEVARMCP----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-command-post-vehicle",
+    "sidc": "SNGPEVARMCP----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-command-post-vehicle",
+    "sidc": "SUGPEVARMCP----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-recovery-vehicle",
+    "sidc": "SFGPEVARMRV----",
+    "label": "RECOV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-recovery-vehicle",
+    "sidc": "SHGPEVARMRV----",
+    "label": "RECOV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-recovery-vehicle",
+    "sidc": "SNGPEVARMRV----",
+    "label": "RECOV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-recovery-vehicle",
+    "sidc": "SUGPEVARMRV----",
+    "label": "RECOV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-bridging-vehicle",
+    "sidc": "SFGPEVARMBV----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-bridging-vehicle",
+    "sidc": "SHGPEVARMBV----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-bridging-vehicle",
+    "sidc": "SNGPEVARMBV----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-bridging-vehicle",
+    "sidc": "SUGPEVARMBV----",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-self-propelled-artillery",
+    "sidc": "SFGPEVARTA-----",
+    "label": "SP ARTY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-self-propelled-artillery",
+    "sidc": "SHGPEVARTA-----",
+    "label": "SP ARTY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-self-propelled-artillery",
+    "sidc": "SNGPEVARTA-----",
+    "label": "SP ARTY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-self-propelled-artillery",
+    "sidc": "SUGPEVARTA-----",
+    "label": "SP ARTY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-self-propelled-howitzer",
+    "sidc": "SFGPEVARTH-----",
+    "label": "SP HOW",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-self-propelled-howitzer",
+    "sidc": "SHGPEVARTH-----",
+    "label": "SP HOW",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-self-propelled-howitzer",
+    "sidc": "SNGPEVARTH-----",
+    "label": "SP HOW",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-self-propelled-howitzer",
+    "sidc": "SUGPEVARTH-----",
+    "label": "SP HOW",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mlrs",
+    "sidc": "SFGPEVARTM-----",
+    "label": "MLRS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mlrs",
+    "sidc": "SHGPEVARTM-----",
+    "label": "MLRS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mlrs",
+    "sidc": "SNGPEVARTM-----",
+    "label": "MLRS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mlrs",
+    "sidc": "SUGPEVARTM-----",
+    "label": "MLRS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-mortar-carrier",
+    "sidc": "SFGPEVARTC-----",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-mortar-carrier",
+    "sidc": "SHGPEVARTC-----",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-mortar-carrier",
+    "sidc": "SNGPEVARTC-----",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-mortar-carrier",
+    "sidc": "SUGPEVARTC-----",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-sam-launcher",
+    "sidc": "SFGPEVADSL-----",
+    "label": "SAM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-sam-launcher",
+    "sidc": "SHGPEVADSL-----",
+    "label": "SAM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-sam-launcher",
+    "sidc": "SNGPEVADSL-----",
+    "label": "SAM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-sam-launcher",
+    "sidc": "SUGPEVADSL-----",
+    "label": "SAM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-aaa-system",
+    "sidc": "SFGPEVADAA-----",
+    "label": "AAA",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-aaa-system",
+    "sidc": "SHGPEVADAA-----",
+    "label": "AAA",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-aaa-system",
+    "sidc": "SNGPEVADAA-----",
+    "label": "AAA",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-aaa-system",
+    "sidc": "SUGPEVADAA-----",
+    "label": "AAA",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-radar-vehicle",
+    "sidc": "SFGPEVSENRV----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-radar-vehicle",
+    "sidc": "SHGPEVSENRV----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-radar-vehicle",
+    "sidc": "SNGPEVSENRV----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-radar-vehicle",
+    "sidc": "SUGPEVSENRV----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-ew-vehicle",
+    "sidc": "SFGPEVEWWV-----",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-ew-vehicle",
+    "sidc": "SHGPEVEWWV-----",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-ew-vehicle",
+    "sidc": "SNGPEVEWWV-----",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-ew-vehicle",
+    "sidc": "SUGPEVEWWV-----",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-counter-battery-radar",
+    "sidc": "SFGPESSENCB----",
+    "label": "CBR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-counter-battery-radar",
+    "sidc": "SHGPESSENCB----",
+    "label": "CBR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-counter-battery-radar",
+    "sidc": "SNGPESSENCB----",
+    "label": "CBR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-counter-battery-radar",
+    "sidc": "SUGPESSENCB----",
+    "label": "CBR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-ground-surveillance-radar",
+    "sidc": "SFGPESSENGS----",
+    "label": "GSR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-ground-surveillance-radar",
+    "sidc": "SHGPESSENGS----",
+    "label": "GSR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-ground-surveillance-radar",
+    "sidc": "SNGPESSENGS----",
+    "label": "GSR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-ground-surveillance-radar",
+    "sidc": "SUGPESSENGS----",
+    "label": "GSR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-air-search-radar",
+    "sidc": "SFGPESSENAS----",
+    "label": "ASR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-air-search-radar",
+    "sidc": "SHGPESSENAS----",
+    "label": "ASR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-air-search-radar",
+    "sidc": "SNGPESSENAS----",
+    "label": "ASR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-air-search-radar",
+    "sidc": "SUGPESSENAS----",
+    "label": "ASR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-fire-control-radar",
+    "sidc": "SFGPESSENFC----",
+    "label": "FCR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-fire-control-radar",
+    "sidc": "SHGPESSENFC----",
+    "label": "FCR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-fire-control-radar",
+    "sidc": "SNGPESSENFC----",
+    "label": "FCR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-fire-control-radar",
+    "sidc": "SUGPESSENFC----",
+    "label": "FCR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-weather-radar",
+    "sidc": "SFGPESSENWR----",
+    "label": "WEATHER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-weather-radar",
+    "sidc": "SHGPESSENWR----",
+    "label": "WEATHER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-weather-radar",
+    "sidc": "SNGPESSENWR----",
+    "label": "WEATHER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-weather-radar",
+    "sidc": "SUGPESSENWR----",
+    "label": "WEATHER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-electro-optical-sensor",
+    "sidc": "SFGPESSENEO----",
+    "label": "EO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-electro-optical-sensor",
+    "sidc": "SHGPESSENEO----",
+    "label": "EO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-electro-optical-sensor",
+    "sidc": "SNGPESSENEO----",
+    "label": "EO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-electro-optical-sensor",
+    "sidc": "SUGPESSENEO----",
+    "label": "EO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-infrared-sensor",
+    "sidc": "SFGPESSENIR----",
+    "label": "IR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-infrared-sensor",
+    "sidc": "SHGPESSENIR----",
+    "label": "IR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-infrared-sensor",
+    "sidc": "SNGPESSENIR----",
+    "label": "IR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-infrared-sensor",
+    "sidc": "SUGPESSENIR----",
+    "label": "IR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-camera",
+    "sidc": "SFGPESSENCM----",
+    "label": "CAM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-camera",
+    "sidc": "SHGPESSENCM----",
+    "label": "CAM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-camera",
+    "sidc": "SNGPESSENCM----",
+    "label": "CAM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-camera",
+    "sidc": "SUGPESSENCM----",
+    "label": "CAM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-acoustic-sensor",
+    "sidc": "SFGPESSENAC----",
+    "label": "ACOUST",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-acoustic-sensor",
+    "sidc": "SHGPESSENAC----",
+    "label": "ACOUST",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-acoustic-sensor",
+    "sidc": "SNGPESSENAC----",
+    "label": "ACOUST",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-acoustic-sensor",
+    "sidc": "SUGPESSENAC----",
+    "label": "ACOUST",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-seismic-sensor",
+    "sidc": "SFGPESSENSEI---",
+    "label": "SEISM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-seismic-sensor",
+    "sidc": "SHGPESSENSEI---",
+    "label": "SEISM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-seismic-sensor",
+    "sidc": "SNGPESSENSEI---",
+    "label": "SEISM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-seismic-sensor",
+    "sidc": "SUGPESSENSEI---",
+    "label": "SEISM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-jammer",
+    "sidc": "SFGPESEWJ------",
+    "label": "JAMMER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-jammer",
+    "sidc": "SHGPESEWJ------",
+    "label": "JAMMER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-jammer",
+    "sidc": "SNGPESEWJ------",
+    "label": "JAMMER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-jammer",
+    "sidc": "SUGPESEWJ------",
+    "label": "JAMMER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-signal-intercept",
+    "sidc": "SFGPESEWSI-----",
+    "label": "SIGINT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-signal-intercept",
+    "sidc": "SHGPESEWSI-----",
+    "label": "SIGINT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-signal-intercept",
+    "sidc": "SNGPESEWSI-----",
+    "label": "SIGINT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-signal-intercept",
+    "sidc": "SUGPESEWSI-----",
+    "label": "SIGINT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-direction-finder",
+    "sidc": "SFGPESEWDF-----",
+    "label": "DF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-direction-finder",
+    "sidc": "SHGPESEWDF-----",
+    "label": "DF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-direction-finder",
+    "sidc": "SNGPESEWDF-----",
+    "label": "DF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-direction-finder",
+    "sidc": "SUGPESEWDF-----",
+    "label": "DF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-communications-relay",
+    "sidc": "SFGPESCOMR-----",
+    "label": "RELAY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-communications-relay",
+    "sidc": "SHGPESCOMR-----",
+    "label": "RELAY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-communications-relay",
+    "sidc": "SNGPESCOMR-----",
+    "label": "RELAY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-communications-relay",
+    "sidc": "SUGPESCOMR-----",
+    "label": "RELAY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-satcom-terminal",
+    "sidc": "SFGPESCOMS-----",
+    "label": "SATCOM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-satcom-terminal",
+    "sidc": "SHGPESCOMS-----",
+    "label": "SATCOM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-satcom-terminal",
+    "sidc": "SNGPESCOMS-----",
+    "label": "SATCOM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-satcom-terminal",
+    "sidc": "SUGPESCOMS-----",
+    "label": "SATCOM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-radio-node",
+    "sidc": "SFGPESCOMN-----",
+    "label": "RADIO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-radio-node",
+    "sidc": "SHGPESCOMN-----",
+    "label": "RADIO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-radio-node",
+    "sidc": "SNGPESCOMN-----",
+    "label": "RADIO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-radio-node",
+    "sidc": "SUGPESCOMN-----",
+    "label": "RADIO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-generator",
+    "sidc": "SFGPESPOWG-----",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-generator",
+    "sidc": "SHGPESPOWG-----",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-generator",
+    "sidc": "SNGPESPOWG-----",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-generator",
+    "sidc": "SUGPESPOWG-----",
+    "label": "GEN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-light-set",
+    "sidc": "SFGPESPOWL-----",
+    "label": "LIGHT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-light-set",
+    "sidc": "SHGPESPOWL-----",
+    "label": "LIGHT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-light-set",
+    "sidc": "SNGPESPOWL-----",
+    "label": "LIGHT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-light-set",
+    "sidc": "SUGPESPOWL-----",
+    "label": "LIGHT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-water-point",
+    "sidc": "SFGPESLOGW-----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-water-point",
+    "sidc": "SHGPESLOGW-----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-water-point",
+    "sidc": "SNGPESLOGW-----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-water-point",
+    "sidc": "SUGPESLOGW-----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-fuel-point",
+    "sidc": "SFGPESLOGF-----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-fuel-point",
+    "sidc": "SHGPESLOGF-----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-fuel-point",
+    "sidc": "SNGPESLOGF-----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-fuel-point",
+    "sidc": "SUGPESLOGF-----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-ammo-point",
+    "sidc": "SFGPESLOGA-----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-ammo-point",
+    "sidc": "SHGPESLOGA-----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-ammo-point",
+    "sidc": "SNGPESLOGA-----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-ammo-point",
+    "sidc": "SUGPESLOGA-----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-medical-station",
+    "sidc": "SFGPESMEDS-----",
+    "label": "MED",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-medical-station",
+    "sidc": "SHGPESMEDS-----",
+    "label": "MED",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-medical-station",
+    "sidc": "SNGPESMEDS-----",
+    "label": "MED",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-medical-station",
+    "sidc": "SUGPESMEDS-----",
+    "label": "MED",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-field-kitchen",
+    "sidc": "SFGPESLOGK-----",
+    "label": "KITCHEN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-field-kitchen",
+    "sidc": "SHGPESLOGK-----",
+    "label": "KITCHEN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-field-kitchen",
+    "sidc": "SNGPESLOGK-----",
+    "label": "KITCHEN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-field-kitchen",
+    "sidc": "SUGPESLOGK-----",
+    "label": "KITCHEN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-maintenance-point",
+    "sidc": "SFGPESLOGM-----",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-maintenance-point",
+    "sidc": "SHGPESLOGM-----",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-maintenance-point",
+    "sidc": "SNGPESLOGM-----",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-maintenance-point",
+    "sidc": "SUGPESLOGM-----",
+    "label": "MAINT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-checkpoint",
+    "sidc": "SFGPESSECC-----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-checkpoint",
+    "sidc": "SHGPESSECC-----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-checkpoint",
+    "sidc": "SNGPESSECC-----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-checkpoint",
+    "sidc": "SUGPESSECC-----",
+    "label": "CP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-roadblock",
+    "sidc": "SFGPESSECR-----",
+    "label": "RDBLK",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-roadblock",
+    "sidc": "SHGPESSECR-----",
+    "label": "RDBLK",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-roadblock",
+    "sidc": "SNGPESSECR-----",
+    "label": "RDBLK",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-roadblock",
+    "sidc": "SUGPESSECR-----",
+    "label": "RDBLK",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-observation-post",
+    "sidc": "SFGPESSECO-----",
+    "label": "OP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-observation-post",
+    "sidc": "SHGPESSECO-----",
+    "label": "OP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-observation-post",
+    "sidc": "SNGPESSECO-----",
+    "label": "OP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-observation-post",
+    "sidc": "SUGPESSECO-----",
+    "label": "OP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-sniper-position",
+    "sidc": "SFGPESSECS-----",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-sniper-position",
+    "sidc": "SHGPESSECS-----",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-sniper-position",
+    "sidc": "SNGPESSECS-----",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-sniper-position",
+    "sidc": "SUGPESSECS-----",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-atgm-position",
+    "sidc": "SFGPESSECA-----",
+    "label": "ATGM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-atgm-position",
+    "sidc": "SHGPESSECA-----",
+    "label": "ATGM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-atgm-position",
+    "sidc": "SNGPESSECA-----",
+    "label": "ATGM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-atgm-position",
+    "sidc": "SUGPESSECA-----",
+    "label": "ATGM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-equipment-artillery-position",
+    "sidc": "SFGPESSECP-----",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-equipment-artillery-position",
+    "sidc": "SHGPESSECP-----",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-equipment-artillery-position",
+    "sidc": "SNGPESSECP-----",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-equipment-artillery-position",
+    "sidc": "SUGPESSECP-----",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-light-infantry",
+    "sidc": "SFGPUCCIL------",
+    "label": "LT INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-light-infantry",
+    "sidc": "SHGPUCCIL------",
+    "label": "LT INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-light-infantry",
+    "sidc": "SNGPUCCIL------",
+    "label": "LT INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-light-infantry",
+    "sidc": "SUGPUCCIL------",
+    "label": "LT INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-mechanized-infantry",
+    "sidc": "SFGPUCCIM------",
+    "label": "MECH INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-mechanized-infantry",
+    "sidc": "SHGPUCCIM------",
+    "label": "MECH INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-mechanized-infantry",
+    "sidc": "SNGPUCCIM------",
+    "label": "MECH INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-mechanized-infantry",
+    "sidc": "SUGPUCCIM------",
+    "label": "MECH INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-motorized-infantry",
+    "sidc": "SFGPUCCIN------",
+    "label": "MOT INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-motorized-infantry",
+    "sidc": "SHGPUCCIN------",
+    "label": "MOT INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-motorized-infantry",
+    "sidc": "SNGPUCCIN------",
+    "label": "MOT INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-motorized-infantry",
+    "sidc": "SUGPUCCIN------",
+    "label": "MOT INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-marine-infantry",
+    "sidc": "SFGPUCCIR------",
+    "label": "MAR INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-marine-infantry",
+    "sidc": "SHGPUCCIR------",
+    "label": "MAR INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-marine-infantry",
+    "sidc": "SNGPUCCIR------",
+    "label": "MAR INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-marine-infantry",
+    "sidc": "SUGPUCCIR------",
+    "label": "MAR INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-mountain-infantry",
+    "sidc": "SFGPUCCIT------",
+    "label": "MTN INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-mountain-infantry",
+    "sidc": "SHGPUCCIT------",
+    "label": "MTN INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-mountain-infantry",
+    "sidc": "SNGPUCCIT------",
+    "label": "MTN INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-mountain-infantry",
+    "sidc": "SUGPUCCIT------",
+    "label": "MTN INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-airborne-infantry",
+    "sidc": "SFGPUCCIA------",
+    "label": "ABN INF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-airborne-infantry",
+    "sidc": "SHGPUCCIA------",
+    "label": "ABN INF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-airborne-infantry",
+    "sidc": "SNGPUCCIA------",
+    "label": "ABN INF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-airborne-infantry",
+    "sidc": "SUGPUCCIA------",
+    "label": "ABN INF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-ranger",
+    "sidc": "SFGPUCCIG------",
+    "label": "RANGER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-ranger",
+    "sidc": "SHGPUCCIG------",
+    "label": "RANGER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-ranger",
+    "sidc": "SNGPUCCIG------",
+    "label": "RANGER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-ranger",
+    "sidc": "SUGPUCCIG------",
+    "label": "RANGER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-special-forces",
+    "sidc": "SFGPUCCIS------",
+    "label": "SOF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-special-forces",
+    "sidc": "SHGPUCCIS------",
+    "label": "SOF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-special-forces",
+    "sidc": "SNGPUCCIS------",
+    "label": "SOF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-special-forces",
+    "sidc": "SUGPUCCIS------",
+    "label": "SOF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-surveillance",
+    "sidc": "SFGPUCCSV------",
+    "label": "SURV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-surveillance",
+    "sidc": "SHGPUCCSV------",
+    "label": "SURV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-surveillance",
+    "sidc": "SNGPUCCSV------",
+    "label": "SURV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-surveillance",
+    "sidc": "SUGPUCCSV------",
+    "label": "SURV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-sniper",
+    "sidc": "SFGPUCCSN------",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-sniper",
+    "sidc": "SHGPUCCSN------",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-sniper",
+    "sidc": "SNGPUCCSN------",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-sniper",
+    "sidc": "SUGPUCCSN------",
+    "label": "SNIPER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-tank-destroyer",
+    "sidc": "SFGPUCCAD------",
+    "label": "TK DEST",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-tank-destroyer",
+    "sidc": "SHGPUCCAD------",
+    "label": "TK DEST",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-tank-destroyer",
+    "sidc": "SNGPUCCAD------",
+    "label": "TK DEST",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-tank-destroyer",
+    "sidc": "SUGPUCCAD------",
+    "label": "TK DEST",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-artillery",
+    "sidc": "SFGPUCCF-------",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-artillery",
+    "sidc": "SHGPUCCF-------",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-artillery",
+    "sidc": "SNGPUCCF-------",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-artillery",
+    "sidc": "SUGPUCCF-------",
+    "label": "ARTY",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-rocket-artillery",
+    "sidc": "SFGPUCCFR------",
+    "label": "ROCKET",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-rocket-artillery",
+    "sidc": "SHGPUCCFR------",
+    "label": "ROCKET",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-rocket-artillery",
+    "sidc": "SNGPUCCFR------",
+    "label": "ROCKET",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-rocket-artillery",
+    "sidc": "SUGPUCCFR------",
+    "label": "ROCKET",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-mortar",
+    "sidc": "SFGPUCCFM------",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-mortar",
+    "sidc": "SHGPUCCFM------",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-mortar",
+    "sidc": "SNGPUCCFM------",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-mortar",
+    "sidc": "SUGPUCCFM------",
+    "label": "MORTAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-short-range-air-defense",
+    "sidc": "SFGPUCCDS------",
+    "label": "SHORAD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-short-range-air-defense",
+    "sidc": "SHGPUCCDS------",
+    "label": "SHORAD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-short-range-air-defense",
+    "sidc": "SNGPUCCDS------",
+    "label": "SHORAD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-short-range-air-defense",
+    "sidc": "SUGPUCCDS------",
+    "label": "SHORAD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-long-range-air-defense",
+    "sidc": "SFGPUCCDL------",
+    "label": "LRAD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-long-range-air-defense",
+    "sidc": "SHGPUCCDL------",
+    "label": "LRAD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-long-range-air-defense",
+    "sidc": "SNGPUCCDL------",
+    "label": "LRAD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-long-range-air-defense",
+    "sidc": "SUGPUCCDL------",
+    "label": "LRAD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-missile-defense",
+    "sidc": "SFGPUCCDM------",
+    "label": "MD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-missile-defense",
+    "sidc": "SHGPUCCDM------",
+    "label": "MD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-missile-defense",
+    "sidc": "SNGPUCCDM------",
+    "label": "MD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-missile-defense",
+    "sidc": "SUGPUCCDM------",
+    "label": "MD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-engineer-combat",
+    "sidc": "SFGPUCCE-------",
+    "label": "ENG",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-engineer-combat",
+    "sidc": "SHGPUCCE-------",
+    "label": "ENG",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-engineer-combat",
+    "sidc": "SNGPUCCE-------",
+    "label": "ENG",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-engineer-combat",
+    "sidc": "SUGPUCCE-------",
+    "label": "ENG",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-breaching",
+    "sidc": "SFGPUCCEB------",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-breaching",
+    "sidc": "SHGPUCCEB------",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-breaching",
+    "sidc": "SNGPUCCEB------",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-breaching",
+    "sidc": "SUGPUCCEB------",
+    "label": "BREACH",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-bridging",
+    "sidc": "SFGPUCCEG------",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-bridging",
+    "sidc": "SHGPUCCEG------",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-bridging",
+    "sidc": "SNGPUCCEG------",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-bridging",
+    "sidc": "SUGPUCCEG------",
+    "label": "BRIDGE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-demolition",
+    "sidc": "SFGPUCCED------",
+    "label": "DEMO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-demolition",
+    "sidc": "SHGPUCCED------",
+    "label": "DEMO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-demolition",
+    "sidc": "SNGPUCCED------",
+    "label": "DEMO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-demolition",
+    "sidc": "SUGPUCCED------",
+    "label": "DEMO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-route-clearance",
+    "sidc": "SFGPUCCER------",
+    "label": "RTE CLR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-route-clearance",
+    "sidc": "SHGPUCCER------",
+    "label": "RTE CLR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-route-clearance",
+    "sidc": "SNGPUCCER------",
+    "label": "RTE CLR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-route-clearance",
+    "sidc": "SUGPUCCER------",
+    "label": "RTE CLR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-military-police",
+    "sidc": "SFGPUCCP-------",
+    "label": "MP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-military-police",
+    "sidc": "SHGPUCCP-------",
+    "label": "MP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-military-police",
+    "sidc": "SNGPUCCP-------",
+    "label": "MP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-military-police",
+    "sidc": "SUGPUCCP-------",
+    "label": "MP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-security",
+    "sidc": "SFGPUCCPS------",
+    "label": "SEC",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-security",
+    "sidc": "SHGPUCCPS------",
+    "label": "SEC",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-security",
+    "sidc": "SNGPUCCPS------",
+    "label": "SEC",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-security",
+    "sidc": "SUGPUCCPS------",
+    "label": "SEC",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-riot-control",
+    "sidc": "SFGPUCCPR------",
+    "label": "RIOT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-riot-control",
+    "sidc": "SHGPUCCPR------",
+    "label": "RIOT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-riot-control",
+    "sidc": "SNGPUCCPR------",
+    "label": "RIOT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-riot-control",
+    "sidc": "SUGPUCCPR------",
+    "label": "RIOT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-ceremonial",
+    "sidc": "SFGPUCCPC------",
+    "label": "CER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-ceremonial",
+    "sidc": "SHGPUCCPC------",
+    "label": "CER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-ceremonial",
+    "sidc": "SNGPUCCPC------",
+    "label": "CER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-ceremonial",
+    "sidc": "SUGPUCCPC------",
+    "label": "CER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-intelligence",
+    "sidc": "SFGPUUUM-------",
+    "label": "INTEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-intelligence",
+    "sidc": "SHGPUUUM-------",
+    "label": "INTEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-intelligence",
+    "sidc": "SNGPUUUM-------",
+    "label": "INTEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-intelligence",
+    "sidc": "SUGPUUUM-------",
+    "label": "INTEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-electronic-warfare",
+    "sidc": "SFGPUUUE-------",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-electronic-warfare",
+    "sidc": "SHGPUUUE-------",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-electronic-warfare",
+    "sidc": "SNGPUUUE-------",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-electronic-warfare",
+    "sidc": "SUGPUUUE-------",
+    "label": "EW",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-civil-affairs",
+    "sidc": "SFGPUUUC-------",
+    "label": "CIV AFF",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-civil-affairs",
+    "sidc": "SHGPUUUC-------",
+    "label": "CIV AFF",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-civil-affairs",
+    "sidc": "SNGPUUUC-------",
+    "label": "CIV AFF",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-civil-affairs",
+    "sidc": "SUGPUUUC-------",
+    "label": "CIV AFF",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-psychological-operations",
+    "sidc": "SFGPUUUP-------",
+    "label": "PSYOPS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-psychological-operations",
+    "sidc": "SHGPUUUP-------",
+    "label": "PSYOPS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-psychological-operations",
+    "sidc": "SNGPUUUP-------",
+    "label": "PSYOPS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-psychological-operations",
+    "sidc": "SUGPUUUP-------",
+    "label": "PSYOPS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-space-support",
+    "sidc": "SFGPUUUX-------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-space-support",
+    "sidc": "SHGPUUUX-------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-space-support",
+    "sidc": "SNGPUUUX-------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-space-support",
+    "sidc": "SUGPUUUX-------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-air-support-operations",
+    "sidc": "SFGPUUUR-------",
+    "label": "ASOC",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-air-support-operations",
+    "sidc": "SHGPUUUR-------",
+    "label": "ASOC",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-air-support-operations",
+    "sidc": "SNGPUUUR-------",
+    "label": "ASOC",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-air-support-operations",
+    "sidc": "SUGPUUUR-------",
+    "label": "ASOC",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-liaison",
+    "sidc": "SFGPUUUL-------",
+    "label": "LNO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-liaison",
+    "sidc": "SHGPUUUL-------",
+    "label": "LNO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-liaison",
+    "sidc": "SNGPUUUL-------",
+    "label": "LNO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-liaison",
+    "sidc": "SUGPUUUL-------",
+    "label": "LNO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-quartermaster",
+    "sidc": "SFGPUSSQ-------",
+    "label": "QM",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-quartermaster",
+    "sidc": "SHGPUSSQ-------",
+    "label": "QM",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-quartermaster",
+    "sidc": "SNGPUSSQ-------",
+    "label": "QM",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-quartermaster",
+    "sidc": "SUGPUSSQ-------",
+    "label": "QM",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-ordnance",
+    "sidc": "SFGPUSSO-------",
+    "label": "ORD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-ordnance",
+    "sidc": "SHGPUSSO-------",
+    "label": "ORD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-ordnance",
+    "sidc": "SNGPUSSO-------",
+    "label": "ORD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-ordnance",
+    "sidc": "SUGPUSSO-------",
+    "label": "ORD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-personnel",
+    "sidc": "SFGPUSSP-------",
+    "label": "PERS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-personnel",
+    "sidc": "SHGPUSSP-------",
+    "label": "PERS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-personnel",
+    "sidc": "SNGPUSSP-------",
+    "label": "PERS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-personnel",
+    "sidc": "SUGPUSSP-------",
+    "label": "PERS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-finance",
+    "sidc": "SFGPUSSF-------",
+    "label": "FIN",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-finance",
+    "sidc": "SHGPUSSF-------",
+    "label": "FIN",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-finance",
+    "sidc": "SNGPUSSF-------",
+    "label": "FIN",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-finance",
+    "sidc": "SUGPUSSF-------",
+    "label": "FIN",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-legal",
+    "sidc": "SFGPUSSJ-------",
+    "label": "LEGAL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-legal",
+    "sidc": "SHGPUSSJ-------",
+    "label": "LEGAL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-legal",
+    "sidc": "SNGPUSSJ-------",
+    "label": "LEGAL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-legal",
+    "sidc": "SUGPUSSJ-------",
+    "label": "LEGAL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-chaplain",
+    "sidc": "SFGPUSSC-------",
+    "label": "CHAP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-chaplain",
+    "sidc": "SHGPUSSC-------",
+    "label": "CHAP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-chaplain",
+    "sidc": "SNGPUSSC-------",
+    "label": "CHAP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-chaplain",
+    "sidc": "SUGPUSSC-------",
+    "label": "CHAP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-public-affairs",
+    "sidc": "SFGPUSSA-------",
+    "label": "PAO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-public-affairs",
+    "sidc": "SHGPUSSA-------",
+    "label": "PAO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-public-affairs",
+    "sidc": "SNGPUSSA-------",
+    "label": "PAO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-public-affairs",
+    "sidc": "SUGPUSSA-------",
+    "label": "PAO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-logistics",
+    "sidc": "SFGPUSSL-------",
+    "label": "LOG",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-logistics",
+    "sidc": "SHGPUSSL-------",
+    "label": "LOG",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-logistics",
+    "sidc": "SNGPUSSL-------",
+    "label": "LOG",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-logistics",
+    "sidc": "SUGPUSSL-------",
+    "label": "LOG",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-contracting",
+    "sidc": "SFGPUSSK-------",
+    "label": "CNTRCT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-contracting",
+    "sidc": "SHGPUSSK-------",
+    "label": "CNTRCT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-contracting",
+    "sidc": "SNGPUSSK-------",
+    "label": "CNTRCT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-contracting",
+    "sidc": "SUGPUSSK-------",
+    "label": "CNTRCT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-movement-control",
+    "sidc": "SFGPUSSV-------",
+    "label": "MOVE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-movement-control",
+    "sidc": "SHGPUSSV-------",
+    "label": "MOVE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-movement-control",
+    "sidc": "SNGPUSSV-------",
+    "label": "MOVE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-movement-control",
+    "sidc": "SUGPUSSV-------",
+    "label": "MOVE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-unit-airfield-services",
+    "sidc": "SFGPUSSY-------",
+    "label": "AFD SVC",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-unit-airfield-services",
+    "sidc": "SHGPUSSY-------",
+    "label": "AFD SVC",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-unit-airfield-services",
+    "sidc": "SNGPUSSY-------",
+    "label": "AFD SVC",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-unit-airfield-services",
+    "sidc": "SUGPUSSY-------",
+    "label": "AFD SVC",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-installation",
+    "sidc": "SFGPI-----H----",
+    "label": "INST",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-installation",
+    "sidc": "SHGPI-----H----",
+    "label": "INST",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-installation",
+    "sidc": "SNGPI-----H----",
+    "label": "INST",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-installation",
+    "sidc": "SUGPI-----H----",
+    "label": "INST",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-headquarters",
+    "sidc": "SFGPIHQ---H----",
+    "label": "HQ",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-headquarters",
+    "sidc": "SHGPIHQ---H----",
+    "label": "HQ",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-headquarters",
+    "sidc": "SNGPIHQ---H----",
+    "label": "HQ",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-headquarters",
+    "sidc": "SUGPIHQ---H----",
+    "label": "HQ",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-airfield",
+    "sidc": "SFGPIAF---H----",
+    "label": "AIRFLD",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-airfield",
+    "sidc": "SHGPIAF---H----",
+    "label": "AIRFLD",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-airfield",
+    "sidc": "SNGPIAF---H----",
+    "label": "AIRFLD",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-airfield",
+    "sidc": "SUGPIAF---H----",
+    "label": "AIRFLD",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-heliport",
+    "sidc": "SFGPIHP---H----",
+    "label": "HELIPT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-heliport",
+    "sidc": "SHGPIHP---H----",
+    "label": "HELIPT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-heliport",
+    "sidc": "SNGPIHP---H----",
+    "label": "HELIPT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-heliport",
+    "sidc": "SUGPIHP---H----",
+    "label": "HELIPT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-port",
+    "sidc": "SFGPIPT---H----",
+    "label": "PORT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-port",
+    "sidc": "SHGPIPT---H----",
+    "label": "PORT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-port",
+    "sidc": "SNGPIPT---H----",
+    "label": "PORT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-port",
+    "sidc": "SUGPIPT---H----",
+    "label": "PORT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-rail-yard",
+    "sidc": "SFGPIRY---H----",
+    "label": "RAIL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-rail-yard",
+    "sidc": "SHGPIRY---H----",
+    "label": "RAIL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-rail-yard",
+    "sidc": "SNGPIRY---H----",
+    "label": "RAIL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-rail-yard",
+    "sidc": "SUGPIRY---H----",
+    "label": "RAIL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-depot",
+    "sidc": "SFGPIDP---H----",
+    "label": "DEPOT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-depot",
+    "sidc": "SHGPIDP---H----",
+    "label": "DEPOT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-depot",
+    "sidc": "SNGPIDP---H----",
+    "label": "DEPOT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-depot",
+    "sidc": "SUGPIDP---H----",
+    "label": "DEPOT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-warehouse",
+    "sidc": "SFGPIWH---H----",
+    "label": "WAREHS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-warehouse",
+    "sidc": "SHGPIWH---H----",
+    "label": "WAREHS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-warehouse",
+    "sidc": "SNGPIWH---H----",
+    "label": "WAREHS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-warehouse",
+    "sidc": "SUGPIWH---H----",
+    "label": "WAREHS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-hospital",
+    "sidc": "SFGPIHS---H----",
+    "label": "HOSP",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-hospital",
+    "sidc": "SHGPIHS---H----",
+    "label": "HOSP",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-hospital",
+    "sidc": "SNGPIHS---H----",
+    "label": "HOSP",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-hospital",
+    "sidc": "SUGPIHS---H----",
+    "label": "HOSP",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-fuel-storage",
+    "sidc": "SFGPIFS---H----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-fuel-storage",
+    "sidc": "SHGPIFS---H----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-fuel-storage",
+    "sidc": "SNGPIFS---H----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-fuel-storage",
+    "sidc": "SUGPIFS---H----",
+    "label": "FUEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-ammo-storage",
+    "sidc": "SFGPIAS---H----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-ammo-storage",
+    "sidc": "SHGPIAS---H----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-ammo-storage",
+    "sidc": "SNGPIAS---H----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-ammo-storage",
+    "sidc": "SUGPIAS---H----",
+    "label": "AMMO",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-communications-site",
+    "sidc": "SFGPICS---H----",
+    "label": "COMMS",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-communications-site",
+    "sidc": "SHGPICS---H----",
+    "label": "COMMS",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-communications-site",
+    "sidc": "SNGPICS---H----",
+    "label": "COMMS",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-communications-site",
+    "sidc": "SUGPICS---H----",
+    "label": "COMMS",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-radar-site",
+    "sidc": "SFGPIRS---H----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-radar-site",
+    "sidc": "SHGPIRS---H----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-radar-site",
+    "sidc": "SNGPIRS---H----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-radar-site",
+    "sidc": "SUGPIRS---H----",
+    "label": "RADAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-power-plant",
+    "sidc": "SFGPIPP---H----",
+    "label": "POWER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-power-plant",
+    "sidc": "SHGPIPP---H----",
+    "label": "POWER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-power-plant",
+    "sidc": "SNGPIPP---H----",
+    "label": "POWER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-power-plant",
+    "sidc": "SUGPIPP---H----",
+    "label": "POWER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-water-treatment",
+    "sidc": "SFGPIWT---H----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-water-treatment",
+    "sidc": "SHGPIWT---H----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-water-treatment",
+    "sidc": "SNGPIWT---H----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-water-treatment",
+    "sidc": "SUGPIWT---H----",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-checkpoint",
+    "sidc": "SFGPICP---H----",
+    "label": "CHKPT",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-checkpoint",
+    "sidc": "SHGPICP---H----",
+    "label": "CHKPT",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-checkpoint",
+    "sidc": "SNGPICP---H----",
+    "label": "CHKPT",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-checkpoint",
+    "sidc": "SUGPICP---H----",
+    "label": "CHKPT",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-border-post",
+    "sidc": "SFGPIBP---H----",
+    "label": "BORDER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-border-post",
+    "sidc": "SHGPIBP---H----",
+    "label": "BORDER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-border-post",
+    "sidc": "SNGPIBP---H----",
+    "label": "BORDER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-border-post",
+    "sidc": "SUGPIBP---H----",
+    "label": "BORDER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-police-station",
+    "sidc": "SFGPIPS---H----",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-police-station",
+    "sidc": "SHGPIPS---H----",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-police-station",
+    "sidc": "SNGPIPS---H----",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-police-station",
+    "sidc": "SUGPIPS---H----",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-fire-station",
+    "sidc": "SFGPIFS2--H----",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-fire-station",
+    "sidc": "SHGPIFS2--H----",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-fire-station",
+    "sidc": "SNGPIFS2--H----",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-fire-station",
+    "sidc": "SUGPIFS2--H----",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-government-building",
+    "sidc": "SFGPIGB---H----",
+    "label": "GOV",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-government-building",
+    "sidc": "SHGPIGB---H----",
+    "label": "GOV",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-government-building",
+    "sidc": "SNGPIGB---H----",
+    "label": "GOV",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-government-building",
+    "sidc": "SUGPIGB---H----",
+    "label": "GOV",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-school",
+    "sidc": "SFGPISK---H----",
+    "label": "SCHOOL",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-school",
+    "sidc": "SHGPISK---H----",
+    "label": "SCHOOL",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-school",
+    "sidc": "SNGPISK---H----",
+    "label": "SCHOOL",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-school",
+    "sidc": "SUGPISK---H----",
+    "label": "SCHOOL",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-shelter",
+    "sidc": "SFGPISH---H----",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-shelter",
+    "sidc": "SHGPISH---H----",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-shelter",
+    "sidc": "SNGPISH---H----",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-shelter",
+    "sidc": "SUGPISH---H----",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-distribution-center",
+    "sidc": "SFGPIDC---H----",
+    "label": "DC",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-distribution-center",
+    "sidc": "SHGPIDC---H----",
+    "label": "DC",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-distribution-center",
+    "sidc": "SNGPIDC---H----",
+    "label": "DC",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-distribution-center",
+    "sidc": "SUGPIDC---H----",
+    "label": "DC",
+    "size": 48
+  },
+  {
+    "name": "friendly-ground-installation-construction-site",
+    "sidc": "SFGPICT---H----",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "hostile-ground-installation-construction-site",
+    "sidc": "SHGPICT---H----",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "neutral-ground-installation-construction-site",
+    "sidc": "SNGPICT---H----",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "unknown-ground-installation-construction-site",
+    "sidc": "SUGPICT---H----",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-passenger-jet",
+    "sidc": "SFAPCP---------",
+    "label": "PAX JET",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-passenger-jet",
+    "sidc": "SHAPCP---------",
+    "label": "PAX JET",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-passenger-jet",
+    "sidc": "SNAPCP---------",
+    "label": "PAX JET",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-passenger-jet",
+    "sidc": "SUAPCP---------",
+    "label": "PAX JET",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-cargo-plane",
+    "sidc": "SFAPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-cargo-plane",
+    "sidc": "SHAPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-cargo-plane",
+    "sidc": "SNAPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-cargo-plane",
+    "sidc": "SUAPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-business-jet",
+    "sidc": "SFAPCB---------",
+    "label": "BIZJET",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-business-jet",
+    "sidc": "SHAPCB---------",
+    "label": "BIZJET",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-business-jet",
+    "sidc": "SNAPCB---------",
+    "label": "BIZJET",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-business-jet",
+    "sidc": "SUAPCB---------",
+    "label": "BIZJET",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-trainer-aircraft",
+    "sidc": "SFAPCT---------",
+    "label": "TRAINER",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-trainer-aircraft",
+    "sidc": "SHAPCT---------",
+    "label": "TRAINER",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-trainer-aircraft",
+    "sidc": "SNAPCT---------",
+    "label": "TRAINER",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-trainer-aircraft",
+    "sidc": "SUAPCT---------",
+    "label": "TRAINER",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-glider",
+    "sidc": "SFAPCL---------",
+    "label": "GLIDER",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-glider",
+    "sidc": "SHAPCL---------",
+    "label": "GLIDER",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-glider",
+    "sidc": "SNAPCL---------",
+    "label": "GLIDER",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-glider",
+    "sidc": "SUAPCL---------",
+    "label": "GLIDER",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-ultralight",
+    "sidc": "SFAPCU---------",
+    "label": "ULTRA",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-ultralight",
+    "sidc": "SHAPCU---------",
+    "label": "ULTRA",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-ultralight",
+    "sidc": "SNAPCU---------",
+    "label": "ULTRA",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-ultralight",
+    "sidc": "SUAPCU---------",
+    "label": "ULTRA",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-balloon",
+    "sidc": "SFAPCBL--------",
+    "label": "BALLN",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-balloon",
+    "sidc": "SHAPCBL--------",
+    "label": "BALLN",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-balloon",
+    "sidc": "SNAPCBL--------",
+    "label": "BALLN",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-balloon",
+    "sidc": "SUAPCBL--------",
+    "label": "BALLN",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-fighter",
+    "sidc": "SFAPMFF--------",
+    "label": "FIGHTER",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-fighter",
+    "sidc": "SHAPMFF--------",
+    "label": "FIGHTER",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-fighter",
+    "sidc": "SNAPMFF--------",
+    "label": "FIGHTER",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-fighter",
+    "sidc": "SUAPMFF--------",
+    "label": "FIGHTER",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-multirole-fighter",
+    "sidc": "SFAPMFM--------",
+    "label": "MULTI",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-multirole-fighter",
+    "sidc": "SHAPMFM--------",
+    "label": "MULTI",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-multirole-fighter",
+    "sidc": "SNAPMFM--------",
+    "label": "MULTI",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-multirole-fighter",
+    "sidc": "SUAPMFM--------",
+    "label": "MULTI",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-attack-aircraft",
+    "sidc": "SFAPMFA--------",
+    "label": "ATTACK",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-attack-aircraft",
+    "sidc": "SHAPMFA--------",
+    "label": "ATTACK",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-attack-aircraft",
+    "sidc": "SNAPMFA--------",
+    "label": "ATTACK",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-attack-aircraft",
+    "sidc": "SUAPMFA--------",
+    "label": "ATTACK",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-bomber",
+    "sidc": "SFAPMFB--------",
+    "label": "BOMBER",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-bomber",
+    "sidc": "SHAPMFB--------",
+    "label": "BOMBER",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-bomber",
+    "sidc": "SNAPMFB--------",
+    "label": "BOMBER",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-bomber",
+    "sidc": "SUAPMFB--------",
+    "label": "BOMBER",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-close-air-support",
+    "sidc": "SFAPMFC--------",
+    "label": "CAS",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-close-air-support",
+    "sidc": "SHAPMFC--------",
+    "label": "CAS",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-close-air-support",
+    "sidc": "SNAPMFC--------",
+    "label": "CAS",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-close-air-support",
+    "sidc": "SUAPMFC--------",
+    "label": "CAS",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-electronic-attack",
+    "sidc": "SFAPMFE--------",
+    "label": "EA",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-electronic-attack",
+    "sidc": "SHAPMFE--------",
+    "label": "EA",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-electronic-attack",
+    "sidc": "SNAPMFE--------",
+    "label": "EA",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-electronic-attack",
+    "sidc": "SUAPMFE--------",
+    "label": "EA",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-awacs",
+    "sidc": "SFAPMFW--------",
+    "label": "AWACS",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-awacs",
+    "sidc": "SHAPMFW--------",
+    "label": "AWACS",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-awacs",
+    "sidc": "SNAPMFW--------",
+    "label": "AWACS",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-awacs",
+    "sidc": "SUAPMFW--------",
+    "label": "AWACS",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-maritime-patrol",
+    "sidc": "SFAPMFP--------",
+    "label": "MPA",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-maritime-patrol",
+    "sidc": "SHAPMFP--------",
+    "label": "MPA",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-maritime-patrol",
+    "sidc": "SNAPMFP--------",
+    "label": "MPA",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-maritime-patrol",
+    "sidc": "SUAPMFP--------",
+    "label": "MPA",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-recon-aircraft",
+    "sidc": "SFAPMFR--------",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-recon-aircraft",
+    "sidc": "SHAPMFR--------",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-recon-aircraft",
+    "sidc": "SNAPMFR--------",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-recon-aircraft",
+    "sidc": "SUAPMFR--------",
+    "label": "RECON",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-transport-aircraft",
+    "sidc": "SFAPMFT--------",
+    "label": "TRANS",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-transport-aircraft",
+    "sidc": "SHAPMFT--------",
+    "label": "TRANS",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-transport-aircraft",
+    "sidc": "SNAPMFT--------",
+    "label": "TRANS",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-transport-aircraft",
+    "sidc": "SUAPMFT--------",
+    "label": "TRANS",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-tanker-aircraft",
+    "sidc": "SFAPMFK--------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-tanker-aircraft",
+    "sidc": "SHAPMFK--------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-tanker-aircraft",
+    "sidc": "SNAPMFK--------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-tanker-aircraft",
+    "sidc": "SUAPMFK--------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-special-mission-aircraft",
+    "sidc": "SFAPMFS--------",
+    "label": "SPEC",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-special-mission-aircraft",
+    "sidc": "SHAPMFS--------",
+    "label": "SPEC",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-special-mission-aircraft",
+    "sidc": "SNAPMFS--------",
+    "label": "SPEC",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-special-mission-aircraft",
+    "sidc": "SUAPMFS--------",
+    "label": "SPEC",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-rotary-wing",
+    "sidc": "SFAPMH---------",
+    "label": "RW",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-rotary-wing",
+    "sidc": "SHAPMH---------",
+    "label": "RW",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-rotary-wing",
+    "sidc": "SNAPMH---------",
+    "label": "RW",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-rotary-wing",
+    "sidc": "SUAPMH---------",
+    "label": "RW",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-attack-helicopter",
+    "sidc": "SFAPMHA--------",
+    "label": "ATK HEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-attack-helicopter",
+    "sidc": "SHAPMHA--------",
+    "label": "ATK HEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-attack-helicopter",
+    "sidc": "SNAPMHA--------",
+    "label": "ATK HEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-attack-helicopter",
+    "sidc": "SUAPMHA--------",
+    "label": "ATK HEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-utility-helicopter",
+    "sidc": "SFAPMHU--------",
+    "label": "UTY HEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-utility-helicopter",
+    "sidc": "SHAPMHU--------",
+    "label": "UTY HEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-utility-helicopter",
+    "sidc": "SNAPMHU--------",
+    "label": "UTY HEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-utility-helicopter",
+    "sidc": "SUAPMHU--------",
+    "label": "UTY HEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-lift-helicopter",
+    "sidc": "SFAPMHL--------",
+    "label": "LIFT",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-lift-helicopter",
+    "sidc": "SHAPMHL--------",
+    "label": "LIFT",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-lift-helicopter",
+    "sidc": "SNAPMHL--------",
+    "label": "LIFT",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-lift-helicopter",
+    "sidc": "SUAPMHL--------",
+    "label": "LIFT",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-medevac-helicopter",
+    "sidc": "SFAPMHM--------",
+    "label": "MEDEVAC",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-medevac-helicopter",
+    "sidc": "SHAPMHM--------",
+    "label": "MEDEVAC",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-medevac-helicopter",
+    "sidc": "SNAPMHM--------",
+    "label": "MEDEVAC",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-medevac-helicopter",
+    "sidc": "SUAPMHM--------",
+    "label": "MEDEVAC",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-naval-helicopter",
+    "sidc": "SFAPMHN--------",
+    "label": "NAV HEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-naval-helicopter",
+    "sidc": "SHAPMHN--------",
+    "label": "NAV HEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-naval-helicopter",
+    "sidc": "SNAPMHN--------",
+    "label": "NAV HEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-naval-helicopter",
+    "sidc": "SUAPMHN--------",
+    "label": "NAV HEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-drone-rotary-wing",
+    "sidc": "SFAPMHQ--------",
+    "label": "UAV RW",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-drone-rotary-wing",
+    "sidc": "SHAPMHQ--------",
+    "label": "UAV RW",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-drone-rotary-wing",
+    "sidc": "SNAPMHQ--------",
+    "label": "UAV RW",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-drone-rotary-wing",
+    "sidc": "SUAPMHQ--------",
+    "label": "UAV RW",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-quadcopter",
+    "sidc": "SFAPMQC--------",
+    "label": "QUAD",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-quadcopter",
+    "sidc": "SHAPMQC--------",
+    "label": "QUAD",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-quadcopter",
+    "sidc": "SNAPMQC--------",
+    "label": "QUAD",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-quadcopter",
+    "sidc": "SUAPMQC--------",
+    "label": "QUAD",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-hexacopter",
+    "sidc": "SFAPMQH--------",
+    "label": "HEXA",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-hexacopter",
+    "sidc": "SHAPMQH--------",
+    "label": "HEXA",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-hexacopter",
+    "sidc": "SNAPMQH--------",
+    "label": "HEXA",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-hexacopter",
+    "sidc": "SUAPMQH--------",
+    "label": "HEXA",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-octocopter",
+    "sidc": "SFAPMQO--------",
+    "label": "OCTO",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-octocopter",
+    "sidc": "SHAPMQO--------",
+    "label": "OCTO",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-octocopter",
+    "sidc": "SNAPMQO--------",
+    "label": "OCTO",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-octocopter",
+    "sidc": "SUAPMQO--------",
+    "label": "OCTO",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-loitering-munition",
+    "sidc": "SFAPMQL--------",
+    "label": "LM",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-loitering-munition",
+    "sidc": "SHAPMQL--------",
+    "label": "LM",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-loitering-munition",
+    "sidc": "SNAPMQL--------",
+    "label": "LM",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-loitering-munition",
+    "sidc": "SUAPMQL--------",
+    "label": "LM",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-small-uav",
+    "sidc": "SFAPMQS--------",
+    "label": "SM UAV",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-small-uav",
+    "sidc": "SHAPMQS--------",
+    "label": "SM UAV",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-small-uav",
+    "sidc": "SNAPMQS--------",
+    "label": "SM UAV",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-small-uav",
+    "sidc": "SUAPMQS--------",
+    "label": "SM UAV",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-medium-uav",
+    "sidc": "SFAPMQM--------",
+    "label": "MED UAV",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-medium-uav",
+    "sidc": "SHAPMQM--------",
+    "label": "MED UAV",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-medium-uav",
+    "sidc": "SNAPMQM--------",
+    "label": "MED UAV",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-medium-uav",
+    "sidc": "SUAPMQM--------",
+    "label": "MED UAV",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-large-uav",
+    "sidc": "SFAPMQG--------",
+    "label": "LG UAV",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-large-uav",
+    "sidc": "SHAPMQG--------",
+    "label": "LG UAV",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-large-uav",
+    "sidc": "SNAPMQG--------",
+    "label": "LG UAV",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-large-uav",
+    "sidc": "SUAPMQG--------",
+    "label": "LG UAV",
+    "size": 48
+  },
+  {
+    "name": "friendly-air-high-altitude-uav",
+    "sidc": "SFAPMQA--------",
+    "label": "HA UAV",
+    "size": 48
+  },
+  {
+    "name": "hostile-air-high-altitude-uav",
+    "sidc": "SHAPMQA--------",
+    "label": "HA UAV",
+    "size": 48
+  },
+  {
+    "name": "neutral-air-high-altitude-uav",
+    "sidc": "SNAPMQA--------",
+    "label": "HA UAV",
+    "size": 48
+  },
+  {
+    "name": "unknown-air-high-altitude-uav",
+    "sidc": "SUAPMQA--------",
+    "label": "HA UAV",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-generic",
+    "sidc": "SFSP-----------",
+    "label": "SURF",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-generic",
+    "sidc": "SHSP-----------",
+    "label": "SURF",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-generic",
+    "sidc": "SNSP-----------",
+    "label": "SURF",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-generic",
+    "sidc": "SUSP-----------",
+    "label": "SURF",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-civil-vessel",
+    "sidc": "SFSPC----------",
+    "label": "CIV VSL",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-civil-vessel",
+    "sidc": "SHSPC----------",
+    "label": "CIV VSL",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-civil-vessel",
+    "sidc": "SNSPC----------",
+    "label": "CIV VSL",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-civil-vessel",
+    "sidc": "SUSPC----------",
+    "label": "CIV VSL",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-fishing-vessel",
+    "sidc": "SFSPCF---------",
+    "label": "FISH",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-fishing-vessel",
+    "sidc": "SHSPCF---------",
+    "label": "FISH",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-fishing-vessel",
+    "sidc": "SNSPCF---------",
+    "label": "FISH",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-fishing-vessel",
+    "sidc": "SUSPCF---------",
+    "label": "FISH",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-tugboat",
+    "sidc": "SFSPCT---------",
+    "label": "TUG",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-tugboat",
+    "sidc": "SHSPCT---------",
+    "label": "TUG",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-tugboat",
+    "sidc": "SNSPCT---------",
+    "label": "TUG",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-tugboat",
+    "sidc": "SUSPCT---------",
+    "label": "TUG",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-patrol-boat",
+    "sidc": "SFSPCP---------",
+    "label": "PATROL",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-patrol-boat",
+    "sidc": "SHSPCP---------",
+    "label": "PATROL",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-patrol-boat",
+    "sidc": "SNSPCP---------",
+    "label": "PATROL",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-patrol-boat",
+    "sidc": "SUSPCP---------",
+    "label": "PATROL",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-cargo-ship",
+    "sidc": "SFSPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-cargo-ship",
+    "sidc": "SHSPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-cargo-ship",
+    "sidc": "SNSPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-cargo-ship",
+    "sidc": "SUSPCG---------",
+    "label": "CARGO",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-container-ship",
+    "sidc": "SFSPCC---------",
+    "label": "CONTAIN",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-container-ship",
+    "sidc": "SHSPCC---------",
+    "label": "CONTAIN",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-container-ship",
+    "sidc": "SNSPCC---------",
+    "label": "CONTAIN",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-container-ship",
+    "sidc": "SUSPCC---------",
+    "label": "CONTAIN",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-tanker",
+    "sidc": "SFSPCK---------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-tanker",
+    "sidc": "SHSPCK---------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-tanker",
+    "sidc": "SNSPCK---------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-tanker",
+    "sidc": "SUSPCK---------",
+    "label": "TANKER",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-ferry",
+    "sidc": "SFSPCR---------",
+    "label": "FERRY",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-ferry",
+    "sidc": "SHSPCR---------",
+    "label": "FERRY",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-ferry",
+    "sidc": "SNSPCR---------",
+    "label": "FERRY",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-ferry",
+    "sidc": "SUSPCR---------",
+    "label": "FERRY",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-sailboat",
+    "sidc": "SFSPCS---------",
+    "label": "SAIL",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-sailboat",
+    "sidc": "SHSPCS---------",
+    "label": "SAIL",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-sailboat",
+    "sidc": "SNSPCS---------",
+    "label": "SAIL",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-sailboat",
+    "sidc": "SUSPCS---------",
+    "label": "SAIL",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-yacht",
+    "sidc": "SFSPCY---------",
+    "label": "YACHT",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-yacht",
+    "sidc": "SHSPCY---------",
+    "label": "YACHT",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-yacht",
+    "sidc": "SNSPCY---------",
+    "label": "YACHT",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-yacht",
+    "sidc": "SUSPCY---------",
+    "label": "YACHT",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-landing-craft",
+    "sidc": "SFSPCL---------",
+    "label": "LANDING",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-landing-craft",
+    "sidc": "SHSPCL---------",
+    "label": "LANDING",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-landing-craft",
+    "sidc": "SNSPCL---------",
+    "label": "LANDING",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-landing-craft",
+    "sidc": "SUSPCL---------",
+    "label": "LANDING",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-warship",
+    "sidc": "SFSPM----------",
+    "label": "WARSHIP",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-warship",
+    "sidc": "SHSPM----------",
+    "label": "WARSHIP",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-warship",
+    "sidc": "SNSPM----------",
+    "label": "WARSHIP",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-warship",
+    "sidc": "SUSPM----------",
+    "label": "WARSHIP",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-destroyer",
+    "sidc": "SFSPMD---------",
+    "label": "DDG",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-destroyer",
+    "sidc": "SHSPMD---------",
+    "label": "DDG",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-destroyer",
+    "sidc": "SNSPMD---------",
+    "label": "DDG",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-destroyer",
+    "sidc": "SUSPMD---------",
+    "label": "DDG",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-frigate",
+    "sidc": "SFSPMF---------",
+    "label": "FFG",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-frigate",
+    "sidc": "SHSPMF---------",
+    "label": "FFG",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-frigate",
+    "sidc": "SNSPMF---------",
+    "label": "FFG",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-frigate",
+    "sidc": "SUSPMF---------",
+    "label": "FFG",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-corvette",
+    "sidc": "SFSPMC---------",
+    "label": "CORV",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-corvette",
+    "sidc": "SHSPMC---------",
+    "label": "CORV",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-corvette",
+    "sidc": "SNSPMC---------",
+    "label": "CORV",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-corvette",
+    "sidc": "SUSPMC---------",
+    "label": "CORV",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-cruiser",
+    "sidc": "SFSPMR---------",
+    "label": "CRUISER",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-cruiser",
+    "sidc": "SHSPMR---------",
+    "label": "CRUISER",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-cruiser",
+    "sidc": "SNSPMR---------",
+    "label": "CRUISER",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-cruiser",
+    "sidc": "SUSPMR---------",
+    "label": "CRUISER",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-carrier",
+    "sidc": "SFSPMA---------",
+    "label": "CVN",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-carrier",
+    "sidc": "SHSPMA---------",
+    "label": "CVN",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-carrier",
+    "sidc": "SNSPMA---------",
+    "label": "CVN",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-carrier",
+    "sidc": "SUSPMA---------",
+    "label": "CVN",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-amphibious-assault-ship",
+    "sidc": "SFSPMH---------",
+    "label": "LHD",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-amphibious-assault-ship",
+    "sidc": "SHSPMH---------",
+    "label": "LHD",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-amphibious-assault-ship",
+    "sidc": "SNSPMH---------",
+    "label": "LHD",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-amphibious-assault-ship",
+    "sidc": "SUSPMH---------",
+    "label": "LHD",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-patrol-combatant",
+    "sidc": "SFSPMP---------",
+    "label": "PC",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-patrol-combatant",
+    "sidc": "SHSPMP---------",
+    "label": "PC",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-patrol-combatant",
+    "sidc": "SNSPMP---------",
+    "label": "PC",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-patrol-combatant",
+    "sidc": "SUSPMP---------",
+    "label": "PC",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-mine-countermeasures-vessel",
+    "sidc": "SFSPMM---------",
+    "label": "MCM",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-mine-countermeasures-vessel",
+    "sidc": "SHSPMM---------",
+    "label": "MCM",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-mine-countermeasures-vessel",
+    "sidc": "SNSPMM---------",
+    "label": "MCM",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-mine-countermeasures-vessel",
+    "sidc": "SUSPMM---------",
+    "label": "MCM",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-support-ship",
+    "sidc": "SFSPMS---------",
+    "label": "SUPPORT",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-support-ship",
+    "sidc": "SHSPMS---------",
+    "label": "SUPPORT",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-support-ship",
+    "sidc": "SNSPMS---------",
+    "label": "SUPPORT",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-support-ship",
+    "sidc": "SUSPMS---------",
+    "label": "SUPPORT",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-hospital-ship",
+    "sidc": "SFSPMX---------",
+    "label": "HOSP SH",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-hospital-ship",
+    "sidc": "SHSPMX---------",
+    "label": "HOSP SH",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-hospital-ship",
+    "sidc": "SNSPMX---------",
+    "label": "HOSP SH",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-hospital-ship",
+    "sidc": "SUSPMX---------",
+    "label": "HOSP SH",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-coast-guard-cutter",
+    "sidc": "SFSPCGC--------",
+    "label": "CG",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-coast-guard-cutter",
+    "sidc": "SHSPCGC--------",
+    "label": "CG",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-coast-guard-cutter",
+    "sidc": "SNSPCGC--------",
+    "label": "CG",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-coast-guard-cutter",
+    "sidc": "SUSPCGC--------",
+    "label": "CG",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-fast-attack-craft",
+    "sidc": "SFSPMFA--------",
+    "label": "FAC",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-fast-attack-craft",
+    "sidc": "SHSPMFA--------",
+    "label": "FAC",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-fast-attack-craft",
+    "sidc": "SNSPMFA--------",
+    "label": "FAC",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-fast-attack-craft",
+    "sidc": "SUSPMFA--------",
+    "label": "FAC",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-missile-boat",
+    "sidc": "SFSPMFB--------",
+    "label": "MISL BT",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-missile-boat",
+    "sidc": "SHSPMFB--------",
+    "label": "MISL BT",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-missile-boat",
+    "sidc": "SNSPMFB--------",
+    "label": "MISL BT",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-missile-boat",
+    "sidc": "SUSPMFB--------",
+    "label": "MISL BT",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-naval-auxiliary",
+    "sidc": "SFSPMN---------",
+    "label": "AUX",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-naval-auxiliary",
+    "sidc": "SHSPMN---------",
+    "label": "AUX",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-naval-auxiliary",
+    "sidc": "SNSPMN---------",
+    "label": "AUX",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-naval-auxiliary",
+    "sidc": "SUSPMN---------",
+    "label": "AUX",
+    "size": 48
+  },
+  {
+    "name": "friendly-sea-surface-research-vessel",
+    "sidc": "SFSPCV---------",
+    "label": "RESEARCH",
+    "size": 48
+  },
+  {
+    "name": "hostile-sea-surface-research-vessel",
+    "sidc": "SHSPCV---------",
+    "label": "RESEARCH",
+    "size": 48
+  },
+  {
+    "name": "neutral-sea-surface-research-vessel",
+    "sidc": "SNSPCV---------",
+    "label": "RESEARCH",
+    "size": 48
+  },
+  {
+    "name": "unknown-sea-surface-research-vessel",
+    "sidc": "SUSPCV---------",
+    "label": "RESEARCH",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-generic",
+    "sidc": "SFUP-----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-generic",
+    "sidc": "SHUP-----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-generic",
+    "sidc": "SNUP-----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-generic",
+    "sidc": "SUUP-----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-submarine",
+    "sidc": "SFUPM----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-submarine",
+    "sidc": "SHUPM----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-submarine",
+    "sidc": "SNUPM----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-submarine",
+    "sidc": "SUUPM----------",
+    "label": "SUB",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-attack-submarine",
+    "sidc": "SFUPMA---------",
+    "label": "SSN",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-attack-submarine",
+    "sidc": "SHUPMA---------",
+    "label": "SSN",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-attack-submarine",
+    "sidc": "SNUPMA---------",
+    "label": "SSN",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-attack-submarine",
+    "sidc": "SUUPMA---------",
+    "label": "SSN",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-ballistic-missile-submarine",
+    "sidc": "SFUPMB---------",
+    "label": "SSBN",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-ballistic-missile-submarine",
+    "sidc": "SHUPMB---------",
+    "label": "SSBN",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-ballistic-missile-submarine",
+    "sidc": "SNUPMB---------",
+    "label": "SSBN",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-ballistic-missile-submarine",
+    "sidc": "SUUPMB---------",
+    "label": "SSBN",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-guided-missile-submarine",
+    "sidc": "SFUPMG---------",
+    "label": "SSGN",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-guided-missile-submarine",
+    "sidc": "SHUPMG---------",
+    "label": "SSGN",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-guided-missile-submarine",
+    "sidc": "SNUPMG---------",
+    "label": "SSGN",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-guided-missile-submarine",
+    "sidc": "SUUPMG---------",
+    "label": "SSGN",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-diesel-submarine",
+    "sidc": "SFUPMD---------",
+    "label": "SSK",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-diesel-submarine",
+    "sidc": "SHUPMD---------",
+    "label": "SSK",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-diesel-submarine",
+    "sidc": "SNUPMD---------",
+    "label": "SSK",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-diesel-submarine",
+    "sidc": "SUUPMD---------",
+    "label": "SSK",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-midget-submarine",
+    "sidc": "SFUPMM---------",
+    "label": "MIDGET",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-midget-submarine",
+    "sidc": "SHUPMM---------",
+    "label": "MIDGET",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-midget-submarine",
+    "sidc": "SNUPMM---------",
+    "label": "MIDGET",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-midget-submarine",
+    "sidc": "SUUPMM---------",
+    "label": "MIDGET",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-diver",
+    "sidc": "SFUPD----------",
+    "label": "DIVER",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-diver",
+    "sidc": "SHUPD----------",
+    "label": "DIVER",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-diver",
+    "sidc": "SNUPD----------",
+    "label": "DIVER",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-diver",
+    "sidc": "SUUPD----------",
+    "label": "DIVER",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-combat-diver",
+    "sidc": "SFUPDC---------",
+    "label": "COMBAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-combat-diver",
+    "sidc": "SHUPDC---------",
+    "label": "COMBAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-combat-diver",
+    "sidc": "SNUPDC---------",
+    "label": "COMBAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-combat-diver",
+    "sidc": "SUUPDC---------",
+    "label": "COMBAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-mine",
+    "sidc": "SFUPN----------",
+    "label": "MINE",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-mine",
+    "sidc": "SHUPN----------",
+    "label": "MINE",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-mine",
+    "sidc": "SNUPN----------",
+    "label": "MINE",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-mine",
+    "sidc": "SUUPN----------",
+    "label": "MINE",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-torpedo",
+    "sidc": "SFUPT----------",
+    "label": "TORP",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-torpedo",
+    "sidc": "SHUPT----------",
+    "label": "TORP",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-torpedo",
+    "sidc": "SNUPT----------",
+    "label": "TORP",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-torpedo",
+    "sidc": "SUUPT----------",
+    "label": "TORP",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-uuv",
+    "sidc": "SFUPU----------",
+    "label": "UUV",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-uuv",
+    "sidc": "SHUPU----------",
+    "label": "UUV",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-uuv",
+    "sidc": "SNUPU----------",
+    "label": "UUV",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-uuv",
+    "sidc": "SUUPU----------",
+    "label": "UUV",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-rov",
+    "sidc": "SFUPR----------",
+    "label": "ROV",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-rov",
+    "sidc": "SHUPR----------",
+    "label": "ROV",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-rov",
+    "sidc": "SNUPR----------",
+    "label": "ROV",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-rov",
+    "sidc": "SUUPR----------",
+    "label": "ROV",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-sonar-array",
+    "sidc": "SFUPS----------",
+    "label": "SONAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-sonar-array",
+    "sidc": "SHUPS----------",
+    "label": "SONAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-sonar-array",
+    "sidc": "SNUPS----------",
+    "label": "SONAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-sonar-array",
+    "sidc": "SUUPS----------",
+    "label": "SONAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-subsurface-submersible",
+    "sidc": "SFUPB----------",
+    "label": "SUBMERS",
+    "size": 48
+  },
+  {
+    "name": "hostile-subsurface-submersible",
+    "sidc": "SHUPB----------",
+    "label": "SUBMERS",
+    "size": 48
+  },
+  {
+    "name": "neutral-subsurface-submersible",
+    "sidc": "SNUPB----------",
+    "label": "SUBMERS",
+    "size": 48
+  },
+  {
+    "name": "unknown-subsurface-submersible",
+    "sidc": "SUUPB----------",
+    "label": "SUBMERS",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-generic",
+    "sidc": "SFPP-----------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-generic",
+    "sidc": "SHPP-----------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-generic",
+    "sidc": "SNPP-----------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-generic",
+    "sidc": "SUPP-----------",
+    "label": "SPACE",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-satellite",
+    "sidc": "SFPPS----------",
+    "label": "SAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-satellite",
+    "sidc": "SHPPS----------",
+    "label": "SAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-satellite",
+    "sidc": "SNPPS----------",
+    "label": "SAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-satellite",
+    "sidc": "SUPPS----------",
+    "label": "SAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-communications-satellite",
+    "sidc": "SFPPSC---------",
+    "label": "COMSAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-communications-satellite",
+    "sidc": "SHPPSC---------",
+    "label": "COMSAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-communications-satellite",
+    "sidc": "SNPPSC---------",
+    "label": "COMSAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-communications-satellite",
+    "sidc": "SUPPSC---------",
+    "label": "COMSAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-imaging-satellite",
+    "sidc": "SFPPSI---------",
+    "label": "IMGSAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-imaging-satellite",
+    "sidc": "SHPPSI---------",
+    "label": "IMGSAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-imaging-satellite",
+    "sidc": "SNPPSI---------",
+    "label": "IMGSAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-imaging-satellite",
+    "sidc": "SUPPSI---------",
+    "label": "IMGSAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-navigation-satellite",
+    "sidc": "SFPPSN---------",
+    "label": "NAVSAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-navigation-satellite",
+    "sidc": "SHPPSN---------",
+    "label": "NAVSAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-navigation-satellite",
+    "sidc": "SNPPSN---------",
+    "label": "NAVSAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-navigation-satellite",
+    "sidc": "SUPPSN---------",
+    "label": "NAVSAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-weather-satellite",
+    "sidc": "SFPPSW---------",
+    "label": "WEASAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-weather-satellite",
+    "sidc": "SHPPSW---------",
+    "label": "WEASAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-weather-satellite",
+    "sidc": "SNPPSW---------",
+    "label": "WEASAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-weather-satellite",
+    "sidc": "SUPPSW---------",
+    "label": "WEASAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-missile",
+    "sidc": "SFPPM----------",
+    "label": "MISSILE",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-missile",
+    "sidc": "SHPPM----------",
+    "label": "MISSILE",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-missile",
+    "sidc": "SNPPM----------",
+    "label": "MISSILE",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-missile",
+    "sidc": "SUPPM----------",
+    "label": "MISSILE",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-ballistic-missile",
+    "sidc": "SFPPMB---------",
+    "label": "BM",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-ballistic-missile",
+    "sidc": "SHPPMB---------",
+    "label": "BM",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-ballistic-missile",
+    "sidc": "SNPPMB---------",
+    "label": "BM",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-ballistic-missile",
+    "sidc": "SUPPMB---------",
+    "label": "BM",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-space-launch-vehicle",
+    "sidc": "SFPPL----------",
+    "label": "SLV",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-space-launch-vehicle",
+    "sidc": "SHPPL----------",
+    "label": "SLV",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-space-launch-vehicle",
+    "sidc": "SNPPL----------",
+    "label": "SLV",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-space-launch-vehicle",
+    "sidc": "SUPPL----------",
+    "label": "SLV",
+    "size": 48
+  },
+  {
+    "name": "friendly-space-ground-control-station",
+    "sidc": "SFPPG----------",
+    "label": "GCS",
+    "size": 48
+  },
+  {
+    "name": "hostile-space-ground-control-station",
+    "sidc": "SHPPG----------",
+    "label": "GCS",
+    "size": 48
+  },
+  {
+    "name": "neutral-space-ground-control-station",
+    "sidc": "SNPPG----------",
+    "label": "GCS",
+    "size": 48
+  },
+  {
+    "name": "unknown-space-ground-control-station",
+    "sidc": "SUPPG----------",
+    "label": "GCS",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-police",
+    "sidc": "SFEPP----------",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-police",
+    "sidc": "SHEPP----------",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-police",
+    "sidc": "SNEPP----------",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-police",
+    "sidc": "SUEPP----------",
+    "label": "POLICE",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-sheriff",
+    "sidc": "SFEPS----------",
+    "label": "SHERIFF",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-sheriff",
+    "sidc": "SHEPS----------",
+    "label": "SHERIFF",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-sheriff",
+    "sidc": "SNEPS----------",
+    "label": "SHERIFF",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-sheriff",
+    "sidc": "SUEPS----------",
+    "label": "SHERIFF",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-swat",
+    "sidc": "SFEPW----------",
+    "label": "SWAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-swat",
+    "sidc": "SHEPW----------",
+    "label": "SWAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-swat",
+    "sidc": "SNEPW----------",
+    "label": "SWAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-swat",
+    "sidc": "SUEPW----------",
+    "label": "SWAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-fire",
+    "sidc": "SFEPF----------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-fire",
+    "sidc": "SHEPF----------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-fire",
+    "sidc": "SNEPF----------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-fire",
+    "sidc": "SUEPF----------",
+    "label": "FIRE",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-ems",
+    "sidc": "SFEPE----------",
+    "label": "EMS",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-ems",
+    "sidc": "SHEPE----------",
+    "label": "EMS",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-ems",
+    "sidc": "SNEPE----------",
+    "label": "EMS",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-ems",
+    "sidc": "SUEPE----------",
+    "label": "EMS",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-search-and-rescue",
+    "sidc": "SFEPR----------",
+    "label": "SAR",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-search-and-rescue",
+    "sidc": "SHEPR----------",
+    "label": "SAR",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-search-and-rescue",
+    "sidc": "SNEPR----------",
+    "label": "SAR",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-search-and-rescue",
+    "sidc": "SUEPR----------",
+    "label": "SAR",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-hazmat",
+    "sidc": "SFEPH----------",
+    "label": "HAZMAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-hazmat",
+    "sidc": "SHEPH----------",
+    "label": "HAZMAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-hazmat",
+    "sidc": "SNEPH----------",
+    "label": "HAZMAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-hazmat",
+    "sidc": "SUEPH----------",
+    "label": "HAZMAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-disaster-response",
+    "sidc": "SFEPD----------",
+    "label": "DISASTER",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-disaster-response",
+    "sidc": "SHEPD----------",
+    "label": "DISASTER",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-disaster-response",
+    "sidc": "SNEPD----------",
+    "label": "DISASTER",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-disaster-response",
+    "sidc": "SUEPD----------",
+    "label": "DISASTER",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-evacuation",
+    "sidc": "SFEPV----------",
+    "label": "EVAC",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-evacuation",
+    "sidc": "SHEPV----------",
+    "label": "EVAC",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-evacuation",
+    "sidc": "SNEPV----------",
+    "label": "EVAC",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-evacuation",
+    "sidc": "SUEPV----------",
+    "label": "EVAC",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-shelter",
+    "sidc": "SFEPL----------",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-shelter",
+    "sidc": "SHEPL----------",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-shelter",
+    "sidc": "SNEPL----------",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-shelter",
+    "sidc": "SUEPL----------",
+    "label": "SHELTER",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-incident-command",
+    "sidc": "SFEPC----------",
+    "label": "IC",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-incident-command",
+    "sidc": "SHEPC----------",
+    "label": "IC",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-incident-command",
+    "sidc": "SNEPC----------",
+    "label": "IC",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-incident-command",
+    "sidc": "SUEPC----------",
+    "label": "IC",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-public-works",
+    "sidc": "SFEPU----------",
+    "label": "PUB WRK",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-public-works",
+    "sidc": "SHEPU----------",
+    "label": "PUB WRK",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-public-works",
+    "sidc": "SNEPU----------",
+    "label": "PUB WRK",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-public-works",
+    "sidc": "SUEPU----------",
+    "label": "PUB WRK",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-utilities",
+    "sidc": "SFEPT----------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-utilities",
+    "sidc": "SHEPT----------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-utilities",
+    "sidc": "SNEPT----------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-utilities",
+    "sidc": "SUEPT----------",
+    "label": "UTILITY",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-road-closure",
+    "sidc": "SFEPO----------",
+    "label": "RD CLS",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-road-closure",
+    "sidc": "SHEPO----------",
+    "label": "RD CLS",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-road-closure",
+    "sidc": "SNEPO----------",
+    "label": "RD CLS",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-road-closure",
+    "sidc": "SUEPO----------",
+    "label": "RD CLS",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-construction",
+    "sidc": "SFEPN----------",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-construction",
+    "sidc": "SHEPN----------",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-construction",
+    "sidc": "SNEPN----------",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-construction",
+    "sidc": "SUEPN----------",
+    "label": "CONST",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-medical-clinic",
+    "sidc": "SFEPM----------",
+    "label": "CLINIC",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-medical-clinic",
+    "sidc": "SHEPM----------",
+    "label": "CLINIC",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-medical-clinic",
+    "sidc": "SNEPM----------",
+    "label": "CLINIC",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-medical-clinic",
+    "sidc": "SUEPM----------",
+    "label": "CLINIC",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-hospital",
+    "sidc": "SFEPA----------",
+    "label": "HOSPITAL",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-hospital",
+    "sidc": "SHEPA----------",
+    "label": "HOSPITAL",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-hospital",
+    "sidc": "SNEPA----------",
+    "label": "HOSPITAL",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-hospital",
+    "sidc": "SUEPA----------",
+    "label": "HOSPITAL",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-pharmacy",
+    "sidc": "SFEPY----------",
+    "label": "PHARM",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-pharmacy",
+    "sidc": "SHEPY----------",
+    "label": "PHARM",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-pharmacy",
+    "sidc": "SNEPY----------",
+    "label": "PHARM",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-pharmacy",
+    "sidc": "SUEPY----------",
+    "label": "PHARM",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-rescue-helicopter",
+    "sidc": "SFEPRH---------",
+    "label": "RESCUE",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-rescue-helicopter",
+    "sidc": "SHEPRH---------",
+    "label": "RESCUE",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-rescue-helicopter",
+    "sidc": "SNEPRH---------",
+    "label": "RESCUE",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-rescue-helicopter",
+    "sidc": "SUEPRH---------",
+    "label": "RESCUE",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-fire-helicopter",
+    "sidc": "SFEPFH---------",
+    "label": "FIRE HEL",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-fire-helicopter",
+    "sidc": "SHEPFH---------",
+    "label": "FIRE HEL",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-fire-helicopter",
+    "sidc": "SNEPFH---------",
+    "label": "FIRE HEL",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-fire-helicopter",
+    "sidc": "SUEPFH---------",
+    "label": "FIRE HEL",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-ambulance-aircraft",
+    "sidc": "SFEPAH---------",
+    "label": "AIR AMB",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-ambulance-aircraft",
+    "sidc": "SHEPAH---------",
+    "label": "AIR AMB",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-ambulance-aircraft",
+    "sidc": "SNEPAH---------",
+    "label": "AIR AMB",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-ambulance-aircraft",
+    "sidc": "SUEPAH---------",
+    "label": "AIR AMB",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-law-enforcement-aircraft",
+    "sidc": "SFEPLH---------",
+    "label": "LE AIR",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-law-enforcement-aircraft",
+    "sidc": "SHEPLH---------",
+    "label": "LE AIR",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-law-enforcement-aircraft",
+    "sidc": "SNEPLH---------",
+    "label": "LE AIR",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-law-enforcement-aircraft",
+    "sidc": "SUEPLH---------",
+    "label": "LE AIR",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-rescue-boat",
+    "sidc": "SFEPRB---------",
+    "label": "RES BOAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-rescue-boat",
+    "sidc": "SHEPRB---------",
+    "label": "RES BOAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-rescue-boat",
+    "sidc": "SNEPRB---------",
+    "label": "RES BOAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-rescue-boat",
+    "sidc": "SUEPRB---------",
+    "label": "RES BOAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-fire-boat",
+    "sidc": "SFEPFB---------",
+    "label": "FIRE BOAT",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-fire-boat",
+    "sidc": "SHEPFB---------",
+    "label": "FIRE BOAT",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-fire-boat",
+    "sidc": "SNEPFB---------",
+    "label": "FIRE BOAT",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-fire-boat",
+    "sidc": "SUEPFB---------",
+    "label": "FIRE BOAT",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-checkpoint",
+    "sidc": "SFEPK----------",
+    "label": "CHECKPT",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-checkpoint",
+    "sidc": "SHEPK----------",
+    "label": "CHECKPT",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-checkpoint",
+    "sidc": "SNEPK----------",
+    "label": "CHECKPT",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-checkpoint",
+    "sidc": "SUEPK----------",
+    "label": "CHECKPT",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-staging-area",
+    "sidc": "SFEPG----------",
+    "label": "STAGE",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-staging-area",
+    "sidc": "SHEPG----------",
+    "label": "STAGE",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-staging-area",
+    "sidc": "SNEPG----------",
+    "label": "STAGE",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-staging-area",
+    "sidc": "SUEPG----------",
+    "label": "STAGE",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-distribution-site",
+    "sidc": "SFEPI----------",
+    "label": "DIST",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-distribution-site",
+    "sidc": "SHEPI----------",
+    "label": "DIST",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-distribution-site",
+    "sidc": "SNEPI----------",
+    "label": "DIST",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-distribution-site",
+    "sidc": "SUEPI----------",
+    "label": "DIST",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-water-distribution",
+    "sidc": "SFEPJ----------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-water-distribution",
+    "sidc": "SHEPJ----------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-water-distribution",
+    "sidc": "SNEPJ----------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-water-distribution",
+    "sidc": "SUEPJ----------",
+    "label": "WATER",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-food-distribution",
+    "sidc": "SFEPQ----------",
+    "label": "FOOD",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-food-distribution",
+    "sidc": "SHEPQ----------",
+    "label": "FOOD",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-food-distribution",
+    "sidc": "SNEPQ----------",
+    "label": "FOOD",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-food-distribution",
+    "sidc": "SUEPQ----------",
+    "label": "FOOD",
+    "size": 48
+  },
+  {
+    "name": "friendly-emergency-temporary-power",
+    "sidc": "SFEPX----------",
+    "label": "PWR",
+    "size": 48
+  },
+  {
+    "name": "hostile-emergency-temporary-power",
+    "sidc": "SHEPX----------",
+    "label": "PWR",
+    "size": 48
+  },
+  {
+    "name": "neutral-emergency-temporary-power",
+    "sidc": "SNEPX----------",
+    "label": "PWR",
+    "size": 48
+  },
+  {
+    "name": "unknown-emergency-temporary-power",
+    "sidc": "SUEPX----------",
+    "label": "PWR",
+    "size": 48
+  }
+]

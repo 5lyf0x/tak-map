@@ -1,0 +1,7 @@
+# Optional/runtime Python libraries used by TAK Map features when available.
+# The installer also uses apt packages on Debian/Raspberry Pi OS where appropriate.
+Werkzeug>=3.0
+passlib>=1.7
+pyproj>=3.0
+pyshp>=2.3
+PyYAML>=6.0
