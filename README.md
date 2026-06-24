@@ -7,9 +7,7 @@ This repository is prepared as a clean source package for GitHub. It keeps the a
 ## Current build
 
 - Release label: `v1.1.0`
-- Internal package iteration: `v324`
 - Main service file: `tak_dashboard.py`
-- Default local backend port: `8092`
 - HTTPS reverse proxy port: `9444`
 
 ## Features
@@ -23,7 +21,6 @@ This repository is prepared as a clean source package for GitHub. It keeps the a
 - External source and basemap tooling
 - Terrain / elevation / viewshed tooling
 - HTTPS certificate setup helper
-- Raspberry Pi/mobile server oriented install script
 
 ## Repository layout
 
@@ -55,49 +52,8 @@ After installation, open:
 
 ```text
 https://<server-ip>:9444
+
 ```
-
-Direct HTTP fallback, when enabled by the service, is usually:
-
-```text
-http://<server-ip>:8092
-```
-
-## Upgrade from a downloaded ZIP
-
-```bash
-cd ~/Downloads/tak/tak-map
-unzip -o tak-map-v324.zip
-cd tak-map
-sudo ./install.sh
-cd ~/Downloads
-```
-
-## Security notes
-
-Before making a fork or repo public, confirm that you have not committed:
-
-- private keys, certificates, `.p12`, `.pfx`, `.pem`, `.key`, or `.crt` files
-- `.env` files or local service configuration
-- live TAK server credentials
-- private ZeroTier/network details beyond generic example text
-- exported missions, local data, map packages, logs, or screenshots containing sensitive locations
-
-The included `.gitignore` is designed to keep common runtime files and secrets out of Git, but it is still worth reviewing `git status` before every commit.
-
-## Validate locally
-
-```bash
-./scripts/validate_package.sh
-```
-
-## Build a distributable ZIP
-
-```bash
-./scripts/build_package.sh v324
-```
-
-The ZIP is written to `dist/`.
 
 ## License
 
