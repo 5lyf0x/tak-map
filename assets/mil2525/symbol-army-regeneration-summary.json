@@ -1,0 +1,14 @@
+{
+  "version": "v387",
+  "source": "symbol.army SymbolEditorPreviewAsBinary imageFormat=Svg, decoded from Image.ImageAsBinary base64",
+  "totalIcons": 1448,
+  "savedFromSymbolArmy": 1448,
+  "nonSvgResponses": 0,
+  "failedResponses": 0,
+  "symbolArmyFallbackLike": 386,
+  "previousQuestionMarkPlaceholderSvgs": 1028,
+  "previousTextOverlaySvgs": 104,
+  "newSvgFilesWithTextElements": 568,
+  "newNonSvgFiles": 0,
+  "note": "v387 replaces all packaged MIL-STD selector SVG artwork with symbol.army-generated SVGs. Some unsupported/questionable SIDCs still render as text-only fallbacks such as CIV, but the prior baked-in question-mark placeholder artwork has been eliminated from the packaged SVGs."
+}

@@ -89,8 +89,8 @@ if ! command -v setfacl >/dev/null 2>&1; then
 fi
 
 # Remove the newer experimental dashboard service/config if it was installed.
-# This package intentionally returns to the last known-good v72 layout:
-#   private dashboard backend on 127.0.0.1:8091 via tak-server-dash.service
+# Keep the established TAK Map split-service layout:
+#   private TAK Map backend on 127.0.0.1:8092 via tak-map.service
 #   HTTPS entrypoint on 0.0.0.0:9444/[::]:9444 via nginx
 if systemctl list-unit-files tak-server-dashboard.service >/dev/null 2>&1 || systemctl status tak-server-dashboard.service >/dev/null 2>&1; then
   systemctl disable --now tak-server-dashboard.service >/dev/null 2>&1 || true
@@ -100,9 +100,10 @@ rm -f /etc/nginx/sites-enabled/tak-server-dashboard.conf /etc/nginx/sites-availa
 rm -f /etc/nginx/conf.d/99-tak-server-dashboard-proxy-hash.conf 2>/dev/null || true
 rm -f /etc/nginx/conf.d/tak-server-dashboard.conf /etc/nginx/conf.d/tak-server-dashboard-https-9443.conf 2>/dev/null || true
 
-mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging"
+mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging" "$DATA_DIR/send_packages"
 cp tak_dashboard.py "$APP_DIR/tak_dashboard.py"
 chmod 0755 "$APP_DIR/tak_dashboard.py"
+install -m 0755 scripts/tak-map-replay-enroll /usr/local/sbin/tak-map-replay-enroll
 mkdir -p "$LOCKSCREEN_ASSET_DIR"
 # Keep the installed lockscreen asset set lean going forward. Remove prior bundled
 # dashboard lockscreen variants, but leave unrelated/custom files alone.
@@ -450,6 +451,84 @@ if restart_after_write:
 else:
     print('OTS_ADSB_LAT / OTS_ADSB_LON / OTS_ADSB_RADIUS updated. opentakserver was not restarted yet.' if radius is not None else 'OTS_ADSB_LAT / OTS_ADSB_LON updated. opentakserver was not restarted yet.')
 PYADSBOTS
+fi
+
+
+if [[ "${1:-}" == "tak-client-generate" ]]; then
+  client="${2:-}"
+  ca_passphrase="${3:-}"
+  if [[ ! "$client" =~ ^[A-Za-z0-9_.@-]{1,64}$ ]]; then
+    echo '{"ok":false,"error":"Invalid TAK client username."}'
+    exit 2
+  fi
+  exec /usr/bin/python3 - "$client" "$ca_passphrase" <<'PYTAKCLIENTGEN'
+import json, os, pwd, grp, shutil, subprocess, sys
+from pathlib import Path
+client=sys.argv[1]
+ca_passphrase=sys.argv[2] if len(sys.argv)>2 else ""
+DATA_DIR=Path('/var/lib/tak-map')
+out=DATA_DIR/'client-certs'/client
+ca_pair=None
+for ca_dir in sorted(Path('/home').glob('*/ots/ca')):
+    ca_cert=ca_dir/'ca.pem'
+    ca_key=ca_dir/'ca-do-not-share.key'
+    if ca_cert.exists() and ca_key.exists():
+        ca_pair=(ca_cert, ca_key, ca_dir)
+        break
+if not ca_pair:
+    # fallback names for nonstandard OTS installs
+    for ca_dir in sorted(Path('/home').glob('*/ots/ca')):
+        ca_cert=ca_dir/'ca.pem'
+        if not ca_cert.exists():
+            continue
+        for name in ('ca.key','ca.pem.key'):
+            ca_key=ca_dir/name
+            if ca_key.exists():
+                ca_pair=(ca_cert, ca_key, ca_dir)
+                break
+        if ca_pair:
+            break
+if not ca_pair:
+    print(json.dumps({'ok':False,'error':'OpenTAKServer CA signing files were not found under /home/*/ots/ca.'}))
+    sys.exit(1)
+ca_cert, ca_key, ca_dir=ca_pair
+out.mkdir(parents=True, exist_ok=True)
+key=out/(client+'.key')
+csr=out/(client+'.csr')
+cert=out/(client+'.pem')
+ca_out=out/'ca.pem'
+def run(cmd):
+    r=subprocess.run(cmd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90, check=False)
+    if r.returncode!=0:
+        print(json.dumps({'ok':False,'error':'OpenSSL failed: '+(r.stderr or r.stdout).strip(),'step':' '.join(cmd[:3])}))
+        sys.exit(1)
+run(['openssl','genrsa','-out',str(key),'2048'])
+run(['openssl','req','-new','-key',str(key),'-out',str(csr),'-subj','/CN='+client])
+sign_cmd=['openssl','x509','-req','-in',str(csr),'-CA',str(ca_cert),'-CAkey',str(ca_key),'-CAcreateserial','-out',str(cert),'-days','3650','-sha256']
+if ca_passphrase:
+    sign_cmd.extend(['-passin','pass:'+ca_passphrase])
+r=subprocess.run(sign_cmd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90, check=False)
+if r.returncode!=0:
+    err=(r.stderr or r.stdout or '').strip()
+    low=err.lower()
+    if 'enter pass phrase' in low or 'unable to get passphrase' in low or 'bad decrypt' in low or 'could not read private key' in low:
+        print(json.dumps({'ok':False,'requires_ca_passphrase':True,'error':'CA key found, but a passphrase is required. OpenTAKServer commonly uses the default CA key passphrase: atakatak','step':'openssl x509 -req'}))
+    else:
+        print(json.dumps({'ok':False,'error':'OpenSSL failed: '+err,'step':'openssl x509 -req'}))
+    sys.exit(1)
+shutil.copyfile(str(ca_cert), str(ca_out))
+os.chmod(str(out),0o700)
+os.chmod(str(key),0o600)
+for fp in (cert,csr,ca_out):
+    os.chmod(str(fp),0o644)
+try:
+    pw=pwd.getpwnam('takmap')
+    for fp in [out,key,csr,cert,ca_out]:
+        os.chown(str(fp), pw.pw_uid, pw.pw_gid)
+except Exception:
+    pass
+print(json.dumps({'ok':True,'generated':True,'username':client,'paths':{'client_cert_path':str(cert),'client_key_path':str(key),'ca_cert_path':str(ca_out),'csr_path':str(csr)},'message':'Generated new TAK client certificate/key pair signed by the local OpenTAKServer CA.'}))
+PYTAKCLIENTGEN
 fi
 
 if [[ "${1:-}" == "restart-opentakserver" ]]; then
@@ -2244,11 +2323,37 @@ TAK_DASH_GPS_SCAN_PI_UARTS=false
 TAK_DASH_GPS_SERIAL_ENABLE_CMDS=
 TAK_DASH_GPS_SERIAL_POLL_CMDS=
 TAK_DASH_GPS_SERIAL_DISABLE_CMDS=
+TAK_MAP_REPLAY_API_URL=https://127.0.0.1:9443/api/replay/v1
+TAK_MAP_REPLAY_CLIENT_CERT=/etc/tak-map/replay-client.crt
+TAK_MAP_REPLAY_CLIENT_KEY=/etc/tak-map/replay-client.key
+TAK_MAP_REPLAY_CA_CERT=/etc/tak-map/replay-ca.crt
+TAK_MAP_REPLAY_VERIFY_TLS=true
+TAK_MAP_REPLAY_TIMEOUT=120
 EOF
   chmod 0600 "$ENV_FILE"
 else
   PASSWORD="$(grep '^TAK_DASHBOARD_PASSWORD=' "$ENV_FILE" | cut -d= -f2- || true)"
 fi
+# v415 Replay Mode defaults are appended on upgrades without overwriting operator values.
+ensure_env_default() {
+  local key="$1" value="$2"
+  grep -qE "^${key}=" "$ENV_FILE" 2>/dev/null || printf '%s=%s\n' "$key" "$value" >> "$ENV_FILE"
+}
+ensure_env_default TAK_MAP_REPLAY_API_URL https://127.0.0.1:9443/api/replay/v1
+ensure_env_default TAK_MAP_REPLAY_CLIENT_CERT /etc/tak-map/replay-client.crt
+ensure_env_default TAK_MAP_REPLAY_CLIENT_KEY /etc/tak-map/replay-client.key
+ensure_env_default TAK_MAP_REPLAY_CA_CERT /etc/tak-map/replay-ca.crt
+ensure_env_default TAK_MAP_REPLAY_VERIFY_TLS true
+ensure_env_default TAK_MAP_REPLAY_TIMEOUT 120
+# v439: migrate only the legacy package default. Preserve any operator-selected
+# timeout other than the old 20-second value.
+if grep -qx 'TAK_MAP_REPLAY_TIMEOUT=20' "$ENV_FILE" 2>/dev/null; then
+  sed -i 's/^TAK_MAP_REPLAY_TIMEOUT=20$/TAK_MAP_REPLAY_TIMEOUT=120/' "$ENV_FILE"
+fi
+mkdir -p /etc/tak-map
+chown root:"$USER_NAME" /etc/tak-map
+chmod 0750 /etc/tak-map
+find /etc/tak-map -maxdepth 1 -type f -name 'replay-*' -exec chown root:"$USER_NAME" {} + -exec chmod 0640 {} + 2>/dev/null || true
 cat > "$SERVICE_FILE" <<EOF
 [Unit]
 Description=TAK Map
@@ -2872,6 +2977,19 @@ EOF
   else
     echo "WARNING: Nginx config directories not found. HTTPS config copied to /etc/tak-server-dash/tak-map-https-9444.conf only."
   fi
+
+  # v432 port-regression repair: v427 and earlier stable split builds use the
+  # TAK Map backend on localhost:8092. Repair stale TAK Map/dashboard nginx
+  # proxy files left behind by older installers that still target 8091.
+  while IFS= read -r nginx_file; do
+    [[ -f "$nginx_file" ]] || continue
+    if grep -qiE 'tak[-_ ]?map|tak[-_ ]?server[-_ ]?dash|dashboard' "$nginx_file" \
+       && grep -qE 'proxy_pass[[:space:]]+http://127\.0\.0\.1:8091([/;]|$)' "$nginx_file"; then
+      sed -i -E 's#proxy_pass[[:space:]]+http://127\.0\.0\.1:8091#proxy_pass http://127.0.0.1:8092#g' "$nginx_file"
+      echo "Repaired stale TAK Map nginx upstream: $nginx_file -> 127.0.0.1:8092"
+    fi
+  done < <(find /etc/nginx/sites-available /etc/nginx/sites-enabled /etc/nginx/conf.d \
+    -maxdepth 1 -type f 2>/dev/null | sort -u)
   if nginx -t >/tmp/tak-server-dash-nginx-test.log 2>&1; then
     systemctl reload nginx || systemctl restart nginx || true
     echo "Nginx HTTPS proxy enabled on port 9444."
@@ -2886,6 +3004,21 @@ EOF
   fi
 else
   echo "Nginx not found. HTTPS config copied to /etc/tak-server-dash/ but not enabled."
+fi
+
+
+# v328: prepare narrow OpenTAKServer cert read permissions for TAK Client file detection.
+# The service usually runs as the installing Linux user, so this is commonly a no-op.
+# Do not grant access to the CA private key; only client cert folders/files and ca.pem are adjusted.
+if [[ -d "$HOME/ots/ca" ]]; then
+  if command -v setfacl >/dev/null 2>&1; then
+    setfacl -m "u:$USER_NAME:rx" "$HOME/ots" "$HOME/ots/ca" 2>/dev/null || true
+    [[ -d "$HOME/ots/ca/certs" ]] && setfacl -R -m "u:$USER_NAME:rx" "$HOME/ots/ca/certs" 2>/dev/null || true
+    [[ -f "$HOME/ots/ca/ca.pem" ]] && setfacl -m "u:$USER_NAME:r" "$HOME/ots/ca/ca.pem" 2>/dev/null || true
+    if [[ -d "$HOME/ots/ca/certs" ]]; then
+      find "$HOME/ots/ca/certs" -type f \( -name "*.pem" -o -name "*.key" -o -name "*.p12" -o -name "*.pfx" -o -name "*.crt" \) -exec setfacl -m "u:$USER_NAME:r" {} + 2>/dev/null || true
+    fi
+  fi
 fi
 
 systemctl daemon-reload

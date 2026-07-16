@@ -76,3 +76,7 @@ Use HTTPS through Nginx for upload login. The installer copies an example Nginx 
 ## HTTPS reverse proxy
 
 When Nginx is installed, install.sh enables an HTTPS reverse proxy for the whole dashboard on port `9443`. The proxy config is stored at `/etc/tak-server-dash/tak-server-dash-https-9443.conf` and installed into Nginx. Direct HTTP on port `8091` remains available as a fallback.
+
+## Replay API timeout
+
+`TAK_MAP_REPLAY_TIMEOUT=120` is the default per-request Replay API proxy timeout. Values from 2 through 300 seconds are accepted.

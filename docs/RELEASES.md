@@ -12,7 +12,7 @@ Suggested public release flow:
 3. Build the release ZIP:
 
    ```bash
-   ./scripts/build_package.sh v324
+   ./scripts/build_package.sh v442
    ```
 
 4. Create a GitHub Release.
@@ -23,7 +23,7 @@ Suggested public release flow:
 
 The app currently carries two version concepts:
 
-- release label: `v1.1.0`
-- internal package iteration: `v324`
+- release label: `v1.3.0`
+- internal package iteration: `i442`
 
-For public GitHub releases, prefer semantic tags like `v1.1.0`, `v1.1.1`, or `v1.2.0`. The internal package iteration can remain in release notes or ZIP filenames if desired.
+For public GitHub releases, prefer semantic tags like `v1.3.0`, `v1.2.0`, or `v1.1.1`. The internal package iteration can remain in release notes or ZIP filenames if desired.

@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+import argparse, json, os, shutil, ssl, subprocess, sys, tempfile, urllib.request
+from pathlib import Path
+
+ENV=Path('/etc/tak-map.env'); DEST=Path('/etc/tak-map'); SERVICE='tak-map'
+
+def run(cmd):
+    p=subprocess.run(cmd,text=True,capture_output=True)
+    if p.returncode: raise RuntimeError(p.stderr.strip() or p.stdout.strip() or 'command failed')
+    return p.stdout.strip()
+
+def update_env(api, cert, key, ca):
+    lines=ENV.read_text().splitlines() if ENV.exists() else []
+    vals={'TAK_MAP_REPLAY_API_URL':api,'TAK_MAP_REPLAY_CLIENT_CERT':str(cert),'TAK_MAP_REPLAY_CLIENT_KEY':str(key),'TAK_MAP_REPLAY_CA_CERT':str(ca),'TAK_MAP_REPLAY_VERIFY_TLS':'true','TAK_MAP_REPLAY_TIMEOUT':'120'}
+    seen=set(); out=[]
+    for line in lines:
+        k=line.split('=',1)[0].strip() if '=' in line and not line.lstrip().startswith('#') else ''
+        if k in vals: out.append(f'{k}={vals[k]}'); seen.add(k)
+        else: out.append(line)
+    for k,v in vals.items():
+        if k not in seen: out.append(f'{k}={v}')
+    ENV.write_text('\n'.join(out).rstrip()+'\n')
+    os.chmod(ENV,0o640)
+
+def main():
+    ap=argparse.ArgumentParser(description='Install TAK Gateway Replay enrollment on TAK Map')
+    ap.add_argument('--source-dir',required=True)
+    ap.add_argument('--no-restart',action='store_true')
+    a=ap.parse_args()
+    if os.geteuid()!=0: raise SystemExit('Run as root.')
+    src=Path(a.source_dir)
+    meta=json.loads((src/'connection.json').read_text())
+    api=meta.get('api_base') or meta.get('gateway_url','').rstrip('/')+'/api/replay/v1'
+    required={'client.crt':src/'client.crt','client.key':src/'client.key','ca.crt':src/'ca.crt'}
+    for n,p in required.items():
+        if not p.is_file(): raise RuntimeError(f'Missing enrollment file: {n}')
+    DEST.mkdir(parents=True,exist_ok=True)
+    backup=Path(tempfile.mkdtemp(prefix='tak-map-replay-backup-'))
+    targets={'client.crt':DEST/'replay-client.crt','client.key':DEST/'replay-client.key','ca.crt':DEST/'replay-ca.crt'}
+    try:
+        if ENV.exists(): shutil.copy2(ENV,backup/'tak-map.env')
+        for n,t in targets.items():
+            if t.exists(): shutil.copy2(t,backup/t.name)
+            shutil.copy2(required[n],t); os.chmod(t,0o640)
+        try:
+            import grp
+            gid=grp.getgrnam('takmap').gr_gid
+            for t in targets.values(): os.chown(t,0,gid)
+        except KeyError: pass
+        update_env(api,targets['client.crt'],targets['client.key'],targets['ca.crt'])
+        ctx=ssl.create_default_context(cafile=str(targets['ca.crt']))
+        ctx.load_cert_chain(str(targets['client.crt']),str(targets['client.key']))
+        with urllib.request.urlopen(api.rstrip('/')+'/health',context=ctx,timeout=20) as r:
+            health=json.loads(r.read().decode())
+        with urllib.request.urlopen(api.rstrip('/')+'/capabilities',context=ctx,timeout=20) as r:
+            caps=json.loads(r.read().decode())
+        if not a.no_restart: run(['systemctl','restart',SERVICE])
+        print(json.dumps({'ok':True,'api_base':api,'health':health,'capabilities':caps},indent=2))
+    except Exception:
+        if (backup/'tak-map.env').exists(): shutil.copy2(backup/'tak-map.env',ENV)
+        for t in targets.values():
+            b=backup/t.name
+            if b.exists(): shutil.copy2(b,t)
+            elif t.exists(): t.unlink()
+        raise
+    finally: shutil.rmtree(backup,ignore_errors=True)
+if __name__=='__main__':
+    try: main()
+    except Exception as e:
+        print(json.dumps({'ok':False,'error':str(e)}),file=sys.stderr); raise SystemExit(1)

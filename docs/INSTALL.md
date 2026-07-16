@@ -17,7 +17,7 @@ https://<server-ip>:9444
 
 ```bash
 cd ~/Downloads/tak/tak-map
-unzip -o tak-map-v324.zip
+unzip -o tak-map-v400.zip
 cd tak-map
 sudo ./install.sh
 cd ~/Downloads
