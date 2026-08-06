@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "tak_map_version": "1.3.0-i570",
+  "created": "2026-07-26T19:56:37.965977+00:00",
+  "read_only": true,
+  "milstd2525c": {
+    "uid": "tak-map-reviewed-milstd2525c",
+    "name": "TAK Map Reviewed MIL-STD-2525C",
+    "type": "milstd2525c",
+    "authoritative": true,
+    "read_only": true,
+    "asset_source": "assets/mil2525/icons.json"
+  },
+  "custom_set_count": 10,
+  "custom_icon_count": 3742,
+  "excluded_sets": [
+    {
+      "uid": "Unknown-Iconset",
+      "name": "Unnamed Icon Set",
+      "reason": "OTS Leaflet web-map marker; not an ATAK icon set"
+    }
+  ],
+  "sets": [
+    {
+      "uid": "34ae1613-9645-4222-a9d2-e5f243dea2865",
+      "name": "Default",
+      "version": null,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 821,
+      "group_count": 11,
+      "groups": [
+        {
+          "name": "Animals",
+          "icon_count": 75
+        },
+        {
+          "name": "Buildings",
+          "icon_count": 65
+        },
+        {
+          "name": "Flags",
+          "icon_count": 260
+        },
+        {
+          "name": "Hiking",
+          "icon_count": 26
+        },
+        {
+          "name": "Hunting",
+          "icon_count": 56
+        },
+        {
+          "name": "Military",
+          "icon_count": 117
+        },
+        {
+          "name": "People",
+          "icon_count": 42
+        },
+        {
+          "name": "Plants",
+          "icon_count": 22
+        },
+        {
+          "name": "Summer",
+          "icon_count": 6
+        },
+        {
+          "name": "Transportation",
+          "icon_count": 147
+        },
+        {
+          "name": "Weather",
+          "icon_count": 5
+        }
+      ]
+    },
+    {
+      "uid": "66f14976-4b62-4023-8edb-d8d2ebeaa336",
+      "name": "Public Safety Air",
+      "version": 14,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 51,
+      "group_count": 1,
+      "groups": [
+        {
+          "name": "Public Safety Air",
+          "icon_count": 51
+        }
+      ]
+    },
+    {
+      "uid": "6d180afb-89a6-4c07-b2b3-a89748b6a38f",
+      "name": "FalconView",
+      "version": 2,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 489,
+      "group_count": 1,
+      "groups": [
+        {
+          "name": "FalconView",
+          "icon_count": 489
+        }
+      ]
+    },
+    {
+      "uid": "6d781afb-89a6-4c07-b2b9-a89748b6a38f",
+      "name": "OSM",
+      "version": null,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 347,
+      "group_count": 10,
+      "groups": [
+        {
+          "name": "General",
+          "icon_count": 23
+        },
+        {
+          "name": "Landmarks",
+          "icon_count": 100
+        },
+        {
+          "name": "Leisure",
+          "icon_count": 17
+        },
+        {
+          "name": "Lodging",
+          "icon_count": 20
+        },
+        {
+          "name": "Misc",
+          "icon_count": 29
+        },
+        {
+          "name": "Nautical",
+          "icon_count": 9
+        },
+        {
+          "name": "Service",
+          "icon_count": 12
+        },
+        {
+          "name": "Sport",
+          "icon_count": 21
+        },
+        {
+          "name": "Transport",
+          "icon_count": 98
+        },
+        {
+          "name": "Waypoints",
+          "icon_count": 18
+        }
+      ]
+    },
+    {
+      "uid": "83198b4872a8c34eb9c549da8a4de5a28f07821185b39a2277948f66c24ac17a",
+      "name": "GeoOps",
+      "version": 10,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 48,
+      "group_count": 1,
+      "groups": [
+        {
+          "name": "WildFire",
+          "icon_count": 48
+        }
+      ]
+    },
+    {
+      "uid": "ad78aafb-83a6-4c07-b2b9-a897a8b6a38f",
+      "name": "Generic Icons",
+      "version": null,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 657,
+      "group_count": 9,
+      "groups": [
+        {
+          "name": "LetterPins",
+          "icon_count": 52
+        },
+        {
+          "name": "Markers",
+          "icon_count": 20
+        },
+        {
+          "name": "NumPins",
+          "icon_count": 200
+        },
+        {
+          "name": "Pointers",
+          "icon_count": 25
+        },
+        {
+          "name": "Shapes",
+          "icon_count": 87
+        },
+        {
+          "name": "ShapesClr",
+          "icon_count": 12
+        },
+        {
+          "name": "SqrLetters",
+          "icon_count": 52
+        },
+        {
+          "name": "SqrNum",
+          "icon_count": 201
+        },
+        {
+          "name": "Tacks",
+          "icon_count": 8
+        }
+      ]
+    },
+    {
+      "uid": "db450cbe-2fec-47fb-bd2b-ba2db89b035e",
+      "name": "Incident Management Icons",
+      "version": 1,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 12,
+      "group_count": 1,
+      "groups": [
+        {
+          "name": "Incident Management",
+          "icon_count": 12
+        }
+      ]
+    },
+    {
+      "uid": "de450cbf-2ffc-47fb-bd2b-ba2db89b035e",
+      "name": "Responder Icons",
+      "version": 3,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 1179,
+      "group_count": 14,
+      "groups": [
+        {
+          "name": "Access Hazards",
+          "icon_count": 48
+        },
+        {
+          "name": "Facilities",
+          "icon_count": 33
+        },
+        {
+          "name": "Hazardous Materials",
+          "icon_count": 44
+        },
+        {
+          "name": "Hazards",
+          "icon_count": 42
+        },
+        {
+          "name": "Human Caused Hazards",
+          "icon_count": 14
+        },
+        {
+          "name": "Incident",
+          "icon_count": 105
+        },
+        {
+          "name": "Infrastructure",
+          "icon_count": 144
+        },
+        {
+          "name": "Lifelines",
+          "icon_count": 252
+        },
+        {
+          "name": "Natural Hazards",
+          "icon_count": 12
+        },
+        {
+          "name": "NIMS Positions",
+          "icon_count": 51
+        },
+        {
+          "name": "PrePlan",
+          "icon_count": 285
+        },
+        {
+          "name": "Public Alert",
+          "icon_count": 52
+        },
+        {
+          "name": "Resources",
+          "icon_count": 83
+        },
+        {
+          "name": "Transportation",
+          "icon_count": 14
+        }
+      ]
+    },
+    {
+      "uid": "f7f71666-8b28-4b57-9fbb-e38e61d33b79",
+      "name": "Google",
+      "version": null,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 96,
+      "group_count": 1,
+      "groups": [
+        {
+          "name": "Google",
+          "icon_count": 96
+        }
+      ]
+    },
+    {
+      "uid": "f8f7f666-8b28-4b57-9fbb-e48e61d33b79",
+      "name": "FEMA Icons",
+      "version": null,
+      "type": "custom",
+      "created": "2026-07-26T11:26:56-07:00",
+      "icon_count": 42,
+      "group_count": 2,
+      "groups": [
+        {
+          "name": "ESF",
+          "icon_count": 16
+        },
+        {
+          "name": "Iron Sites",
+          "icon_count": 26
+        }
+      ]
+    }
+  ],
+  "icons_by_set": {
+    "34ae1613-9645-4222-a9d2-e5f243dea2865": 821,
+    "66f14976-4b62-4023-8edb-d8d2ebeaa336": 51,
+    "6d180afb-89a6-4c07-b2b3-a89748b6a38f": 489,
+    "6d781afb-89a6-4c07-b2b9-a89748b6a38f": 347,
+    "83198b4872a8c34eb9c549da8a4de5a28f07821185b39a2277948f66c24ac17a": 48,
+    "ad78aafb-83a6-4c07-b2b9-a897a8b6a38f": 657,
+    "db450cbe-2fec-47fb-bd2b-ba2db89b035e": 12,
+    "de450cbf-2ffc-47fb-bd2b-ba2db89b035e": 1179,
+    "f7f71666-8b28-4b57-9fbb-e38e61d33b79": 96,
+    "f8f7f666-8b28-4b57-9fbb-e48e61d33b79": 42
+  }
+}

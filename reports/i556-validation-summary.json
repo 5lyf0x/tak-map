@@ -1,0 +1,45 @@
+{
+  "version": "1.3.0-i556",
+  "validated": true,
+  "preserved_runtime": "1.3.0-i553",
+  "deferred_modules": 104,
+  "icon_registry": {
+    "reviewed_milstd2525c_symbols": 1448,
+    "custom_icon_sets": 10,
+    "custom_icons": 3742,
+    "total_symbols": 5190,
+    "custom_asset_sha256_verified": 3742,
+    "unknown_leaflet_set_excluded": true
+  },
+  "point_workflow": {
+    "data_sync_popup_redesigned": true,
+    "local_data_popup_redesigned": true,
+    "popup_and_sidebar_editor_unified": true,
+    "local_data_point_edit_persistence_tested": true,
+    "create_window_map_viewport_clamped": true,
+    "data_sync_concurrent_edit_and_readback_preserved": true
+  },
+  "custom_icon_rendering": {
+    "authoritative_renderer_after_deferred_patches": true,
+    "verified_after_registry_ready": true,
+    "verified_after_data_sync_refresh": true,
+    "verified_for_data_sync_and_local_data": true
+  },
+  "browser_startup_cpu_throttle_4x": {
+    "shell_seconds": 0.476,
+    "runtime_seconds": 5.86,
+    "shell_frame_ms": 2.0,
+    "page_errors": 0
+  },
+  "tests": [
+    "validate_package.sh",
+    "test_startup_architecture_i556.py",
+    "test_runtime_entrypoint_i556.py",
+    "test_point_workflow_i556.py",
+    "test_icon_registry_i556.py",
+    "test_icon_registry_point_save_i555.py",
+    "test_deferred_resolver_parity_i553.py",
+    "test_data_sync_response_promotion_i553.py",
+    "test_deferred_milstd2525c_i553.js"
+  ]
+}

@@ -31,3 +31,12 @@ Open Developer Tools and check the Console and Network tabs for failed requests,
 cd tak-map
 sudo ./install.sh
 ```
+
+## Replay recording source
+
+Historical recording is owned by TAK Gateway. If Replay periods are missing, check TAK Gateway recording status and the Replay API connection rather than browser storage.
+
+
+## Context panel width or scrollbar
+
+TAK Map 1.4.0 i618 sizes context panels from their visible content. If a panel appears to retain an older fixed width after upgrading, close all TAK Map tabs, reopen the application, and perform a hard refresh. The browser should load `tak-map-package-i580.js?v=1.4.0-i618`. Horizontal scrolling is not expected; long values should wrap and the panel body should use the themed vertical scrollbar.

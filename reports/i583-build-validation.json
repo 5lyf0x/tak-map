@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "version": "1.3.0-i583",
+  "root_folder": "tak-map-v583",
+  "built_at_utc": "2026-07-29T03:55:54.716886+00:00",
+  "changes": {
+    "persistent_per_user_optimistic_data_sync_shadow": true,
+    "exact_uid_canonical_handoff": true,
+    "partial_generic_row_downgrade_prevention": true,
+    "older_snapshot_disappearance_prevention": true,
+    "restart_persistence": true,
+    "confirmed_deletion_retirement": true,
+    "separate_single_flight_membership_and_full_queues": true,
+    "recursive_forced_full_chain_prevented": true,
+    "post_save_membership_fast_path": true,
+    "actual_browser_snapshot_poll_seconds": 5,
+    "ots_membership_interval_seconds": 10,
+    "full_cot_enrichment_interval_seconds": 20
+  },
+  "tests": {
+    "focused_package_checks": "passed",
+    "symbology_162_concepts_648_affiliations": "passed",
+    "membership_corroboration_partial_delete_manual_refresh_multi_mission": "passed",
+    "optimistic_visibility_generic_downgrade_handoff_deletion": "passed",
+    "create_save_restart_persistence_exact_uid_handoff": "passed",
+    "single_flight_scheduler_and_five_second_timer": "passed",
+    "icon_resolver_precedence": "passed",
+    "browser_milstd_and_uid_tombstones": "passed",
+    "javascript_syntax": "passed",
+    "python_ast": "passed",
+    "shell_syntax": "passed",
+    "deferred_runtime_modules_104": "passed",
+    "credential_material_scan": "passed",
+    "initial_load_runs": {
+      "run_count": 3,
+      "initial_load_seconds_min": 5.149,
+      "initial_load_seconds_max": 5.229,
+      "initial_load_seconds_mean": 5.201,
+      "animation_frame_ms_max": 11,
+      "page_errors_total": 0,
+      "console_errors_total": 0,
+      "browser_poll_timer_installed_all_runs": true,
+      "browser_poll_ticks_min": 1,
+      "deferred_runtime_module_count": 104,
+      "startup_freeze_detected": false
+    }
+  },
+  "limitations": "The Data Sync integration tests use controlled OTS/Mission API fixtures and browser mocks. Live ATAK/OTS validation remains an installation-side test."
+}

@@ -2,6 +2,11 @@
 
 TAK Map v419 adds a read-only integration with the TAK Gateway Replay API v1.
 
+
+## Recording authority
+
+TAK Gateway is the sole authoritative recorder for Replay Mode. TAK Map does not record operational history in the browser, does not maintain an IndexedDB recording database, and does not export a browser-local recording. The Replay controls request historical data through the TAK Gateway Replay API.
+
 ## Behavior
 
 - Live Map and Replay Mode are mutually exclusive.

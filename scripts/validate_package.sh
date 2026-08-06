@@ -1,80 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'find . -type d -name __pycache__ -prune -exec rm -rf {} + 2>/dev/null || true; find . -type f -name "*.pyc" -delete 2>/dev/null || true' EXIT
-
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
-
-echo "== Bash syntax =="
-bash -n install.sh
-bash -n uninstall.sh
-
-echo "== Python compile =="
-python3 -m py_compile tak_dashboard.py
-if [[ -f tak_dashboard.py.bak ]]; then
-  python3 -m py_compile tak_dashboard.py.bak
-fi
-
-echo "== JavaScript syntax =="
-if command -v node >/dev/null 2>&1; then
-  for f in takmap.js combined_scripts_v287.js; do
-    [[ -f "$f" ]] && node --check "$f"
-  done
-  if [[ -f embedded_takmap.js ]]; then
-    python3 - <<'PYJS'
-from pathlib import Path
-s=Path('embedded_takmap.js').read_text()
-if s.lstrip().startswith('<script'):
-    s=s[s.find('>')+1:s.rfind('</script>')]
-Path('/tmp/tak-map-embedded-check.js').write_text(s)
-PYJS
-    node --check /tmp/tak-map-embedded-check.js
-  fi
-else
-  echo "node not found; skipping JavaScript syntax checks"
-fi
-
-
-echo "== i442 release/UI assertions =="
-PYTHONWARNINGS=ignore::SyntaxWarning python3 - <<'PYREL'
-import re
-import runpy
-from pathlib import Path
-
-assert Path('VERSION').read_text().strip() == 'i442'
-embedded = Path('embedded_takmap.js').read_text()
-for needle in (
-    "const V='i442'",
-    "getTakMapReleaseDiagnosticsV442",
-    "tak-offline-stepper-v442",
-    "tak-tactical-rail-v442",
-    "Buffering playback...",
-):
-    assert needle in embedded, needle
-
-ns = runpy.run_path('tak_dashboard.py', run_name='tak_map_validation')
-html = ns.get('TAK_MAP_HTML', '')
-visible = re.sub(r'<script[\s\S]*?</script>', '', html, flags=re.I)
-assert '<div class="title"><img src="/tak-map-logo.png" alt=""><span>TAK Map</span></div>' in visible
-assert 'takMapHeaderRelease' not in visible
-assert re.search(r'class="release-main"[^>]*>1\.3\.0<', visible)
-assert re.search(r'class="iteration-chip"[^>]*>i442<', visible)
-assert not re.search(r'>1\.2\.0<', visible)
-assert not re.search(r'>v409<', visible)
-print('i442 assertions passed')
-PYREL
-
-echo "== Secret file check =="
-if find . \
-  -path './.git' -prune -o \
-  -name '*.pem' -o -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name '.env' \
-  | grep -q .; then
-  echo "Potential secret/runtime files found:" >&2
-  find . \
-    -path './.git' -prune -o \
-    -name '*.pem' -o -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name '.env' \
-    -print >&2
-  exit 1
-fi
-
-echo "Validation complete."
+run_step(){ local label="$1" limit="$2"; shift 2; echo "[i618] ${label}"; timeout --foreground --signal=TERM --kill-after=20s "$limit" "$@"; }
+run_step "release, docs, shared sizing, and protected hashes" 240s python3 scripts/test_release_i618.py
+run_step "Python compilation" 300s python3 -m py_compile tak_dashboard.py \
+  scripts/test_release_i618.py \
+  scripts/test_context_panel_sizing_i618_browser.py \
+  scripts/test_gateway_data_deferred_runtime_i618.py \
+  scripts/test_gateway_data_dynamic_sources_i618.py \
+  scripts/test_gateway_data_dynamic_sources_i618_browser.py \
+  scripts/test_gateway_data_context_sidebar_i618_browser.py \
+  scripts/test_gateway_data_full_startup_i618_browser.py \
+  scripts/test_source_extension_drawing_eud_filter_i613.py
+run_step "Shared package/sizing JavaScript syntax" 120s node --check assets/tak-map-package-i580.js
+run_step "Gateway Data JavaScript syntax" 120s node --check assets/tak-map-gateway-data-v491.js
+run_step "Context sidebar JavaScript syntax" 120s node --check assets/tak-map-context-sidebar-i572.js
+run_step "ADS-B JavaScript syntax" 120s node --check assets/tak-map-adsb-sidebar-i610.js
+run_step "Startup JavaScript syntax" 120s node --check assets/tak-map-startup-i553.js
+run_step "Deferred manifest JSON" 120s python3 -c "import json; p=json.load(open('assets/tak-map-deferred-i553.json')); assert p['version']=='1.4.0-i618'; assert p['count']==len(p['scripts'])"
+run_step "Installer shell syntax" 120s bash -n install.sh
+run_step "Uninstaller shell syntax" 120s bash -n uninstall.sh
+run_step "Authoritative deferred Gateway Data i618 contract" 120s python3 scripts/test_gateway_data_deferred_runtime_i618.py
+run_step "Dynamic Source Extension i618 static contract" 120s python3 scripts/test_gateway_data_dynamic_sources_i618.py
+run_step "Shared all-context dynamic sizing browser workflow" 300s python3 scripts/test_context_panel_sizing_i618_browser.py
+run_step "Dynamic Source Extension i618 lifecycle browser workflow" 240s python3 scripts/test_gateway_data_dynamic_sources_i618_browser.py
+run_step "Gateway Data context content/scroll/unit workflow" 300s python3 scripts/test_gateway_data_context_sidebar_i618_browser.py
+run_step "Full deferred-startup dynamic MultiPolygon workflow" 300s python3 scripts/test_gateway_data_full_startup_i618_browser.py
+run_step "Source Extension drawing/EUD suppression" 240s env PYTHONWARNINGS='ignore::SyntaxWarning' python3 scripts/test_source_extension_drawing_eud_filter_i613.py
+run_step "Gateway Data large geometry workflow" 240s python3 scripts/test_gateway_data_geometry_i518_browser.py
+run_step "Gateway Data AIS icon contract" 180s python3 scripts/test_gateway_data_ais_icons_i618.py
+run_step "NWS Gateway Data style contract" 120s python3 scripts/test_nws_style_i519.py
+run_step "ADS-B browser workflow" 300s python3 scripts/test_adsb_sidebar_i610_browser.py
+run_step "i602 deletion identity regression" 600s env PYTHONWARNINGS='ignore::SyntaxWarning' python3 scripts/test_data_sync_deletion_identity_i602.py
+echo "TAK Map 1.4.0 i618 shared context sizing, i617 curated Gateway Data, i613 EUD suppression, i612 deferred runtime, i611 Source Extensions, i610 ADS-B, and i602 Data Sync validation passed"

@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, base64, getpass, hashlib, json, os, pwd, secrets, tempfile, uuid
+from datetime import datetime, timezone
+from pathlib import Path
+
+DATA_DIR=Path(os.environ.get('TAK_DASHBOARD_DATA_DIR','/var/lib/tak-map'))
+STORE=DATA_DIR/'local_accounts.json'
+ITERATIONS=600_000
+
+def now(): return datetime.now(timezone.utc).isoformat()
+def b64(v:bytes)->str: return base64.urlsafe_b64encode(v).decode().rstrip('=')
+def hash_password(password:str)->str:
+    salt=secrets.token_bytes(16)
+    digest=hashlib.pbkdf2_hmac('sha256',password.encode(),salt,ITERATIONS)
+    return f'pbkdf2_sha256${ITERATIONS}${b64(salt)}${b64(digest)}'
+def uid(account_id:str)->str:
+    return 'TAKMAP-LOCAL-'+str(uuid.uuid5(uuid.NAMESPACE_URL,'tak-map-local|'+account_id)).upper()
+def load():
+    try:
+        obj=json.loads(STORE.read_text())
+        return obj if isinstance(obj,dict) else {}
+    except Exception: return {}
+def save(obj):
+    DATA_DIR.mkdir(parents=True,exist_ok=True)
+    fd,tmp=tempfile.mkstemp(prefix=STORE.name+'.',suffix='.tmp',dir=str(DATA_DIR))
+    try:
+        with os.fdopen(fd,'w') as f:
+            json.dump(obj,f,indent=2,sort_keys=True); f.write('\n'); f.flush(); os.fsync(f.fileno())
+        os.chmod(tmp,0o600); os.replace(tmp,STORE)
+        try:
+            user=pwd.getpwnam('takmap'); os.chown(STORE,user.pw_uid,user.pw_gid)
+        except Exception: pass
+    finally:
+        try:
+            if os.path.exists(tmp): os.unlink(tmp)
+        except Exception: pass
+
+def reset(password='password'):
+    obj=load(); users=obj.get('users') if isinstance(obj.get('users'),dict) else {}
+    row=dict(users.get('administrator') or {})
+    account_id=str(row.get('id') or uuid.uuid4())
+    created=str(row.get('created_at') or now())
+    row.update({'id':account_id,'username':'administrator','password_hash':hash_password(password),'is_admin':True,'active':True,'must_change_password':True,'callsign':str(row.get('callsign') or ''),'tak_uid':str(row.get('tak_uid') or uid(account_id)),'created_at':created,'updated_at':now(),'last_login_at':str(row.get('last_login_at') or '')})
+    users['administrator']=row; obj={'version':'i512','users':users,'updated_at':now()}; save(obj)
+    print('Local administrator reset successfully.')
+    print('Username: administrator')
+    print('Temporary password: '+password)
+    print('A password change is required at next Local Login.')
+
+def status():
+    row=(load().get('users') or {}).get('administrator') or {}
+    if not row:
+        print('Local administrator store has not been initialized.'); return 1
+    print('Username: administrator')
+    print('Active: '+str(row.get('active') is not False).lower())
+    print('Password change required: '+str(bool(row.get('must_change_password'))).lower())
+    print('TAK UID: '+str(row.get('tak_uid') or ''))
+    return 0
+
+def main():
+    if os.geteuid()!=0:
+        raise SystemExit('Run this command with sudo or as root.')
+    ap=argparse.ArgumentParser(description='Manage the built-in TAK Map local administrator.')
+    sub=ap.add_subparsers(dest='command',required=True)
+    r=sub.add_parser('reset-password',help='Reset to a temporary password and require change at next login.')
+    r.add_argument('--prompt',action='store_true',help='Prompt for a custom temporary password instead of using password.')
+    sub.add_parser('status',help='Show local administrator status.')
+    args=ap.parse_args()
+    if args.command=='status': raise SystemExit(status())
+    password='password'
+    if args.prompt:
+        password=getpass.getpass('Temporary password (12+ characters): ')
+        confirm=getpass.getpass('Confirm temporary password: ')
+        if password!=confirm: raise SystemExit('Passwords do not match.')
+        if len(password)<8: raise SystemExit('Temporary password must be at least 8 characters.')
+    reset(password)
+if __name__=='__main__': main()

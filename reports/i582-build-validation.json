@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "package_version": "1.3.0-i582",
+  "base_package": "1.3.0-i581",
+  "built_at_utc": "2026-07-29T00:09:25.041323+00:00",
+  "changes": {
+    "ots_membership_interval_seconds": 10,
+    "full_cot_enrichment_interval_seconds": 20,
+    "browser_local_snapshot_poll_seconds": 5,
+    "additions_trigger_immediate_cot_enrichment": true,
+    "manual_refresh_forces_membership_and_full_cot": true,
+    "incomplete_membership_never_authorizes_destructive_pruning": true,
+    "nonempty_to_zero_requires_corroboration": true,
+    "manual_refresh_preserves_current_snapshot_until_reconciliation": true,
+    "cot_reconciles_incomplete_membership": true,
+    "per_mission_failure_isolation": true,
+    "ots_failures_preserve_last_known_good_snapshot": true
+  },
+  "preserved": {
+    "i580_reviewed_atak_symbology": true,
+    "symbology_concepts": 162,
+    "affiliation_cases": 648,
+    "civilian_vehicle_sidcs_unchanged": true
+  },
+  "tests": {
+    "focused_package_wiring": "passed",
+    "data_sync_cadence": "passed",
+    "incomplete_success_discovery": "passed",
+    "partial_deletion_manual_refresh": "passed",
+    "temporary_empty_membership": "passed",
+    "true_all_deleted_mission": "passed",
+    "multi_mission_isolation": "passed",
+    "symbology": "passed",
+    "resolver_precedence": "passed",
+    "deferred_runtime_modules_syntax": {
+      "passed": true,
+      "count": 104
+    },
+    "initial_load": {
+      "ok": true,
+      "version": "i582",
+      "run_count": 3,
+      "initial_load_seconds": {
+        "min": 4.575,
+        "max": 4.619,
+        "mean": 4.597
+      },
+      "animation_frame_ms": {
+        "min": 9.8,
+        "max": 11.0,
+        "mean": 10.3
+      },
+      "page_errors": 0,
+      "console_errors": 0,
+      "all_mission_nodes_stable": true,
+      "all_contextual_right_sidebar_preserved": true,
+      "all_unrelated_tank_preserved": true,
+      "runs": [
+        {
+          "ok": true,
+          "version": "i582",
+          "initial_load_seconds": 4.575,
+          "data_sync_requests": 2,
+          "mission_nodes_stable": true,
+          "geofence_header_toggle": true,
+          "geofence_switch_excluded": true,
+          "contextual_right_sidebar_preserved": true,
+          "generic_sidebar_rows_hover_stable": true,
+          "generic_sensor_canonical": true,
+          "specific_radar_canonical": true,
+          "unrelated_tank_preserved": true,
+          "animation_frame_ms": 10.1,
+          "mutation_callbacks": 108,
+          "mutation_records": 1850,
+          "page_errors": 0,
+          "console_errors": 0
+        },
+        {
+          "ok": true,
+          "version": "i582",
+          "initial_load_seconds": 4.597,
+          "data_sync_requests": 2,
+          "mission_nodes_stable": true,
+          "geofence_header_toggle": true,
+          "geofence_switch_excluded": true,
+          "contextual_right_sidebar_preserved": true,
+          "generic_sidebar_rows_hover_stable": true,
+          "generic_sensor_canonical": true,
+          "specific_radar_canonical": true,
+          "unrelated_tank_preserved": true,
+          "animation_frame_ms": 11,
+          "mutation_callbacks": 108,
+          "mutation_records": 1853,
+          "page_errors": 0,
+          "console_errors": 0
+        },
+        {
+          "ok": true,
+          "version": "i582",
+          "initial_load_seconds": 4.619,
+          "data_sync_requests": 2,
+          "mission_nodes_stable": true,
+          "geofence_header_toggle": true,
+          "geofence_switch_excluded": true,
+          "contextual_right_sidebar_preserved": true,
+          "generic_sidebar_rows_hover_stable": true,
+          "generic_sensor_canonical": true,
+          "specific_radar_canonical": true,
+          "unrelated_tank_preserved": true,
+          "animation_frame_ms": 9.8,
+          "mutation_callbacks": 108,
+          "mutation_records": 1853,
+          "page_errors": 0,
+          "console_errors": 0
+        }
+      ]
+    }
+  }
+}

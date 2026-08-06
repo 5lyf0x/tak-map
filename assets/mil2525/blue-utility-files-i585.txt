@@ -1,0 +1,4 @@
+friendly-ground-equipment-civilian-utility-vehicle.svg
+friendly-ground-equipment-utility-truck.svg
+friendly-ground-equipment-utility-vehicle.svg
+friendly-ground-equipment-utv.svg

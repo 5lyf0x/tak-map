@@ -88,6 +88,19 @@ if ! command -v setfacl >/dev/null 2>&1; then
   fi
 fi
 
+
+# TAK Map requires nginx for the public HTTPS listener on port 9444.
+if ! command -v nginx >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    echo "Installing required TAK Map HTTPS dependency: nginx"
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx
+  else
+    echo "ERROR: nginx is required for TAK Map HTTPS on port 9444 and no supported package manager was found." >&2
+    exit 1
+  fi
+fi
+
 # Remove the newer experimental dashboard service/config if it was installed.
 # Keep the established TAK Map split-service layout:
 #   private TAK Map backend on 127.0.0.1:8092 via tak-map.service
@@ -100,10 +113,74 @@ rm -f /etc/nginx/sites-enabled/tak-server-dashboard.conf /etc/nginx/sites-availa
 rm -f /etc/nginx/conf.d/99-tak-server-dashboard-proxy-hash.conf 2>/dev/null || true
 rm -f /etc/nginx/conf.d/tak-server-dashboard.conf /etc/nginx/conf.d/tak-server-dashboard-https-9443.conf 2>/dev/null || true
 
-mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging" "$DATA_DIR/send_packages"
+# urllib3 provides pooled upstream HTTPS connections for faster online basemap tiles.
+if ! python3 -c 'import urllib3' >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3-urllib3 || echo "WARNING: python3-urllib3 install failed. Basemaps will use the compatible non-pooled fallback."
+  fi
+fi
+
+mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging" "$DATA_DIR/send_packages" "$DATA_DIR/tak_map_tile_cache" "$DATA_DIR/ots_user_credentials" "$DATA_DIR/sentinel_hub_users" "$DATA_DIR/sentinel_hub_cache" "$DATA_DIR/data_sync_snapshots_i568" "$DATA_DIR/mission_unlock_users_i572" "$DATA_DIR/mission_unlock_users_i575" "$DATA_DIR/data_sync_transport_authority_i584_hf2" "$DATA_DIR/ots_trust"
 cp tak_dashboard.py "$APP_DIR/tak_dashboard.py"
+install -m 0644 VERSION "$APP_DIR/VERSION"
 chmod 0755 "$APP_DIR/tak_dashboard.py"
+mkdir -p "$APP_DIR/assets"
+# Remove superseded ADS-B modules and every browser-local operational Black Box
+# runtime asset. Historical playback remains provided by the TAK Gateway Replay API.
+rm -f "$APP_DIR/assets"/tak-map-adsb-v*.js \
+      "$APP_DIR/assets"/tak-map-live-interpolation-v*.js \
+      "$APP_DIR/assets"/tak-map-local-elevation-boundary-v*.js \
+      "$APP_DIR/assets"/tak-map-blackbox-v*.js \
+      "$APP_DIR/assets"/tak-map-gateway-data-v*.js \
+      "$APP_DIR/assets"/tak-map-sidebar-performance-v*.js \
+      "$APP_DIR/assets"/tak-map-whole-zoom-v*.js \
+      "$APP_DIR/assets"/tak-map-card-controls-v*.js \
+      "$APP_DIR/assets"/tak-map-data-sync-v*.js \
+      "$APP_DIR/assets"/tak-map-data-sync-i*.js \
+      "$APP_DIR/assets"/tak-map-object-lifecycle-*.js \
+      "$APP_DIR/assets"/tak-map-tool-ux-v*.js \
+      "$APP_DIR/assets"/tak-map-viewshed-window-v*.js \
+      "$APP_DIR/assets"/tak-map-nrt-satellite-i*.js \
+      "$APP_DIR/assets"/tak-map-milstd2525c-i*.js \
+      "$APP_DIR/assets"/tak-map-core-i*.js \
+      "$APP_DIR/assets"/tak-map-startup-i*.js \
+      "$APP_DIR/assets"/tak-map-deferred-i*.json \
+      "$APP_DIR/assets"/tak-map-icon-registry-i*.js \
+      "$APP_DIR/assets"/tak-map-popup-localdata-i*.js \
+      "$APP_DIR/assets"/tak-map-context-sidebar-i*.js \
+      "$APP_DIR/assets"/tak-map-data-sync-unlock-i*.js \
+      "$APP_DIR/assets"/tak-map-data-sync-access-i*.js
+install -m 0644 assets/tak-map-adsb-v491.js "$APP_DIR/assets/tak-map-adsb-v491.js"
+install -m 0644 assets/tak-map-live-interpolation-v491.js "$APP_DIR/assets/tak-map-live-interpolation-v491.js"
+install -m 0644 assets/tak-map-local-elevation-boundary-v491.js "$APP_DIR/assets/tak-map-local-elevation-boundary-v491.js"
+install -m 0644 assets/tak-map-gateway-data-v491.js "$APP_DIR/assets/tak-map-gateway-data-v491.js"
+install -m 0644 assets/ais-civil.png "$APP_DIR/assets/ais-civil.png"
+install -m 0644 assets/ais-law.png "$APP_DIR/assets/ais-law.png"
+install -m 0644 assets/tak-map-sidebar-performance-v491.js "$APP_DIR/assets/tak-map-sidebar-performance-v491.js"
+install -m 0644 assets/tak-map-whole-zoom-v491.js "$APP_DIR/assets/tak-map-whole-zoom-v491.js"
+install -m 0644 assets/tak-map-card-controls-v491.js "$APP_DIR/assets/tak-map-card-controls-v491.js"
+install -m 0644 assets/tak-map-data-sync-v491.js "$APP_DIR/assets/tak-map-data-sync-v491.js"
+install -m 0644 assets/tak-map-data-sync-i553.js "$APP_DIR/assets/tak-map-data-sync-i553.js"
+install -m 0644 assets/tak-map-object-lifecycle-v491.js "$APP_DIR/assets/tak-map-object-lifecycle-v491.js"
+install -m 0644 assets/tak-map-tool-ux-v491.js "$APP_DIR/assets/tak-map-tool-ux-v491.js"
+install -m 0644 assets/tak-map-viewshed-window-v491.js "$APP_DIR/assets/tak-map-viewshed-window-v491.js"
+install -m 0644 assets/tak-map-geofencing-v491.js "$APP_DIR/assets/tak-map-geofencing-v491.js"
+install -m 0644 assets/tak-map-nrt-satellite-i535.js "$APP_DIR/assets/tak-map-nrt-satellite-i535.js"
+install -m 0644 assets/tak-map-milstd2525c-i553.js "$APP_DIR/assets/tak-map-milstd2525c-i553.js"
+install -m 0644 assets/tak-map-core-i553.js "$APP_DIR/assets/tak-map-core-i553.js"
+install -m 0644 assets/tak-map-startup-i553.js "$APP_DIR/assets/tak-map-startup-i553.js"
+install -m 0644 assets/tak-map-package-i580.js "$APP_DIR/assets/tak-map-package-i580.js"
+install -m 0644 assets/tak-map-deferred-i553.json "$APP_DIR/assets/tak-map-deferred-i553.json"
+install -m 0644 assets/tak-map-icon-registry-i572.js "$APP_DIR/assets/tak-map-icon-registry-i572.js"
+install -m 0644 assets/tak-map-popup-localdata-i572.js "$APP_DIR/assets/tak-map-popup-localdata-i572.js"
+install -m 0644 assets/tak-map-context-sidebar-i572.js "$APP_DIR/assets/tak-map-context-sidebar-i572.js"
+install -m 0644 assets/tak-map-data-sync-unlock-i572.js "$APP_DIR/assets/tak-map-data-sync-unlock-i572.js"
+install -m 0644 assets/tak-map-data-sync-access-i574.js "$APP_DIR/assets/tak-map-data-sync-access-i574.js"
+install -m 0644 assets/tak-map-data-sync-access-i575.js "$APP_DIR/assets/tak-map-data-sync-access-i575.js"
+install -m 0644 assets/tak-map-data-sync-access-i576.js "$APP_DIR/assets/tak-map-data-sync-access-i576.js"
+install -m 0755 scripts/tak-map-enroll /usr/local/sbin/tak-map-enroll
 install -m 0755 scripts/tak-map-replay-enroll /usr/local/sbin/tak-map-replay-enroll
+install -m 0755 scripts/tak-map-local-admin /usr/local/sbin/tak-map-local-admin
 mkdir -p "$LOCKSCREEN_ASSET_DIR"
 # Keep the installed lockscreen asset set lean going forward. Remove prior bundled
 # dashboard lockscreen variants, but leave unrelated/custom files alone.
@@ -123,6 +200,27 @@ if [[ -d assets/mil2525 ]]; then
   cp -a assets/mil2525/. "$MIL2525_ASSET_DIR"/
   find "$MIL2525_ASSET_DIR" -type f -exec chmod 0644 {} + 2>/dev/null || true
   find "$MIL2525_ASSET_DIR" -type d -exec chmod 0755 {} + 2>/dev/null || true
+fi
+# Keep only lightweight application-local compatibility metadata. The shared
+# catalog is the sole authoritative runtime source; remove stale app-local
+# icons.json/svg copies left by older installations so blue duplicate artwork
+# cannot reappear after a Data Sync refresh.
+mkdir -p "$APP_DIR/assets/mil2525"
+rm -f "$APP_DIR/assets/mil2525/icons.json"
+rm -rf "$APP_DIR/assets/mil2525/svg"
+install -m 0644 assets/mil2525/atak-compatibility-aliases-i553.json   "$APP_DIR/assets/mil2525/atak-compatibility-aliases-i553.json"
+install -m 0644 assets/mil2525/atak-symbology-transport-i580.json   "$APP_DIR/assets/mil2525/atak-symbology-transport-i580.json"
+install -m 0644 assets/mil2525/atak-symbology-review-decisions-i579.json   "$APP_DIR/assets/mil2525/atak-symbology-review-decisions-i579.json"
+
+ICON_REGISTRY_ASSET_DIR="/usr/share/tak-server-dash/icon-registry"
+if [[ -d assets/icon-registry ]]; then
+  # The first registry release is a package-owned, read-only catalog. Replace
+  # the complete prior package copy so removed or excluded assets cannot linger.
+  rm -rf "$ICON_REGISTRY_ASSET_DIR"
+  mkdir -p "$ICON_REGISTRY_ASSET_DIR"
+  cp -a assets/icon-registry/. "$ICON_REGISTRY_ASSET_DIR"/
+  find "$ICON_REGISTRY_ASSET_DIR" -type f -exec chmod 0644 {} + 2>/dev/null || true
+  find "$ICON_REGISTRY_ASSET_DIR" -type d -exec chmod 0755 {} + 2>/dev/null || true
 fi
 
 ADSB_ASSET_DIR="/usr/share/tak-server-dash/adsb"
@@ -166,6 +264,8 @@ else
 fi
 chown -R "$USER_NAME:$USER_NAME" "$DATA_DIR"
 chmod 0750 "$DATA_DIR"
+chmod 0700 "$DATA_DIR/ots_user_credentials" "$DATA_DIR/sentinel_hub_users" "$DATA_DIR/mission_unlock_users_i572" "$DATA_DIR/mission_unlock_users_i575" "$DATA_DIR/data_sync_transport_authority_i584_hf2" "$DATA_DIR/ots_trust"
+chmod 0750 "$DATA_DIR/sentinel_hub_cache"
 
 # Repair older/corrupted CPU temperature history before starting the service.
 # Malformed entries in temp_history.json caused /api/status to crash and nginx
@@ -2296,7 +2396,7 @@ TAK_DASH_LOGIN_FAIL_LIMIT=3
 TAK_DASH_LOGIN_FAIL_WINDOW_SECONDS=1800
 TAK_DASH_PAM_SERVICE=tak-server-dash,sshd,login
 TAK_DASH_TAK_MAP_LOGO=/usr/share/tak-server-dash/lockscreen/tak-map-logo.png
-TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS=3600
+TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS=43200
 TAK_DASH_MAP_DEFAULT_BASEMAP=esri_topo
 TAK_DASH_ADSB_SOURCE=auto
 TAK_DASH_ADSB_AIRCRAFT_JSON_URL=
@@ -2323,12 +2423,23 @@ TAK_DASH_GPS_SCAN_PI_UARTS=false
 TAK_DASH_GPS_SERIAL_ENABLE_CMDS=
 TAK_DASH_GPS_SERIAL_POLL_CMDS=
 TAK_DASH_GPS_SERIAL_DISABLE_CMDS=
+TAK_MAP_GATEWAY_URL=https://127.0.0.1:9443
+TAK_MAP_SERVICE_CLIENT_CERT=/etc/tak-map/service-client.crt
+TAK_MAP_SERVICE_CLIENT_KEY=/etc/tak-map/service-client.key
+TAK_MAP_GATEWAY_CA_CERT=/etc/tak-map/gateway-ca.crt
+TAK_MAP_ENROLLMENT_MANIFEST=/etc/tak-map/enrollment.json
 TAK_MAP_REPLAY_API_URL=https://127.0.0.1:9443/api/replay/v1
 TAK_MAP_REPLAY_CLIENT_CERT=/etc/tak-map/replay-client.crt
 TAK_MAP_REPLAY_CLIENT_KEY=/etc/tak-map/replay-client.key
 TAK_MAP_REPLAY_CA_CERT=/etc/tak-map/replay-ca.crt
 TAK_MAP_REPLAY_VERIFY_TLS=true
 TAK_MAP_REPLAY_TIMEOUT=120
+TAK_MAP_GATEWAY_BASEMAP_URL=
+TAK_MAP_GATEWAY_BASEMAP_PORT=9443
+TAK_MAP_GATEWAY_BASEMAP_SCHEME=https
+TAK_MAP_GATEWAY_BASEMAP_CATALOG_URL=
+TAK_MAP_GATEWAY_DIRECT_BASEMAPS=false
+TAK_MAP_GATEWAY_BASEMAP_TIMEOUT=20
 EOF
   chmod 0600 "$ENV_FILE"
 else
@@ -2339,12 +2450,25 @@ ensure_env_default() {
   local key="$1" value="$2"
   grep -qE "^${key}=" "$ENV_FILE" 2>/dev/null || printf '%s=%s\n' "$key" "$value" >> "$ENV_FILE"
 }
+ensure_env_default TAK_MAP_GATEWAY_URL https://127.0.0.1:9443
+ensure_env_default TAK_MAP_SERVICE_CLIENT_CERT /etc/tak-map/service-client.crt
+ensure_env_default TAK_MAP_SERVICE_CLIENT_KEY /etc/tak-map/service-client.key
+ensure_env_default TAK_MAP_GATEWAY_CA_CERT /etc/tak-map/gateway-ca.crt
+ensure_env_default TAK_MAP_ENROLLMENT_MANIFEST /etc/tak-map/enrollment.json
 ensure_env_default TAK_MAP_REPLAY_API_URL https://127.0.0.1:9443/api/replay/v1
 ensure_env_default TAK_MAP_REPLAY_CLIENT_CERT /etc/tak-map/replay-client.crt
 ensure_env_default TAK_MAP_REPLAY_CLIENT_KEY /etc/tak-map/replay-client.key
 ensure_env_default TAK_MAP_REPLAY_CA_CERT /etc/tak-map/replay-ca.crt
 ensure_env_default TAK_MAP_REPLAY_VERIFY_TLS true
 ensure_env_default TAK_MAP_REPLAY_TIMEOUT 120
+# i508 TAK Gateway split-layer composite basemaps. Enrollment writes the secure Gateway
+# base URL so browsers request composite tiles directly from Gateway over HTTPS.
+ensure_env_default TAK_MAP_GATEWAY_BASEMAP_URL ""
+ensure_env_default TAK_MAP_GATEWAY_BASEMAP_PORT 9443
+ensure_env_default TAK_MAP_GATEWAY_BASEMAP_SCHEME https
+ensure_env_default TAK_MAP_GATEWAY_BASEMAP_CATALOG_URL ""
+ensure_env_default TAK_MAP_GATEWAY_DIRECT_BASEMAPS false
+ensure_env_default TAK_MAP_GATEWAY_BASEMAP_TIMEOUT 20
 # v439: migrate only the legacy package default. Preserve any operator-selected
 # timeout other than the old 20-second value.
 if grep -qx 'TAK_MAP_REPLAY_TIMEOUT=20' "$ENV_FILE" 2>/dev/null; then
@@ -2353,7 +2477,7 @@ fi
 mkdir -p /etc/tak-map
 chown root:"$USER_NAME" /etc/tak-map
 chmod 0750 /etc/tak-map
-find /etc/tak-map -maxdepth 1 -type f -name 'replay-*' -exec chown root:"$USER_NAME" {} + -exec chmod 0640 {} + 2>/dev/null || true
+find /etc/tak-map -maxdepth 1 -type f \( -name 'replay-*' -o -name 'service-*' -o -name 'gateway-*' -o -name 'enrollment.json' \) -exec chown root:"$USER_NAME" {} + -exec chmod 0640 {} + 2>/dev/null || true
 cat > "$SERVICE_FILE" <<EOF
 [Unit]
 Description=TAK Map
@@ -2424,7 +2548,12 @@ ensure_env_var TAK_DASH_LOGIN_FAIL_LIMIT "3"
 ensure_env_var TAK_DASH_LOGIN_FAIL_WINDOW_SECONDS "1800"
 ensure_env_var TAK_DASH_PAM_SERVICE "tak-server-dash,sshd,login"
 ensure_env_var TAK_DASH_TAK_MAP_LOGO "/usr/share/tak-server-dash/lockscreen/tak-map-logo.png"
-ensure_env_var TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS "3600"
+ensure_env_var TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS "43200"
+# i499: migrate the former generated one-hour TAK Map default. Preserve any
+# operator-selected value other than the old package default.
+if grep -qx 'TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS=3600' "$ENV_FILE" 2>/dev/null; then
+  sed -i 's/^TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS=3600$/TAK_DASH_TAK_MAP_SESSION_TTL_SECONDS=43200/' "$ENV_FILE"
+fi
 ensure_env_var TAK_DASH_MAP_DEFAULT_BASEMAP "esri_topo"
 ensure_env_var TAK_DASH_ADSB_SOURCE "auto"
 ensure_env_var TAK_DASH_ADSB_AIRCRAFT_JSON_URL ""
@@ -2964,10 +3093,22 @@ proxy_headers_hash_max_size 4096;
 proxy_headers_hash_bucket_size 256;
 EOF
   fi
-  echo "Regenerating dashboard HTTPS certificate with serverAuth key usage and current IP SANs..."
-  if ! "$WRAPPER" cert-setup "" "" >/tmp/tak-server-dash-cert-setup.log 2>&1; then
-    echo "WARNING: Certificate regeneration failed. Details:"
-    cat /tmp/tak-server-dash-cert-setup.log || true
+  SERVER_CRT=/etc/tak-server-dash/certs/tak-server-dash.crt
+  SERVER_KEY=/etc/tak-server-dash/certs/tak-server-dash.key
+  LOCAL_CA=/etc/tak-server-dash/certs/ca/takdash-local-ca.crt
+  if [[ -s "$SERVER_CRT" && -s "$SERVER_KEY" ]]; then
+    echo "Preserving existing TAK Map HTTPS certificate and key on upgrade."
+    if [[ ! -s "$LOCAL_CA" ]]; then
+      echo "WARNING: Existing TAK Map HTTPS certificate/key were preserved, but the local CA certificate is missing at $LOCAL_CA."
+      echo "Use the explicit certificate setup action only if regeneration is intentionally required."
+    fi
+  else
+    echo "No existing TAK Map HTTPS certificate/key found; generating them for this clean installation..."
+    if ! "$WRAPPER" cert-setup "" "" >/tmp/tak-server-dash-cert-setup.log 2>&1; then
+      echo "ERROR: TAK Map HTTPS certificate generation failed. Details:"
+      cat /tmp/tak-server-dash-cert-setup.log || true
+      exit 1
+    fi
   fi
   if [[ -d /etc/nginx/sites-available && -d /etc/nginx/sites-enabled ]]; then
     cp /etc/tak-server-dash/tak-map-https-9444.conf /etc/nginx/sites-available/tak-map-https-9444

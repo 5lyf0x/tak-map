@@ -1,0 +1,271 @@
+{
+  "schema": "tak-map-milstd2525c-phase4-validation-v1",
+  "result": "pass",
+  "elapsed_seconds": 29.51,
+  "review_summary": {
+    "concepts": 162,
+    "decisions": {
+      "accept": 123,
+      "defer": 35,
+      "reject": 4
+    },
+    "decision_by_status": [
+      {
+        "decision": "accept",
+        "candidate_status": "closest-standard",
+        "count": 54
+      },
+      {
+        "decision": "accept",
+        "candidate_status": "exact-standard",
+        "count": 65
+      },
+      {
+        "decision": "accept",
+        "candidate_status": "unsupported",
+        "count": 4
+      },
+      {
+        "decision": "defer",
+        "candidate_status": "closest-standard",
+        "count": 5
+      },
+      {
+        "decision": "defer",
+        "candidate_status": "exact-standard",
+        "count": 3
+      },
+      {
+        "decision": "defer",
+        "candidate_status": "unsupported",
+        "count": 27
+      },
+      {
+        "decision": "reject",
+        "candidate_status": "unsupported",
+        "count": 4
+      }
+    ],
+    "accepted_with_candidate_concepts": 119,
+    "accepted_without_candidate_concepts": 4,
+    "deferred_concepts": 35,
+    "rejected_keep_current_concepts": 4
+  },
+  "integration": {
+    "replacement_svgs": 476,
+    "retained_review_scope_svgs": 172,
+    "catalog_rows": 1448,
+    "catalog_svg_files": 1448,
+    "unchanged_catalog_svgs": 972,
+    "icons_json_unchanged": true,
+    "changed_set_exact": true,
+    "unexpected_changed": [],
+    "replacement_not_changed": [],
+    "missing_catalog_files": [],
+    "orphan_svg_files": []
+  },
+  "identity": {
+    "mapping_rows_checked": 648,
+    "candidate_identity_used_at_runtime": false,
+    "sidc_mismatch_count": 0
+  },
+  "svg_validation": {
+    "all_catalog_xml_parsed": true,
+    "parse_errors": [],
+    "replacement_checks": {
+      "wrong_size": [],
+      "missing_color": [],
+      "missing_filter": [],
+      "embedded_raster": [],
+      "missing_black": []
+    },
+    "replacement_rendered": 476,
+    "replacement_render_errors": [],
+    "replacement_renders_changed": 476,
+    "retained_files_byte_identical": 172
+  },
+  "duplicate_metrics": {
+    "baseline_normalized_svg": {
+      "unique_count": 437,
+      "duplicate_cluster_count": 112,
+      "entries_in_duplicate_clusters": 1123,
+      "largest_duplicate_cluster": 30
+    },
+    "integrated_normalized_svg": {
+      "unique_count": 821,
+      "duplicate_cluster_count": 140,
+      "entries_in_duplicate_clusters": 767,
+      "largest_duplicate_cluster": 23
+    },
+    "replacement_exact_raster": {
+      "unique_count": 396,
+      "duplicate_cluster_count": 56,
+      "entries_in_duplicate_clusters": 136,
+      "largest_duplicate_cluster": 4
+    },
+    "largest_replacement_raster_duplicate_clusters": [
+      [
+        "friendly-air-high-altitude-uav",
+        "friendly-air-large-uav",
+        "friendly-air-medium-uav",
+        "friendly-air-small-uav"
+      ],
+      [
+        "friendly-emergency-police",
+        "friendly-emergency-sheriff",
+        "friendly-emergency-swat",
+        "friendly-ground-installation-police-station"
+      ],
+      [
+        "hostile-air-high-altitude-uav",
+        "hostile-air-large-uav",
+        "hostile-air-medium-uav",
+        "hostile-air-small-uav"
+      ],
+      [
+        "hostile-emergency-police",
+        "hostile-emergency-sheriff",
+        "hostile-emergency-swat",
+        "hostile-ground-installation-police-station"
+      ],
+      [
+        "neutral-air-high-altitude-uav",
+        "neutral-air-large-uav",
+        "neutral-air-medium-uav",
+        "neutral-air-small-uav"
+      ],
+      [
+        "neutral-emergency-police",
+        "neutral-emergency-sheriff",
+        "neutral-emergency-swat",
+        "neutral-ground-installation-police-station"
+      ],
+      [
+        "unknown-air-high-altitude-uav",
+        "unknown-air-large-uav",
+        "unknown-air-medium-uav",
+        "unknown-air-small-uav"
+      ],
+      [
+        "unknown-emergency-police",
+        "unknown-emergency-sheriff",
+        "unknown-emergency-swat",
+        "unknown-ground-installation-police-station"
+      ],
+      [
+        "friendly-air-hexacopter",
+        "friendly-air-octocopter",
+        "friendly-air-quadcopter"
+      ],
+      [
+        "friendly-sea-surface-fast-attack-craft",
+        "friendly-sea-surface-patrol-boat",
+        "friendly-sea-surface-patrol-combatant"
+      ],
+      [
+        "hostile-air-hexacopter",
+        "hostile-air-octocopter",
+        "hostile-air-quadcopter"
+      ],
+      [
+        "hostile-sea-surface-fast-attack-craft",
+        "hostile-sea-surface-patrol-boat",
+        "hostile-sea-surface-patrol-combatant"
+      ],
+      [
+        "neutral-air-hexacopter",
+        "neutral-air-octocopter",
+        "neutral-air-quadcopter"
+      ],
+      [
+        "neutral-sea-surface-fast-attack-craft",
+        "neutral-sea-surface-patrol-boat",
+        "neutral-sea-surface-patrol-combatant"
+      ],
+      [
+        "unknown-air-hexacopter",
+        "unknown-air-octocopter",
+        "unknown-air-quadcopter"
+      ],
+      [
+        "unknown-sea-surface-fast-attack-craft",
+        "unknown-sea-surface-patrol-boat",
+        "unknown-sea-surface-patrol-combatant"
+      ],
+      [
+        "friendly-emergency-fire",
+        "friendly-ground-installation-fire-station"
+      ],
+      [
+        "friendly-ground-equipment-ew-vehicle",
+        "friendly-ground-unit-electronic-warfare"
+      ],
+      [
+        "friendly-ground-equipment-maintenance-point",
+        "friendly-ground-equipment-mobile-workshop"
+      ],
+      [
+        "friendly-ground-equipment-minivan",
+        "friendly-ground-equipment-van"
+      ]
+    ]
+  },
+  "runtime_test": {
+    "command": "node scripts/test_milstd2525c_i544.js",
+    "returncode": 0,
+    "stdout": "i544 browser MIL-STD-2525C exhaustive catalog/source resolution tests passed\ni544 browser Data Sync UID ownership and deletion tombstone tests passed",
+    "stderr": ""
+  },
+  "retained_policy": {
+    "accepted_without_candidate": [
+      "air-loitering-munition",
+      "ground-equipment-convertible",
+      "ground-equipment-coupe",
+      "ground-equipment-crossover"
+    ],
+    "deferred": [
+      "emergency-checkpoint",
+      "emergency-distribution-site",
+      "emergency-fire-boat",
+      "emergency-fire-helicopter",
+      "emergency-food-distribution",
+      "emergency-hospital",
+      "emergency-law-enforcement-aircraft",
+      "emergency-public-works",
+      "emergency-rescue-helicopter",
+      "emergency-road-closure",
+      "emergency-search-and-rescue",
+      "ground-equipment-artillery-position",
+      "ground-equipment-atgm-position",
+      "ground-equipment-atv",
+      "ground-equipment-bicycle",
+      "ground-equipment-checkpoint",
+      "ground-equipment-command-vehicle",
+      "ground-equipment-medical-station",
+      "ground-equipment-observation-post",
+      "ground-equipment-roadblock",
+      "ground-equipment-sniper-position",
+      "ground-installation-hospital",
+      "ground-unit-air-support-operations",
+      "ground-unit-breaching",
+      "ground-unit-bridging",
+      "ground-unit-ceremonial",
+      "ground-unit-demolition",
+      "ground-unit-legal",
+      "ground-unit-liaison",
+      "ground-unit-riot-control",
+      "ground-unit-route-clearance",
+      "ground-unit-sniper",
+      "ground-unit-space-support",
+      "sea-surface-research-vessel",
+      "sea-surface-support-ship"
+    ],
+    "rejected_keep_current": [
+      "ground-equipment-hatchback",
+      "ground-equipment-motorcycle",
+      "ground-equipment-snowmobile",
+      "ground-equipment-station-wagon"
+    ]
+  },
+  "errors": []
+}

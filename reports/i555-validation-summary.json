@@ -1,0 +1,47 @@
+{
+  "version": "1.3.0-i555",
+  "validation_date": "2026-07-26",
+  "package_validation": {
+    "passed": true,
+    "command": "bash scripts/validate_package.sh",
+    "coverage": [
+      "Python and JavaScript syntax",
+      "package structure and installer references",
+      "preserved i553 runtime and deferred manifest",
+      "reviewed MIL-STD alias parity",
+      "Data Sync response promotion",
+      "icon registry integrity and SHA-256 verification",
+      "registry-managed point creation and editing",
+      "concurrent-edit protection",
+      "unregistered custom-icon preservation",
+      "approved i555 registry and point-window UI structure",
+      "browser MIL-STD catalog and Data Sync identity tests"
+    ]
+  },
+  "runtime_entrypoint_smoke": {
+    "passed": true,
+    "script": "scripts/test_runtime_entrypoint_i555.py"
+  },
+  "browser_startup_smoke": {
+    "passed": true,
+    "script": "scripts/test_startup_architecture_i555.py",
+    "cpu_throttle": "4x",
+    "shell_seconds": 0.609,
+    "runtime_seconds": 5.772,
+    "shell_frame_ms": 6.7,
+    "deferred_modules": 104,
+    "startup_data_sync_requests": 1,
+    "startup_data_sync_rendered": true,
+    "milstd_svg_requests_before_runtime": 0,
+    "icon_registry_sets": 10,
+    "custom_registry_icons": 3742,
+    "custom_selection_verified": "34ae1613-9645-4222-a9d2-e5f243dea2865/Animals/ant.png"
+  },
+  "registry": {
+    "reviewed_milstd_symbols": 1448,
+    "custom_sets": 10,
+    "custom_icons": 3742,
+    "total_symbols": 5190,
+    "unknown_leaflet_set_excluded": true
+  }
+}

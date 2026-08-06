@@ -1,0 +1,16 @@
+'use strict';
+const fs=require('fs');
+const vm=require('vm');
+const src=fs.readFileSync('takmap.js','utf8');
+const fnMatch=src.match(/function cotTypeToSidc\(v\)\{.*?\}function sidcFileFromSidc/s);
+if(!fnMatch)throw new Error('cotTypeToSidc function not found');
+const fnSource=fnMatch[0].replace(/function sidcFileFromSidc$/,'');
+const context={};
+vm.createContext(context);
+vm.runInContext(`${fnSource};this.sidc=cotTypeToSidc('a-f-G-U-C-A');`,context);
+if(context.sidc!=='SFGPUCA--------')throw new Error(`unexpected SIDC ${context.sidc}`);
+const icons=JSON.parse(fs.readFileSync('assets/mil2525/icons.json','utf8'));
+const icon=icons.find(x=>x.sidc===context.sidc);
+if(!icon||icon.name!=='friendly-ground-unit-armor')throw new Error(JSON.stringify(icon));
+if(!fs.existsSync(`assets/mil2525/svg/${icon.name}.svg`))throw new Error('exact SVG missing');
+console.log('i527 Data Sync browser symbol mapping test passed');

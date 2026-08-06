@@ -1,0 +1,60 @@
+{
+  "construction_alias": {
+    "alias_kinds": [
+      "review-candidate"
+    ],
+    "candidate_status": "closest-standard",
+    "catalog_sidc": "SFEPN----------",
+    "concepts": [
+      "emergency-construction"
+    ],
+    "equivalent_files": [
+      "friendly-emergency-construction.svg"
+    ],
+    "file": "friendly-emergency-construction.svg",
+    "image_sha256": "c7346eb1ef9e0bf39b5b3805034476124860458530be8be9d949d06f783afa4a",
+    "label": "CONST",
+    "name": "friendly-emergency-construction",
+    "reviewed_alias": true
+  },
+  "howitzer_alias": {
+    "alias_kinds": [
+      "review-candidate-prefix-identical-artwork"
+    ],
+    "candidate_status": "exact-standard",
+    "catalog_sidc": "SFGPEVARTH-----",
+    "concepts": [
+      "ground-equipment-self-propelled-artillery",
+      "ground-equipment-self-propelled-howitzer"
+    ],
+    "equivalent_files": [
+      "friendly-ground-equipment-self-propelled-artillery.svg",
+      "friendly-ground-equipment-self-propelled-howitzer.svg"
+    ],
+    "file": "friendly-ground-equipment-self-propelled-howitzer.svg",
+    "image_sha256": "db91a1d0fdab5793d26a7fbca8b8f3b0077d218a901bd2517323c3fd7ede114c",
+    "label": "SP HOW",
+    "name": "friendly-ground-equipment-self-propelled-howitzer",
+    "reviewed_alias": true
+  },
+  "output": "assets/mil2525/atak-compatibility-aliases-i553.json",
+  "policy": {
+    "candidate_alias_overrides_legacy_catalog_identity": true,
+    "conflicting_artwork_aliases_omitted": true,
+    "exact_reviewed_alias_before_catalog_parent_fallback": true,
+    "multiple_names_may_share_one_visual": true,
+    "prefix_alias_requires_identical_reviewed_svg_bytes": true
+  },
+  "result": "pass",
+  "summary": {
+    "accepted_affiliation_artworks": 492,
+    "ambiguous_prefix_groups_omitted": 88,
+    "conflicting_cot_aliases_omitted": 16,
+    "conflicting_sidc_aliases_omitted": 16,
+    "cot_type_aliases": 948,
+    "missing_reviewed_svg_files": 0,
+    "prefix_cot_groups_promoted": 96,
+    "sidc_aliases": 872
+  },
+  "version": "i553"
+}

@@ -1,0 +1,230 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import os
+
+import hashlib
+import importlib.util
+import json
+import re
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+REGISTRY_DIR = ROOT / 'assets' / 'icon-registry'
+MANIFEST_PATH = REGISTRY_DIR / 'icon-registry.json'
+
+
+def load_module():
+    spec = importlib.util.spec_from_file_location('tak_map_i564_registry_test', ROOT / 'tak_dashboard.py')
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    assert spec.loader
+    spec.loader.exec_module(module)
+    return module
+
+
+manifest = json.loads(MANIFEST_PATH.read_text(encoding='utf-8'))
+assert manifest['schema_version'] == 1
+assert manifest['tak_map_version'] == '1.3.0-i564'
+assert manifest['read_only'] is True
+assert manifest['milstd2525c']['authoritative'] is True
+assert manifest['custom_set_count'] == 10
+assert manifest['custom_icon_count'] == 3742
+assert len(manifest['sets']) == 10
+assert len(manifest['icons']) == 3742
+assert {row['name'] for row in manifest['sets']} == {
+    'Default', 'Public Safety Air', 'FalconView', 'OSM', 'GeoOps',
+    'Generic Icons', 'Incident Management Icons', 'Responder Icons',
+    'Google', 'FEMA Icons',
+}
+assert all(row['uid'] != 'Unknown-Iconset' for row in manifest['sets'])
+assert all(row['iconset_uid'] != 'Unknown-Iconset' for row in manifest['icons'])
+assert manifest['excluded_sets'] == [{
+    'uid': 'Unknown-Iconset',
+    'name': 'Unnamed Icon Set',
+    'reason': 'OTS Leaflet web-map marker; not an ATAK icon set',
+}]
+
+paths = [row['iconsetpath'] for row in manifest['icons']]
+assert len(paths) == len(set(paths)) == 3742
+for row in manifest['icons']:
+    expected = f"{row['iconset_uid']}/{row['group_name']}/{row['filename']}"
+    assert row['iconsetpath'] == expected, (row['iconsetpath'], expected)
+    asset = REGISTRY_DIR / row['internal_path']
+    assert asset.is_file(), asset
+    digest = hashlib.sha256(asset.read_bytes()).hexdigest()
+    assert digest == row['sha256'], (row['iconsetpath'], digest, row['sha256'])
+    assert asset.read_bytes().startswith(b'\x89PNG\r\n\x1a\n'), asset
+
+m = load_module()
+assert m.TAK_MAP_ITERATION == 'i564'
+cfg = m.tak_map_config()
+assert cfg['version'] == '1.3.0-i564'
+assert cfg['tak_map_iteration'] == 'i564'
+assert cfg['icon_registry']['read_only'] is True
+assert cfg['icon_registry']['custom_set_count'] == 10
+assert cfg['icon_registry']['custom_icon_count'] == 3742
+assert cfg['startup_architecture_i564']['i553_shell_first_runtime_preserved'] is True
+assert cfg['startup_architecture_i564']['failed_i558_popup_controller_excluded'] is True
+assert cfg['icon_registry']['point_sidebar_typography'] == 'option-c'
+assert cfg['icon_registry']['point_info_icon_path_row'] is False
+assert cfg['icon_registry']['point_info_location_copy'] is True
+assert cfg['icon_registry']['point_info_sync_state'] is True
+assert cfg['icon_registry']['point_info_timestamp_format'] == 'MM/DD/YYYY HH:MM age'
+assert cfg['icon_registry']['edit_point_primary_text_px'] == 12.5
+assert cfg['icon_registry']['milstd2525c_catalog_records'] == 1448
+assert cfg['icon_registry']['milstd2525c_catalog_deduplicated_loader'] is True
+assert cfg['icon_registry']['milstd2525c_retry_ui'] is True
+assert cfg['icon_registry']['retired_picker_interception_disabled'] is True
+assert cfg['icon_registry']['point_info_uid_row'] is False
+assert cfg['icon_registry']['point_info_source_ots_identity'] is True
+
+# Trusted OpenTAKServer source identity formatting.
+_original_load_ots = m._i509_load_ots_config
+_original_remote_host = m._i561_remote_ots_hostname
+try:
+    m._i509_load_ots_config = lambda: {'base_url':'https://ots.example.com:8443/','api_url':'https://ots.example.com:8443'}
+    m._i561_remote_ots_hostname = lambda cfg, sess: 'ots-field-01'
+    class _Handler:
+        def _tak_map_session(self): return {'provider':'ots'}
+    source_identity = m._i561_ots_source_identity(_Handler())
+    assert source_identity['display'] == 'Data Sync: OpenTAKServer · ots.example.com/ots-field-01'
+    assert source_identity['url_hostname'] == 'ots.example.com'
+    assert source_identity['server_hostname'] == 'ots-field-01'
+    m._i561_remote_ots_hostname = lambda cfg, sess: ''
+    fallback_identity = m._i561_ots_source_identity(_Handler())
+    assert fallback_identity['display'] == 'Data Sync: OpenTAKServer · ots.example.com'
+finally:
+    m._i509_load_ots_config = _original_load_ots
+    m._i561_remote_ots_hostname = _original_remote_host
+
+summary = m._i555_registry_summary()
+assert summary['ok'] and summary['read_only']
+assert summary['custom_set_count'] == 10
+assert summary['custom_icon_count'] == 3742
+assert summary['atak_iconsetpath_identity'] == 'icon-set UID/group/filename'
+
+sample_path = '34ae1613-9645-4222-a9d2-e5f243dea2865/Animals/ant.png'
+cache = m._i555_registry_load()
+assert sample_path in cache['by_path']
+sample = cache['by_path'][sample_path]
+public = m._i555_public_icon(sample)
+assert public['kind'] == 'custom'
+assert public['iconsetpath'] == sample_path
+assert public['asset_url'].endswith('path=34ae1613-9645-4222-a9d2-e5f243dea2865%2FAnimals%2Fant.png')
+assert 'sha256' not in public and 'internal_path' not in public
+assert m._i555_custom_fallback_type(sample, 'friendly') == 'a-f-G'
+assert m._i555_custom_fallback_type(sample, 'hostile') == 'a-h-G'
+assert m._i555_custom_fallback_type({}, 'neutral') == 'a-n-G'
+
+feature = {
+    'type': 'Feature',
+    'uid': 'ATAK-CUSTOM-POINT-01',
+    'event_uid': 'ATAK-CUSTOM-POINT-01',
+    'cot_uid': 'ATAK-CUSTOM-POINT-01',
+    'geometry': {'type': 'Point', 'coordinates': [-118.1, 34.1]},
+    'properties': {
+        'uid': 'ATAK-CUSTOM-POINT-01',
+        'event_uid': 'ATAK-CUSTOM-POINT-01',
+        'cot_uid': 'ATAK-CUSTOM-POINT-01',
+        'preserve_event_uid_i555': True,
+        'name': 'Custom Ant',
+        'callsign': 'Custom Ant',
+        'cot_type': 'a-h-G',
+        'iconsetpath': sample_path,
+        'iconset_path': sample_path,
+        'icon_mode': 'custom-registry',
+    },
+}
+assert m._i526_native_point_uid(feature) == 'ATAK-CUSTOM-POINT-01'
+invalid = json.loads(json.dumps(feature))
+invalid['properties']['uid'] = invalid['properties']['event_uid'] = invalid['properties']['cot_uid'] = 'bad uid with spaces'
+invalid['uid'] = invalid['event_uid'] = invalid['cot_uid'] = 'bad uid with spaces'
+assert m._i526_native_point_uid(invalid) != 'bad uid with spaces'
+
+built = m._i526_point_xml(feature, 'REGISTRY-TEST', 'ANDROID-test')
+assert built['ok'], built
+assert built['uid'] == 'ATAK-CUSTOM-POINT-01'
+assert built['cot_type'] == 'a-h-G'
+assert built['version'] == 'i563'  # i563 point-publication schema is preserved in i564
+assert built['icon_registry'] == 'read-only-i555'
+root = ET.fromstring(built['xml'])
+assert root.attrib['uid'] == 'ATAK-CUSTOM-POINT-01'
+assert root.attrib['type'] == 'a-h-G'
+detail = root.find('detail')
+assert detail is not None
+usericon = detail.find('usericon')
+assert usericon is not None and usericon.attrib['iconsetpath'] == sample_path
+meta = detail.find('takmap_point')
+assert meta is not None
+assert meta.attrib['version'] == 'i563'  # i563 point-publication schema is preserved in i564
+assert meta.attrib['iconRegistry'] == 'read-only-i555'
+assert meta.attrib['symbolMode'] == 'custom-registry'
+assert meta.attrib['registryManagedCustomIcon'] == 'true'
+assert meta.attrib['iconsetUid'] == '34ae1613-9645-4222-a9d2-e5f243dea2865'
+assert meta.attrib['iconGroup'] == 'Animals'
+assert meta.attrib['iconFilename'] == 'ant.png'
+
+html = m.TAK_MAP_HTML
+assert len(html.encode()) < 200_000
+assert len(re.findall(r'<script\b', html, re.I)) == 4
+scripts = re.findall(r'<script[^>]+src=["\']([^"\']+)', html, re.I)
+assert scripts == [
+    '/assets/runtime/tak-map-startup-i553.js?v=1.3.0-i564',
+    '/assets/runtime/tak-map-icon-registry-i564.js?v=1.3.0-i564',
+    '/assets/runtime/tak-map-popup-localdata-i564.js?v=1.3.0-i564',
+    '/assets/runtime/tak-map-context-sidebar-i564.js?v=1.3.0-i564',
+]
+assert html.index('tak-map-startup-i553.js') < html.index('tak-map-icon-registry-i564.js') < html.index('tak-map-popup-localdata-i564.js') < html.index('tak-map-context-sidebar-i564.js')
+plugin_tag = re.search(r'<script[^>]*id=["\']takMapIconRegistryI564["\'][^>]*>', html, re.I)
+assert plugin_tag and re.search(r'\bdefer\b', plugin_tag.group(0), re.I)
+for asset in ('tak-map-icon-registry-i564.js','tak-map-popup-localdata-i564.js','tak-map-context-sidebar-i564.js'):
+    assert asset not in m.TAK_MAP_LOGIN_HTML
+plugin_source = (ROOT / 'assets' / 'tak-map-icon-registry-i564.js').read_text(encoding='utf-8')
+assert 'data-i556-point-edit="1"' in plugin_source
+assert "window.TakMapIconRegistryI564 = publicApiI564" in plugin_source
+assert 'ensureCreatePanel,' in plugin_source
+assert 'confirm(' not in plugin_source
+assert 'function ensureMilCatalogLoaded(force)' in plugin_source
+assert "'/mil2525/icons.json'" in plugin_source
+assert "'/assets/mil2525/icons.json'" in plugin_source
+assert 'Loading 1,448 reviewed symbols' in plugin_source
+assert 'data-mil-retry-i564' in plugin_source
+assert "renderMilPicker = window.renderMilPicker" not in plugin_source
+assert "button.removeAttribute('onclick')" in plugin_source
+assert "button.title = 'Choose Symbol'" in plugin_source
+assert 'window.__takMapCurrentIconRegistry = VERSION' in plugin_source
+assert 'document.__takMapI564RegistryToolbarDelegated' in plugin_source
+assert "popupRow('UID'" not in plugin_source
+assert '/api/tak-map/ots/source-identity' in plugin_source
+
+source = (ROOT / 'tak_dashboard.py').read_text(encoding='utf-8')
+main_marker = "if __name__=='__main__':\n    main()"
+assert source.count(main_marker) == 1
+assert source.rfind(main_marker) > source.rfind('# --- end TAK Map i564 ATAK-style Mission deletion and contextual delete sidebar ---')
+assert not source[source.rfind(main_marker) + len(main_marker):].strip()
+
+install = (ROOT / 'install.sh').read_text(encoding='utf-8')
+assert 'tak-map-icon-registry-i564.js' in install
+assert 'tak-map-popup-localdata-i564.js' in install
+assert 'tak-map-context-sidebar-i564.js' in install
+assert 'ICON_REGISTRY_ASSET_DIR="/usr/share/tak-server-dash/icon-registry"' in install
+assert 'cp -a assets/icon-registry/. "$ICON_REGISTRY_ASSET_DIR"/' in install
+assert 'tak-map-icon-registry-i*.js' in install
+uninstall = (ROOT / 'uninstall.sh').read_text(encoding='utf-8')
+assert 'rm -rf /usr/share/tak-server-dash/icon-registry' in uninstall
+
+print(json.dumps({
+    'ok': True,
+    'version': 'i564',
+    'custom_sets': len(manifest['sets']),
+    'custom_icons': len(manifest['icons']),
+    'sha256_assets_verified': len(manifest['icons']),
+    'unknown_leaflet_set_excluded': True,
+    'exact_atak_iconsetpath_verified': sample_path,
+    'map_shell_scripts': scripts,
+}, indent=2))
+sys.stdout.flush()
+os._exit(0)

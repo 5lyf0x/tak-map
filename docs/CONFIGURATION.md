@@ -1,25 +1,20 @@
-# Configuration
+# TAK Map i568 configuration notes
 
-Runtime configuration is stored on the target system, not in the GitHub source tree.
+The i568 Data Sync worker is automatically enabled for authenticated OpenTAKServer sessions. No new operator configuration is required.
 
-Common runtime locations:
+Default limits:
 
-```text
-/etc/tak-server-dash.env
-/var/lib/tak-server-dash/config.json
-/etc/tak-server-dash/certs/
-```
+- 5-minute automatic Data Sync polling
+- 6 parallel OTS requests
+- 4-second discovery endpoint deadline
+- 5-second Mission endpoint deadline
+- 35-second overall refresh deadline
+- 20 missions per refresh
 
-Do not commit those runtime files to this repository.
+Snapshots are isolated by authenticated user, authentication mode, and configured OTS origin. They are stored below the TAK Map data directory in `data_sync_snapshots_i568` and are preserved through service restarts and transient OTS failures.
 
-## HTTPS
+The browser-facing Data Sync route never waits for the complete OTS acquisition. It returns the current snapshot or an explicit initial-refresh state.
 
-TAK Map uses the Nginx configuration in `nginx/` as its HTTPS reverse-proxy template. The installer places the active runtime copy under `/etc/tak-server-dash/` and points it at the local Python service.
+## Context panels in 1.4.0 i618
 
-## OpenTAKServer
-
-TAK Map is designed to work beside OpenTAKServer and can use OpenTAKServer admin credentials for TAK Map login/session workflows.
-
-## ADS-B
-
-ADS-B behavior is controlled from the TAK Map UI. Upstream aircraft data, class filters, update rate, and tracking are runtime behavior, not Git repository configuration.
+Context-panel width is automatic and has no separate configuration switch. Compact records remain narrow, long source fields expand within responsive bounds, and simultaneous ADS-B/object panels are constrained to avoid overlap. See `CONTEXT-PANELS.md` for details.

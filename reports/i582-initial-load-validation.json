@@ -1,0 +1,79 @@
+{
+  "ok": true,
+  "version": "i582",
+  "run_count": 3,
+  "initial_load_seconds": {
+    "min": 4.575,
+    "max": 4.619,
+    "mean": 4.597
+  },
+  "animation_frame_ms": {
+    "min": 9.8,
+    "max": 11.0,
+    "mean": 10.3
+  },
+  "page_errors": 0,
+  "console_errors": 0,
+  "all_mission_nodes_stable": true,
+  "all_contextual_right_sidebar_preserved": true,
+  "all_unrelated_tank_preserved": true,
+  "runs": [
+    {
+      "ok": true,
+      "version": "i582",
+      "initial_load_seconds": 4.575,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 10.1,
+      "mutation_callbacks": 108,
+      "mutation_records": 1850,
+      "page_errors": 0,
+      "console_errors": 0
+    },
+    {
+      "ok": true,
+      "version": "i582",
+      "initial_load_seconds": 4.597,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 11,
+      "mutation_callbacks": 108,
+      "mutation_records": 1853,
+      "page_errors": 0,
+      "console_errors": 0
+    },
+    {
+      "ok": true,
+      "version": "i582",
+      "initial_load_seconds": 4.619,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 9.8,
+      "mutation_callbacks": 108,
+      "mutation_records": 1853,
+      "page_errors": 0,
+      "console_errors": 0
+    }
+  ]
+}

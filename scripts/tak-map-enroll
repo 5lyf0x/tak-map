@@ -1,0 +1,226 @@
+#!/usr/bin/env python3
+"""Install or migrate a TAK Gateway enrollment on this TAK Map server."""
+import argparse
+import json
+import os
+import shutil
+import ssl
+import subprocess
+import tempfile
+import urllib.request
+from pathlib import Path
+
+ENV = Path('/etc/tak-map.env')
+DEST = Path('/etc/tak-map')
+SERVICE = 'tak-map'
+MANIFEST = DEST / 'enrollment.json'
+
+
+def run(cmd):
+    proc = subprocess.run(cmd, text=True, capture_output=True)
+    if proc.returncode:
+        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or 'command failed')
+    return proc.stdout.strip()
+
+
+def update_env(values):
+    lines = ENV.read_text().splitlines() if ENV.exists() else []
+    seen = set()
+    out = []
+    for line in lines:
+        key = line.split('=', 1)[0].strip() if '=' in line and not line.lstrip().startswith('#') else ''
+        if key in values:
+            out.append(f'{key}={values[key]}')
+            seen.add(key)
+        else:
+            out.append(line)
+    for key, value in values.items():
+        if key not in seen:
+            out.append(f'{key}={value}')
+    ENV.write_text('\n'.join(out).rstrip() + '\n')
+    os.chmod(ENV, 0o640)
+
+
+def first_public_xml(catalog):
+    rows = catalog.get('basemaps') if isinstance(catalog, dict) else []
+    if not isinstance(rows, list):
+        return ''
+    for row in rows:
+        if isinstance(row, dict) and row.get('xml_url'):
+            return str(row['xml_url'])
+    return ''
+
+
+def main():
+    ap = argparse.ArgumentParser(description='Install TAK Gateway enrollment on TAK Map')
+    ap.add_argument('--source-dir', required=True)
+    ap.add_argument('--no-restart', action='store_true')
+    ap.add_argument('--defer-public-basemap-validation', action='store_true',
+                    help='Install public basemap endpoints now and validate them after Gateway nginx reloads.')
+    args = ap.parse_args()
+    if os.geteuid() != 0:
+        raise SystemExit('Run as root.')
+
+    src = Path(args.source_dir)
+    meta = json.loads((src / 'connection.json').read_text())
+    base = str(meta.get('gateway_url') or '').rstrip('/')
+    protected = meta.get('protected_endpoints') if isinstance(meta.get('protected_endpoints'), dict) else {}
+    public = meta.get('public_endpoints') if isinstance(meta.get('public_endpoints'), dict) else {}
+    replay_api = str(protected.get('replay_api_base') or meta.get('api_base') or (base + '/api/replay/v1')).rstrip('/')
+    data_api = str(protected.get('gateway_data_api_base') or meta.get('gateway_data_api_url') or (base + '/api/external-sources/v1')).rstrip('/')
+    catalog_url = str(public.get('basemap_catalog_url') or meta.get('basemap_catalog_url') or (base + '/basemaps/catalog')).rstrip('/')
+    xml_base = str(public.get('basemap_xml_base_url') or meta.get('basemap_xml_base_url') or (base + '/basemaps/xml')).rstrip('/')
+    tile_base = str(public.get('basemap_tile_base_url') or meta.get('basemap_tile_base_url') or (base + '/tiles')).rstrip('/')
+    if not base or not replay_api or not catalog_url:
+        raise RuntimeError('Enrollment manifest is missing required Gateway endpoints.')
+
+    required = {'client.crt': src / 'client.crt', 'client.key': src / 'client.key', 'ca.crt': src / 'ca.crt'}
+    for name, path in required.items():
+        if not path.is_file():
+            raise RuntimeError(f'Missing enrollment file: {name}')
+
+    DEST.mkdir(parents=True, exist_ok=True)
+    backup = Path(tempfile.mkdtemp(prefix='tak-map-enrollment-backup-'))
+    targets = {
+        'client.crt': DEST / 'service-client.crt',
+        'client.key': DEST / 'service-client.key',
+        'ca.crt': DEST / 'gateway-ca.crt',
+    }
+    legacy_targets = {
+        DEST / 'replay-client.crt': targets['client.crt'],
+        DEST / 'replay-client.key': targets['client.key'],
+        DEST / 'replay-ca.crt': targets['ca.crt'],
+    }
+    all_targets = list(targets.values()) + list(legacy_targets.keys()) + [MANIFEST]
+
+    try:
+        if ENV.exists():
+            shutil.copy2(ENV, backup / 'tak-map.env')
+        for target in all_targets:
+            if target.exists():
+                shutil.copy2(target, backup / target.name)
+        for name, target in targets.items():
+            shutil.copy2(required[name], target)
+            os.chmod(target, 0o640)
+        # Keep legacy file names as copies so older TAK Map code or operator
+        # tooling continues to work during the migration window.
+        for legacy, source in legacy_targets.items():
+            shutil.copy2(source, legacy)
+            os.chmod(legacy, 0o640)
+
+        normalized = dict(meta)
+        normalized.update({
+            'schema_version': 1,
+            'gateway_url': base,
+            'role': 'tak-map-service',
+            'scope': 'tak-map-service',
+            'protected_endpoints': {
+                'replay_api_base': replay_api,
+                'gateway_data_api_base': data_api,
+            },
+            'public_endpoints': {
+                'basemap_catalog_url': catalog_url,
+                'basemap_xml_base_url': xml_base,
+                'basemap_tile_base_url': tile_base,
+            },
+        })
+        MANIFEST.write_text(json.dumps(normalized, indent=2, sort_keys=True) + '\n')
+        os.chmod(MANIFEST, 0o640)
+
+        try:
+            import grp
+            gid = grp.getgrnam('takmap').gr_gid
+            for target in all_targets:
+                if target.exists():
+                    os.chown(target, 0, gid)
+        except KeyError:
+            pass
+
+        values = {
+            'TAK_MAP_GATEWAY_URL': base,
+            'TAK_MAP_SERVICE_CLIENT_CERT': str(targets['client.crt']),
+            'TAK_MAP_SERVICE_CLIENT_KEY': str(targets['client.key']),
+            'TAK_MAP_GATEWAY_CA_CERT': str(targets['ca.crt']),
+            'TAK_MAP_ENROLLMENT_MANIFEST': str(MANIFEST),
+            'TAK_MAP_REPLAY_API_URL': replay_api,
+            'TAK_MAP_REPLAY_CLIENT_CERT': str(targets['client.crt']),
+            'TAK_MAP_REPLAY_CLIENT_KEY': str(targets['client.key']),
+            'TAK_MAP_REPLAY_CA_CERT': str(targets['ca.crt']),
+            'TAK_MAP_REPLAY_VERIFY_TLS': 'true',
+            'TAK_MAP_REPLAY_TIMEOUT': '120',
+            'TAK_MAP_GATEWAY_DATA_API_URL': data_api,
+            'TAK_MAP_GATEWAY_BASEMAP_URL': base,
+            'TAK_MAP_GATEWAY_BASEMAP_PORT': '9443',
+            'TAK_MAP_GATEWAY_BASEMAP_SCHEME': 'https',
+            'TAK_MAP_GATEWAY_BASEMAP_CATALOG_URL': catalog_url,
+            'TAK_MAP_GATEWAY_DIRECT_BASEMAPS': 'true',
+            'TAK_MAP_GATEWAY_BASEMAP_TIMEOUT': '20',
+        }
+        update_env(values)
+
+        protected_ctx = ssl.create_default_context(cafile=str(targets['ca.crt']))
+        protected_ctx.load_cert_chain(str(targets['client.crt']), str(targets['client.key']))
+        with urllib.request.urlopen(replay_api + '/health', context=protected_ctx, timeout=20) as response:
+            replay_health = json.loads(response.read().decode())
+        with urllib.request.urlopen(replay_api + '/capabilities', context=protected_ctx, timeout=20) as response:
+            replay_caps = json.loads(response.read().decode())
+        with urllib.request.urlopen(data_api + '/health', context=protected_ctx, timeout=20) as response:
+            data_health = json.loads(response.read().decode())
+
+        catalog = {}
+        xml_status = {'tested': False, 'deferred': bool(args.defer_public_basemap_validation)}
+        if not args.defer_public_basemap_validation:
+            public_ctx = ssl.create_default_context(cafile=str(targets['ca.crt']))
+            with urllib.request.urlopen(catalog_url, context=public_ctx, timeout=20) as response:
+                catalog = json.loads(response.read().decode())
+            xml_url = first_public_xml(catalog)
+            if xml_url:
+                with urllib.request.urlopen(xml_url, context=public_ctx, timeout=20) as response:
+                    body = response.read(1024 * 1024)
+                    xml_status = {
+                        'tested': True,
+                        'deferred': False,
+                        'url': xml_url,
+                        'status': int(getattr(response, 'status', 200) or 200),
+                        'custom_map_source': b'<customMapSource' in body,
+                    }
+                    if not xml_status['custom_map_source']:
+                        raise RuntimeError('Gateway basemap XML validation returned unexpected content.')
+
+        if not args.no_restart:
+            run(['systemctl', 'restart', SERVICE])
+        print(json.dumps({
+            'ok': True,
+            'role': 'tak-map-service',
+            'gateway_url': base,
+            'api_base': replay_api,
+            'gateway_data_api': data_api,
+            'basemap_catalog_url': catalog_url,
+            'direct_browser_basemaps': True,
+            'replay_health': replay_health,
+            'replay_capabilities': replay_caps,
+            'gateway_data_health': data_health,
+            'basemap_catalog_count': (len(catalog.get('basemaps') or []) if isinstance(catalog, dict) else 0) if not args.defer_public_basemap_validation else None,
+            'basemap_public_validation_deferred': bool(args.defer_public_basemap_validation),
+            'basemap_xml_validation': xml_status,
+        }, indent=2))
+    except Exception:
+        if (backup / 'tak-map.env').exists():
+            shutil.copy2(backup / 'tak-map.env', ENV)
+        for target in all_targets:
+            saved = backup / target.name
+            if saved.exists():
+                shutil.copy2(saved, target)
+            elif target.exists():
+                target.unlink()
+        raise
+    finally:
+        shutil.rmtree(backup, ignore_errors=True)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as exc:
+        print(json.dumps({'ok': False, 'error': str(exc)}), file=__import__('sys').stderr)
+        raise SystemExit(1)

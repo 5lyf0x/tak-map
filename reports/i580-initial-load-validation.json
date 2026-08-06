@@ -1,0 +1,89 @@
+{
+  "schema": "tak-map-i580-initial-load-validation-v1",
+  "version": "1.3.0-i580",
+  "tested_at_utc": "2026-07-28T22:32:50.109085+00:00",
+  "run_count": 3,
+  "all_passed": true,
+  "initial_load_seconds": {
+    "min": 4.621,
+    "max": 4.937,
+    "mean": 4.729
+  },
+  "animation_frame_ms": {
+    "max": 10.8,
+    "mean": 10.4
+  },
+  "max_mutation_callbacks": 108,
+  "max_mutation_records": 1854,
+  "page_errors_total": 0,
+  "console_errors_total": 0,
+  "freeze_detected": false,
+  "checks": {
+    "shell_ready": true,
+    "runtime_ready": true,
+    "all_deferred_modules_loaded": true,
+    "responsive_animation_frame": true,
+    "mutation_activity_bounded": true,
+    "mission_dom_nodes_stable": true,
+    "data_sync_objects_preserved": true
+  },
+  "runs": [
+    {
+      "ok": true,
+      "version": "i580",
+      "initial_load_seconds": 4.937,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 10.8,
+      "mutation_callbacks": 107,
+      "mutation_records": 1854,
+      "page_errors": 0,
+      "console_errors": 0
+    },
+    {
+      "ok": true,
+      "version": "i580",
+      "initial_load_seconds": 4.629,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 9.9,
+      "mutation_callbacks": 108,
+      "mutation_records": 1853,
+      "page_errors": 0,
+      "console_errors": 0
+    },
+    {
+      "ok": true,
+      "version": "i580",
+      "initial_load_seconds": 4.621,
+      "data_sync_requests": 2,
+      "mission_nodes_stable": true,
+      "geofence_header_toggle": true,
+      "geofence_switch_excluded": true,
+      "contextual_right_sidebar_preserved": true,
+      "generic_sidebar_rows_hover_stable": true,
+      "generic_sensor_canonical": true,
+      "specific_radar_canonical": true,
+      "unrelated_tank_preserved": true,
+      "animation_frame_ms": 10.5,
+      "mutation_callbacks": 108,
+      "mutation_records": 1853,
+      "page_errors": 0,
+      "console_errors": 0
+    }
+  ]
+}

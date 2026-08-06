@@ -12,6 +12,7 @@ if command -v nginx >/dev/null 2>&1; then
 fi
 rm -rf /opt/tak-map
 rm -rf /usr/share/tak-server-dash/vendor 2>/dev/null || true
+rm -rf /usr/share/tak-server-dash/icon-registry 2>/dev/null || true
 echo "Removed TAK Map service and app files."
 if [[ "$PURGE" == "true" ]]; then
   rm -f /etc/tak-map.env

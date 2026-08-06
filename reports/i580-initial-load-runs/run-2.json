@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": "i580",
+  "initial_load_seconds": 4.629,
+  "data_sync_requests": 2,
+  "mission_nodes_stable": true,
+  "geofence_header_toggle": true,
+  "geofence_switch_excluded": true,
+  "contextual_right_sidebar_preserved": true,
+  "generic_sidebar_rows_hover_stable": true,
+  "generic_sensor_canonical": true,
+  "specific_radar_canonical": true,
+  "unrelated_tank_preserved": true,
+  "animation_frame_ms": 9.9,
+  "mutation_callbacks": 108,
+  "mutation_records": 1853,
+  "page_errors": 0,
+  "console_errors": 0
+}

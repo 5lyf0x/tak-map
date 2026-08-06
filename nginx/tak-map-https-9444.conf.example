@@ -5,8 +5,8 @@
 server {
     # Listen on every local interface so LAN, ZeroTier, HaLow, and other
     # assigned IP addresses can all reach the same HTTPS dashboard.
-    listen 0.0.0.0:9444 ssl;
-    listen [::]:9444 ssl;
+    listen 0.0.0.0:9444 ssl http2;
+    listen [::]:9444 ssl http2;
     server_name _;
 
     # Avoid nginx proxy header hash warnings on systems with many proxy headers.
@@ -23,9 +23,58 @@ server {
     proxy_read_timeout 600;
     proxy_send_timeout 600;
 
+
+    # Serve the complete MIL-STD-2525C catalog directly from Nginx. Symbol
+    # rendering must remain available even when the Python backend is busy
+    # processing Sentinel Hub tiles, Data Sync, or another long-running request.
+    location = /mil2525/icons.json {
+        alias /usr/share/tak-server-dash/mil2525/icons.json;
+        default_type application/json;
+        add_header Cache-Control "public, max-age=3600" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    location ^~ /mil2525/svg/ {
+        alias /usr/share/tak-server-dash/mil2525/svg/;
+        default_type image/svg+xml;
+        add_header Cache-Control "no-cache, max-age=0, must-revalidate" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    # Preserve compatibility with earlier TAK Map asset URLs.
+    location = /assets/mil2525/icons.json {
+        alias /usr/share/tak-server-dash/mil2525/icons.json;
+        default_type application/json;
+        add_header Cache-Control "public, max-age=3600" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    location ^~ /assets/mil2525/svg/ {
+        alias /usr/share/tak-server-dash/mil2525/svg/;
+        default_type image/svg+xml;
+        add_header Cache-Control "no-cache, max-age=0, must-revalidate" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    # Serve versioned browser runtime assets directly so Python API work can
+    # never delay JavaScript/CSS delivery during startup.
+    location ^~ /assets/runtime/ {
+        alias /opt/tak-map/assets/;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
+    location ^~ /assets/vendor/ {
+        alias /usr/share/tak-server-dash/vendor/;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header X-Content-Type-Options "nosniff" always;
+    }
+
     location / {
         proxy_pass http://127.0.0.1:8092/;
         proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_socket_keepalive on;
 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;

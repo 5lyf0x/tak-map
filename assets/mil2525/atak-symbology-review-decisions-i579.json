@@ -1,0 +1,656 @@
+{
+  "schema": "tak-map-atak-symbology-review-decisions-v1",
+  "sourceBuild": "TAK Map v1.3.0 i579",
+  "exportedAt": "2026-07-28T20:42:14.406Z",
+  "conceptCount": 162,
+  "decisions": {
+    "air-hexacopter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-high-altitude-uav": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-large-uav": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-loitering-munition": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "air-medevac-helicopter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-medium-uav": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-octocopter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-quadcopter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-rotary-wing": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "air-small-uav": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-ambulance-aircraft": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-checkpoint": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-construction": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-disaster-response": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-distribution-site": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-ems": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-evacuation": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-fire": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-fire-boat": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-fire-helicopter": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-food-distribution": {
+      "decision": "custom",
+      "notes": "Lets make milstd2525c style icons similar to other emergency icons with the word FOOD. please previwe for me in chat."
+    },
+    "emergency-hazmat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-hospital": {
+      "decision": "custom",
+      "notes": "please make milstd2525 style icons similar to hospital with the + symbol. preview for me in chat."
+    },
+    "emergency-incident-command": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-law-enforcement-aircraft": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-medical-clinic": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-pharmacy": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-police": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-public-works": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-rescue-boat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-rescue-helicopter": {
+      "decision": "custom",
+      "notes": "please make milstd2525c style icon with appropriate symbol. preview in chat."
+    },
+    "emergency-road-closure": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "emergency-search-and-rescue": {
+      "decision": "custom",
+      "notes": "please create appropriate milstd2525c style icon. preview in chat."
+    },
+    "emergency-shelter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-sheriff": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-staging-area": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-swat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-temporary-power": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-utilities": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "emergency-water-distribution": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-aaa-system": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-ammo-point": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-artillery-position": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-atgm-position": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-atv": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-bicycle": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-checkpoint": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-command-vehicle": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-convertible": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-coupe": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-crossover": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-ew-vehicle": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-field-kitchen": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-fuel-point": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-hatchback": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-maintenance-point": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-medical-station": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-minivan": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-mlrs": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-mobile-workshop": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-mortar-carrier": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-motorcycle": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-observation-post": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-pickup": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-pickup-heavy": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-pickup-light": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-radar-vehicle": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-roadblock": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-equipment-sam-launcher": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-school-bus": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-sedan": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-self-propelled-artillery": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-self-propelled-howitzer": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-sniper-position": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-snowmobile": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-station-wagon": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-equipment-suv": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-utility-truck": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-utv": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-van": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-equipment-water-point": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-airfield": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-ammo-storage": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-communications-site": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-fire-station": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-fuel-storage": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-headquarters": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-heliport": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-hospital": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-police-station": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-port": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-power-plant": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-radar-site": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-rail-yard": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-school": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-installation-water-treatment": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-air-support-operations": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-airborne-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-artillery": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-breaching": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-bridging": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-ceremonial": {
+      "decision": "generic",
+      "notes": ""
+    },
+    "ground-unit-civil-affairs": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-demolition": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-electronic-warfare": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-engineer-combat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-finance": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-intelligence": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-legal": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-liaison": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-light-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-long-range-air-defense": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-marine-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-mechanized-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-military-police": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-missile-defense": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-mortar": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-motorized-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-mountain-infantry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-psychological-operations": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-ranger": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-riot-control": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-rocket-artillery": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-route-clearance": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-security": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-short-range-air-defense": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-sniper": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-space-support": {
+      "decision": "keep",
+      "notes": ""
+    },
+    "ground-unit-special-forces": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-surveillance": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "ground-unit-tank-destroyer": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-amphibious-assault-ship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-cargo-ship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-carrier": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-civil-vessel": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-coast-guard-cutter": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-container-ship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-corvette": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-cruiser": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-destroyer": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-fast-attack-craft": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-ferry": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-fishing-vessel": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-frigate": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-hospital-ship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-mine-countermeasures-vessel": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-missile-boat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-patrol-boat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-patrol-combatant": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-research-vessel": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-sailboat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-support-ship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-tanker": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-tugboat": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-warship": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "sea-surface-yacht": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-attack-submarine": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-ballistic-missile-submarine": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-diesel-submarine": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-guided-missile-submarine": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-midget-submarine": {
+      "decision": "replace",
+      "notes": ""
+    },
+    "subsurface-submarine": {
+      "decision": "replace",
+      "notes": ""
+    }
+  }
+}
