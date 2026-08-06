@@ -66422,6 +66422,130 @@ except Exception as _i618_exc:
         pass
 # --- end TAK Map i618 public 1.4.0 release and shared context sizing finalization ---
 
+# --- TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---
+try:
+    _I620_VERSION = 'i620'
+    _I620_PACKAGE_VERSION = '1.4.0-i620'
+    _I620_PUBLIC_VERSION = '1.4.0'
+    _I620_IDENTITY_GUARD = r'''<script id="takMapIdentityGuardI620">
+(function(){
+  'use strict';
+  const RELEASE='1.4.0',ITERATION='i620',PACKAGE='1.4.0-i620';
+  const selector='.version-panel .release-main,.version-panel .version-product,.iteration-chip,.iteration-marker,[data-iteration]';
+  const nativeSetAttribute=Element.prototype.setAttribute;
+  const nativeGetAttribute=Element.prototype.getAttribute;
+  const textDescriptor=Object.getOwnPropertyDescriptor(Node.prototype,'textContent');
+  const nativeTextGet=textDescriptor&&textDescriptor.get;
+  const nativeTextSet=textDescriptor&&textDescriptor.set;
+  const innerDescriptor=window.HTMLElement&&Object.getOwnPropertyDescriptor(HTMLElement.prototype,'innerText');
+  const nativeInnerGet=innerDescriptor&&innerDescriptor.get;
+  const nativeInnerSet=innerDescriptor&&innerDescriptor.set;
+  function matches(node,sel){try{return !!(node&&node.nodeType===1&&node.matches(sel))}catch(_){return false}}
+  function identityValue(node,value){
+    if(matches(node,'.version-panel .release-main'))return RELEASE;
+    if(matches(node,'.version-panel .version-product'))return 'TAK Map';
+    if(matches(node,'.iteration-chip,.iteration-marker,[data-iteration]'))return ITERATION;
+    return String(value==null?'':value);
+  }
+  function nativeText(node,value){if(nativeTextSet)nativeTextSet.call(node,String(value));else node.nodeValue=String(value)}
+  function normalizeOne(node){
+    if(!node)return;if(node.nodeType===3)node=node.parentElement;if(!node||node.nodeType!==1)return;
+    if(matches(node,'.version-panel .release-main')){if((nativeTextGet?nativeTextGet.call(node):node.textContent)!==RELEASE)nativeText(node,RELEASE);return}
+    if(matches(node,'.version-panel .version-product')){if((nativeTextGet?nativeTextGet.call(node):node.textContent)!=='TAK Map')nativeText(node,'TAK Map');return}
+    if(matches(node,'.iteration-chip,.iteration-marker,[data-iteration]')){
+      if((nativeTextGet?nativeTextGet.call(node):node.textContent)!==ITERATION)nativeText(node,ITERATION);
+      if(node.hasAttribute('data-iteration')&&nativeGetAttribute.call(node,'data-iteration')!==ITERATION)nativeSetAttribute.call(node,'data-iteration',ITERATION);
+    }
+  }
+  function normalize(root){
+    normalizeOne(root);
+    if(root&&root.querySelectorAll)root.querySelectorAll(selector).forEach(normalizeOne);
+    nativeSetAttribute.call(document.documentElement,'data-tak-map-iteration',ITERATION);
+    nativeSetAttribute.call(document.documentElement,'data-tak-map-package',PACKAGE);
+  }
+  if(!Node.prototype.__takMapIdentityAuthorityI620&&textDescriptor&&nativeTextGet&&nativeTextSet){
+    Object.defineProperty(Node.prototype,'__takMapIdentityAuthorityI620',{value:true,configurable:true});
+    Object.defineProperty(Node.prototype,'__takMapIterationTextGuardV476',{value:true,configurable:true});
+    Object.defineProperty(Node.prototype,'textContent',{configurable:textDescriptor.configurable,enumerable:textDescriptor.enumerable,get:nativeTextGet,set:function(value){const desired=identityValue(this,value);if(String(nativeTextGet.call(this)||'')===desired)return;return nativeTextSet.call(this,desired)}});
+  }
+  if(window.HTMLElement&&innerDescriptor&&nativeInnerGet&&nativeInnerSet&&!HTMLElement.prototype.__takMapIdentityInnerTextI620){
+    Object.defineProperty(HTMLElement.prototype,'__takMapIdentityInnerTextI620',{value:true,configurable:true});
+    Object.defineProperty(HTMLElement.prototype,'innerText',{configurable:innerDescriptor.configurable,enumerable:innerDescriptor.enumerable,get:nativeInnerGet,set:function(value){const desired=identityValue(this,value);if(String(nativeInnerGet.call(this)||'')===desired)return;return nativeInnerSet.call(this,desired)}});
+  }
+  if(!Element.prototype.__takMapIdentityAttributeI620){
+    Object.defineProperty(Element.prototype,'__takMapIdentityAttributeI620',{value:true,configurable:true});
+    Object.defineProperty(Element.prototype,'__takMapIterationAttributeGuardV476',{value:true,configurable:true});
+    Element.prototype.setAttribute=function(name,value){
+      const attr=String(name||'').toLowerCase();
+      if(attr==='data-iteration'&&matches(this,'.iteration-chip,.iteration-marker,[data-iteration]')){if(String(nativeGetAttribute.call(this,name)||'')===ITERATION)return;return nativeSetAttribute.call(this,name,ITERATION);}
+      if(attr==='data-tak-map-iteration'&&this===document.documentElement){if(String(nativeGetAttribute.call(this,name)||'')===ITERATION)return;return nativeSetAttribute.call(this,name,ITERATION);}
+      if(attr==='data-tak-map-package'&&this===document.documentElement){if(String(nativeGetAttribute.call(this,name)||'')===PACKAGE)return;return nativeSetAttribute.call(this,name,PACKAGE);}
+      return nativeSetAttribute.call(this,name,value);
+    };
+  }
+  normalize(document.documentElement);
+  if(window.MutationObserver&&!window.__takMapIdentityObserverI620){
+    window.__takMapIdentityObserverI620=new MutationObserver(function(records){for(const record of records){normalizeOne(record.target);if(record.addedNodes)record.addedNodes.forEach(normalizeOne)}});
+    window.__takMapIdentityObserverI620.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+  }
+  const apply=function(){try{normalize(document.documentElement)}catch(_){}};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
+  window.addEventListener('takmap:runtime-ready',apply);
+  window.__takMapReleaseIdentity=window.TakMapIdentityI620=Object.freeze({release:RELEASE,iteration:ITERATION,packageVersion:PACKAGE,apply:apply});
+})();
+</script>'''
+
+    def _i620_patch_html(html):
+        html = str(html or '')
+        html = html.replace('1.4.0-i618', _I620_PACKAGE_VERSION)
+        replacements = {
+            r'/assets/runtime/tak-map-context-sidebar-i572\.js\?v=[^"\']+': '/assets/runtime/tak-map-context-sidebar-i572.js?v=1.4.0-i620',
+            r'/assets/runtime/tak-map-adsb-sidebar-i610\.js\?v=[^"\']+': '/assets/runtime/tak-map-adsb-sidebar-i610.js?v=1.4.0-i620',
+            r'/assets/runtime/tak-map-package-i580\.js\?v=[^"\']+': '/assets/runtime/tak-map-package-i580.js?v=1.4.0-i620',
+            r'/assets/runtime/tak-map-startup-i553\.js\?v=[^"\']+': '/assets/runtime/tak-map-startup-i553.js?v=1.4.0-i620',
+        }
+        for pattern, value in replacements.items():
+            html = re.sub(pattern, value, html)
+        html = re.sub(r'(<div class="version-product">)[^<]*(</div>)', r'\1TAK Map\2', html)
+        html = re.sub(r'(<span class="release-main">)[^<]*(</span>)', r'\g<1>1.4.0\2', html)
+        html = re.sub(r'(<span class="iteration-chip">)(?:i|v)\d+(</span>)', r'\1i620\2', html)
+        html = re.sub(r'(<div class="iteration-marker">)(?:i|v)\d+(</div>)', r'\1i620\2', html)
+        html = re.sub(r'<script id="takMapIdentityGuardI620">.*?</script>\s*', '', html, flags=re.S)
+        if '</head>' in html:
+            html = html.replace('</head>', _I620_IDENTITY_GUARD + '</head>', 1)
+        else:
+            html = _I620_IDENTITY_GUARD + html
+        return html
+
+    TAK_MAP_HTML = _i620_patch_html(TAK_MAP_HTML)
+    INDEX_HTML = TAK_MAP_HTML
+    TAK_MAP_LOGIN_HTML = _i620_patch_html(TAK_MAP_LOGIN_HTML)
+    LOGIN_HTML = TAK_MAP_LOGIN_HTML
+    _i620_config_before = tak_map_config
+    def tak_map_config():
+        cfg = dict(_i620_config_before() or {})
+        cfg['context_panel_sizing_i620'] = {
+            'version': _I620_VERSION,
+            'package_version': _I620_PACKAGE_VERSION,
+            'shared_policy': True,
+            'nifc_content_aware_width': True,
+            'nifc_minimum_desktop_width': 292,
+            'nifc_maximum_desktop_width': 430,
+            'other_context_panels_unchanged': True,
+            'sidebar_public_version': _I620_PUBLIC_VERSION,
+            'sidebar_iteration': _I620_VERSION,
+            'identity_mutation_guard': True,
+            'first_frame_server_rendered_identity': True,
+        }
+        return cfg
+    globals()['tak_map_config'] = tak_map_config
+except Exception as _i620_exc:
+    try:
+        print('TAK Map i620 sidebar/NIFC finalization failed:', _i620_exc)
+    except Exception:
+        pass
+# --- end TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---
+
 # Start only after every iteration wrapper and runtime route has been registered.
 if __name__=='__main__':
     main()

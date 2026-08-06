@@ -15,6 +15,6 @@ Snapshots are isolated by authenticated user, authentication mode, and configure
 
 The browser-facing Data Sync route never waits for the complete OTS acquisition. It returns the current snapshot or an explicit initial-refresh state.
 
-## Context panels in 1.4.0 i618
+## Context panels in 1.4.0 i620
 
 Context-panel width is automatic and has no separate configuration switch. Compact records remain narrow, long source fields expand within responsive bounds, and simultaneous ADS-B/object panels are constrained to avoid overlap. See `CONTEXT-PANELS.md` for details.

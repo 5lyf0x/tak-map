@@ -3,10 +3,13 @@ from __future__ import annotations
 
 import json
 import shutil
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET = ROOT / "assets" / "tak-map-sidebar-performance-v491.js"
+DASHBOARD = (ROOT / "tak_dashboard.py").read_text()
+IDENTITY_GUARD = re.search(r'<script id="takMapIdentityGuardI620">.*?</script>', DASHBOARD, re.S).group(0)
 ORIGIN = "https://takmap.test"
 
 
@@ -18,18 +21,18 @@ def main() -> int:
 
     from playwright.sync_api import sync_playwright
 
-    fixture = r'''<!doctype html><html><head><meta charset="utf-8"><style>
+    fixture = r'''<!doctype html><html data-tak-map-iteration="i620" data-tak-map-package="1.4.0-i620"><head><meta charset="utf-8"><style>
       html,body{margin:0;height:100%}#sidebar{height:400px;overflow:auto;width:396px}
       .panel{height:180px;border:1px solid #333}.iteration-chip{display:inline-block}
     </style></head><body>
       <div id="sidebar">
-        <div class="panel"><span class="iteration-chip" data-iteration="v320">v320</span></div>
+        <div class="panel"><span class="iteration-chip" data-iteration="i620">i620</span></div>
         <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
       </div>
       <pre id="result"></pre>
       <script>
         const chip=document.querySelector('.iteration-chip');
-        function legacyWrite(){chip.textContent='v320';chip.setAttribute('data-iteration','v320');document.documentElement.dataset.takMapIteration='v320'}
+        function legacyWrite(){chip.textContent='i602';chip.setAttribute('data-iteration','i602');document.documentElement.dataset.takMapIteration='i602'}
         window.__takVersionObserverV442=new MutationObserver(()=>requestAnimationFrame(legacyWrite));
         window.__takVersionObserverV442.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['data-iteration']});
         legacyWrite();
@@ -51,26 +54,28 @@ def main() -> int:
             }
           });
           mo.observe(sidebar,{subtree:true,childList:true,characterData:true,attributes:true});
-          const frames=[];let last=performance.now(),running=true;
-          function raf(now){if(!running)return;frames.push(now-last);last=now;requestAnimationFrame(raf)}requestAnimationFrame(raf);
+          const frames=[],iterationFrames=[];let last=performance.now(),running=true;
+          function raf(now){if(!running)return;frames.push(now-last);iterationFrames.push(observedChip.textContent);last=now;requestAnimationFrame(raf)}requestAnimationFrame(raf);
           const start=performance.now();
           while(performance.now()-start<2200){
             sidebar.scrollTop=(sidebar.scrollTop+19)%Math.max(1,sidebar.scrollHeight-sidebar.clientHeight);
             await new Promise(r=>setTimeout(r,8));
           }
           running=false;mo.disconnect();
-          const dynamic=document.createElement('span');dynamic.className='iteration-chip';dynamic.textContent='v111';dynamic.setAttribute('data-iteration','v111');document.querySelector('.panel').appendChild(dynamic);
+          const dynamic=document.createElement('span');dynamic.className='iteration-chip';dynamic.textContent='v409';dynamic.setAttribute('data-iteration','v409');document.querySelector('.panel').appendChild(dynamic);
           await new Promise(r=>setTimeout(r,80));
           clearInterval(window.__legacyTimer);
           const d=window.TakMapSidebarPerformanceV476.diagnostics();
           const sorted=frames.slice(2).sort((a,b)=>a-b);const p95=sorted.length?sorted[Math.min(sorted.length-1,Math.floor(sorted.length*.95))]:0;
-          const result={total,chipMutations,attrMutations,childMutations,p95FrameMs:Number(p95.toFixed(1)),diagnostics:d,dynamicText:dynamic.textContent,dynamicIteration:dynamic.getAttribute('data-iteration')};
-          const pass=d.textContentGuardInstalled&&d.setAttributeGuardInstalled&&d.legacyObserversDisconnected>=1&&d.stable&&d.blockedSameTextWrites>100&&d.blockedSameAttributeWrites>100&&chipMutations<=4&&total<=8&&dynamic.textContent==='i537'&&dynamic.getAttribute('data-iteration')==='i537';
+          const authority=window.__takMapReleaseIdentity||null;const result={total,chipMutations,attrMutations,childMutations,p95FrameMs:Number(p95.toFixed(1)),diagnostics:d,dynamicText:dynamic.textContent,dynamicIteration:dynamic.getAttribute('data-iteration'),iterationFrames,authority:authority&&{release:authority.release,iteration:authority.iteration,packageVersion:authority.packageVersion},identityGuard:!!Node.prototype.__takMapIdentityAuthorityI620};
+          const pass=d.textContentGuardInstalled&&d.setAttributeGuardInstalled&&d.legacyObserversDisconnected>=1&&d.stable&&authority&&authority.iteration==='i620'&&authority.packageVersion==='1.4.0-i620'&&Node.prototype.__takMapIdentityAuthorityI620&&iterationFrames.length>30&&iterationFrames.every(v=>v==='i620')&&chipMutations<=4&&total<=8&&dynamic.textContent==='i620'&&dynamic.getAttribute('data-iteration')==='i620'&&d.currentIteration==='i620';
           document.body.dataset.testResult=pass?'pass':'fail';
           document.getElementById('result').textContent=JSON.stringify(result);
         })().catch(e=>{document.body.dataset.testResult='error';document.getElementById('result').textContent=String(e&&e.stack||e)});
       </script>
     </body></html>'''
+
+    fixture = fixture.replace('</head>', IDENTITY_GUARD + '</head>', 1)
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True, executable_path=chromium, args=["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"])
@@ -99,7 +104,7 @@ def main() -> int:
     if page_errors:
         raise AssertionError(f"sidebar performance fixture page errors: {page_errors}")
     parsed = json.loads(detail)
-    print("Sidebar iteration-mutation guard browser test passed")
+    print("Sidebar i620 authoritative iteration and anti-flicker browser test passed")
     print(json.dumps({k: parsed[k] for k in ["total", "chipMutations", "attrMutations", "childMutations", "p95FrameMs"]}, sort_keys=True))
     return 0
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.0-i620
+
+- Removed the stale deferred sidebar owner that forced the iteration back to `i602`; the server-rendered i620 identity is now authoritative before first paint.
+
+- Corrects the left-sidebar public version to `1.4.0` and advances the displayed iteration to `i620`.
+- Installs an early mutation guard that prevents delayed legacy scripts from visibly replacing the authoritative sidebar identity.
+- Gives NIFC Fire Perimeter context panels a source-specific content-aware width, expanding only when their visible content requires it.
+- Leaves all other contextual-panel widths and validated i618 behavior unchanged.
+- Updates cache keys, package metadata, validation, and installation documentation.
+
 ## 1.4.0-i618
 
 - Promotes TAK Map to public version 1.4.0 with iteration i618.

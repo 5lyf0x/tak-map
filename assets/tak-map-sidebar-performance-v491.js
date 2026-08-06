@@ -1,6 +1,9 @@
 (function(){
 'use strict';
-const VERSION='i602';
+const DEFAULT_VERSION='i620';
+const AUTHORITY=window.__takMapReleaseIdentity||window.TakMapIdentityI620||null;
+const AUTHORITY_VERSION=String(AUTHORITY&&AUTHORITY.iteration||'').trim();
+const VERSION=/^(?:i|v)\d+$/i.test(AUTHORITY_VERSION)?AUTHORITY_VERSION:DEFAULT_VERSION;
 const API_NAME='TakMapSidebarPerformanceV476';
 if(window[API_NAME]&&window[API_NAME].loaded)return;
 

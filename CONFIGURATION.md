@@ -10,6 +10,6 @@ Selecting **Edit** opens the Mission Password dialog with the Mission name alrea
 
 The Configure OTS panel uses a TAK Map dark-grey and silver confirmation dialog for complete server unenrollment. The dialog is centered in the viewport and enables its final action only after the operator types the exact text `UNENROLL`.
 
-## Context panel sizing in 1.4.0 i618
+## Context panel sizing in 1.4.0 i620
 
 No operator setting is required. TAK Map automatically sizes ADS-B, Local Data, Data Sync, Gateway Data, and Source Extension context panels from their visible content. The shared policy reserves the themed scrollbar gutter, prevents horizontal scrolling, and constrains simultaneous panels to the available map viewport.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static release contract preserving dynamic Gateway Data behavior in i618."""
+"""Static release contract preserving dynamic Gateway Data behavior in i620."""
 from pathlib import Path
 import json
 
@@ -8,16 +8,16 @@ JS = (ROOT / "assets" / "tak-map-gateway-data-v491.js").read_text()
 
 
 def main() -> int:
-    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i618"
+    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i620"
     manifest = json.loads((ROOT / "assets" / "tak-map-deferred-i553.json").read_text())
-    assert manifest["version"] == "1.4.0-i618"
+    assert manifest["version"] == "1.4.0-i620"
     startup = (ROOT / "assets" / "tak-map-startup-i553.js").read_text()
     package = (ROOT / "assets" / "tak-map-package-i580.js").read_text()
-    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i618" in startup
-    assert "const VERSION='i618';" in package
-    assert "const PACKAGE='1.4.0-i618';" in package
+    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i620" in startup
+    assert "const VERSION='i620';" in package
+    assert "const PACKAGE='1.4.0-i620';" in package
     for marker in (
-        "const V='i618'",
+        "const V='i620'",
         "function dynamicSource",
         "function sourceCatalog",
         "source_extension:",
@@ -46,7 +46,7 @@ def main() -> int:
     ):
         assert marker in JS, marker
     assert JS.count("panel gateway-data-v491") == 1
-    print("TAK Map i618 dynamic Source Extension/context contract passed")
+    print("TAK Map i620 dynamic Source Extension/context contract passed")
     return 0
 
 

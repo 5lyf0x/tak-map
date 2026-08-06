@@ -1,24 +1,27 @@
-# TAK Map v1.4.0 i618
+# TAK Map v1.4.0 i620
 
-i618 is the public 1.4.0 release built from i617. It introduces one shared content-aware sizing policy for all right-side contextual panels while preserving the validated Data Sync, ADS-B, Gateway Data, and Source Extension behavior.
+i620 is the corrective public 1.4.0 package built from i618. It fixes the left-sidebar release/iteration display and makes NIFC context panels size to their actual content without changing the other validated contextual panels.
 
-## i618 changes
+## i620 correction
 
-- Dynamically sizes ADS-B, Local Data, Data Sync, Gateway Data, and Source Extension context panels to the actual content.
-- Keeps compact panels narrow while allowing long fields to expand within responsive bounds.
-- Reserves themed scrollbar space so rows do not shift when scrolling appears.
-- Prevents horizontal scrolling and wraps genuinely long values cleanly.
-- Sizes dual panels independently and prevents ADS-B/context overlap.
-- Mounts shared context panels above ordinary map controls while keeping true modals above them.
-- Updates the public product version to `1.4.0` and the left-menu iteration to `i618`.
-- Updates installation, release, troubleshooting, and context-panel documentation.
+- Removes the stale deferred sidebar owner that forced the displayed iteration back to `i602`.
+- Makes the server-rendered `i620` identity authoritative before first paint and coerces delayed legacy writes without visible flicker.
+- Preserves the NIFC content-aware width correction from the prior package.
+
+## i620 changes
+
+- Shows `1.4.0` and `i620` in the left-sidebar version panel from the first rendered frame.
+- Adds an authoritative identity guard so delayed legacy startup hooks cannot make the sidebar flicker between older versions.
+- Sizes NIFC Fire Perimeter context panels from their visible labels and values, expanding only when longer NIFC content requires it.
+- Keeps NWS, ADS-B, Local Data, Data Sync, other Gateway Data, and Source Extension panel behavior unchanged.
+- Preserves stable scrollbar gutters, fixed headers, responsive bounds, and no horizontal scrolling.
 
 ## Install
 
 ```bash
 cd ~/Downloads
-unzip -o tak-map-v1.4.0-i618.zip
-cd ~/Downloads/tak-map-v618
+unzip -o tak-map-v1.4.0-i620.zip
+cd ~/Downloads/tak-map-v620
 chmod +x install.sh
 sudo ./install.sh
 cd ~/Downloads

@@ -58,9 +58,9 @@ def test_asset_routes(module) -> None:
 
 
 def main() -> None:
-    assert (ROOT / 'VERSION').read_text().strip() == '1.4.0-i618'
+    assert (ROOT / 'VERSION').read_text().strip() == '1.4.0-i620'
     text = JS.read_text()
-    assert "const V='i618',POLL_MS=300000;" in text
+    assert "const V='i620',POLL_MS=300000;" in text
     assert 'function aisIconProfile(feature)' in text
     assert 'icon_variant' in text
     assert '/assets/ais-civil.png' in text
@@ -86,7 +86,8 @@ def main() -> None:
     assert "self.send_header('Content-Type','image/png')" in dashboard
     assert "if self.command != 'HEAD':" in dashboard
     sidebar = (ROOT / 'assets' / 'tak-map-sidebar-performance-v491.js').read_text()
-    assert "const VERSION='i602';" in sidebar
+    assert "const VERSION='i602';" not in sidebar
+    assert "const DEFAULT_VERSION='i620';" in sidebar
     with tempfile.TemporaryDirectory(prefix='tak-map-i525-ais-route-') as tmp:
         module = load_dashboard(Path(tmp))
         test_asset_routes(module)

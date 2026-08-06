@@ -1,6 +1,6 @@
 # Context panels
 
-TAK Map 1.4.0 i618 uses a single content-aware sizing policy for contextual object panels.
+TAK Map 1.4.0 i620 uses a single content-aware sizing policy for contextual object panels.
 
 ## Covered panels
 
@@ -15,6 +15,8 @@ TAK Map 1.4.0 i618 uses a single content-aware sizing policy for contextual obje
 The panel measures its visible title, labels, values, and controls and chooses the narrowest practical width that avoids excessive wrapping. Compact records remain compact. Long fields may expand the panel up to the responsive desktop maximum. On narrow screens, the panel is capped to the available viewport.
 
 Horizontal scrolling is never used. Long source values wrap normally.
+
+NIFC Fire Perimeter panels use a dedicated intrinsic-width profile: short incident records remain compact, while longer incident names or values expand the same panel only as far as needed. Other Gateway Data sources retain their established i618 width behavior.
 
 ## Scrolling
 

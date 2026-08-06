@@ -1,17 +1,18 @@
 (function(window,document){
   'use strict';
-  const VERSION='i618';
-  const PACKAGE='1.4.0-i618';
-  const SIZING='i618';
+  const VERSION='i620';
+  const PACKAGE='1.4.0-i620';
+  const SIZING='i620';
   /* i618 shared content-aware context sizing; horizontal scrolling is intentionally disabled. */
   const SCROLLBAR_GUTTER=14;
-  const state={scheduled:false,observer:null,resizeObservers:new WeakMap(),fits:0,lastError:'',lastWidths:{}};
+  const state={scheduled:false,observer:null,identityObserver:null,resizeObservers:new WeakMap(),fits:0,lastError:'',lastWidths:{}};
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const visible=el=>!!(el&&el.isConnected&&!el.classList.contains('hidden')&&!el.classList.contains('collapsed')&&el.getAttribute('aria-hidden')!=='true'&&getComputedStyle(el).display!=='none');
   function injectCss(){
     if(document.getElementById('takMapContextSizingStyleI618'))return;
     const style=document.createElement('style');style.id='takMapContextSizingStyleI618';style.textContent=`
       #takMapContextSidebarI572,.tak-adsb-panel-i610{box-sizing:border-box!important;max-width:calc(100vw - 24px)!important;overflow:hidden!important;scrollbar-gutter:stable!important}
+      #takMapContextSidebarI572.gateway-data-nifc-i620{width:292px!important;max-width:min(430px,calc(100vw - 24px))!important}
       #takMapContextSidebarI572{display:flex!important;flex-direction:column!important;position:fixed!important;z-index:2147482000!important}
       #takMapContextSidebarI572 .tak-context-head-i572{flex:0 0 auto!important}
       #takMapContextSidebarBodyI572{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-gutter:stable!important;scrollbar-width:thin!important;scrollbar-color:#4f7181 #0b161c!important}
@@ -53,20 +54,23 @@
     });return best;
   }
   function mode(panel){return panel.classList.contains('tak-adsb-panel-i610')?'adsb':'context'}
+  function isNifc(panel){return !!(panel&&panel.classList.contains('gateway-data-nifc-i620')||panel&&panel.getAttribute('data-gateway-source-key-i620')==='nifc_fire_perimeters')}
   function baseLimits(panel){
     const kind=mode(panel);const narrow=window.matchMedia&&window.matchMedia('(max-width:620px)').matches;
+    if(kind==='context'&&isNifc(panel))return {min:narrow?280:292,max:narrow?window.innerWidth-24:430,valueCap:252,nifc:true};
     return kind==='adsb'?{min:narrow?280:344,max:narrow?window.innerWidth-24:462,valueCap:320}:{min:narrow?280:318,max:narrow?window.innerWidth-24:568,valueCap:382};
   }
   function preferred(panel){
-    const limits=baseLimits(panel),kind=mode(panel);
+    const limits=baseLimits(panel),kind=mode(panel),nifc=!!limits.nifc;
     const labelSel=kind==='adsb'?'.tak-adsb-i610-key':'.kvp b,.point-popup-label-i556,.tak-context-delete-summary-i572 b';
     const valueSel=kind==='adsb'?'.tak-adsb-i610-value,.tak-adsb-i610-name,.tak-adsb-i610-sub,.tak-adsb-i610-chip':'.kvp span,.point-popup-value-i556,.point-popup-title-i556,.point-popup-subtitle-i556,.tak-context-title-i572,.tak-context-kicker-i572';
-    const label=clamp(longestVisible(labelSel,panel,138),70,138);
-    const value=clamp(longestVisible(valueSel,panel,limits.valueCap),120,limits.valueCap);
-    const headerTitle=longestVisible(kind==='adsb'?'.tak-adsb-i610-name,.tak-adsb-i610-sub':'.tak-context-title-i572,.tak-context-kicker-i572',panel,limits.max-100);
-    const row=label+value+(kind==='adsb'?40:48)+SCROLLBAR_GUTTER;
-    const controls=controlsWidth(panel,limits.max-28)+28+SCROLLBAR_GUTTER;
-    const header=headerTitle+96+SCROLLBAR_GUTTER;
+    const labelCap=nifc?112:138,valueFloor=nifc?76:120;
+    const label=clamp(longestVisible(labelSel,panel,labelCap),nifc?64:70,labelCap);
+    const value=clamp(longestVisible(valueSel,panel,limits.valueCap),valueFloor,limits.valueCap);
+    const headerTitle=longestVisible(kind==='adsb'?'.tak-adsb-i610-name,.tak-adsb-i610-sub':'.tak-context-title-i572,.tak-context-kicker-i572',panel,limits.max-(nifc?64:100));
+    const row=label+value+(kind==='adsb'?40:(nifc?34:48))+SCROLLBAR_GUTTER;
+    const controls=nifc?0:controlsWidth(panel,limits.max-28)+28+SCROLLBAR_GUTTER;
+    const header=headerTitle+(nifc?58:96)+SCROLLBAR_GUTTER;
     return clamp(Math.ceil(Math.max(limits.min,row,controls,header)),limits.min,limits.max);
   }
   function mapRect(){const node=mapNode();try{return node.getBoundingClientRect()}catch(_){return {left:0,right:window.innerWidth,width:window.innerWidth}}}
@@ -103,18 +107,23 @@
     try{injectCss();const panels=[document.getElementById('takMapContextSidebarI572'),...document.querySelectorAll('.tak-adsb-panel-i610')].filter(Boolean);panels.forEach(panel=>fitOne(panel));resolvePairs();state.lastError=''}catch(error){state.lastError=String(error&&error.stack||error)}
   }
   function schedule(){if(state.scheduled)return;state.scheduled=true;requestAnimationFrame(()=>{state.scheduled=false;fitAll()})}
+  function fixIdentityNode(node){
+    if(!node)return;if(node.nodeType===3)node=node.parentElement;if(!node||node.nodeType!==1)return;
+    const fix=el=>{if(el.matches('.version-panel .release-main')){if(el.textContent!=='1.4.0')el.textContent='1.4.0';return}if(el.matches('.version-panel .version-product')){if(el.textContent!=='TAK Map')el.textContent='TAK Map';return}if(el.matches('.iteration-chip,.iteration-marker')){if(el.textContent!==VERSION)el.textContent=VERSION;if(el.getAttribute('data-iteration')!==VERSION)el.setAttribute('data-iteration',VERSION);return}if(el.hasAttribute('data-iteration')&&el.getAttribute('data-iteration')!==VERSION)el.setAttribute('data-iteration',VERSION)};
+    fix(node);node.querySelectorAll&&node.querySelectorAll('.version-panel .release-main,.version-panel .version-product,.iteration-chip,.iteration-marker,[data-iteration]').forEach(fix);
+  }
+  function apply(){
+    try{document.documentElement.dataset.takMapIteration=VERSION;document.documentElement.dataset.takMapPackage=PACKAGE;fixIdentityNode(document.documentElement)}catch(_){}
+  }
   function boot(){
     injectCss();apply();fitAll();
-    if(!state.observer&&window.MutationObserver){state.observer=new MutationObserver(records=>{if(records.some(r=>r.type==='childList'||r.type==='characterData'))schedule()});state.observer.observe(document.body,{subtree:true,childList:true,characterData:true})}
+    if(!state.observer&&window.MutationObserver){state.observer=new MutationObserver(records=>{for(const record of records){fixIdentityNode(record.target);record.addedNodes&&record.addedNodes.forEach(fixIdentityNode)}if(records.some(r=>r.type==='childList'||r.type==='characterData'))schedule()});state.observer.observe(document.body,{subtree:true,childList:true,characterData:true})}
     window.addEventListener('resize',schedule,{passive:true});window.addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
     [100,350,800,1600,3200].forEach(delay=>setTimeout(fitAll,delay));setInterval(fitAll,2500);
   }
-  function apply(){
-    try{document.documentElement.dataset.takMapIteration=VERSION;document.documentElement.dataset.takMapPackage=PACKAGE;document.querySelectorAll('.iteration-chip,.iteration-marker,[data-iteration]').forEach(function(el){if(el.textContent!==VERSION)el.textContent=VERSION;if(el.getAttribute('data-iteration')!==VERSION)el.setAttribute('data-iteration',VERSION)})}catch(_){}
-  }
-  const sizingApi=Object.freeze({version:SIZING,fit:fitOne,fitAll,schedule,preferredWidth:preferred,diagnostics:()=>({version:SIZING,fits:state.fits,lastWidths:Object.assign({},state.lastWidths),scrollbarGutter:SCROLLBAR_GUTTER,lastError:state.lastError})});
-  window.TakMapContextPanelSizingI618=sizingApi;
+  const sizingApi=Object.freeze({version:SIZING,fit:fitOne,fitAll,schedule,preferredWidth:preferred,diagnostics:()=>({version:SIZING,fits:state.fits,lastWidths:Object.assign({},state.lastWidths),scrollbarGutter:SCROLLBAR_GUTTER,nifcContentWidth:true,lastError:state.lastError})});
+  window.TakMapContextPanelSizingI620=window.TakMapContextPanelSizingI618=sizingApi;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  [500,1500,3500,6500].forEach(function(delay){setTimeout(()=>{apply();fitAll()},delay)});window.addEventListener('takmap:runtime-ready',()=>{apply();schedule()});
-  window.TakMapPackageI618=window.TakMapPackageI617=window.TakMapPackageI616=window.TakMapPackageI615=window.TakMapPackageI614=window.TakMapPackageI613=window.TakMapPackageI612=window.TakMapPackageI607=window.TakMapPackageI602=window.TakMapPackageI599=window.TakMapPackageI592=window.TakMapPackageI591=window.TakMapPackageI590=window.TakMapPackageI589=window.TakMapPackageI585=window.TakMapPackageI583=window.TakMapPackageI581=window.TakMapPackageI580=Object.freeze({version:VERSION,packageVersion:PACKAGE,apply:apply,contextSizing:sizingApi});
+  [0,100,500,1500,3500,6500].forEach(function(delay){setTimeout(()=>{apply();fitAll()},delay)});window.addEventListener('takmap:runtime-ready',()=>{apply();schedule()});
+  window.TakMapPackageI620=window.TakMapPackageI618=window.TakMapPackageI617=window.TakMapPackageI616=window.TakMapPackageI615=window.TakMapPackageI614=window.TakMapPackageI613=window.TakMapPackageI612=window.TakMapPackageI607=window.TakMapPackageI602=window.TakMapPackageI599=window.TakMapPackageI592=window.TakMapPackageI591=window.TakMapPackageI590=window.TakMapPackageI589=window.TakMapPackageI585=window.TakMapPackageI583=window.TakMapPackageI581=window.TakMapPackageI580=Object.freeze({version:VERSION,packageVersion:PACKAGE,apply:apply,contextSizing:sizingApi});
 })(window,document);

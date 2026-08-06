@@ -193,6 +193,7 @@
       #${PANEL_ID}.gateway-data-readonly-i615 .gateway-feature-popup-v491{border:0!important;background:transparent!important;box-shadow:none!important}
       /* i617 top-overlay Gateway Data presentation with themed scrolling. */
       #${PANEL_ID}.gateway-data-readonly-i615.gateway-data-top-overlay-i617{position:fixed!important;z-index:2147482000!important;display:flex!important;flex-direction:column!important;width:clamp(430px,34vw,560px)!important;max-width:calc(100vw - 28px)!important;max-height:calc(100vh - 28px)!important;overflow:hidden!important;contain:layout style!important}
+      #${PANEL_ID}.gateway-data-readonly-i615.gateway-data-top-overlay-i617.gateway-data-nifc-i620{width:292px!important;max-width:min(430px,calc(100vw - 28px))!important}
       #${PANEL_ID}.gateway-data-readonly-i615.gateway-data-top-overlay-i617 .tak-context-head-i572{flex:0 0 auto!important}
       #${PANEL_ID}.gateway-data-readonly-i615.gateway-data-top-overlay-i617 #${BODY_ID}{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-width:thin!important;scrollbar-color:#4f7181 #0b161c!important}
       #${PANEL_ID}.gateway-data-readonly-i615.gateway-data-top-overlay-i617 #${BODY_ID}::-webkit-scrollbar{width:12px!important}
@@ -427,8 +428,9 @@
     if (!state.selected || !ensurePanel()) return;
     restorePanelHost();
     state.mode = 'info';
-    state.panel.classList.remove('generic-edit','gateway-data-readonly-i615');
+    state.panel.classList.remove('generic-edit','gateway-data-readonly-i615','gateway-data-nifc-i620');
     state.panel.removeAttribute('data-context-mode');
+    state.panel.removeAttribute('data-gateway-source-key-i620');
     if (state.body) delete state.body.dataset.gatewayReadonlySignatureI615;
     setHeader(kindOf(state.selected.object), objectName(state.selected.object));
     state.body.innerHTML = infoHtml(state.selected.object, state.selected.source, state.selected.layer);
@@ -479,8 +481,12 @@
     state.selected = {object, source:'gateway-data-readonly', layer, key, center:objectCenter(object, layer)};
     state.mode = 'gateway-data-readonly';
     state.suppressMapClickUntil = Date.now() + 360;
+    const gatewaySourceKey = text(object.gateway_source_key || object.source_key || '').toLowerCase();
     panel.classList.remove('generic-edit');
     panel.classList.add('gateway-data-readonly-i615');
+    panel.classList.toggle('gateway-data-nifc-i620', gatewaySourceKey === 'nifc_fire_perimeters');
+    if (gatewaySourceKey) panel.setAttribute('data-gateway-source-key-i620', gatewaySourceKey);
+    else panel.removeAttribute('data-gateway-source-key-i620');
     panel.setAttribute('data-context-mode','gateway-data-readonly');
     setHeader(text(options.kicker) || `Gateway Data · ${text(object.gateway_source_label) || 'Gateway Data'}`, text(options.title) || objectName(object));
     if (!sameSelection || state.body.dataset.gatewayReadonlySignatureI615 !== signature) {
@@ -504,9 +510,10 @@
       }
     } catch (_) {}
     panel.classList.add('collapsed');
-    panel.classList.remove('generic-edit','gateway-data-readonly-i615','gateway-data-top-overlay-i617');
+    panel.classList.remove('generic-edit','gateway-data-readonly-i615','gateway-data-top-overlay-i617','gateway-data-nifc-i620');
     panel.classList.add('tak-context-top-overlay-i618');
     panel.removeAttribute('data-context-mode');
+    panel.removeAttribute('data-gateway-source-key-i620');
     panel.setAttribute('aria-hidden', 'true');
     restorePanelHost();
     state.mode = 'info';
@@ -1052,7 +1059,7 @@
       gatewayTopOverlay: state.gatewayOverlayMounted,
       themedGatewayScrollbar: true,
       adaptiveGatewayWidth: true,
-      sharedDynamicWidthI618: !!window.TakMapContextPanelSizingI618,
+      sharedDynamicWidthI618: !!window.TakMapContextPanelSizingI618, nifcContentWidthI620: true,
       topOverlayAllContextsI618: !!(state.panel && state.panel.classList.contains('tak-context-top-overlay-i618')),
       nativeDeleteDialogs: false,
       sharedDeleteController: true,

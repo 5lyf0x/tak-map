@@ -1,3 +1,10 @@
+## 1.4.0-i620
+
+- Corrective 1.4.0 package with authoritative sidebar identity: `1.4.0` / `i620`.
+- First-frame server rendering plus a mutation guard prevents version/iteration flicker from delayed legacy startup hooks.
+- NIFC Fire Perimeter context panels now select the narrowest practical width for their visible content and expand only when required.
+- Other context panels retain the validated i618 sizing behavior.
+
 ## 1.4.0-i618
 
 - Public 1.4.0 version and i618 iteration.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise i618 dynamic Source Extension discovery and TAK Map-local ingest toggles."""
+"""Exercise i620 dynamic Source Extension discovery and TAK Map-local ingest toggles."""
 from __future__ import annotations
 
 import json
@@ -94,7 +94,7 @@ class Layer extends Emitter{{constructor(kind,data,options){{super();this.kind=k
 class Group extends Layer{{constructor(){{super('group',null,{{}})}}addLayer(x){{if(!this.children.includes(x))this.children.push(x);return this}}removeLayer(x){{this.children=this.children.filter(y=>y!==x);return this}}hasLayer(x){{return this.children.includes(x)}}clearLayers(){{this.children=[];return this}}}}
 const events=new Emitter();window.map=Object.assign(events,{{_zoom:9,_popup:null,hasLayer:l=>window.__mapLayers.has(l),addLayer:l=>{{window.__mapLayers.add(l);return window.map}},removeLayer:l=>{{window.__mapLayers.delete(l);return window.map}},getZoom(){{return this._zoom}},closePopup(){{return this}},invalidateSize(){{return this}}}});
 window.L={{layerGroup:()=>new Group(),marker:(x,o)=>new Layer('marker',x,o),polyline:(x,o)=>new Layer('polyline',x,o),polygon:(x,o)=>new Layer('polygon',x,o),divIcon:o=>o,latLngBounds:()=>({{}}),DomEvent:{{stopPropagation(){{}},preventDefault(){{}}}}}};
-</script><script id=\"takMapGatewayDataLoaderV476\" src=\"/assets/runtime/tak-map-gateway-data-v491.js?v=1.4.0-i618\"></script></body></html>"""
+</script><script id=\"takMapGatewayDataLoaderV476\" src=\"/assets/runtime/tak-map-gateway-data-v491.js?v=1.4.0-i620\"></script></body></html>"""
 
 
 def main() -> int:
@@ -177,7 +177,7 @@ def main() -> int:
         assert enabled["objects"] == 1 and enabled["layers"] == 1 and enabled["enabled"] == 1, enabled
         assert enabled["stored"] == "1", enabled
         assert enabled["sourceLabel"] == "source_extension:alpha", enabled
-        assert enabled["version"] == "i618" and enabled["floating"] is False, enabled
+        assert enabled["version"] == "i620" and enabled["floating"] is False, enabled
         assert enabled["mapGroups"] >= 1, enabled
 
         page.eval_on_selector('[data-source="source_extension:alpha"] input', "el=>{el.checked=false;el.dispatchEvent(new Event('change',{bubbles:true}))}")
@@ -215,7 +215,7 @@ def main() -> int:
     assert not page_errors, page_errors
     assert len(requests) >= 6, requests
     assert all(url.startswith(ORIGIN + "/api/tak-map/gateway-data/snapshot?") for url in requests), requests
-    print("TAK Map i618 dynamic Source Extension discovery/local-ingest browser test passed")
+    print("TAK Map i620 dynamic Source Extension discovery/local-ingest browser test passed")
     return 0
 
 

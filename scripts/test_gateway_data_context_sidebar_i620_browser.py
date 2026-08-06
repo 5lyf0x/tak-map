@@ -133,7 +133,7 @@ class Layer extends Emitter{{constructor(kind,data,options){{super();this.kind=k
 class Group extends Layer{{constructor(){{super('group',null,{{}});this.children=[]}}addLayer(x){{if(!this.children.includes(x))this.children.push(x);return this}}removeLayer(x){{this.children=this.children.filter(y=>y!==x);return this}}hasLayer(x){{return this.children.includes(x)}}clearLayers(){{this.children=[];return this}}}}
 const events=new Emitter();window.map=Object.assign(events,{{_zoom:8,hasLayer:l=>window.__mapLayers.has(l),addLayer:l=>{{window.__mapLayers.add(l);return window.map}},removeLayer:l=>{{window.__mapLayers.delete(l);return window.map}},getZoom(){{return this._zoom}},getContainer(){{return document.getElementById('map')}},getBounds(){{return {{contains:()=>true}}}},panTo(){{return this}},setView(){{return this}}}});window.takLeafletMap=window.map;
 window.L={{layerGroup:()=>new Group(),marker:(x,o)=>new Layer('marker',x,o),polyline:(x,o)=>new Layer('polyline',x,o),polygon:(x,o)=>new Layer('polygon',x,o),divIcon:o=>o,DomEvent:{{stopPropagation(){{}},preventDefault(){{}},disableClickPropagation(){{}},disableScrollPropagation(){{}}}}}};
-</script><script src='/assets/runtime/tak-map-context-sidebar-i572.js?v=1.4.0-i618'></script><script src='/assets/runtime/tak-map-gateway-data-v491.js?v=1.4.0-i618'></script></body></html>"""
+</script><script src='/assets/runtime/tak-map-context-sidebar-i572.js?v=1.4.0-i620'></script><script src='/assets/runtime/tak-map-gateway-data-v491.js?v=1.4.0-i620'></script></body></html>"""
 
 
 def main() -> int:
@@ -185,7 +185,7 @@ def main() -> int:
         }""")
         browser.close()
 
-    assert result["version"] == "i618", result
+    assert result["version"] == "i620", result
     assert result["contextDiagnostics"]["gatewayTopOverlay"] is True, result
     assert result["contextDiagnostics"]["themedGatewayScrollbar"] is True, result
     assert result["contextDiagnostics"]["adaptiveGatewayWidth"] is True, result
@@ -194,9 +194,11 @@ def main() -> int:
         assert panel["parentIsBody"] is True, panel
         assert panel["panelZ"] > panel["toolbarZ"], panel
         assert panel["panelZ"] < panel["modalZ"], panel
-        assert 430 <= panel["panelWidth"] <= 565, panel
         assert panel["kicker"].startswith("Gateway Data · "), panel
         assert panel["scrollbarColor"] not in ("auto", ""), panel
+    for panel in (result["usgsImperial"], result["nws"], result["usgsMetric"]):
+        assert 430 <= panel["panelWidth"] <= 565, panel
+    assert 292 <= result["nifc"]["panelWidth"] <= 430, result["nifc"]
 
     usgs = result["usgsImperial"]
     for value in ("Magnitude", "4.2", "Location", "5 mi ESE of Cloverdale, CA", "Time", "Depth", "3.7 mi", "Status", "reviewed"):
@@ -234,7 +236,7 @@ def main() -> int:
 
     assert not page_errors, page_errors
     assert not console_errors, console_errors
-    print("TAK Map i618 top-overlay, themed-scrollbar, NWS expansion, and regional USGS context browser test passed")
+    print("TAK Map i620 top-overlay, themed-scrollbar, NWS expansion, and regional USGS context browser test passed")
     return 0
 
 

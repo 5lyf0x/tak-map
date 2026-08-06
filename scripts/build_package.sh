@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="${1:-v1.4.0-i618}"
+VERSION="${1:-v1.4.0-i620}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST="$ROOT/dist"
 OUT="$DIST/tak-map-${VERSION}.zip"

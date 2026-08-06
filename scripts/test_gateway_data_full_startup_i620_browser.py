@@ -86,7 +86,7 @@ window.L={{map:()=>window.map,layerGroup:()=>new Group(),marker:(x,o)=>new Layer
 window.__takMapCoreInitI553=async()=>{{document.documentElement.dataset.takMapShell='ready'}};
 window.__takMapStartOptionalDataI553=()=>Promise.resolve();
 window.__takMapStartDataSyncI553=()=>Promise.resolve();
-</script><script src=\"/assets/runtime/tak-map-startup-i553.js?v=1.4.0-i618\"></script></body></html>"""
+</script><script src=\"/assets/runtime/tak-map-startup-i553.js?v=1.4.0-i620\"></script></body></html>"""
 
 
 def main() -> int:
@@ -139,7 +139,7 @@ def main() -> int:
 
     assert gateway_requests >= 1, gateway_requests
     assert result["runtime"] == "ready", result
-    assert result["version"] == "i618", result
+    assert result["version"] == "i620", result
     assert result["dynamic"] == 1, result
     assert result["objects"] == 1 and result["layers"] == 1, result
     assert result["geometryRejected"] == 0 and not result["lastGeometryError"], result
@@ -147,7 +147,7 @@ def main() -> int:
     assert result["deferredFailed"] == [], result
     assert not page_errors, page_errors
     assert not console_errors, console_errors
-    print("TAK Map i618 actual deferred-startup dynamic Source Extension/MultiPolygon browser test passed")
+    print("TAK Map i620 actual deferred-startup dynamic Source Extension/MultiPolygon browser test passed")
     return 0
 
 
