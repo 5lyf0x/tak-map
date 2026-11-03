@@ -1,6 +1,6 @@
 (function(w,d){
 'use strict';
-const V='i620',POLL_MS=300000;
+const V='i621',POLL_MS=300000;
 const PAGE_ORIGIN=(()=>{try{const o=String(w.location&&w.location.origin||'');if(o&&o!=='null')return o;return new URL(d.baseURI).origin}catch(_){return ''}})();
 const ENDPOINT=(()=>{try{return new URL('/api/tak-map/gateway-data/snapshot',PAGE_ORIGIN).href}catch(_){return ''}})();
 const SOURCES=[

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="${1:-v1.4.0-i620}"
+VERSION="${1:-v1.4.0-i621}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST="$ROOT/dist"
 OUT="$DIST/tak-map-${VERSION}.zip"
@@ -10,7 +10,7 @@ if [[ ! "$ITERATION" =~ ^i[0-9]+$ ]]; then
   echo "ERROR: version must end in an iteration such as i575: $VERSION" >&2
   exit 2
 fi
-ROOT_NAME="tak-map-v${ITERATION#i}"
+ROOT_NAME="tak-map-${VERSION}"
 STAGE="$(mktemp -d /tmp/tak-map-build-${ITERATION}-XXXXXX)"
 trap 'rm -rf "$STAGE"' EXIT
 

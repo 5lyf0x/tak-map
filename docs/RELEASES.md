@@ -1,3 +1,11 @@
+## 1.4.0-i621
+
+- Adds prioritized backend ADS-B failover: Airplanes.live, ADSB.lol, ADSB.fi.
+- Provider cooldowns and automatic recovery without changing aircraft UI, trails, or filtering.
+- Keeps last-good aircraft snapshots through provider outages; empty successful results do not fail over.
+- Advances the runtime and distribution version identity to 1.4.0-i621.
+- Preserves all i620 sidebar identity and NIFC panel fixes.
+
 ## 1.4.0-i620
 
 - Corrective 1.4.0 package with authoritative sidebar identity: `1.4.0` / `i620`.

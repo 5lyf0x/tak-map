@@ -1,8 +1,8 @@
 (function(window,document){
   'use strict';
-  const VERSION='i620';
-  const PACKAGE='1.4.0-i620';
-  const SIZING='i620';
+  const VERSION='i621';
+  const PACKAGE='1.4.0-i621';
+  const SIZING='i621';
   /* i618 shared content-aware context sizing; horizontal scrolling is intentionally disabled. */
   const SCROLLBAR_GUTTER=14;
   const state={scheduled:false,observer:null,identityObserver:null,resizeObservers:new WeakMap(),fits:0,lastError:'',lastWidths:{}};

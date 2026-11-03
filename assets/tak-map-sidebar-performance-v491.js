@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const DEFAULT_VERSION='i620';
+const DEFAULT_VERSION='i621';
 const AUTHORITY=window.__takMapReleaseIdentity||window.TakMapIdentityI620||null;
 const AUTHORITY_VERSION=String(AUTHORITY&&AUTHORITY.iteration||'').trim();
 const VERSION=/^(?:i|v)\d+$/i.test(AUTHORITY_VERSION)?AUTHORITY_VERSION:DEFAULT_VERSION;

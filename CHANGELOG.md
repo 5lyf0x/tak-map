@@ -1,3 +1,10 @@
+## 1.4.0-i621
+
+- Automatic server-side ADS-B failover: Airplanes.live → ADSB.lol → ADSB.fi.
+- Provider cooldown, retry, source diagnostics, and last-good snapshot retention.
+- Updated installation archive, extraction folder and runtime iteration to i621.
+- No unrelated map or mission behavior changes.
+
 # Changelog
 
 ## 1.4.0-i620

@@ -1,4 +1,4 @@
-# TAK Map v1.4.0 i620
+# TAK Map v1.4.0 i621
 ## Features
 
 - **Interactive Tactical Map** – Browser-based mapping with real-time positioning, object tracking, and multiple basemap options.
@@ -11,6 +11,7 @@
 - **3D Terrain Visualization** – Explore terrain in 3D with adjustable camera angles, elevation, and terrain quality.
 - **Geofencing** – Create geographic boundaries with entry, exit, dwell, and route-crossing alerts.
 - **ADS-B Aircraft Tracking** – Monitor aircraft positions, headings, identifiers, movement trails, and aircraft details.
+- **ADS-B Automatic Provider Failover** – Retrieves live aircraft data in priority order: Airplanes.live → ADSB.lol → ADSB.fi, with automatic recovery, provider cooldowns, and last-known-good aircraft retention. No TAK Gateway or OpenTAKServer required.
 - **Aircraft Follow & Pin** – Follow aircraft and display persistent aircraft information panels.
 - **ADS-B Filtering** – Configure aircraft monitoring radius, geographic center, and update frequency.
 - **MIL-STD-2525C Symbology** – Support standardized military tactical symbols for map objects.
@@ -49,8 +50,8 @@
 
 ```bash
 cd ~/Downloads
-unzip -o tak-map-v1.4.0-i620.zip
-cd ~/Downloads/tak-map-v620
+unzip -o tak-map-v1.4.0-i621.zip
+cd ~/Downloads/tak-map-v1.4.0-i621
 chmod +x install.sh
 sudo ./install.sh
 cd ~/Downloads

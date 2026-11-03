@@ -67,6 +67,7 @@ def main()->int:
             continue
         if rel=='tak_dashboard.py':
             text=(ROOT/rel).read_text()
+            text=remove_block(text,'# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---','# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---')
             text=remove_block(text,'# --- TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---','# --- end TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---')
             text=remove_block(text,'# --- TAK Map i618 public 1.4.0 release and shared context sizing finalization ---','# --- end TAK Map i618 public 1.4.0 release and shared context sizing finalization ---',special=True)
             text=remove_block(text,'# --- TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---','# --- end TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---',special=True)
