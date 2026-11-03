@@ -1,0 +1,793 @@
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,3 +1,10 @@
++## 1.4.0-i621
++
++- Automatic server-side ADS-B failover: Airplanes.live → ADSB.lol → ADSB.fi.
++- Provider cooldown, retry, source diagnostics, and last-good snapshot retention.
++- Updated installation archive, extraction folder and runtime iteration to i621.
++- No unrelated map or mission behavior changes.
++
+ # Changelog
+ 
+ ## 1.4.0-i620
+--- a/VERSION
++++ b/VERSION
+@@ -1 +1 @@
+-1.4.0-i620
++1.4.0-i621
+--- a/assets/tak-map-gateway-data-v491.js
++++ b/assets/tak-map-gateway-data-v491.js
+@@ -1,6 +1,6 @@
+ (function(w,d){
+ 'use strict';
+-const V='i620',POLL_MS=300000;
++const V='i621',POLL_MS=300000;
+ const PAGE_ORIGIN=(()=>{try{const o=String(w.location&&w.location.origin||'');if(o&&o!=='null')return o;return new URL(d.baseURI).origin}catch(_){return ''}})();
+ const ENDPOINT=(()=>{try{return new URL('/api/tak-map/gateway-data/snapshot',PAGE_ORIGIN).href}catch(_){return ''}})();
+ const SOURCES=[
+--- a/assets/tak-map-package-i580.js
++++ b/assets/tak-map-package-i580.js
+@@ -1,8 +1,8 @@
+ (function(window,document){
+   'use strict';
+-  const VERSION='i620';
+-  const PACKAGE='1.4.0-i620';
+-  const SIZING='i620';
++  const VERSION='i621';
++  const PACKAGE='1.4.0-i621';
++  const SIZING='i621';
+   /* i618 shared content-aware context sizing; horizontal scrolling is intentionally disabled. */
+   const SCROLLBAR_GUTTER=14;
+   const state={scheduled:false,observer:null,identityObserver:null,resizeObservers:new WeakMap(),fits:0,lastError:'',lastWidths:{}};
+--- a/assets/tak-map-sidebar-performance-v491.js
++++ b/assets/tak-map-sidebar-performance-v491.js
+@@ -1,6 +1,6 @@
+ (function(){
+ 'use strict';
+-const DEFAULT_VERSION='i620';
++const DEFAULT_VERSION='i621';
+ const AUTHORITY=window.__takMapReleaseIdentity||window.TakMapIdentityI620||null;
+ const AUTHORITY_VERSION=String(AUTHORITY&&AUTHORITY.iteration||'').trim();
+ const VERSION=/^(?:i|v)\d+$/i.test(AUTHORITY_VERSION)?AUTHORITY_VERSION:DEFAULT_VERSION;
+--- a/assets/tak-map-startup-i553.js
++++ b/assets/tak-map-startup-i553.js
+@@ -185,7 +185,7 @@
+ async function start(){
+   if(w.__takMapStartupLoaderStartedI553)return;w.__takMapStartupLoaderStartedI553=true;D.domReadyAt=now();setStatus('Loading map engine…');
+   try{d.documentElement.dataset.takMapShell='loading'}catch(_){}
+-  const manifestPromise=fetch('/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i620',{cache:'force-cache',credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error('Runtime manifest HTTP '+r.status);return r.text()});
++  const manifestPromise=fetch('/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i621',{cache:'force-cache',credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error('Runtime manifest HTTP '+r.status);return r.text()});
+   await nextPaint();D.firstPaintAt=now();
+   try{await ensureLeaflet();D.coreStartedAt=now();await loadScript('/assets/runtime/tak-map-core-i553.js?v=1.3.0-i602','takMapCoreLoaderI553',15000);D.coreReadyAt=now();D.coreInitCalledAt=now();if(typeof w.__takMapCoreInitI553!=='function')throw new Error('TAK Map core did not register its initializer');await w.__takMapCoreInitI553();D.shellReadyAt=now();D.dataSyncControlStartedAt=now();await loadScript('/assets/runtime/tak-map-data-sync-i553.js?v=1.3.0-i602','takMapDataSyncControlI553',8000);await new Promise(resolve=>setTimeout(resolve,0));D.dataSyncControlReadyAt=now();if(!w.__takMapDataSyncControlReadyI553)throw new Error('Data Sync startup owner did not initialize');const dataSyncPromise=(typeof w.__takMapStartDataSyncI553==='function'?Promise.resolve(w.__takMapStartDataSyncI553()):Promise.resolve(null));await nextPaint();loadDeferredRuntime(manifestPromise,dataSyncPromise)}catch(e){recordError('startup',e,'');setStatus('Map failed to initialize: '+String(e&&e.message||e));try{d.documentElement.dataset.takMapShell='error'}catch(_){}}
+ }
+--- a/docs/INSTALL.md
++++ b/docs/INSTALL.md
+@@ -1,11 +1,11 @@
+-# TAK Map 1.4.0 i620 installation or upgrade
++# TAK Map 1.4.0 i621 installation or upgrade
+ 
+-Assuming `tak-map-v1.4.0-i620.zip` is in `~/Downloads`:
++Assuming `tak-map-v1.4.0-i621.zip` is in `~/Downloads`:
+ 
+ ```bash
+ cd ~/Downloads
+-unzip -o tak-map-v1.4.0-i620.zip
+-cd ~/Downloads/tak-map-v620
++unzip -o tak-map-v1.4.0-i621.zip
++cd ~/Downloads/tak-map-v1.4.0-i621
+ chmod +x install.sh
+ sudo ./install.sh
+ cd ~/Downloads
+@@ -13,4 +13,4 @@
+ 
+ After installation, close and reopen TAK Map and hard-refresh the browser.
+ 
+-Do not delete the extracted `~/Downloads/tak-map-v620` install folder after installation.
++Do not delete the extracted `~/Downloads/tak-map-v1.4.0-i621` install folder after installation.
+--- a/docs/RELEASES.md
++++ b/docs/RELEASES.md
+@@ -1,3 +1,11 @@
++## 1.4.0-i621
++
++- Adds prioritized backend ADS-B failover: Airplanes.live, ADSB.lol, ADSB.fi.
++- Provider cooldowns and automatic recovery without changing aircraft UI, trails, or filtering.
++- Keeps last-good aircraft snapshots through provider outages; empty successful results do not fail over.
++- Advances the runtime and distribution version identity to 1.4.0-i621.
++- Preserves all i620 sidebar identity and NIFC panel fixes.
++
+ ## 1.4.0-i620
+ 
+ - Corrective 1.4.0 package with authoritative sidebar identity: `1.4.0` / `i620`.
+--- /dev/null
++++ b/scripts/adsb_failover_patch.py.txt
+@@ -0,0 +1,195 @@
++# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---
++# Keeps the i465/i491 single background collector and existing browser worker.
++# Failover is SERVER-SIDE, so cross-origin browser restrictions do not apply.
++try:
++    import json as _adsbfo_json
++    import math as _adsbfo_math
++    import time as _adsbfo_time
++    from urllib.request import Request as _adsbfo_Request, urlopen as _adsbfo_urlopen
++
++    _ADSBFO_PRIORITY = ('airplanes.live', 'adsb.lol', 'adsb.fi')
++    _ADSBFO_STATUS = {
++        name: {'failures': 0, 'retry_at': 0.0, 'last_error': '',
++               'last_success_at': 0.0, 'last_http_status': 0, 'last_attempt_at': 0.0}
++        for name in _ADSBFO_PRIORITY
++    }
++    _ADSBFO_ACTIVE = ''
++    _ADSBFO_USER_AGENT = 'TAKMap/1.4.0 ADSB-multi-source (aircraft tracking; contact project administrator)'
++
++    def _adsbfo_url(name, settings):
++        try:
++            lat = float(settings['center_lat'])
++            lon = float(settings['center_lon'])
++            miles = float(settings.get('radius_miles') or 50)
++            if not (-90 <= lat <= 90 and -180 <= lon <= 180 and _adsbfo_math.isfinite(miles)):
++                raise ValueError('invalid center or radius')
++            # Sidebar uses statute miles; provider APIs require nautical miles.
++            nm = min(250, max(1, int(_adsbfo_math.ceil(miles / 1.150779448))))
++        except (KeyError, ValueError, TypeError, OverflowError):
++            raise ValueError('ADS-B center/radius is not configured')
++        center = f'{lat:.6f}/{lon:.6f}'
++        if name == 'airplanes.live':
++            return f'https://api.airplanes.live/v2/point/{center}/{nm}'
++        if name == 'adsb.lol':
++            return f'https://api.adsb.lol/v2/point/{center}/{nm}'
++        if name == 'adsb.fi':
++            return f'https://opendata.adsb.fi/api/v3/lat/{lat:.6f}/lon/{lon:.6f}/dist/{nm}'
++        raise ValueError('Unsupported ADS-B provider')
++
++    def _adsbfo_json_get(name, url):
++        headers = {'Accept': 'application/json', 'User-Agent': _ADSBFO_USER_AGENT}
++        pool = globals().get('_I465_ADSB_POOL')
++        if pool is not None:
++            timeout_type = getattr(globals().get('_i465_urllib3'), 'Timeout', None)
++            options = {'connect': 2.5, 'read': 4.0}
++            req_kwargs = {'headers': headers, 'preload_content': True,
++                          'redirect': False, 'retries': False}
++            if timeout_type is not None:
++                req_kwargs['timeout'] = timeout_type(**options)
++            resp = pool.request('GET', url, **req_kwargs)
++            try:
++                status = int(resp.status)
++                if status != 200:
++                    raise RuntimeError(f'HTTP {status}')
++                raw = bytes(resp.data or b'')
++            finally:
++                resp.release_conn()
++        else:
++            from urllib.error import HTTPError as _adsbfo_HTTPError
++            req = _adsbfo_Request(url, headers=headers)
++            try:
++                with _adsbfo_urlopen(req, timeout=6.5) as resp:
++                    raw = resp.read(8 * 1024 * 1024 + 1)
++            except _adsbfo_HTTPError as exc:
++                raise RuntimeError(f'HTTP {exc.code}') from exc
++        if len(raw) > 8 * 1024 * 1024:
++            raise RuntimeError('Response exceeds 8 MB')
++        try:
++            doc = _adsbfo_json.loads(raw.decode('utf-8'))
++        except (UnicodeDecodeError, ValueError) as exc:
++            raise RuntimeError('Invalid JSON') from exc
++        if not isinstance(doc, dict) or not (isinstance(doc.get('ac'), list) or isinstance(doc.get('aircraft'), list)):
++            raise RuntimeError('Invalid aircraft response (missing ac/aircraft array)')
++        # ac: [] is a valid answer and must never trigger failover.
++        return doc
++
++    def _adsbfo_cooldown(error, failures):
++        msg = str(error)
++        if 'HTTP 401' in msg or 'HTTP 403' in msg:
++            return 300.0  # Access restrictions / feeder-only API
++        if 'HTTP 429' in msg:
++            return 90.0   # Provider rate-limited
++        return float(min(90, 10 * (2 ** min(failures - 1, 3))))
++
++    def _adsbfo_collect_once(settings, key):
++        global _ADSBFO_ACTIVE
++        # Reject invalid location before penalizing individual providers.
++        _adsbfo_url(_ADSBFO_PRIORITY[0], settings)
++        now = _adsbfo_time.time()
++        attempts = []
++        for name in _ADSBFO_PRIORITY:
++            with _I464_ADSB_LOCK:
++                state = _ADSBFO_STATUS[name]
++                retry_at = float(state['retry_at'])
++            if now < retry_at:
++                attempts.append({'source': name, 'ok': False, 'skipped': True,
++                                 'retry_seconds': round(retry_at - now, 1)})
++                continue
++            # Respect the strict 1 request/second public rate limit on ADSB.fi
++            # even when the user changes the map center rapidly.
++            if name == 'adsb.fi':
++                with _I464_ADSB_LOCK:
++                    since = _adsbfo_time.time() - float(_ADSBFO_STATUS[name]['last_attempt_at'])
++                if since < 1.1:
++                    _adsbfo_time.sleep(1.1 - max(0.0, since))
++            with _I464_ADSB_LOCK:
++                _ADSBFO_STATUS[name]['last_attempt_at'] = _adsbfo_time.time()
++            url = _adsbfo_url(name, settings)
++            began = _adsbfo_time.monotonic()
++            try:
++                data = _adsbfo_json_get(name, url)
++                rows, raw_count, source_now, stale, sig = _i465_adsb_normalize(data, settings)
++                # Normalize once, then keep all existing markers, filters and
++                # interpolated track identity. Only provenance changes.
++                display = {'airplanes.live': 'Airplanes.live',
++                           'adsb.lol': 'ADSB.lol', 'adsb.fi': 'ADSB.fi'}[name]
++                for aircraft in rows:
++                    aircraft['source'] = display
++                elapsed = _adsbfo_time.monotonic() - began
++                with _I464_ADSB_LOCK:
++                    state = _ADSBFO_STATUS[name]
++                    state.update({'failures': 0, 'retry_at': 0.0, 'last_error': '',
++                                  'last_success_at': _adsbfo_time.time(), 'last_http_status': 200})
++                    _ADSBFO_ACTIVE = name
++                    _I464_ADSB_STATE.update({'fetch_seconds': elapsed,
++                                             'fetch_count': int(_I464_ADSB_STATE.get('fetch_count') or 0) + 1,
++                                             'last_success_source_at': _adsbfo_time.time(),
++                                             'active_provider': name})
++                attempts.append({'source': name, 'ok': True,
++                                 'request_seconds': round(elapsed, 3)})
++                note = {'source': name, 'ok': True, 'url': url,
++                        'background': True, 'request_seconds': round(elapsed, 3),
++                        'raw_count': raw_count, 'attempts': attempts,
++                        'raw_array_field': _I464_ADSB_STATE.get('raw_array_field') or '',
++                        'top_level_keys': list(_I464_ADSB_STATE.get('top_level_keys') or [])}
++                _i464_adsb_store(key, settings, rows, raw_count,
++                                 source_now, stale, sig, note)
++                return
++            except Exception as exc:
++                msg = str(exc)[:200]
++                with _I464_ADSB_LOCK:
++                    state = _ADSBFO_STATUS[name]
++                    failures = int(state.get('failures') or 0) + 1
++                    state.update({'failures': failures,
++                                  'retry_at': _adsbfo_time.time() + _adsbfo_cooldown(msg, failures),
++                                  'last_error': msg,
++                                  'last_http_status': int(msg.split()[1]) if msg.startswith('HTTP ') and msg.split()[1].isdigit() else 0})
++                attempts.append({'source': name, 'ok': False, 'error': msg})
++        # Preserve existing last-good snapshot on total provider failure.
++        summary = ', '.join(f"{x['source']}: {x.get('error') or 'cooldown'}" for x in attempts)
++        raise RuntimeError('All ADS-B providers unavailable (' + summary + ')')
++
++    # The existing collector looks up this function dynamically each cycle.
++    _i464_adsb_collect_once = _adsbfo_collect_once
++
++    _adsbfo_base_adsb = tak_map_adsb
++    def tak_map_adsb(query_settings=None):
++        out = _adsbfo_base_adsb(query_settings)
++        if not isinstance(out, dict):
++            return out
++        with _I464_ADSB_LOCK:
++            snapshot = _I464_ADSB_SNAPSHOTS.get(out.get('snapshot_key')) or {}
++            note = dict(snapshot.get('source_note') or {})
++            current = str(note.get('source') or _ADSBFO_ACTIVE or '')
++            health = [dict({'source': name}, **_ADSBFO_STATUS[name]) for name in _ADSBFO_PRIORITY]
++            active_error = str(_I464_ADSB_STATE.get('last_error') or '')
++        # The existing browser worker treats sources[].ok=false as a map-wide
++        # outage. Only the selected provider belongs in that array; detailed
++        # failover diagnostics remain separate in provider_status.
++        out['sources'] = [{'source': current or 'unavailable',
++                           'ok': bool(current and not active_error),
++                           'background': True,
++                           'snapshot': bool(snapshot),
++                           'error': active_error}]
++        out['active_source'] = current or None
++        out['source_priority'] = list(_ADSBFO_PRIORITY)
++        out['provider_status'] = health
++        out['provider_attempts'] = list(note.get('attempts') or [])
++        out['source_mode'] = 'priority_failover_background_snapshot'
++        return out
++    globals()['tak_map_adsb'] = tak_map_adsb
++
++    _adsbfo_base_config = tak_map_config
++    def tak_map_config():
++        cfg = _adsbfo_base_config()
++        if isinstance(cfg, dict):
++            adsb = dict(cfg.get('adsb') or {})
++            adsb.update({'source_mode': 'priority_failover_background_snapshot',
++                         'source_priority': list(_ADSBFO_PRIORITY),
++                         'source_failover': True})
++            cfg['adsb'] = adsb
++        return cfg
++    globals()['tak_map_config'] = tak_map_config
++except Exception as _adsbfo_error:
++    raise RuntimeError('TAK Map ADS-B failover patch failed to load') from _adsbfo_error
++# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---
+--- a/scripts/build_package.sh
++++ b/scripts/build_package.sh
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ 
+-VERSION="${1:-v1.4.0-i620}"
++VERSION="${1:-v1.4.0-i621}"
+ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ DIST="$ROOT/dist"
+ OUT="$DIST/tak-map-${VERSION}.zip"
+@@ -10,7 +10,7 @@
+   echo "ERROR: version must end in an iteration such as i575: $VERSION" >&2
+   exit 2
+ fi
+-ROOT_NAME="tak-map-v${ITERATION#i}"
++ROOT_NAME="tak-map-${VERSION}"
+ STAGE="$(mktemp -d /tmp/tak-map-build-${ITERATION}-XXXXXX)"
+ trap 'rm -rf "$STAGE"' EXIT
+ 
+--- /dev/null
++++ b/scripts/test_adsb_provider_failover_hotfix.py
+@@ -0,0 +1,98 @@
++#!/usr/bin/env python3
++"""Offline ADS-B provider priority/failover smoke tests; never makes network requests."""
++from pathlib import Path
++import threading
++import time
++
++src = (Path(__file__).resolve().parents[1] / 'tak_dashboard.py').read_text()
++start = src.rfind('# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---')
++end = src.find('# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---', start)
++assert start >= 0 and end > start
++snippet = src[start:end + len('# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---')]
++lock = threading.RLock()
++state = {'last_error': '', 'fetch_count': 0}
++snapshots = {}
++
++def normalize(d, settings):
++    assert isinstance(d['ac'], list)
++    return [{'id': e['hex'], 'source':'Airplanes.live', 'lat': e.get('lat', 34), 'lon': e.get('lon', -118)} for e in d['ac']], len(d['ac']), 12345, 90, ','.join(e['hex'] for e in d['ac'])
++
++def store(key, settings, rows, raw_count, source_now, stale, sig, note):
++    snapshots[key] = {'source_note': note, 'aircraft': list(rows), 'key': key}
++    state['last_error'] = ''
++
++def base_adsb(query_settings=None):
++    return {'ok': True, 'snapshot_key': 'A', 'sources': [{'source': 'airplanes.live', 'ok': True}]}
++
++def base_config():
++    return {'adsb': {'settings': {}}}
++
++ns = {'_I464_ADSB_LOCK': lock, '_I464_ADSB_STATE':state, '_I464_ADSB_SNAPSHOTS': snapshots,
++      '_i465_adsb_normalize':normalize, '_i464_adsb_store':store,
++      'tak_map_adsb':base_adsb, 'tak_map_config':base_config,
++      '_I465_ADSB_POOL':None}
++exec(compile(snippet, 'adsb_failover_hotfix', 'exec'), ns)
++settings={'center_lat':34.0, 'center_lon': -118.0, 'radius_miles':50}
++assert ns['_ADSBFO_PRIORITY'] == ('airplanes.live', 'adsb.lol', 'adsb.fi')
++assert '/v3/lat/34.000000/lon/-118.000000/dist/44' in ns['_adsbfo_url']('adsb.fi',settings)
++assert '/v2/point/34.000000/-118.000000/44' in ns['_adsbfo_url']('adsb.lol', settings)
++assert '/v2/point/34.000000/-118.000000/44' in ns['_adsbfo_url']('airplanes.live', settings)
++
++calls=[]
++def fake(name, url):
++    calls.append(name)
++    if name == 'airplanes.live':raise RuntimeError('HTTP 403')
++    return {'ac':[{'hex':'abc123'}]}
++ns['_adsbfo_json_get']=fake
++ns['_i464_adsb_collect_once'](settings, 'A')
++assert calls == ['airplanes.live','adsb.lol'], calls
++assert ns['tak_map_adsb']()['active_source'] == 'adsb.lol'
++assert snapshots['A']['aircraft'][0]['source'] == 'ADSB.lol'
++assert ns['tak_map_adsb']()['sources'][0]['ok'] is True
++assert ns['tak_map_adsb']()['source_priority'] == list(ns['_ADSBFO_PRIORITY'])
++assert ns['_ADSBFO_STATUS']['airplanes.live']['retry_at'] > time.time()
++
++calls=[]
++def second(name,url):
++    calls.append(name)
++    if name == 'adsb.lol': raise RuntimeError('HTTP 429')
++    return {'ac':[{'hex':'def123'}]}
++ns['_adsbfo_json_get']=second
++ns['_i464_adsb_collect_once'](settings,'A')
++assert calls == ['adsb.lol','adsb.fi'],calls
++assert ns['tak_map_adsb']()['active_source'] == 'adsb.fi'
++assert snapshots['A']['aircraft'][0]['source'] == 'ADSB.fi'
++assert ns['_ADSBFO_STATUS']['adsb.lol']['retry_at'] > time.time()
++
++# Higher priority comes back; always prefer it when cooldown expires.
++ns['_ADSBFO_STATUS']['airplanes.live']['retry_at'] = 0
++calls=[]
++ns['_adsbfo_json_get']=lambda name,url: (calls.append(name) or {'ac':[]})
++ns['_i464_adsb_collect_once'](settings,'A')
++assert calls == ['airplanes.live'],calls
++assert ns['tak_map_adsb']()['active_source']=='airplanes.live'
++assert snapshots['A']['aircraft']==[], 'a valid empty array must not trigger failover'
++
++# All unavailable: no new snapshot replaces the last good.
++original=snapshots['A']
++for p in ns['_ADSBFO_PRIORITY']:ns['_ADSBFO_STATUS'][p]['retry_at'] = 0
++ns['_adsbfo_json_get']=lambda name,url: (_ for _ in ()).throw(RuntimeError('HTTP 503'))
++try:ns['_i464_adsb_collect_once'](settings,'A')
++except RuntimeError as ex:
++    assert 'All ADS-B providers unavailable' in str(ex)
++else:raise AssertionError('Expected failover chain to raise')
++assert snapshots['A'] is original
++
++# A malformed HTTP 200 body is an error, not a legitimate empty map.
++for bad in [b'not-json', b'{}', b'{"ac":"not an array"}']:
++    class Resp:
++        status=200
++        data=bad
++        def release_conn(self):pass
++    class Pool:
++        def request(self,*a,**kw):return Resp()
++    ns['_I465_ADSB_POOL']=Pool()
++    try:ns['_adsbfo_json_get']('adsb.lol','https://api.adsb.lol/v2/point/34/-118/40')
++    except RuntimeError:pass
++    else:raise AssertionError(f'Expected invalid-data detection: {bad!r}')
++print('PASS: ADS-B prioritized fallback, cooldown, recovery, empty response, malformed response and snapshot retention')
+--- a/scripts/test_release_i620.py
++++ b/scripts/test_release_i620.py
+@@ -67,6 +67,7 @@
+             continue
+         if rel=='tak_dashboard.py':
+             text=(ROOT/rel).read_text()
++            text=remove_block(text,'# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---','# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---')
+             text=remove_block(text,'# --- TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---','# --- end TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---')
+             text=remove_block(text,'# --- TAK Map i618 public 1.4.0 release and shared context sizing finalization ---','# --- end TAK Map i618 public 1.4.0 release and shared context sizing finalization ---',special=True)
+             text=remove_block(text,'# --- TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---','# --- end TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---',special=True)
+--- /dev/null
++++ b/scripts/test_release_i621.py
+@@ -0,0 +1,85 @@
++#!/usr/bin/env python3
++"""Release contract for TAK Map 1.4.0 i621, retaining i620 protected baseline checks."""
++from pathlib import Path
++import hashlib, json
++
++ROOT=Path(__file__).resolve().parents[1]
++
++def sha(path: Path)->str:
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++def remove_block(text: str, start: str, end: str, special: bool=False)->str:
++    assert start in text and end in text, (start,end)
++    a=text.index(start); b=text.index(end,a)+len(end)
++    if special:
++        return text[:a-1]+text[b+2:]
++    return text[:a].rstrip('\n')+'\n\n'+text[b:].lstrip('\n')
++
++def main()->int:
++    assert (ROOT/'VERSION').read_text().strip()=='1.4.0-i621'
++    manifest=json.loads((ROOT/'assets/tak-map-deferred-i553.json').read_text())
++    assert manifest['version']=='1.4.0-i621'
++    sidebar=(ROOT/'assets/tak-map-sidebar-performance-v491.js').read_text()
++    sidebar_rows=[r for r in manifest['scripts'] if r.get('id')=='takMapSidebarPerformanceLoaderV476']
++    assert len(sidebar_rows)==1 and sidebar_rows[0]['code']==sidebar
++    assert "const VERSION='i602';" not in sidebar
++    assert "const DEFAULT_VERSION='i621';" in sidebar and "__takMapReleaseIdentity" in sidebar
++    rows=[r for r in manifest['scripts'] if r.get('id')=='takMapGatewayDataLoaderV476']
++    asset=(ROOT/'assets/tak-map-gateway-data-v491.js').read_text()
++    assert len(rows)==1 and rows[0]['code']==asset
++    adsb_rows=[r for r in manifest['scripts'] if r.get('id')=='TakMapAdsbSidebarI610']
++    adsb_asset=(ROOT/'assets/tak-map-adsb-sidebar-i610.js').read_text()
++    assert len(adsb_rows)==1 and adsb_rows[0]['code']==adsb_asset
++    assert "const V='i621',POLL_MS=300000;" in asset
++    package=(ROOT/'assets/tak-map-package-i580.js').read_text()
++    for marker in (
++        "const VERSION='i621';","const PACKAGE='1.4.0-i621';","window.TakMapContextPanelSizingI620",
++        'content-aware','scrollbar-gutter:stable','resolvePairs','horizontal scrolling',
++        'window.TakMapPackageI620=window.TakMapPackageI618=',
++        'gateway-data-nifc-i620','fixIdentityNode','nifcContentWidth',
++    ):
++        assert marker in package, marker
++    startup=(ROOT/'assets/tak-map-startup-i553.js').read_text()
++    assert '/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i621' in startup
++    context=(ROOT/'assets/tak-map-context-sidebar-i572.js').read_text()
++    assert 'tak-context-top-overlay-i618' in context
++    assert 'gateway-data-nifc-i620' in context and 'nifcContentWidthI620' in context
++    adsb=(ROOT/'assets/tak-map-adsb-sidebar-i610.js').read_text()
++    assert 'sharedDynamicWidthI618' in adsb and 'scrollbar-gutter:stable' in adsb
++    dashboard=(ROOT/'tak_dashboard.py').read_text()
++    for marker in ('_I620_PACKAGE_VERSION = \'1.4.0-i621\'','context_panel_sizing_i620','tak-map-package-i580.js?v=1.4.0-i621','__takMapIdentityAuthorityI620','__takMapIterationTextGuardV476'):
++        assert marker in dashboard, marker
++    for rel,markers in {
++        'README.md':['# TAK Map v1.4.0 i621','tak-map-v1.4.0-i621.zip','docs/CONTEXT-PANELS.md'],
++        'docs/INSTALL.md':['1.4.0 i621','tak-map-v1.4.0-i621'],
++        'docs/RELEASES.md':['## 1.4.0-i620','NIFC Fire Perimeter context panels'],
++        'docs/CONTEXT-PANELS.md':['ADS-B aircraft','Local Data','Data Sync objects','scrollbar gutter','Multiple panels'],
++        'docs/TROUBLESHOOTING.md':['Context panel width or scrollbar','1.4.0 i620'],
++        'CONFIGURATION.md':['Context panel sizing in 1.4.0 i620','ADS-B, Local Data, Data Sync, Gateway Data'],
++        'docs/CONFIGURATION.md':['Context panels in 1.4.0 i620','CONTEXT-PANELS.md'],
++        'CHANGELOG.md':['## 1.4.0-i620','NIFC Fire Perimeter context panels'],
++    }.items():
++        text=(ROOT/rel).read_text()
++        for marker in markers: assert marker in text,(rel,marker)
++    expected=json.loads((ROOT/'reports/i613-data-sync-protected-hashes.json').read_text())
++    for rel,value in expected.items():
++        if rel=='assets/tak-map-context-sidebar-i572.js':
++            continue
++        if rel=='tak_dashboard.py':
++            text=(ROOT/rel).read_text()
++            text=remove_block(text,'# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---','# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---')
++            text=remove_block(text,'# --- TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---','# --- end TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---')
++            text=remove_block(text,'# --- TAK Map i618 public 1.4.0 release and shared context sizing finalization ---','# --- end TAK Map i618 public 1.4.0 release and shared context sizing finalization ---',special=True)
++            text=remove_block(text,'# --- TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---','# --- end TAK Map i617 Gateway Data overlay, scrolling, and regional USGS units ---',special=True)
++            text=remove_block(text,'# --- TAK Map i616 curated Gateway Data context finalization ---','# --- end TAK Map i616 curated Gateway Data context finalization ---',special=True)
++            text=remove_block(text,'# --- TAK Map i615 Gateway Data read-only contextual panel cache finalization ---','# --- end TAK Map i615 Gateway Data read-only contextual panel cache finalization ---')
++            text=remove_block(text,'# --- TAK Map i613 Source Extension drawing live-marker suppression ---','# --- end TAK Map i613 Source Extension drawing live-marker suppression ---')
++            actual=hashlib.sha256(text.encode()).hexdigest()
++        else:
++            actual=sha(ROOT/rel)
++        assert actual==value,f'protected baseline changed: {rel}'
++    print('TAK Map 1.4.0 i621 release, docs, shared context sizing, and protected baseline contract passed')
++    return 0
++
++if __name__=='__main__':
++    raise SystemExit(main())
+--- a/scripts/validate_package.sh
++++ b/scripts/validate_package.sh
+@@ -3,9 +3,9 @@
+ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ cd "$ROOT"
+ run_step(){ local label="$1" limit="$2"; shift 2; echo "[i620] ${label}"; timeout --foreground --signal=TERM --kill-after=20s "$limit" "$@"; }
+-run_step "release, docs, shared sizing, and protected hashes" 240s python3 scripts/test_release_i620.py
++run_step "release, docs, shared sizing, and protected hashes" 240s python3 scripts/test_release_i621.py
+ run_step "Python compilation" 300s python3 -m py_compile tak_dashboard.py \
+-  scripts/test_release_i620.py \
++  scripts/test_release_i621.py \
+   scripts/test_context_panel_sizing_i620_browser.py \
+   scripts/test_gateway_data_deferred_runtime_i620.py \
+   scripts/test_gateway_data_dynamic_sources_i620.py \
+@@ -19,7 +19,7 @@
+ run_step "ADS-B JavaScript syntax" 120s node --check assets/tak-map-adsb-sidebar-i610.js
+ run_step "Startup JavaScript syntax" 120s node --check assets/tak-map-startup-i553.js
+ run_step "Authoritative sidebar anti-flicker browser workflow" 300s python3 scripts/test_sidebar_performance_browser.py
+-run_step "Deferred manifest JSON" 120s python3 -c "import json; p=json.load(open('assets/tak-map-deferred-i553.json')); assert p['version']=='1.4.0-i620'; assert p['count']==len(p['scripts'])"
++run_step "Deferred manifest JSON" 120s python3 -c "import json; p=json.load(open('assets/tak-map-deferred-i553.json')); assert p['version']=='1.4.0-i621'; assert p['count']==len(p['scripts'])"
+ run_step "Installer shell syntax" 120s bash -n install.sh
+ run_step "Uninstaller shell syntax" 120s bash -n uninstall.sh
+ run_step "Authoritative deferred Gateway Data i620 contract" 120s python3 scripts/test_gateway_data_deferred_runtime_i620.py
+@@ -34,4 +34,4 @@
+ run_step "NWS Gateway Data style contract" 120s python3 scripts/test_nws_style_i519.py
+ run_step "ADS-B browser workflow" 300s python3 scripts/test_adsb_sidebar_i610_browser.py
+ run_step "i602 deletion identity regression" 600s env PYTHONWARNINGS='ignore::SyntaxWarning' python3 scripts/test_data_sync_deletion_identity_i602.py
+-echo "TAK Map 1.4.0 i620 shared context sizing, i617 curated Gateway Data, i613 EUD suppression, i612 deferred runtime, i611 Source Extensions, i610 ADS-B, and i602 Data Sync validation passed"
++echo "TAK Map 1.4.0 i621 shared context sizing, i617 curated Gateway Data, i613 EUD suppression, i612 deferred runtime, i611 Source Extensions, i610 ADS-B, and i602 Data Sync validation passed"
+--- a/tak_dashboard.py
++++ b/tak_dashboard.py
+@@ -66424,13 +66424,13 @@
+ 
+ # --- TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---
+ try:
+-    _I620_VERSION = 'i620'
+-    _I620_PACKAGE_VERSION = '1.4.0-i620'
++    _I620_VERSION = 'i621'
++    _I620_PACKAGE_VERSION = '1.4.0-i621'
+     _I620_PUBLIC_VERSION = '1.4.0'
+     _I620_IDENTITY_GUARD = r'''<script id="takMapIdentityGuardI620">
+ (function(){
+   'use strict';
+-  const RELEASE='1.4.0',ITERATION='i620',PACKAGE='1.4.0-i620';
++  const RELEASE='1.4.0',ITERATION='i621',PACKAGE='1.4.0-i621';
+   const selector='.version-panel .release-main,.version-panel .version-product,.iteration-chip,.iteration-marker,[data-iteration]';
+   const nativeSetAttribute=Element.prototype.setAttribute;
+   const nativeGetAttribute=Element.prototype.getAttribute;
+@@ -66499,17 +66499,17 @@
+         html = str(html or '')
+         html = html.replace('1.4.0-i618', _I620_PACKAGE_VERSION)
+         replacements = {
+-            r'/assets/runtime/tak-map-context-sidebar-i572\.js\?v=[^"\']+': '/assets/runtime/tak-map-context-sidebar-i572.js?v=1.4.0-i620',
+-            r'/assets/runtime/tak-map-adsb-sidebar-i610\.js\?v=[^"\']+': '/assets/runtime/tak-map-adsb-sidebar-i610.js?v=1.4.0-i620',
+-            r'/assets/runtime/tak-map-package-i580\.js\?v=[^"\']+': '/assets/runtime/tak-map-package-i580.js?v=1.4.0-i620',
+-            r'/assets/runtime/tak-map-startup-i553\.js\?v=[^"\']+': '/assets/runtime/tak-map-startup-i553.js?v=1.4.0-i620',
++            r'/assets/runtime/tak-map-context-sidebar-i572\.js\?v=[^"\']+': '/assets/runtime/tak-map-context-sidebar-i572.js?v=1.4.0-i621',
++            r'/assets/runtime/tak-map-adsb-sidebar-i610\.js\?v=[^"\']+': '/assets/runtime/tak-map-adsb-sidebar-i610.js?v=1.4.0-i621',
++            r'/assets/runtime/tak-map-package-i580\.js\?v=[^"\']+': '/assets/runtime/tak-map-package-i580.js?v=1.4.0-i621',
++            r'/assets/runtime/tak-map-startup-i553\.js\?v=[^"\']+': '/assets/runtime/tak-map-startup-i553.js?v=1.4.0-i621',
+         }
+         for pattern, value in replacements.items():
+             html = re.sub(pattern, value, html)
+         html = re.sub(r'(<div class="version-product">)[^<]*(</div>)', r'\1TAK Map\2', html)
+         html = re.sub(r'(<span class="release-main">)[^<]*(</span>)', r'\g<1>1.4.0\2', html)
+-        html = re.sub(r'(<span class="iteration-chip">)(?:i|v)\d+(</span>)', r'\1i620\2', html)
+-        html = re.sub(r'(<div class="iteration-marker">)(?:i|v)\d+(</div>)', r'\1i620\2', html)
++        html = re.sub(r'(<span class="iteration-chip">)(?:i|v)\d+(</span>)', r'\1i621\2', html)
++        html = re.sub(r'(<div class="iteration-marker">)(?:i|v)\d+(</div>)', r'\1i621\2', html)
+         html = re.sub(r'<script id="takMapIdentityGuardI620">.*?</script>\s*', '', html, flags=re.S)
+         if '</head>' in html:
+             html = html.replace('</head>', _I620_IDENTITY_GUARD + '</head>', 1)
+@@ -66546,6 +66546,202 @@
+         pass
+ # --- end TAK Map i620 sidebar identity stabilization and NIFC intrinsic width ---
+ 
++# --- TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---
++# Keeps the i465/i491 single background collector and existing browser worker.
++# Failover is SERVER-SIDE, so cross-origin browser restrictions do not apply.
++try:
++    import json as _adsbfo_json
++    import math as _adsbfo_math
++    import time as _adsbfo_time
++    from urllib.request import Request as _adsbfo_Request, urlopen as _adsbfo_urlopen
++
++    _ADSBFO_PRIORITY = ('airplanes.live', 'adsb.lol', 'adsb.fi')
++    _ADSBFO_STATUS = {
++        name: {'failures': 0, 'retry_at': 0.0, 'last_error': '',
++               'last_success_at': 0.0, 'last_http_status': 0, 'last_attempt_at': 0.0}
++        for name in _ADSBFO_PRIORITY
++    }
++    _ADSBFO_ACTIVE = ''
++    _ADSBFO_USER_AGENT = 'TAKMap/1.4.0 ADSB-multi-source (aircraft tracking; contact project administrator)'
++
++    def _adsbfo_url(name, settings):
++        try:
++            lat = float(settings['center_lat'])
++            lon = float(settings['center_lon'])
++            miles = float(settings.get('radius_miles') or 50)
++            if not (-90 <= lat <= 90 and -180 <= lon <= 180 and _adsbfo_math.isfinite(miles)):
++                raise ValueError('invalid center or radius')
++            # Sidebar uses statute miles; provider APIs require nautical miles.
++            nm = min(250, max(1, int(_adsbfo_math.ceil(miles / 1.150779448))))
++        except (KeyError, ValueError, TypeError, OverflowError):
++            raise ValueError('ADS-B center/radius is not configured')
++        center = f'{lat:.6f}/{lon:.6f}'
++        if name == 'airplanes.live':
++            return f'https://api.airplanes.live/v2/point/{center}/{nm}'
++        if name == 'adsb.lol':
++            return f'https://api.adsb.lol/v2/point/{center}/{nm}'
++        if name == 'adsb.fi':
++            return f'https://opendata.adsb.fi/api/v3/lat/{lat:.6f}/lon/{lon:.6f}/dist/{nm}'
++        raise ValueError('Unsupported ADS-B provider')
++
++    def _adsbfo_json_get(name, url):
++        headers = {'Accept': 'application/json', 'User-Agent': _ADSBFO_USER_AGENT}
++        pool = globals().get('_I465_ADSB_POOL')
++        if pool is not None:
++            timeout_type = getattr(globals().get('_i465_urllib3'), 'Timeout', None)
++            options = {'connect': 2.5, 'read': 4.0}
++            req_kwargs = {'headers': headers, 'preload_content': True,
++                          'redirect': False, 'retries': False}
++            if timeout_type is not None:
++                req_kwargs['timeout'] = timeout_type(**options)
++            resp = pool.request('GET', url, **req_kwargs)
++            try:
++                status = int(resp.status)
++                if status != 200:
++                    raise RuntimeError(f'HTTP {status}')
++                raw = bytes(resp.data or b'')
++            finally:
++                resp.release_conn()
++        else:
++            from urllib.error import HTTPError as _adsbfo_HTTPError
++            req = _adsbfo_Request(url, headers=headers)
++            try:
++                with _adsbfo_urlopen(req, timeout=6.5) as resp:
++                    raw = resp.read(8 * 1024 * 1024 + 1)
++            except _adsbfo_HTTPError as exc:
++                raise RuntimeError(f'HTTP {exc.code}') from exc
++        if len(raw) > 8 * 1024 * 1024:
++            raise RuntimeError('Response exceeds 8 MB')
++        try:
++            doc = _adsbfo_json.loads(raw.decode('utf-8'))
++        except (UnicodeDecodeError, ValueError) as exc:
++            raise RuntimeError('Invalid JSON') from exc
++        if not isinstance(doc, dict) or not (isinstance(doc.get('ac'), list) or isinstance(doc.get('aircraft'), list)):
++            raise RuntimeError('Invalid aircraft response (missing ac/aircraft array)')
++        # ac: [] is a valid answer and must never trigger failover.
++        return doc
++
++    def _adsbfo_cooldown(error, failures):
++        msg = str(error)
++        if 'HTTP 401' in msg or 'HTTP 403' in msg:
++            return 300.0  # Access restrictions / feeder-only API
++        if 'HTTP 429' in msg:
++            return 90.0   # Provider rate-limited
++        return float(min(90, 10 * (2 ** min(failures - 1, 3))))
++
++    def _adsbfo_collect_once(settings, key):
++        global _ADSBFO_ACTIVE
++        # Reject invalid location before penalizing individual providers.
++        _adsbfo_url(_ADSBFO_PRIORITY[0], settings)
++        now = _adsbfo_time.time()
++        attempts = []
++        for name in _ADSBFO_PRIORITY:
++            with _I464_ADSB_LOCK:
++                state = _ADSBFO_STATUS[name]
++                retry_at = float(state['retry_at'])
++            if now < retry_at:
++                attempts.append({'source': name, 'ok': False, 'skipped': True,
++                                 'retry_seconds': round(retry_at - now, 1)})
++                continue
++            # Respect the strict 1 request/second public rate limit on ADSB.fi
++            # even when the user changes the map center rapidly.
++            if name == 'adsb.fi':
++                with _I464_ADSB_LOCK:
++                    since = _adsbfo_time.time() - float(_ADSBFO_STATUS[name]['last_attempt_at'])
++                if since < 1.1:
++                    _adsbfo_time.sleep(1.1 - max(0.0, since))
++            with _I464_ADSB_LOCK:
++                _ADSBFO_STATUS[name]['last_attempt_at'] = _adsbfo_time.time()
++            url = _adsbfo_url(name, settings)
++            began = _adsbfo_time.monotonic()
++            try:
++                data = _adsbfo_json_get(name, url)
++                rows, raw_count, source_now, stale, sig = _i465_adsb_normalize(data, settings)
++                # Normalize once, then keep all existing markers, filters and
++                # interpolated track identity. Only provenance changes.
++                display = {'airplanes.live': 'Airplanes.live',
++                           'adsb.lol': 'ADSB.lol', 'adsb.fi': 'ADSB.fi'}[name]
++                for aircraft in rows:
++                    aircraft['source'] = display
++                elapsed = _adsbfo_time.monotonic() - began
++                with _I464_ADSB_LOCK:
++                    state = _ADSBFO_STATUS[name]
++                    state.update({'failures': 0, 'retry_at': 0.0, 'last_error': '',
++                                  'last_success_at': _adsbfo_time.time(), 'last_http_status': 200})
++                    _ADSBFO_ACTIVE = name
++                    _I464_ADSB_STATE.update({'fetch_seconds': elapsed,
++                                             'fetch_count': int(_I464_ADSB_STATE.get('fetch_count') or 0) + 1,
++                                             'last_success_source_at': _adsbfo_time.time(),
++                                             'active_provider': name})
++                attempts.append({'source': name, 'ok': True,
++                                 'request_seconds': round(elapsed, 3)})
++                note = {'source': name, 'ok': True, 'url': url,
++                        'background': True, 'request_seconds': round(elapsed, 3),
++                        'raw_count': raw_count, 'attempts': attempts,
++                        'raw_array_field': _I464_ADSB_STATE.get('raw_array_field') or '',
++                        'top_level_keys': list(_I464_ADSB_STATE.get('top_level_keys') or [])}
++                _i464_adsb_store(key, settings, rows, raw_count,
++                                 source_now, stale, sig, note)
++                return
++            except Exception as exc:
++                msg = str(exc)[:200]
++                with _I464_ADSB_LOCK:
++                    state = _ADSBFO_STATUS[name]
++                    failures = int(state.get('failures') or 0) + 1
++                    state.update({'failures': failures,
++                                  'retry_at': _adsbfo_time.time() + _adsbfo_cooldown(msg, failures),
++                                  'last_error': msg,
++                                  'last_http_status': int(msg.split()[1]) if msg.startswith('HTTP ') and msg.split()[1].isdigit() else 0})
++                attempts.append({'source': name, 'ok': False, 'error': msg})
++        # Preserve existing last-good snapshot on total provider failure.
++        summary = ', '.join(f"{x['source']}: {x.get('error') or 'cooldown'}" for x in attempts)
++        raise RuntimeError('All ADS-B providers unavailable (' + summary + ')')
++
++    # The existing collector looks up this function dynamically each cycle.
++    _i464_adsb_collect_once = _adsbfo_collect_once
++
++    _adsbfo_base_adsb = tak_map_adsb
++    def tak_map_adsb(query_settings=None):
++        out = _adsbfo_base_adsb(query_settings)
++        if not isinstance(out, dict):
++            return out
++        with _I464_ADSB_LOCK:
++            snapshot = _I464_ADSB_SNAPSHOTS.get(out.get('snapshot_key')) or {}
++            note = dict(snapshot.get('source_note') or {})
++            current = str(note.get('source') or _ADSBFO_ACTIVE or '')
++            health = [dict({'source': name}, **_ADSBFO_STATUS[name]) for name in _ADSBFO_PRIORITY]
++            active_error = str(_I464_ADSB_STATE.get('last_error') or '')
++        # The existing browser worker treats sources[].ok=false as a map-wide
++        # outage. Only the selected provider belongs in that array; detailed
++        # failover diagnostics remain separate in provider_status.
++        out['sources'] = [{'source': current or 'unavailable',
++                           'ok': bool(current and not active_error),
++                           'background': True,
++                           'snapshot': bool(snapshot),
++                           'error': active_error}]
++        out['active_source'] = current or None
++        out['source_priority'] = list(_ADSBFO_PRIORITY)
++        out['provider_status'] = health
++        out['provider_attempts'] = list(note.get('attempts') or [])
++        out['source_mode'] = 'priority_failover_background_snapshot'
++        return out
++    globals()['tak_map_adsb'] = tak_map_adsb
++
++    _adsbfo_base_config = tak_map_config
++    def tak_map_config():
++        cfg = _adsbfo_base_config()
++        if isinstance(cfg, dict):
++            adsb = dict(cfg.get('adsb') or {})
++            adsb.update({'source_mode': 'priority_failover_background_snapshot',
++                         'source_priority': list(_ADSBFO_PRIORITY),
++                         'source_failover': True})
++            cfg['adsb'] = adsb
++        return cfg
++    globals()['tak_map_config'] = tak_map_config
++except Exception as _adsbfo_error:
++    raise RuntimeError('TAK Map ADS-B failover patch failed to load') from _adsbfo_error
++# --- end TAK Map v1.4.0 i620 ADS-B provider priority / failover hotfix ---
++
+ # Start only after every iteration wrapper and runtime route has been registered.
+ if __name__=='__main__':
+     main()
