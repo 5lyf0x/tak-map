@@ -1,8 +1,0 @@
-TAK Map v1.4.0-i656 — release validation
-Baseline: i655. Source baseline archive and extracted copy remain untouched.
-Change: direct GeoJSON upload of all resolved road vertices, not legacy anchor-point save handling.
-Full scripts/validate_package.sh regression: PASS.
-Additional i656 source save contract and interactive Chromium save/readback simulation: PASS.
-Bash/Python/JavaScript syntactic checks and NDM/Valhalla regression coverage: PASS.
-ZIP integrity, SHA256SUMS, fresh extraction byte comparison and executable permissions: verified during packaging.
-No production server installation, live Valhalla round-trip or native Mission save performed in this environment.

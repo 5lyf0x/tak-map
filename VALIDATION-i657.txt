@@ -1,9 +1,0 @@
-TAK Map v1.4.0-i657 — release validation
-Baseline: i656. Baseline ZIP remains untouched.
-Change: the actual Save Route modal delegates to snapped-geometry uploader, retains route dialog metadata and distance, and prevents saving disconnected legs.
-Full scripts/validate_package.sh regression: PASS.
-Interactive Chromium actual Save Route dialog with legacy override plus editor, and editor-only regression: PASS.
-Inherited NDM, Valhalla, route, map, Mission, Data Sync, ADS-B, Gateway, certificate tests: PASS.
-Shell, Python and JavaScript syntax checks: PASS.
-ZIP CRC, SHA256SUMS, fresh extraction byte comparison and executable permissions: verified during packaging.
-No production server installation, live Valhalla route-save round-trip or native Mission save performed here.

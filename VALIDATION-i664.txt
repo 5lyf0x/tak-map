@@ -1,9 +1,0 @@
-TAK Map v1.4.0-i664 source validation — November 7, 2026
-Rollback i663 archive SHA-256: e745ea3d144e72dd6894f53d44fbe070e4cfe00ce8ac06e5022696e38cd92754; unchanged.
-14 i661–i664 release contract tests: PASS. 10 i660 Mesh transport/journal tests: PASS.
-Actual Gateway Data AIS popup function isolated Chromium rendering: PASS (WYATT M, 10 aligned field rows, heading spans full grid, safe HTML escaping, non-AIS unaffected).
-MESH SYNC browser interaction and independent network-toggle/collapse regression: PASS (no errors, correct state colors/38×20 switch, status bullet removed).
-Node.js Gateway Data JS syntax check: PASS; Python server compilation: PASS; Bash installer syntax: PASS.
-Source functionality unchanged outside AIS presentation, Mesh header CSS and release identity/installer documentation/tests.
-Live host validation: NOT TESTED; AISstream/Open Waters live transport: NOT TESTED; TAK Rig/XTAK Android/Linux interoperability: NOT TESTED.
-Fresh ZIP extract/file hashes and archive integrity: verified in packaging script; no mismatches.

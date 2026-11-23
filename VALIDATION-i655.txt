@@ -1,9 +1,0 @@
-TAK Map v1.4.0-i655 — Release validation
-Baseline: i654 (untouched rollback source/archive).
-Source regression: PASS, 57 grouped validation steps (scripts/validate_package.sh).
-Additional i655 coverage: NDM rebuild detection/history/unregister; delayed Leaflet initialization; Roads default; 20px snapping; error on out-of-graph legs.
-Python compilation, Bash installer syntax and JavaScript syntax: PASS.
-Source ZIP excludes APKs, keystores, build caches, private runtime data and compiled binaries.
-ZIP CRC, SHA256SUMS, fresh extraction comparison, executable bits: evaluated during packaging.
-IMPORTANT: No live TAK Map/Valhalla service activation or actual multi-state Valhalla routing performed on the user's gateway.
-Cross-state connected routing is NOT implemented until a unified NDM graph is available.

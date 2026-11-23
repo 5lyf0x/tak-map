@@ -1,8 +1,0 @@
-TAK Map v1.4.0-i658 — complete source release validation
-Baseline: released i657 ZIP preserved unchanged as rollback.
-Verified changes: canonical deferred/inline Save Route; POST + GET persisted geometry comparison; Roads/Manual selector recovery; interactive road-following preview; upward-growing distance HUD; midpoint route-distance labels; persisted GeoJSON leg metadata.
-Production-script 253-vertex simulated route, delayed legacy owner, Save Route click and imported redraw: PASS.
-Inherited full regression via scripts/validate_package.sh: PASS (60 groups).
-JavaScript, Python, installer shell syntax: PASS.
-ZIP CRC, SHA256SUMS, executable bits and fresh extraction exact byte comparison: checked during packaging.
-No live Valhalla routing host or actual server installation was available in this environment; live route-save confirmation remains necessary.

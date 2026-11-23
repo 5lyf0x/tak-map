@@ -1,9 +1,0 @@
-TAK Map v1.4.0-i663 source validation — 2026-11-06
-Baseline i662 source ZIP SHA-256: 90ef60bbe61188f6ab4f73e9333022ecaa34d0219d041c8d189a8d3b8a526f2b; preserved unchanged.
-21 automated Python regression tests: PASS (i661 sidebar/AIS, i662 Mesh/Mission, i663 header, i660 transport/journal).
-Standalone i663 rendered Chromium UI using set_content and mocked API responses: PASS (not-enrolled, authenticated connected, header order, legibility, collapse/re-expand, no control API call from collapse, toggle while collapsed, Mission action states, no JS errors).
-Python syntax compilation: PASS. Bash install.sh -n: PASS. Embedded script syntax in i663 HTML via Node: PASS.
-Final assembled i663 sidebar in Python: one MESH SYNC between GATEWAY DATA and OTS DATA SYNC; chip/switch/collapse arrow in same header: PASS.
-Real TAK Map host deployment/full-page browser run: NOT TESTED. Chromium navigation to loopback is blocked by environment; tested isolated actual card with set_content instead.
-TAK Rig/XTAK Data Sync real Android/Linux interoperability: NOT TESTED. Mesh protocol unchanged from i662.
-ZIP integrity and fresh extraction file-by-file SHA-256 comparison: performed during packaging.
