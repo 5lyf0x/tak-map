@@ -13,7 +13,7 @@ def main()->int:
     html='''<!doctype html><html><head><meta charset="utf-8"></head><body>
     <aside class="sidebar">
       <input id="layerSearch"><div id="mapStatus">Ready</div>
-      <div class="panel collapsible" id="basemapPanel"><h2>Basemap <span class="panel-toggle">▾</span></h2><div class="panel-body"><select id="basemapSelect"><option>Topo</option></select></div><div id="basemapCacheControlsV462"><label><input type="checkbox"> Basemap Pre-cache</label></div></div>
+      <div class="panel collapsible" id="basemapPanel"><h2>Basemap <span class="panel-toggle">▾</span></h2><div class="panel-body"><select id="basemapSelect"><option>Topo</option></select></div></div>
     </aside>
     <div id="map" class="leaflet-container"></div>
     <div id="routeMiniToolbar"><button title="Undo Last Point">Undo</button><button title="Clear Route">Clear</button><button title="Cancel" onclick="setActiveMapTool('move')">Cancel</button></div>
@@ -66,7 +66,7 @@ def main()->int:
         page.wait_for_function('window.TakMapToolUxV486 && window.TakMapToolUxV486.diagnostics().routeCancelInstalled',timeout=5000)
         result=page.evaluate('''async()=>{
           const tick=()=>new Promise(r=>setTimeout(r,30));
-          const mapEl=document.getElementById('map'),status=document.getElementById('mapStatus'),panel=document.getElementById('basemapPanel'),cache=document.getElementById('basemapCacheControlsV462');
+          const mapEl=document.getElementById('map'),status=document.getElementById('mapStatus');
           setActiveMapTool('pointdropper');await tick();const pointCross=mapEl.classList.contains('tak-create-crosshair-v491');
           setActiveMapTool('draw');await tick();const drawCross=mapEl.classList.contains('tak-create-crosshair-v491');
           setActiveMapTool('measure');await tick();const measureCross=mapEl.classList.contains('tak-create-crosshair-v491');
@@ -83,9 +83,7 @@ def main()->int:
           v233RouteMapClick({lat:34.2,lng:-118.2});map.emit('mousemove',{latlng:{lat:34.3,lng:-118.3}});await tick();const previewAfter=TakMapToolUxV486.diagnostics().routePreviewActive;
           const cancel=document.querySelector('.tak-route-cancel-v491');const clear=document.querySelector('.tak-route-clear-v491');cancel.click();await tick();
           const cancelCleared=v233RouteState.points.length===0&&activeMapTool==='move'&&!mapEl.classList.contains('tak-create-crosshair-v491')&&!TakMapToolUxV486.diagnostics().routePreviewActive&&!document.getElementById('routeEditPanel').classList.contains('active');
-          panel.classList.add('collapsed');TakMapToolUxV486.repairBasemapPrecache();const hiddenCollapsed=cache.hidden&&getComputedStyle(cache).display==='none';
-          panel.classList.remove('collapsed');TakMapToolUxV486.repairBasemapPrecache();const shownExpanded=!cache.hidden&&getComputedStyle(cache).display!=='none';
-          return {pointCross,drawCross,measureCross,measurePreview,previewLineDashed,switchClearedMeasure,escapeClearedMeasure,colorClosed,routeCross,previewBefore,previewAfter,cancelCleared,cancelTitle:cancel.title,cancelAria:cancel.getAttribute('aria-label'),clearTitle:clear&&clear.title,statusHidden:status.hidden&&getComputedStyle(status).display==='none',hiddenCollapsed,shownExpanded,diagnostics:TakMapToolUxV486.diagnostics()}
+          return {pointCross,drawCross,measureCross,measurePreview,previewLineDashed,switchClearedMeasure,escapeClearedMeasure,colorClosed,routeCross,previewBefore,previewAfter,cancelCleared,cancelTitle:cancel.title,cancelAria:cancel.getAttribute('aria-label'),clearTitle:clear&&clear.title,statusHidden:status.hidden&&getComputedStyle(status).display==='none',noLegacyPrecacheApi:!Object.hasOwn(TakMapToolUxV486,'repairBasemapPrecache'),diagnostics:TakMapToolUxV486.diagnostics()}
         }''')
         browser.close()
     if errors: raise AssertionError(errors)
@@ -98,7 +96,7 @@ def main()->int:
     assert 'discard' in result['cancelTitle'].lower() and 'exit' in result['cancelAria'].lower(),result
     assert 'start over' in (result['clearTitle'] or '').lower(),result
     assert result['statusHidden'],result
-    assert result['hiddenCollapsed'] and result['shownExpanded'],result
+    assert result['noLegacyPrecacheApi'],result
     print('Tool UX and Measure preview i491 browser test passed')
     print(json.dumps(result,sort_keys=True))
     return 0

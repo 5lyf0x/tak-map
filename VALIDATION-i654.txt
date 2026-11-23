@@ -1,0 +1,11 @@
+TAK Map v1.4.0-i654 — Package Validation
+
+Baseline: v1.4.0-i653 (retained unchanged as rollback).
+Change: i654 Manual/Roads route editor, 20px nearest-road hover preview, drag-to-edit, click-to-insert waypoint, per-leg/total distances, Manual/Copy Coords context menu, explicit disconnected segments, complete resolved route geometry save.
+Installer: added required tak-map-route-editor-i654.js copy and both local file and served runtime availability checks.
+Version identity: VERSION, backend config, HTML cache version, deferred manifest, and client identity align to 1.4.0-i654.
+Staged integration: NDM Valhalla 3.6.3 service remains operator-gated and disabled until explicitly enabled after host tests.
+Full source regression: PASS (scripts/validate_package.sh; 55 grouped steps). Includes i654 route editor browser/nearest-road backend tests and all inherited package checks.
+Python/JS/Bash syntax: PASS via full validation script.
+ZIP CRC, source-to-fresh-extraction comparison, executable permissions, SHA256SUMS: checked after ZIP assembly.
+Live NDM/Valhalla routing smoke and installation on target gateway: NOT RUN. No claim of live route snapping.

@@ -1,0 +1,8 @@
+TAK Map v1.4.0-i650 — package source validation record
+- Focused i650 release contract, Cert Setup backend and Chromium modal, live map search backend and Chromium integration: PASS.
+- Universal AIS classification (144 cases), neutral AIS renderer, registered maritime fallback, registry-only renderer (direct/deferred), MIL-STD shadow rules: PASS.
+- Inherited Shape (i643/i639/i636), ADS-B failover, OTS configuration, Data Sync deletion, Gateway/Replay authentication, Gateway Configure backend and Chromium UI: PASS in independently run groups.
+- Search stress harness: 1,100 ADS-B + 600 AIS records, 12 refresh cycles; median approximately 2 ms, maximum 4.5 ms in local headless Chromium harness.
+- Runtime manifest identity, source/deferred parity for gateway, MIL-STD and ADS-B sidebar, JavaScript and shell syntax: PASS.
+- Full single-process regression suite was not completed in a single uninterrupted invocation; relevant suites passed in grouped runs.
+- No live installation or HTTPS certificate remediation was performed; i649 is the preserved rollback baseline.

@@ -1,0 +1,141 @@
+<!-- TAK Map i664 Command Slate: matching green/gray sidebar toggle, status without bullet. -->
+<style id="meshSlateStylesI662">
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+#tokenMeshCardI660{--ms-text:#edf4f8;--ms-muted:#96aab7;--ms-line:#293e49;--ms-blue:#86c1e4;box-sizing:border-box;color:var(--ms-text);background:#0a151b;border:1px solid #2b4050;border-radius:15px;padding:0!important;overflow:hidden;font-family:inherit}
+#tokenMeshCardI660 *{box-sizing:border-box}
+#tokenMeshCardI660 [hidden]{display:none!important}
+#tokenMeshCardI660 .ms-header{display:flex!important;align-items:center;gap:7px;min-height:52px;padding:12px 10px;border-bottom:1px solid var(--ms-line);background:#0d1c25;margin:0!important;text-transform:none;letter-spacing:normal}
+#tokenMeshCardI660 .ms-title{font-size:11.5px;font-weight:800;letter-spacing:.06em;white-space:nowrap;margin:0;padding:0;color:var(--ms-text);cursor:pointer;flex:none}
+#tokenMeshCardI660 .ms-header-right{display:flex;align-items:center;gap:7px;margin-left:auto;min-width:0;flex:none}
+#tokenMeshCardI660 .ms-chip{font-size:9.5px;font-weight:800;white-space:nowrap;border-radius:999px;border:1px solid;padding:6px 7px;line-height:1.1;display:inline-flex;align-items:center;gap:5px}
+#tokenMeshCardI660 .ms-chip::before{content:none;display:none}
+#tokenMeshCardI660 .ms-chip.none{color:#ff9d76;border-color:#9e4936;background:#392016}
+#tokenMeshCardI660 .ms-chip.offline{color:#ffca71;border-color:#886733;background:#3b2a16}
+#tokenMeshCardI660 .ms-chip.online{color:#82e4b4;border-color:#31845d;background:#133b2a}
+#tokenMeshCardI660 .ms-chip.paused{color:#bdc9d0;border-color:#697782;background:#20303b}
+#tokenMeshCardI660 .ms-collapse{display:flex;align-items:center;justify-content:center;flex:none;width:24px;height:26px;background:transparent;border:0;border-radius:5px;color:#a9c3d3;cursor:pointer;padding:0;font-family:inherit;font-size:15px;line-height:1}
+#tokenMeshCardI660 .ms-collapse:hover{background:#203542;color:#e3eff8}
+#tokenMeshCardI660 .ms-collapse:focus-visible{outline:2px solid #9be0ff;outline-offset:2px}
+#tokenMeshCardI660.collapsed .ms-body{display:none!important}
+#tokenMeshCardI660 .ms-switch{position:relative;padding:0;width:38px;height:20px;background:#17212a;border:1px solid #455561;border-radius:999px;display:inline-flex;align-items:center;flex:none;cursor:pointer;box-shadow:inset 0 1px 3px rgba(0,0,0,.45);transition:background .16s,border-color .16s}
+#tokenMeshCardI660 .ms-switch .ms-knob{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:999px;background:#91a2ad;transform:translateX(0);box-shadow:none;transition:transform .16s,background .16s,box-shadow .16s}
+#tokenMeshCardI660 .ms-switch[aria-checked="true"]{background:rgba(57,217,138,.18);border-color:rgba(57,217,138,.65)}
+#tokenMeshCardI660 .ms-switch[aria-checked="true"] .ms-knob{transform:translateX(18px);background:#39d98a;box-shadow:0 0 8px rgba(57,217,138,.65)}
+#tokenMeshCardI660 .ms-switch[aria-checked="false"]{background:#17212a;border-color:#455561}
+#tokenMeshCardI660 .ms-switch[aria-checked="false"] .ms-knob{transform:translateX(0);background:#91a2ad;box-shadow:none}
+#tokenMeshCardI660 .ms-body{padding:12px 11px 12px}
+#tokenMeshCardI660 .ms-eyebrow{font-size:9.5px;color:var(--ms-blue);font-weight:800;letter-spacing:.12em;margin:0 0 5px}
+#tokenMeshCardI660 .ms-summary{font-size:11px;color:var(--ms-muted);line-height:1.45;margin:0 0 13px;overflow-wrap:anywhere}
+#tokenMeshCardI660 .ms-section-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:0 0 8px}
+#tokenMeshCardI660 .ms-section-head b{font-size:10.5px;letter-spacing:.075em}
+#tokenMeshCardI660 .ms-section-head small{font-size:8px;color:#8498a7;white-space:nowrap}
+#tokenMeshCardI660 .ms-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}
+#tokenMeshCardI660 .ms-action{min-width:0;width:100%;min-height:40px;display:flex;align-items:center;justify-content:flex-start;gap:6px;background:#192b38;border:1px solid #304756;color:#edf4f8;border-radius:10px;padding:8px 8px;font-family:'Manrope','Inter','Segoe UI',Arial,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:-.026em;line-height:1.2;white-space:nowrap;text-align:left;cursor:pointer}
+#tokenMeshCardI660 .ms-action:hover:not(:disabled){background:#244052;border-color:#7ab2d4}
+#tokenMeshCardI660 .ms-action:focus-visible,#tokenMeshCardI660 .ms-switch:focus-visible{outline:2px solid #9be0ff;outline-offset:2px}
+#tokenMeshCardI660 .ms-action:disabled{opacity:.37;filter:saturate(.5);cursor:not-allowed}
+#tokenMeshCardI660 .ms-action svg{width:14px;height:14px;flex:none;fill:none;stroke:var(--ms-blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#tokenMeshCardI660 .ms-action.ms-primary{background:linear-gradient(135deg,#294c63,#223949);border-color:#4d7895}
+#tokenMeshCardI660 .ms-action.ms-full{grid-column:1/-1;background:#101f29}
+#tokenMeshCardI660 .ms-manage{display:flex;gap:7px;margin:8px 0 0;flex-wrap:wrap}
+#tokenMeshCardI660 .ms-manage .ms-action{min-height:32px;font-size:9px;width:auto;flex:1 1 auto;justify-content:center}
+#tokenMeshCardI660 .ms-missions{margin-top:14px;padding-top:12px;border-top:1px solid var(--ms-line)}
+#tokenMeshCardI660 .ms-mission-cap{font-size:9.5px;font-weight:800;color:var(--ms-blue);letter-spacing:.12em}
+#tokenMeshCardI660 .ms-count{border:1px solid #334854;background:#ffffff09;border-radius:99px;padding:4px 7px;font-size:9.5px;font-weight:800;color:#aabecb;white-space:nowrap}
+#tokenMeshCardI660 .ms-mission-list{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+#tokenMeshCardI660 .ms-empty{border:1px dashed #344957;padding:9px;border-radius:8px;text-align:center;font-size:11.5px;color:#92a8b7;line-height:1.4}
+#tokenMeshCardI660 .ms-mission-item{padding:8px;border-radius:9px;background:#13232c;border:1px solid #344754;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+#tokenMeshCardI660 .ms-mission-name{flex:1;min-width:95px;font-size:11.5px;overflow-wrap:anywhere}
+#tokenMeshCardI660 .ms-mission-name small{display:block;color:#8fa4b0;font-size:10px;margin-top:3px}
+#tokenMeshCardI660 .ms-mission-share{font-family:'Manrope','Inter',sans-serif;flex:none;border-radius:7px;padding:5px 7px;font-size:9px;font-weight:700;border:1px solid #436178;background:#1b3544;color:#c8e6f7;cursor:pointer}
+#tokenMeshCardI660 .ms-footer{margin-top:13px;border-top:1px solid var(--ms-line);padding-top:10px;display:grid;grid-template-columns:repeat(3,1fr)}
+#tokenMeshCardI660 .ms-metric{border-right:1px solid var(--ms-line);text-align:center}#tokenMeshCardI660 .ms-metric:last-child{border-right:0}
+#tokenMeshCardI660 .ms-metric strong{display:block;font-size:13px;line-height:1.25}#tokenMeshCardI660 .ms-metric small{display:block;font-size:10.5px;color:#8095a2}
+#tokenMeshCardI660 .ms-footnote{font-size:10.5px;color:#8296a2;line-height:1.4;margin-top:9px}
+#tokenMeshCardI660 .ms-link{font:700 11px 'Manrope','Inter',sans-serif;background:none;border:0;color:#a7d9f0;padding:5px 0;cursor:pointer}
+@media(max-width:400px){#tokenMeshCardI660 .ms-body{padding:10px 8px}#tokenMeshCardI660 .ms-action{font-size:10px;padding:8px 6px;gap:4px}#tokenMeshCardI660 .ms-chip{font-size:8px;padding:5px}#tokenMeshCardI660 .ms-header{padding:10px 8px;gap:4px}#tokenMeshCardI660 .ms-header-right{gap:4px}}
+@media(prefers-reduced-motion:reduce){#tokenMeshCardI660 .ms-switch .ms-knob{transition:none}}
+</style>
+<div class="panel mesh-slate-i663" id="tokenMeshCardI660" data-collapse-key="meshSync" data-skip-auto-collapsible="true" data-manual-collapse="true" data-collapsible-ready="1">
+  <h2 class="ms-header" id="meshHeaderI663"><span class="ms-title">MESH SYNC</span><span class="ms-header-right"><span id="tokenMeshStateI660" class="ms-chip none" role="status" aria-live="polite">NOT ENROLLED</span><button id="meshSwitchI662" class="ms-switch" type="button" role="switch" aria-checked="true" aria-label="Disable Mesh Sync" title="Pause or resume encrypted Mesh network traffic"><span class="ms-knob"></span></button><button id="meshCollapseI663" class="ms-collapse" type="button" aria-label="Collapse Mesh Sync" aria-controls="meshBodyI663" aria-expanded="true" title="Collapse or expand Mesh Sync">▾</button></span></h2>
+  <div class="ms-body" id="meshBodyI663"><p class="ms-eyebrow">SECURE PEER SYNCHRONIZATION</p><p id="tokenMeshInfoI660" class="ms-summary">Not enrolled. Create or join a Token Mesh group to enable discovery.</p>
+    <div class="ms-section-head"><b>MESH NETWORK</b><small>01 / GROUP ACCESS</small></div>
+    <div class="ms-grid" id="tokenMeshButtonsI660">
+      <button id="meshCreateI662" class="ms-action ms-primary" type="button"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Create Mesh</button>
+      <button id="meshJoinI662" class="ms-action" type="button"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3M12 3h5a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4h-5"/></svg>Join Mesh</button>
+      <button id="meshUploadI662" class="ms-action ms-full" type="button"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Upload QR Image</button>
+    </div>
+    <div class="ms-manage" id="tokenMeshMembersI660" hidden><button id="meshShowI662" class="ms-action" type="button">Show Join Code</button><button id="meshLeaveI662" class="ms-action" type="button">Leave Mesh</button></div>
+    <section class="ms-missions" aria-label="Mesh Missions"><div class="ms-mission-cap">02 / MISSION ACCESS</div><div class="ms-section-head"><b>MISSIONS</b><span class="ms-count" id="meshMissionCountI662">0 JOINED</span></div>
+      <div class="ms-grid"><button id="meshMissionCreateI662" class="ms-action ms-primary" type="button" disabled><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Create Mission</button><button id="meshMissionJoinI662" class="ms-action" type="button" disabled><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>Join Mission</button></div>
+      <button id="meshMissionQRUploadI662" type="button" class="ms-link" disabled>Upload Mission QR (XMS1)</button>
+      <div class="ms-mission-list" id="tokenMeshMissionsI660"><div class="ms-empty">Enroll in a Mesh to create or join Missions.</div></div>
+      <div class="ms-footnote">Mission data is shared only with participants in the same trusted Mesh group who have matching enabled Mission bindings.</div>
+    </section>
+    <div class="ms-footer"><div class="ms-metric"><strong id="meshPeersI662">0</strong><small>Peers</small></div><div class="ms-metric"><strong id="meshMissionsI662">0</strong><small>Missions</small></div><div class="ms-metric"><strong id="meshObjectsI662">0</strong><small>Objects</small></div></div>
+    <div id="meshFootI662" class="ms-footnote">No authorized Mission binding</div>
+  </div>
+</div>
+<script id="meshSlateScriptI662">(()=>{'use strict';
+ const el=id=>document.getElementById(id),card=el('tokenMeshCardI660'),chip=el('tokenMeshStateI660');if(!card)return;
+ let latest=null,busy=false;
+ // These header controls are self-contained. The generic sidebar title-mover must
+ // never relocate the status/switch below the card body.
+ const header=el('meshHeaderI663'),right=header.querySelector('.ms-header-right');
+ const arrow=el('meshCollapseI663'),body=el('meshBodyI663');
+ const COLLAPSE_KEY='takMapPanelCollapsed:mesh-sync';
+ function repairHeader(){
+   if(header.parentNode!==card)card.insertBefore(header,card.firstChild);
+   if(right.parentNode!==header)header.appendChild(right);
+   const sw=el('meshSwitchI662');
+   if(chip.parentNode!==right)right.insertBefore(chip,sw);
+   if(sw.parentNode!==right)right.insertBefore(sw,arrow);
+   if(arrow.parentNode!==right)right.appendChild(arrow);
+   if(body.parentNode!==card)card.appendChild(body);
+ }
+ function setCollapsed(collapsed){
+   repairHeader();card.classList.toggle('collapsed',!!collapsed);body.hidden=!!collapsed;
+   arrow.textContent=collapsed?'▸':'▾';arrow.setAttribute('aria-expanded',String(!collapsed));
+   arrow.setAttribute('aria-label',collapsed?'Expand Mesh Sync':'Collapse Mesh Sync');
+   try{localStorage.setItem(COLLAPSE_KEY,collapsed?'1':'0')}catch(_){ }
+ }
+ arrow.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();setCollapsed(!card.classList.contains('collapsed'))});
+ header.querySelector('.ms-title').addEventListener('click',event=>{event.stopPropagation();setCollapsed(!card.classList.contains('collapsed'))});
+ // i666: match standard sidebar behavior — any non-control header click collapses.
+ header.setAttribute('tabindex','0');header.setAttribute('role','button');
+ header.setAttribute('aria-label','Expand or collapse Mesh Sync');
+ header.addEventListener('click',event=>{
+   if(event.target.closest('button,input,label'))return;
+   // The title's own handler already stops bubbling.
+   setCollapsed(!card.classList.contains('collapsed'));
+ });
+ header.addEventListener('keydown',event=>{
+   if(event.target===header&&(event.key==='Enter'||event.key===' ')){
+     event.preventDefault();setCollapsed(!card.classList.contains('collapsed'));
+   }
+ });
+
+ try{setCollapsed(localStorage.getItem(COLLAPSE_KEY)==='1')}catch(_){setCollapsed(false)}
+
+ async function api(path,payload){const opts={credentials:'same-origin',cache:'no-store'};if(payload!==undefined){opts.method='POST';opts.headers={'Content-Type':'application/json'};opts.body=JSON.stringify(payload)}const response=await fetch('/api/tak-map/mesh/'+path,opts);const data=await response.json();if(!response.ok||!data.ok)throw Error(data.error||'Mesh API request failed');return data;}
+ async function act(path,payload){if(busy)return null;busy=true;try{const result=await api(path,payload);await update();return result;}catch(err){alert('Token Mesh: '+err.message+'\nSensitive actions require HTTPS and both TAK Map and Dashboard administrator sessions.');return null;}finally{busy=false;}}
+ function text(id,value){el(id).textContent=String(value)}
+ function showToken(token,base64png,kind){if(!token)return;const dialog=document.createElement('dialog');dialog.style.cssText='max-width:min(90vw,720px);background:#172129;color:#f0f4f6;border:1px solid #50616c;border-radius:10px;padding:20px';const header=document.createElement('h3');header.textContent=kind+' private invitation';dialog.append(header);const desc=document.createElement('p');desc.textContent='Keep this complete invitation private. A member of the same trusted Mesh group with this code can join the selected scope.';dialog.append(desc);if(base64png){const img=document.createElement('img');img.src='data:image/png;base64,'+base64png;img.alt='Invitation QR and complete printed secret token';img.style.cssText='display:block;max-width:100%;max-height:45vh;object-fit:contain;margin:10px auto';dialog.append(img);const save=document.createElement('button');save.textContent='Save QR Image';save.type='button';save.onclick=()=>{const a=document.createElement('a');a.download=kind==='Mission'?'mesh-mission-private-invite.png':'token-mesh-private-invite.png';a.href=img.src;a.click()};dialog.append(save);}const field=document.createElement('textarea');field.value=token;field.readOnly=true;field.rows=6;field.style.cssText='display:block;margin:12px 0;width:100%;box-sizing:border-box;background:#0c151c;color:#cde6f3;overflow-wrap:anywhere';dialog.append(field);const copy=document.createElement('button');copy.type='button';copy.textContent='Copy Token';copy.onclick=async()=>{try{await navigator.clipboard.writeText(token)}catch(_){field.select();document.execCommand('copy')}};dialog.append(copy);const close=document.createElement('button');close.type='button';close.textContent='Done';close.style.marginLeft='12px';close.onclick=()=>dialog.close();dialog.append(close);document.body.append(dialog);dialog.addEventListener('close',()=>dialog.remove());dialog.showModal();}
+ async function shareMission(mission){const result=await act('mission-invite',{missionId:mission});if(result)showToken(result.invite,result.qrPngBase64,'Mission')}
+ function missionList(data){const holder=el('tokenMeshMissionsI660');holder.replaceChildren();const missions=(data.missionBindings||[]);if(!missions.length){const p=document.createElement('div');p.className='ms-empty';p.textContent=data.enrolled?'No Missions joined. Create or join one to share authorized data.':'Enroll in a Mesh to create or join Missions.';holder.append(p);return;}for(const m of missions){const item=document.createElement('div');item.className='ms-mission-item';const title=document.createElement('div');title.className='ms-mission-name';const bold=document.createElement('strong');bold.textContent=m.name;const detail=document.createElement('small');detail.textContent=(m.enabled?'Enabled':'Disabled')+' · '+(data.lastSuccessfulSync?.mission===m.mission?'Last synced '+new Date(data.lastSuccessfulSync.time*1000).toLocaleString():'No confirmed sync');title.append(bold,detail);const button=document.createElement('button');button.className='ms-mission-share';button.type='button';button.textContent='Share';button.title='Export private XMS1 Mission join code';button.onclick=()=>shareMission(m.mission);button.disabled=!data.enrolled;item.append(title,button);holder.append(item)}}
+ async function update(){try{repairHeader();const v=await api('status');latest=v;const enabled=v.meshEnabled!==false,enrolled=!!v.enrolled,connected=enabled&&enrolled&&Number(v.authenticatedPeers)>0;chip.className='ms-chip '+(!enrolled?'none':connected?'online':'offline');chip.textContent=!enrolled?'NOT ENROLLED':!enabled?'ENROLLED · PAUSED':connected?'CONNECTED':'ENROLLED · OFFLINE';const sw=el('meshSwitchI662');sw.setAttribute('aria-checked',String(enabled));sw.setAttribute('aria-label',enabled?'Disable Mesh Sync':'Enable Mesh Sync');text('tokenMeshInfoI660',!enabled?'Mesh network traffic paused; saved enrollment and Mission journals are retained.':!enrolled?'Not enrolled. Create or join a Token Mesh group to enable discovery.':connected?'Group: '+v.name+' · '+v.authenticatedPeers+' authenticated peer(s).':'Group: '+v.name+' · Discovering peers'+(v.transportError?' · '+v.transportError:''));el('tokenMeshButtonsI660').hidden=enrolled;el('tokenMeshMembersI660').hidden=!enrolled;for(const id of ['meshMissionCreateI662','meshMissionJoinI662','meshMissionQRUploadI662'])el(id).disabled=!enabled||!enrolled;const missions=v.missionBindings||[];text('meshMissionCountI662',missions.length+' JOINED');text('meshPeersI662',enabled?v.authenticatedPeers||0:'–');text('meshMissionsI662',missions.length);text('meshObjectsI662',v.journalOperations||0);text('meshFootI662',!enabled?'Discovery and direct connections paused':!enrolled?'No authorized Mission binding':!missions.some(m=>m.enabled)?'No enabled Mission binding':!connected?'Waiting for an authenticated peer with a matching Mission':v.lastSuccessfulSync?'Last successful sync: '+new Date(v.lastSuccessfulSync.time*1000).toLocaleString():'Authenticated peer · Mission sync not yet confirmed');missionList(v);if(window.refreshTokenMeshMapI660)window.refreshTokenMeshMapI660();}catch(e){chip.className='ms-chip none';chip.textContent='STATUS ERROR';text('tokenMeshInfoI660','Unable to read Mesh status: '+e.message)}}
+ async function chooseQR(prefix){const inp=document.createElement('input');inp.type='file';inp.accept='image/png,image/jpeg,image/webp';inp.onchange=async()=>{const f=inp.files?.[0];if(!f)return;if(f.size>4*1024*1024){alert('QR file limit: 4 MiB');return;}if(typeof BarcodeDetector==='undefined'){alert('QR image decoding is not available in this browser. Use the text invitation button instead.');return;}try{const bitmap=await createImageBitmap(f);if(bitmap.width>4096||bitmap.height>4096){bitmap.close();throw Error('QR image dimensions exceed 4096px')}const found=await new BarcodeDetector({formats:['qr_code']}).detect(bitmap);bitmap.close();if(found.length!==1||!found[0].rawValue.startsWith(prefix))throw Error('Exactly one '+prefix+' invitation is required');const token=found[0].rawValue;if(confirm('Join using this private '+prefix+' invitation?'))await act(prefix==='XTM1:'?'join':'mission-join',{token});}catch(e){alert('QR import failed: '+e.message)}};inp.click()}
+ el('meshSwitchI662').onclick=async event=>{event.preventDefault();event.stopPropagation();if(!latest)return;const enabled=latest.meshEnabled===false;await act('control',{enabled})};
+ el('meshCreateI662').onclick=async()=>{const name=prompt('New Token Mesh group name:');if(name===null)return;const result=await act('create',{name});if(result){const invite=await act('invite');if(invite)showToken(invite.invite,invite.qrPngBase64,'Mesh')}};
+ el('meshJoinI662').onclick=async()=>{const token=prompt('Paste complete XTM1 Mesh invitation:');if(!token)return;if(confirm('Join this Token Mesh group?'))await act('join',{token})};
+ el('meshUploadI662').onclick=()=>chooseQR('XTM1:');
+ el('meshShowI662').onclick=async()=>{const result=await act('invite');if(result)showToken(result.invite,result.qrPngBase64,'Mesh')};
+ el('meshLeaveI662').onclick=async()=>{if(confirm('Leave Token Mesh? The group secret will be removed locally. Mission journals stay preserved.'))await act('leave',{confirm:true})};
+ el('meshMissionCreateI662').onclick=async()=>{if(!latest?.enrolled||latest.meshEnabled===false)return;const name=prompt('New Mission name:');if(name===null)return;const result=await act('mission-create',{name});if(result){const invite=await act('mission-invite',{missionId:result.missionId});if(invite)showToken(invite.invite,invite.qrPngBase64,'Mission')}};
+ el('meshMissionJoinI662').onclick=async()=>{if(!latest?.enrolled||latest.meshEnabled===false)return;const token=prompt('Paste complete XMS1 Mission invitation:');if(token)await act('mission-join',{token})};
+ el('meshMissionQRUploadI662').onclick=()=>{if(latest?.enrolled&&latest.meshEnabled!==false)chooseQR('XMS1:')};
+ window.tokenMeshRefreshI662=update;
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{repairHeader();update();setInterval(update,15000)});else{repairHeader();update();setInterval(update,15000)}
+ window.addEventListener('load',repairHeader,{once:true});setTimeout(repairHeader,500)
+})();</script>
+<script id="meshMapProjectionI662">(()=>{'use strict';let group=null,previous='';async function load(){if(!window.map||!window.L)return;try{const r=await fetch('/api/tak-map/mesh/objects',{cache:'no-store',credentials:'same-origin'});if(!r.ok)return;const j=await r.json();if(!j.ok)return;const stamp=JSON.stringify(j.objects||[]);if(stamp===previous)return;previous=stamp;if(!group)group=L.layerGroup().addTo(window.map);group.clearLayers();for(const obj of j.objects||[]){const cc=obj.coords||[];if(!cc.length)continue;let layer;if(obj.kind==='AREA'&&cc.length>=3)layer=L.polygon(cc,{color:'#39addd',weight:2,fillOpacity:.10});else if(obj.kind==='ROUTE'&&cc.length>=2)layer=L.polyline(cc,{color:'#39addd',weight:3});else layer=L.circleMarker(cc[0],{radius:6,color:'#39addd',fillOpacity:.5});const div=document.createElement('div');div.textContent=obj.name+' | Mesh • '+obj.mission+' | '+obj.kind;layer.bindPopup(div);layer.addTo(group)}}catch(e){console.warn('Mesh object refresh:',e)}}window.refreshTokenMeshMapI660=load;setInterval(load,12000);setTimeout(load,3000)})();</script>

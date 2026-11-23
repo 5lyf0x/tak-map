@@ -1,0 +1,20 @@
+TAK Map v1.4.0-i669 — Source package validation
+
+Baseline: tak-map-v1.4.0-i668.zip, preserved unchanged as previous release.
+
+Changes:
+- i668 confirmed admin HTTPS session, LAN discovery POST and sidebar ordering corrections integrated.
+- New A3 segmented-target VEIL ADS-B marker with built-in military/civil/government/unknown palette and heading-rotated inner aircraft glyph (stationary segmented ring), built-in ADS-B panel integration.
+- Independent geodesic multi-set Range Rings toolbar tool between Pan and Coordinates: editable name, click-on-center-to-edit, single-set Clear Rings, units, interval, count, solid/dashed, style, labels, per-set optional persistence, 2D and 3D terrain renderer.
+- Terrain Mode VEIL objects use appropriate ground/sea location and HAE altitude when present; no fabricated airborne height. 3D route/shape and icon prior logic maintained.
+
+Validated offline BEFORE source packaging:
+- 91 Python automated tests PASS.
+- Node.js JavaScript validation, i669 mocked visual/ring math fixture PASS.
+- HTTP /tak-map 200 complete HTML; i669 JS/SVG asset routes serve valid response; Chromium full rendered-page smoke with intact head/body/map/sidebar and correct i669 footer PASS (previous i665 blank-page DOM regression excluded).
+- Chromium mocked Leaflet modal workflow: placement Pan -> Range Rings -> Coordinates, create multiple sets, edit via center, clear individual, persisted name and per-set remembered data, Solid/Dashed only PASS.
+- Chromium mocked Cesium Range Rings: local DEM+2m terrain draped heights, streamed terrain clamp, center marker click/edit PASS.
+- Chromium mocked Cesium VEIL objects: aircraft at WGS84 HAE 3048m, drone at valid HAE, ground APRS at sampled DEM, AIS clamped, A3 military category/heading, shared ADS-B panel callback PASS.
+- bash installer and modified JavaScript syntax PASS; existing Mesh/Gateway/route controls tested through automated suite.
+
+Limitations: no real Raspberry Pi installation, physical VEIL receiver/ADS-B feed, live authentication/discovery, streamed 3D tiles or user's local imported DEM tested in this environment. Simulated altitude semantics are limited to reliable incoming CoT HAE. Not a benchmark of live VEIL or Cesium performance. No new app-data reset, installation retains configuration; experimental cross-source dedup remains disabled by default.

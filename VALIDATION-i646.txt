@@ -1,0 +1,16 @@
+TAK Map v1.4.0-i646 - source release validation
+
+Full test suite: PASS (scripts/validate_package.sh, 2026-11-04 UTC)
+- Release/runtime/install identity: PASS
+- AIS approved ship PNGs: 64 x 64 RGBA each; 12 x 12 on-map render: PASS
+- Nginx Host header :9444 port preservation with origin validation intact: PASS
+- i645 Gateway Configure backend and Chromium UI: PASS
+- Gateway Data / Replay optional-certificate and auth separation: PASS
+- Shape native Save, edit, geometry, and Mission regression checks: PASS
+- ADS-B provider failover/hard-off checks: PASS
+- OpenTAKServer 1.7.13 configuration and trust checks: PASS
+- Data Sync deletion identity checks: PASS
+- Backend/JavaScript/shell syntax checks: PASS
+
+The validation environment does not have a running installed TAK Map Gateway.
+Live install and live Gateway ingestion remain to be verified after deployment.

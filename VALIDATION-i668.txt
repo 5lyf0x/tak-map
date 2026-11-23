@@ -1,0 +1,15 @@
+TAK Map v1.4.0-i668 — Source release validation
+
+Baseline: v1.4.0-i667 source ZIP, retained unchanged as rollback reference.
+Changes: VEIL Phase 3 strict emitter IDs/observation provenance, conservative per-VEIL display merging and operator-controlled cross-source merging disabled by default, authenticated read-only VEIL node health modal, saved route details Edit | Delete single row. i667 terrain routes/shapes/icons and prior confirmed i665 root-DOM repair preserved.
+
+Validated offline before creating this source archive:
+- 86 Python automated tests PASS, including VEIL Phase 1/2, Mesh, terrain fixture, Phase 3 health and strict identity tests.
+- Node JavaScript broker mock PASS for duplicate selection, false merges, fallback, 3D independent entity collection.
+- Local HTTP handler `/tak-map` returns 200 and complete HTML; Chromium full-document smoke PASS, map and sidebar present, iteration i668, VEIL and Mesh cards.
+- Chromium Phase 3 Details read-only health/Settings controls and disabled-feature guard PASS.
+- Chromium route contextual Edit | Delete equal widths/height, gap 8px, original callbacks PASS.
+- bash installer and affected JavaScript syntax PASS.
+
+Limitations: No authenticated live testing against physical VEIL r50 hardware, no physical Raspberry Pi performance benchmark; no end-to-end Cesium tiles or imported DEM with real receivers. Experimental cross-source merge defaults OFF until live source verification. Tests do NOT claim physical interoperability.
+No application data/configuration reset; install source only.

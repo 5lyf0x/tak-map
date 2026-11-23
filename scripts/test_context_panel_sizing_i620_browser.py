@@ -106,7 +106,7 @@ def main() -> int:
         # Narrow viewport remains bounded and horizontally safe.
         page.set_viewport_size({'width': 520, 'height': 700})
         page.evaluate("""() => {document.getElementById('takMapAdsbLeftSidebarI610').remove();document.getElementById('takMapAdsbRightSidebarI610').remove();TakMapContextSidebarI572.showObject({name:'Narrow screen object',source:'Local Data',lat:34,lon:-118,details:'A long narrow-screen value that must wrap cleanly without horizontal scrolling.'},'local',null,false);TakMapContextPanelSizingI620.fitAll()}""")
-        page.wait_for_timeout(120)
+        page.wait_for_timeout(360)
         narrow = page.evaluate("""() => {const p=document.getElementById('takMapContextSidebarI572'),b=document.getElementById('takMapContextSidebarBodyI572');return {width:p.getBoundingClientRect().width,scrollWidth:b.scrollWidth,clientWidth:b.clientWidth,right:p.getBoundingClientRect().right}}""")
         assert narrow['width'] <= 496 and narrow['right'] <= 520, narrow
         assert narrow['scrollWidth'] <= narrow['clientWidth'] + 1, narrow

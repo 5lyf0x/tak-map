@@ -1,0 +1,67 @@
+<!-- TAK Map i665: VEIL live sensor management. Operational receiver/API; no mock nodes. -->
+<style id="takVeilCssI665">
+#takVeilCardI665{padding:0!important;overflow:hidden;border:1px solid #304653;background:#0b171f;border-radius:13px;color:#e7f0f5}
+#takVeilCardI665 *,.tak-veil-modal-i665 *{box-sizing:border-box}
+#takVeilCardI665 .tv-head{display:flex;gap:8px;align-items:center;min-height:50px;padding:10px 11px;background:#0d1c25;border-bottom:1px solid #30414b}
+#takVeilCardI665 .tv-head strong{font-size:12px;letter-spacing:.065em;white-space:nowrap}
+#takVeilCardI665 .tv-chip{margin-left:auto;font-size:10px;color:#b7c8d4;background:#1c2b34;border:1px solid #354c59;padding:4px 6px;border-radius:8px;white-space:nowrap}
+#takVeilCardI665 .tv-chip.receiving{border-color:#228959;color:#77dfaa;background:#12382c}
+#takVeilCardI665 .tv-switch{position:relative;display:inline-flex;width:38px;height:20px;flex:none}
+#takVeilCardI665 .tv-switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;z-index:2;cursor:pointer}
+#takVeilCardI665 .tv-switch span{position:absolute;inset:0;background:#17212a;border:1px solid #455561;border-radius:12px;transition:background .15s}
+#takVeilCardI665 .tv-switch span:after{content:'';display:block;width:14px;height:14px;margin:2px;background:#91a2ad;border-radius:50%;transition:transform .15s}
+#takVeilCardI665 .tv-switch input:checked+span{background:rgba(57,217,138,.18);border-color:rgba(57,217,138,.65)}
+#takVeilCardI665 .tv-switch input:checked+span:after{transform:translateX(18px);background:#39d98a;box-shadow:0 0 7px rgba(57,217,138,.65)}
+#takVeilCardI665 .tv-chevron{background:none;border:0;color:#ff793d;padding:5px;cursor:pointer;font-size:16px;line-height:1}
+#takVeilCardI665 .tv-body{padding:12px 11px;display:grid;gap:10px}
+#takVeilCardI665 .tv-body[hidden]{display:none!important}
+#takVeilCardI665 .tv-muted,.tak-veil-modal-i665 .tv-muted{color:#9fb1be;font-size:11px;line-height:1.5}
+#takVeilCardI665 .tv-row{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+#takVeilCardI665 .tv-button,.tak-veil-modal-i665 button.tv-button{min-height:36px;background:#182d3b;border:1px solid #355467;border-radius:7px;color:#eef6fa;cursor:pointer;font-size:12px;font-weight:750;display:flex;align-items:center;justify-content:center;gap:8px;padding:7px 8px;white-space:nowrap}
+#takVeilCardI665 .tv-button:hover,.tak-veil-modal-i665 .tv-button:hover{background:#24445b}
+#takVeilCardI665 .tv-button img,.tak-veil-modal-i665 .tv-button img{width:18px;height:18px;object-fit:contain;flex:none}
+#takVeilCardI665 .tv-plus{font-size:22px;line-height:16px;font-weight:900}
+#takVeilCardI665 .tv-section{border-top:1px solid #2d404c;padding-top:9px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:850;letter-spacing:.05em}
+#takVeilCardI665 .tv-node{background:#14242e;border:1px solid #2c4554;border-radius:8px;padding:9px;display:grid;gap:4px;margin-top:5px;font-size:12px}
+#takVeilCardI665 .tv-node-line{display:flex;align-items:center;gap:7px;justify-content:space-between}
+#takVeilCardI665 .tv-mini,.tak-veil-modal-i665 .tv-mini{background:#182d3b;color:#eaf4fa;border:1px solid #355467;border-radius:6px;padding:6px 9px;font-size:11px;font-weight:650;cursor:pointer}
+#takVeilCardI665 .tv-data{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#takVeilCardI665 .tv-data label{background:#152630;border:1px solid #2e4551;border-radius:6px;padding:7px;display:flex;gap:7px;align-items:center;font-size:11px;cursor:pointer}
+#takVeilCardI665 .tv-data label span{margin-left:auto;color:#a6c3d2}
+.tak-veil-modal-i665{position:fixed;z-index:2147483000;inset:0;display:none;align-items:center;justify-content:center;padding:15px;background:rgba(2,7,11,.72)}
+.tak-veil-modal-i665.open{display:flex}
+.tak-veil-modal-i665 .tv-dialog{width:min(410px,100%);max-height:min(620px,90vh);overflow-y:auto;background:#101e28;color:#e9f2f7;border:1px solid #38505e;border-radius:12px;padding:15px;box-shadow:0 22px 65px #000b;display:grid;gap:12px;font-family:inherit}
+.tak-veil-modal-i665 .tv-modal-head{display:flex;align-items:center;gap:9px}
+.tak-veil-modal-i665 .tv-modal-head h3{font-size:15px;margin:0;flex:1}
+.tak-veil-modal-i665 .tv-close{background:none;border:0;color:#a9c1d2;font-size:21px;cursor:pointer}
+.tak-veil-modal-i665 input:not([type=checkbox]),.tak-veil-modal-i665 select{width:100%;min-width:0;padding:9px 10px;background:#0c1820;color:#edf6fb;border:1px solid #405763;border-radius:7px;font:inherit;font-size:12px}
+.tak-veil-modal-i665 .tv-field{display:grid;gap:4px;font-size:11px;color:#a8c2d1}
+.tak-veil-modal-i665 .tv-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
+.tak-veil-modal-i665 .tv-check{display:flex;align-items:center;gap:8px;padding:10px;background:#182a35;border:1px solid #3b5260;border-radius:8px;cursor:pointer}
+.tak-veil-modal-i665 .tv-check input{accent-color:#34c28a;width:16px;height:16px}
+.tak-veil-modal-i665 .tv-check span{flex:1;min-width:0;font-size:12px}
+.tak-veil-modal-i665 .tv-scan-list{display:grid;gap:6px;max-height:245px;overflow-y:auto}
+.tak-veil-modal-i665 .tv-error{font-size:11px;color:#ffb28e;white-space:pre-wrap}
+.tak-veil-modal-i665 .tv-fields-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tak-veil-i665-marker{background:transparent!important;border:0!important}
+.tak-veil-i665-marker .tv-glyph{width:27px;height:27px;display:flex;justify-content:center;align-items:center;border:1px solid #effcff;border-radius:50%;background:#152d3deb;color:#f4fbff;font-size:16px;box-shadow:0 1px 8px #000a}
+.tak-veil-i665-popup{font-size:12px;line-height:1.6;max-width:290px}.tak-veil-i665-popup b{color:#a9c9d8}
+</style>
+<div class="panel" id="takVeilCardI665" data-skip-auto-collapsible="true" data-collapse-key="xtakVeil">
+ <div class="tv-head" id="takVeilHeaderI665"><strong>XTAK VEIL</strong><span class="tv-chip" id="tvStatusI665">DISABLED</span>
+ <label class="tv-switch"><input id="tvEnableI665" type="checkbox" aria-label="Enable XTAK VEIL reception"><span></span></label>
+ <button class="tv-chevron" id="tvCollapseI665" aria-label="Collapse XTAK VEIL">▾</button></div>
+ <div class="tv-body" id="tvBodyI665">
+  <div class="tv-muted" id="tvLiveStatusI665">VEIL receiver disabled</div>
+  <div class="tv-row"><button class="tv-button" id="tvDiscoverI665"><img src="/assets/runtime/xtak-veil-discover-i665.svg" alt="">Discover</button><button class="tv-button" id="tvAddI665"><span class="tv-plus">+</span>Add Node</button></div>
+  <button class="tv-button" id="tvSettingsI665">Settings</button>
+  <div class="tv-section"><span>VEIL NODES</span><span class="tv-muted" id="tvNodeCountI665">0 configured</span></div>
+  <div id="tvNodesI665" class="tv-muted">No nodes configured</div>
+  <div class="tv-section"><span>LIVE DATA</span><span class="tv-muted" id="tvObjectsI665">0 objects</span></div>
+  <div class="tv-data" id="tvServicesI665"></div><div class="tv-muted" id="tvDestinationI665">Configure VEIL CoT output to this host.</div>
+ </div>
+</div>
+<div class="tak-veil-modal-i665" id="tvModalI665" role="dialog" aria-modal="true" aria-label="XTAK VEIL node management">
+ <div class="tv-dialog"><div class="tv-modal-head"><h3 id="tvModalTitleI665">XTAK VEIL</h3><button class="tv-close" id="tvModalCloseI665" aria-label="Close">×</button></div><div id="tvModalContentI665"></div><div class="tv-error" id="tvModalErrorI665"></div><div class="tv-actions" id="tvModalActionsI665"></div></div>
+</div>
+<script src="/assets/runtime/tak-map-veil-i665.js?v=1.4.0-i665"></script>

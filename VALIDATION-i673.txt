@@ -1,0 +1,14 @@
+TAK Map v1.4.0-i673 offline source validation
+Baseline: TAK Map v1.4.0-i672 source release, untouched rollback maintained.
+Original XTAK VEIL APRS r50 assets retained from i672.
+Python unittest discover: 116 PASS.
+Chromium multi-basemap DOM and retained tile-layer smoke: PASS.
+MVT synthetic graph-edge decoder: PASS.
+NDM synthetic native terrain.sqlite interpolation and incomplete coverage: PASS.
+Node JavaScript syntax checks: PASS.
+Python import and syntax checks: PASS.
+Bash installer syntax: PASS.
+Live NDM/Valhalla integration: NOT TESTED (local dataset server unavailable).
+Large terrain data source and real CA/AZ tile coverage: NOT TESTED.
+MVUM means active Valhalla navigation network, not USDA legal MVUM.
+3D terrain basemap multi-source stacking: NOT IMPLEMENTED; existing single-source Cesium imagery retained.

@@ -1,0 +1,65 @@
+<div class="panel" id="tokenMeshCardI660" data-collapse-key="meshSync" data-skip-auto-collapsible="true"><h2>MESH SYNC <span class="chip" id="tokenMeshStateI660">Not enrolled</span></h2><div class="muted" id="tokenMeshInfoI660">Separate from Gateway/OTS. Encrypted peer exchange runs on the TAK Map server.</div><div class="row" id="tokenMeshButtonsI660"><button class="layer-button" type="button" onclick="tokenMeshCreateI660()">Create Mesh</button><button class="layer-button" type="button" onclick="tokenMeshJoinI660()">Join Mesh</button><button class="layer-button" type="button" onclick="tokenMeshUploadI660()">Upload QR Image</button></div><div class="row" id="tokenMeshMembersI660" style="display:none"><button class="layer-button" type="button" onclick="tokenMeshShowI660()">Show Join Code</button><button class="layer-button" type="button" onclick="tokenMeshLeaveI660()">Leave Mesh</button></div><div class="row"><button class="layer-button" type="button" onclick="tokenMeshMissionI660()">Join Mission (XMS1)</button></div><div class="muted" id="tokenMeshMissionsI660"></div></div><script>(function(){'use strict';
+  async function api(path, payload) {
+    const options={credentials:'same-origin',cache:'no-store'};
+    if(payload!==undefined){options.method='POST';options.headers={'Content-Type':'application/json'};options.body=JSON.stringify(payload);}
+    const r=await fetch('/api/tak-map/mesh/'+path,options);
+    const result=await r.json();
+    if(!r.ok || !result.ok) throw new Error(result.error||'Mesh API failed');
+    return result;
+  }
+  const update=async()=>{
+    try{
+      const v=await api('status');
+      const state=document.getElementById('tokenMeshStateI660');if(!state)return;
+      state.textContent=v.enrolled?(v.authenticatedPeers?'Authenticated':v.transportReady?'Discovering':'Enrolled / offline'):'Not enrolled';
+      document.getElementById('tokenMeshInfoI660').textContent=v.enrolled?('Group: '+v.name+' | Peers: '+(v.authenticatedPeers||0)+' authenticated / '+(v.visiblePeers||0)+' visible | Mission bindings: '+(v.missionBindings||[]).filter(x=>x.enabled).length+' | Last sync: '+(v.lastSuccessfulSync?new Date(v.lastSuccessfulSync.time*1000).toLocaleString():'Never')+(v.transportError?' | Network: '+v.transportError:'')):'Not enrolled. Create or join a Token Mesh group to enable discovery.';
+      document.getElementById('tokenMeshButtonsI660').style.display=v.enrolled?'none':'';
+      document.getElementById('tokenMeshMembersI660').style.display=v.enrolled?'flex':'none';
+      document.getElementById('tokenMeshMissionsI660').textContent='Mission bindings: '+((v.missionBindings||[]).map(x=>x.name+(x.enabled?' (enabled)':' (disabled)')).join(', ')||'none')+' | Objects in mesh journal: '+(v.journalOperations||0); if(window.refreshTokenMeshMapI660)window.refreshTokenMeshMapI660();
+    }catch(e){const state=document.getElementById('tokenMeshStateI660');if(state)state.textContent='Status error';}
+  };
+  async function act(path,payload){try{const r=await api(path,payload);await update();return r;}catch(e){alert('Token Mesh: '+e.message+'\nSensitive operations require both TAK Map login and Dashboard administrator login over HTTPS.');}}
+  window.tokenMeshCreateI660=async()=>{const name=prompt('New Token Mesh group name:');if(name===null)return;const v=await act('create',{name});if(v){const invite=await act('invite');showToken(v.invite,invite&&invite.qrPngBase64);}};
+  window.tokenMeshJoinI660=async()=>{const token=prompt('Paste the complete XTM1 Token Mesh invitation:');if(!token)return;if(!confirm('Join this Token Mesh group? The current enrollment must be empty.'))return;await act('join',{token});};
+  window.tokenMeshShowI660=async()=>{const v=await act('invite');if(v)showToken(v.invite,v.qrPngBase64);};
+  window.tokenMeshLeaveI660=async()=>{if(confirm('Leave Token Mesh? This removes the local group secret; journal and Mission bindings are kept. Previously exported tokens remain usable on other devices.'))await act('leave',{confirm:true});};
+  window.tokenMeshUploadI660=async()=>{
+    const picker=document.createElement('input');picker.type='file';picker.accept='image/png,image/jpeg,image/webp';
+    picker.onchange=async()=>{const file=picker.files&&picker.files[0];if(!file)return;if(file.size>4*1024*1024){alert('QR image limit: 4 MiB');return;}
+      if(typeof BarcodeDetector==='undefined'){alert('This browser cannot decode QR images locally. Paste the complete XTM1 token instead.');return;}
+      try{const bmp=await createImageBitmap(file);if(bmp.width>4096||bmp.height>4096){bmp.close();throw Error('QR image dimensions exceed 4096px');}
+        const decoder=new BarcodeDetector({formats:['qr_code']});const codes=await decoder.detect(bmp);bmp.close();
+        if(codes.length!==1||!codes[0].rawValue.startsWith('XTM1:'))throw Error('Exactly one XTM1 QR code is required');
+        if(confirm('Join group from this QR invitation?'))await act('join',{token:codes[0].rawValue});
+      }catch(e){alert('QR import failed: '+e.message);}
+    };picker.click();
+  };
+  window.tokenMeshMissionI660=async()=>{const token=prompt('Paste complete XMS1 Mission invitation. Matching Mission bindings are required on both devices:');if(token)await act('mission-join',{token});};
+  function showToken(value,qrBase64){
+    // Keep secret in ephemeral dialog only; not localStorage or request URL.
+    const dialog=document.createElement('dialog');dialog.style.cssText='max-width:min(90vw,720px);background:#172129;color:#f0f4f6;border:1px solid #50616c;border-radius:10px;padding:20px';
+    const title=document.createElement('h3');title.textContent='Token Mesh invitation (secret)';dialog.append(title);
+    const desc=document.createElement('p');desc.textContent='Anyone with this complete token can join your Mesh group. Store it securely. The QR and complete printed code contain the same sensitive token.';dialog.append(desc);
+    if(qrBase64){const qr=document.createElement('img');qr.src='data:image/png;base64,'+qrBase64;qr.alt='Complete Token Mesh join code, including readable token';qr.style.cssText='display:block;max-width:100%;max-height:45vh;object-fit:contain;margin:10px auto';dialog.append(qr);const save=document.createElement('button');save.textContent='Save QR Image';save.onclick=()=>{const a=document.createElement('a');a.href=qr.src;a.download='token-mesh-private-invite.png';a.click()};dialog.append(save);}
+    const code=document.createElement('textarea');code.readOnly=true;code.value=value;code.rows=6;code.style.cssText='width:100%;box-sizing:border-box;background:#0c151c;color:#cde6f3;overflow-wrap:anywhere';dialog.append(code);
+    const copy=document.createElement('button');copy.textContent='Copy Token';copy.onclick=async()=>{try{await navigator.clipboard.writeText(value)}catch(_){code.select();document.execCommand('copy')}};dialog.append(copy);
+    const done=document.createElement('button');done.textContent='Done';done.style.marginLeft='12px';done.onclick=()=>{dialog.close();dialog.remove();};dialog.append(done);
+    document.body.append(dialog);dialog.showModal();dialog.addEventListener('close',()=>dialog.remove());
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{update();setInterval(update,15000)});
+  else {update();setInterval(update,15000)}
+})();
+</script><script>(function(){'use strict';let group=null;let previous='';async function load(){
+  if(!window.map||!window.L)return;
+  try{const r=await fetch('/api/tak-map/mesh/objects',{cache:'no-store',credentials:'same-origin'});if(!r.ok)return;const j=await r.json();if(!j.ok)return;
+  const stamp=JSON.stringify(j.objects||[]);if(stamp===previous)return;previous=stamp;
+  if(!group)group=L.layerGroup().addTo(window.map);group.clearLayers();
+  for(const obj of j.objects||[]){const cc=obj.coords||[];if(!cc.length)continue;let layer;
+    if(obj.kind==='AREA'&&cc.length>=3)layer=L.polygon(cc,{color:'#39addd',weight:2,fillOpacity:.10});
+    else if(obj.kind==='ROUTE'&&cc.length>=2)layer=L.polyline(cc,{color:'#39addd',weight:3});
+    else layer=L.circleMarker(cc[0],{radius:6,color:'#39addd',fillOpacity:.5});
+    const div=document.createElement('div');div.textContent=obj.name+' | Mesh • '+obj.mission+' | '+obj.kind;
+    layer.bindPopup(div);layer.addTo(group);
+  }
+  }catch(e){console.warn('Mesh object refresh:',e)}
+}window.refreshTokenMeshMapI660=load;setInterval(load,12000);setTimeout(load,3000);})();</script>

@@ -1,0 +1,54 @@
+/* TAK Map v1.4.0-i698: Offline Maps area selector and recovery controls. */
+#offlineAreaSelectorI698{display:grid;gap:7px;width:100%;margin:9px 0 10px}
+#offlineAreaSelectorI698 label{color:#c2d5e1;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+#offlineAreaSelectorI698 input,#offlineAreaSelectorI698 select,#offlineSourceSelectI698{box-sizing:border-box;min-width:0;width:100%;height:32px;border-radius:7px;border:1px solid #416074;background:#0e1d28;color:#e8f1f6;padding:5px 9px;font-size:11px;outline-offset:2px}
+#offlineAreaSelectorI698 input:focus-visible,#offlineAreaSelectorI698 select:focus-visible,#offlineSourceSelectI698:focus-visible{outline:2px solid #7ac7e0}
+#offlineAreaSelectorI698 select{cursor:pointer}#offlineAreaSelectorI698 .offline-region-helper{color:#90abbc;font-size:10px;line-height:1.4}
+#offlineAreaSelectorI698 .offline-source-wrap{display:grid;gap:5px;margin-top:4px}
+#offlineAreaSelectorI698 .offline-source-wrap label{font-size:10px}
+#offlineEstimate .offline-i698-estimate{display:grid;gap:5px;background:#142431;border:1px solid #345063;padding:9px;border-radius:8px}
+#offlineEstimate .offline-i698-metric{display:flex;justify-content:space-between;gap:7px}
+#offlineEstimate .offline-i698-metric b{color:#d7eff9;font-weight:800}
+#offlineMapRows .offline-i698-recovery{display:grid;gap:7px;margin-top:9px;padding:8px;border-radius:7px;border:1px solid #645443;background:#2a251d}
+#offlineMapRows .offline-i698-recovery-head{font-size:11px;color:#f1c18b;font-weight:800}
+#offlineMapRows .offline-i698-recovery-menu{display:flex;flex-wrap:wrap;gap:7px}
+#offlineMapRows .offline-i698-recovery-menu[hidden]{display:none}
+#offlineMapRows .offline-i698-recovery button{padding:5px 8px;min-height:28px}
+#offlineMapRows .offline-i698-warning{color:#f2bc8f}
+#offlineJobStatus .offline-i698-part{font-size:10px;color:#90bbd0}
+
+/* i699 Command Slate: compact, legible, icon-free Offline Maps card. */
+.tak-offline-i699{border-color:#344956!important;background:#0e1a23!important;color:#e9f1f6;font-family:Manrope,system-ui,-apple-system,sans-serif}
+.tak-offline-i699>h2{font-size:12px;font-weight:800;letter-spacing:.055em;margin-bottom:10px;border-bottom:1px solid #2d4755;padding-bottom:11px}
+.tak-offline-i699>h2 svg,.tak-offline-i699>h2 img,.tak-offline-i699>h2 .icon{display:none!important}
+.tak-offline-i699>label,.tak-offline-i699 #offlineAreaSelectorI698 label{display:block;font-size:10px;font-weight:850;letter-spacing:.055em;text-transform:uppercase;color:#a8d8f1;margin-top:9px}
+.tak-offline-i699 #offlineAreaSelectorI698{margin:0 0 8px;gap:6px}
+.tak-offline-i699 #offlineAreaSelectorI698 input,.tak-offline-i699 #offlineAreaSelectorI698 select,.tak-offline-i699 #offlinePackName{appearance:none!important;-webkit-appearance:none!important;background:#0b1c27!important;border:1px solid #3a596c!important;color:#f1f7fc!important;border-radius:8px!important;font:800 12px Manrope,system-ui,sans-serif!important;min-height:37px!important;padding:7px 10px!important;box-shadow:none!important}
+.tak-offline-i699 #offlineAreaSelectorI698 select{background-image:none!important;padding-right:10px!important;cursor:pointer}
+.tak-offline-i699 #offlineAreaHelpI698{font-size:10px!important;color:#91b9cb!important;line-height:1.45}
+.tak-offline-i699 #offlineEstimate{margin:8px 0 10px}
+.tak-offline-i699 #offlineEstimate .offline-i698-estimate{background:#152735;border:1px solid #385567;border-radius:9px}
+.tak-offline-i699 .row{gap:8px}
+.tak-offline-i699 .row:has(>#offlineMinZoom),.tak-offline-i699 .row:has(>#offlineMaxZoom){display:flex;justify-content:space-between;align-items:center;padding:5px 0;margin:0;}
+.tak-offline-i699 .offline-zoom-input{background:#112433!important;border:1px solid #3c5769!important;border-radius:7px!important;color:#f5faff!important;min-height:35px!important;font-weight:800!important}
+.tak-offline-i699 .row:has(>button[onclick*="previewOfflineZoom"]){display:flex;gap:8px;align-items:center;justify-content:space-between;border-top:1px solid #273d4b;padding-top:10px;margin-top:9px}
+.tak-offline-i699 button.layer-button{border:1px solid #3c5769;border-radius:9px;background:#172b38;color:#e7f3fa;font:800 11px Manrope,system-ui,sans-serif;min-height:31px}
+.tak-offline-i699 .row:has(>button[onclick*="previewOfflineZoom"]) button:last-child{background:#224336;border-color:#517668;color:#fff}
+.tak-offline-i699 #offlineAreaSearchI698{font-weight:600!important;font-size:11px!important;min-height:31px!important}
+.tak-offline-i699 #offlineMapRows{margin-top:8px}
+@media(max-width:430px){.tak-offline-i699 .row{flex-wrap:wrap}.tak-offline-i699 button.layer-button{white-space:normal}}
+
+/* Offline Map Packs only: twice the former 300px scroll viewport. */
+#offlineMapRows.offline-list{max-height:600px}
+
+/* i001: compact inline rename for completed offline packs. */
+#offlineMapRows .offline-rename-editor{display:grid;gap:6px;margin:8px 0;padding:8px;border:1px solid #354b5d;border-radius:8px;background:rgba(9,18,27,.88)}
+#offlineMapRows .offline-rename-editor input{width:100%;min-width:0;box-sizing:border-box;border:1px solid #446177;border-radius:7px;background:#0b1924;color:#eef6ff;padding:7px 9px;font:inherit;font-size:12px;font-weight:650}
+#offlineMapRows .offline-rename-buttons{display:flex;gap:6px;flex-wrap:wrap}
+#offlineMapRows .offline-rename-buttons button{margin:0}
+#offlineMapRows .offline-rename-error{font-size:11px;color:#ffad95;min-height:0}
+
+/* i003: compact row interpretation control, imported maps only. */
+.offline-row-scheme-i003{display:flex;align-items:center;gap:7px;font-size:11px;color:#b6cbd5;margin:5px 0 1px}
+.offline-row-scheme-i003 select{background:#172a36;color:#e8f3f7;border:1px solid #486174;border-radius:5px;min-width:67px;padding:3px}
+.offline-row-scheme-error-i003{color:#f6b7a1;font-size:10px}

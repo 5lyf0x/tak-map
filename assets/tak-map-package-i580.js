@@ -1,25 +1,25 @@
 (function(window,document){
   'use strict';
-  const VERSION='i621';
-  const PACKAGE='1.4.0-i621';
-  const SIZING='i621';
+  const VERSION='i654';
+  const PACKAGE='1.4.0-i654';
+  const SIZING='i654';
   /* i618 shared content-aware context sizing; horizontal scrolling is intentionally disabled. */
-  const SCROLLBAR_GUTTER=14;
+  const SCROLLBAR_GUTTER=0;
   const state={scheduled:false,observer:null,identityObserver:null,resizeObservers:new WeakMap(),fits:0,lastError:'',lastWidths:{}};
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value));
   const visible=el=>!!(el&&el.isConnected&&!el.classList.contains('hidden')&&!el.classList.contains('collapsed')&&el.getAttribute('aria-hidden')!=='true'&&getComputedStyle(el).display!=='none');
   function injectCss(){
     if(document.getElementById('takMapContextSizingStyleI618'))return;
     const style=document.createElement('style');style.id='takMapContextSizingStyleI618';style.textContent=`
-      #takMapContextSidebarI572,.tak-adsb-panel-i610{box-sizing:border-box!important;max-width:calc(100vw - 24px)!important;overflow:hidden!important;scrollbar-gutter:stable!important}
+      #takMapContextSidebarI572,.tak-adsb-panel-i610{box-sizing:border-box!important;max-width:calc(100vw - 24px)!important;overflow:hidden!important}#takMapContextSidebarI572{scrollbar-gutter:auto!important}.tak-adsb-panel-i610{scrollbar-gutter:stable!important}
       #takMapContextSidebarI572.gateway-data-nifc-i620{width:292px!important;max-width:min(430px,calc(100vw - 24px))!important}
       #takMapContextSidebarI572{display:flex!important;flex-direction:column!important;position:fixed!important;z-index:2147482000!important}
       #takMapContextSidebarI572 .tak-context-head-i572{flex:0 0 auto!important}
-      #takMapContextSidebarBodyI572{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-gutter:stable!important;scrollbar-width:thin!important;scrollbar-color:#4f7181 #0b161c!important}
-      #takMapContextSidebarBodyI572::-webkit-scrollbar,.tak-adsb-panel-body-i610::-webkit-scrollbar{width:12px!important}
-      #takMapContextSidebarBodyI572::-webkit-scrollbar-track,.tak-adsb-panel-body-i610::-webkit-scrollbar-track{background:#0b161c!important;border-left:1px solid rgba(72,100,112,.25)!important}
-      #takMapContextSidebarBodyI572::-webkit-scrollbar-thumb,.tak-adsb-panel-body-i610::-webkit-scrollbar-thumb{min-height:48px!important;border:3px solid #0b161c!important;border-radius:999px!important;background:linear-gradient(180deg,#5a7d8d,#446474)!important}
-      #takMapContextSidebarBodyI572::-webkit-scrollbar-thumb:hover,.tak-adsb-panel-body-i610::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#6f96a7,#5b8295)!important}
+      #takMapContextSidebarBodyI572{box-sizing:border-box!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-gutter:auto!important;scrollbar-width:none!important;background:rgba(8,13,18,.97)!important}
+      #takMapContextSidebarBodyI572::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}.tak-adsb-panel-body-i610::-webkit-scrollbar{width:12px!important}
+      #takMapContextSidebarBodyI572::-webkit-scrollbar-track{display:none!important;background:transparent!important;border:0!important}.tak-adsb-panel-body-i610::-webkit-scrollbar-track{background:#0b161c!important;border-left:1px solid rgba(72,100,112,.25)!important}
+      #takMapContextSidebarBodyI572::-webkit-scrollbar-thumb{display:none!important}.tak-adsb-panel-body-i610::-webkit-scrollbar-thumb{min-height:48px!important;border:3px solid #0b161c!important;border-radius:999px!important;background:linear-gradient(180deg,#5a7d8d,#446474)!important}
+      .tak-adsb-panel-body-i610::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#6f96a7,#5b8295)!important}
       .tak-adsb-panel-i610{scrollbar-gutter:stable!important}
       .tak-adsb-panel-body-i610{overflow-y:auto!important;overflow-x:hidden!important;scrollbar-gutter:stable!important;scrollbar-width:thin!important;scrollbar-color:#4f7181 #0b161c!important}
       #takMapContextSidebarI572 .feature-popup .kvp,#takMapContextSidebarI572 .point-popup-grid-i556,.tak-adsb-panel-i610 .tak-adsb-i610-row{min-width:0!important}
@@ -58,7 +58,7 @@
   function baseLimits(panel){
     const kind=mode(panel);const narrow=window.matchMedia&&window.matchMedia('(max-width:620px)').matches;
     if(kind==='context'&&isNifc(panel))return {min:narrow?280:292,max:narrow?window.innerWidth-24:430,valueCap:252,nifc:true};
-    return kind==='adsb'?{min:narrow?280:344,max:narrow?window.innerWidth-24:462,valueCap:320}:{min:narrow?280:318,max:narrow?window.innerWidth-24:568,valueCap:382};
+    return kind==='adsb'?{min:narrow?280:344,max:narrow?window.innerWidth-24:462,valueCap:320}:{min:narrow?280:320,max:narrow?window.innerWidth-24:320,valueCap:220};
   }
   function preferred(panel){
     const limits=baseLimits(panel),kind=mode(panel),nifc=!!limits.nifc;
@@ -68,16 +68,17 @@
     const label=clamp(longestVisible(labelSel,panel,labelCap),nifc?64:70,labelCap);
     const value=clamp(longestVisible(valueSel,panel,limits.valueCap),valueFloor,limits.valueCap);
     const headerTitle=longestVisible(kind==='adsb'?'.tak-adsb-i610-name,.tak-adsb-i610-sub':'.tak-context-title-i572,.tak-context-kicker-i572',panel,limits.max-(nifc?64:100));
-    const row=label+value+(kind==='adsb'?40:(nifc?34:48))+SCROLLBAR_GUTTER;
-    const controls=nifc?0:controlsWidth(panel,limits.max-28)+28+SCROLLBAR_GUTTER;
-    const header=headerTitle+(nifc?58:96)+SCROLLBAR_GUTTER;
+    const gutter=kind==='adsb'?14:0;
+    const row=label+value+(kind==='adsb'?40:(nifc?34:48))+gutter;
+    const controls=nifc?0:controlsWidth(panel,limits.max-28)+28+gutter;
+    const header=headerTitle+(nifc?58:96)+gutter;
     return clamp(Math.ceil(Math.max(limits.min,row,controls,header)),limits.min,limits.max);
   }
   function mapRect(){const node=mapNode();try{return node.getBoundingClientRect()}catch(_){return {left:0,right:window.innerWidth,width:window.innerWidth}}}
   function isShown(panel){return visible(panel)}
   function setWidth(panel,width){
     width=Math.max(260,Math.round(width));const prior=Number(panel.dataset.takContextWidthI618||0);if(Math.abs(prior-width)<1)return;
-    panel.dataset.takContextWidthI618=String(width);panel.style.setProperty('width',`${width}px`,'important');panel.style.setProperty('--tak-context-scrollbar-gutter-i618',`${SCROLLBAR_GUTTER}px`);state.fits++;state.lastWidths[panel.id||panel.className]=width;
+    panel.dataset.takContextWidthI618=String(width);panel.style.setProperty('width',`${width}px`,'important');panel.style.setProperty('--tak-context-scrollbar-gutter-i618',`${mode(panel)==='adsb'?14:0}px`);state.fits++;state.lastWidths[panel.id||panel.className]=width;
   }
   function observe(panel){
     if(!panel||state.resizeObservers.has(panel)||!window.ResizeObserver)return;
@@ -121,7 +122,7 @@
     window.addEventListener('resize',schedule,{passive:true});window.addEventListener('orientationchange',()=>setTimeout(schedule,80),{passive:true});
     [100,350,800,1600,3200].forEach(delay=>setTimeout(fitAll,delay));setInterval(fitAll,2500);
   }
-  const sizingApi=Object.freeze({version:SIZING,fit:fitOne,fitAll,schedule,preferredWidth:preferred,diagnostics:()=>({version:SIZING,fits:state.fits,lastWidths:Object.assign({},state.lastWidths),scrollbarGutter:SCROLLBAR_GUTTER,nifcContentWidth:true,lastError:state.lastError})});
+  const sizingApi=Object.freeze({version:SIZING,fit:fitOne,fitAll,schedule,preferredWidth:preferred,diagnostics:()=>({version:SIZING,fits:state.fits,lastWidths:Object.assign({},state.lastWidths),scrollbarGutter:SCROLLBAR_GUTTER,compactContextWidth:320,contextScrollbarHidden:true,nifcContentWidth:true,lastError:state.lastError})});
   window.TakMapContextPanelSizingI620=window.TakMapContextPanelSizingI618=sizingApi;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
   [0,100,500,1500,3500,6500].forEach(function(delay){setTimeout(()=>{apply();fitAll()},delay)});window.addEventListener('takmap:runtime-ready',()=>{apply();schedule()});

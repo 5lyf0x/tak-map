@@ -1,0 +1,15 @@
+TAK Map v1.4.0-i665 — source handoff validation record
+Baseline: tak-map-v1.4.0-i664.zip; retains i664 as untouched rollback source
+Scope: VEIL Phase 1 local CoT receiver, live map and LAN node management; NWS popup; version sync
+Validation executed in staging environment:
+- 46 regression tests PASS (tests/test_*i66*.py), including 22 VEIL unit checks
+- VEIL dual-node ingest, verified sender identity, packet bounds, stale/replay and persistence PASS (simulated CoT, no real node)
+- VEIL modal/card isolated Chromium tests PASS (simulated API; not live LAN hardware)
+- NWS context isolated Chromium test PASS (long description scrolls internally; popup constrained within map viewport)
+- Python syntax/import and exact assembled HTML/version route PASS (host MIL-STD asset catalog unavailable off device)
+- JavaScript (Node --check) and shell (bash -n) syntax PASS
+- Live VEIL nodes, actual firewall and mDNS discovery NOT TESTED; mDNS requires Avahi
+- VEIL authenticated Live SA/WebSocket snapshot recovery NOT INCLUDED; planned Phase 2
+- Cross-source ADS-B/AIS dedup NOT INCLUDED; planned Phase 3
+- VEIL CoT UDP is unauthenticated; use a trusted LAN. Configure each node to unicast to map LAN address:6970.
+ZIP integrity, 100% fresh extraction/source comparison and calculated SHA-256: see delivery handoff.

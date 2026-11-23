@@ -146,6 +146,8 @@ def main():
             'TAK_MAP_REPLAY_CLIENT_CERT': str(targets['client.crt']),
             'TAK_MAP_REPLAY_CLIENT_KEY': str(targets['client.key']),
             'TAK_MAP_REPLAY_CA_CERT': str(targets['ca.crt']),
+            'TAK_MAP_REPLAY_AUTH_MODE': 'certificate',
+            'TAK_MAP_GATEWAY_DATA_AUTH_MODE': 'certificate',
             'TAK_MAP_REPLAY_VERIFY_TLS': 'true',
             'TAK_MAP_REPLAY_TIMEOUT': '120',
             'TAK_MAP_GATEWAY_DATA_API_URL': data_api,

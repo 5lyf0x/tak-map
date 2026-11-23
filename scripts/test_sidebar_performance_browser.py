@@ -4,12 +4,13 @@ from __future__ import annotations
 import json
 import shutil
 import re
+import runpy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET = ROOT / "assets" / "tak-map-sidebar-performance-v491.js"
-DASHBOARD = (ROOT / "tak_dashboard.py").read_text()
-IDENTITY_GUARD = re.search(r'<script id="takMapIdentityGuardI620">.*?</script>', DASHBOARD, re.S).group(0)
+FINAL_HTML = str(runpy.run_path(str(ROOT / 'tak_dashboard.py'), run_name='tak_map_sidebar_i625_contract')['TAK_MAP_HTML'])
+IDENTITY_GUARD = re.search(r'<script id="takMapIdentityGuardI630">.*?</script>', FINAL_HTML, re.S).group(0)
 ORIGIN = "https://takmap.test"
 
 
@@ -68,7 +69,7 @@ def main() -> int:
           const d=window.TakMapSidebarPerformanceV476.diagnostics();
           const sorted=frames.slice(2).sort((a,b)=>a-b);const p95=sorted.length?sorted[Math.min(sorted.length-1,Math.floor(sorted.length*.95))]:0;
           const authority=window.__takMapReleaseIdentity||null;const result={total,chipMutations,attrMutations,childMutations,p95FrameMs:Number(p95.toFixed(1)),diagnostics:d,dynamicText:dynamic.textContent,dynamicIteration:dynamic.getAttribute('data-iteration'),iterationFrames,authority:authority&&{release:authority.release,iteration:authority.iteration,packageVersion:authority.packageVersion},identityGuard:!!Node.prototype.__takMapIdentityAuthorityI620};
-          const pass=d.textContentGuardInstalled&&d.setAttributeGuardInstalled&&d.legacyObserversDisconnected>=1&&d.stable&&authority&&authority.iteration==='i620'&&authority.packageVersion==='1.4.0-i620'&&Node.prototype.__takMapIdentityAuthorityI620&&iterationFrames.length>30&&iterationFrames.every(v=>v==='i620')&&chipMutations<=4&&total<=8&&dynamic.textContent==='i620'&&dynamic.getAttribute('data-iteration')==='i620'&&d.currentIteration==='i620';
+          const pass=d.textContentGuardInstalled&&d.setAttributeGuardInstalled&&d.legacyObserversDisconnected>=1&&d.stable&&authority&&authority.iteration==='i635'&&authority.packageVersion==='1.4.0-i635'&&Node.prototype.__takMapIdentityAuthorityI620&&iterationFrames.length>30&&iterationFrames.every(v=>v==='i635')&&chipMutations<=4&&total<=8&&dynamic.textContent==='i635'&&dynamic.getAttribute('data-iteration')==='i635'&&d.currentIteration==='i635';
           document.body.dataset.testResult=pass?'pass':'fail';
           document.getElementById('result').textContent=JSON.stringify(result);
         })().catch(e=>{document.body.dataset.testResult='error';document.getElementById('result').textContent=String(e&&e.stack||e)});
@@ -104,7 +105,7 @@ def main() -> int:
     if page_errors:
         raise AssertionError(f"sidebar performance fixture page errors: {page_errors}")
     parsed = json.loads(detail)
-    print("Sidebar i620 authoritative iteration and anti-flicker browser test passed")
+    print("Sidebar i625 authoritative iteration and anti-flicker browser test passed")
     print(json.dumps({k: parsed[k] for k in ["total", "chipMutations", "attrMutations", "childMutations", "p95FrameMs"]}, sort_keys=True))
     return 0
 

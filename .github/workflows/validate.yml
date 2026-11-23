@@ -22,4 +22,4 @@ jobs:
           node-version: '20'
 
       - name: Validate package
-        run: bash scripts/validate_package.sh
+        run: ./scripts/validate_package.sh

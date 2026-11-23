@@ -1,0 +1,37 @@
+TAK Map v1.4.0-i642 Internal Release Validation
+================================================
+Date: 2026-09-03
+Baseline: TAK Map v1.4.0-i641
+
+Release scope
+-------------
+- Replaces Mission-backed Shape Save's generic CoT socket/old same-UID database verification with authenticated native Mission /cot updates.
+- Uses direct exact-UID Mission /cot read-back as the Save commit gate.
+- Removes asynchronous aggregate Data Sync snapshots from the Shape Save commit decision.
+- Rectangle/polygon geometry verification accepts equivalent cyclic vertex starts and reversed winding within coordinate tolerance.
+- Keeps Edit mode active on failed authoritative verification and preserves the visible draft.
+- Preserves the i641 in-place editor, center translation handle, empty-map-click behavior, Notes ordering, and Save/Cancel layout.
+- Preserves UID, native TAK CoT type, Mission membership, style/detail metadata, and backward compatibility.
+
+Validation
+----------
+PASS - i642 release/runtime/install contract.
+PASS - i642 browser Shape editor regression, including center translation and backend-authoritative Save confirmation with zero aggregate Data Sync commit polling.
+PASS - i642 backend Mission Shape Save contract using native Mission /cot update and exact-UID direct read-back.
+PASS - equivalent rectangle ring comparison across changed starting vertex/reversed winding.
+PASS - generic _send_cot_to_ots is not used as the i642 Mission Shape Save commit path.
+PASS - inherited i639 raw-CoT/UID/Mission/style preservation contract.
+PASS - inherited i636 canonical TAK Shape codec, legacy readers, rendering, and exact Mission deletion identity behavior.
+PASS - inherited per-user card-state persistence.
+PASS - inherited ADS-B i633 failover/cadence/hard-OFF behavior.
+PASS - inherited OpenTAKServer 1.7.13 Configure OTS login/trust behavior.
+PASS - Python/JavaScript/manifest/shell syntax gates.
+
+Environment note
+----------------
+The isolated validation environment does not contain /usr/share/tak-server-dash/mil2525/icons.json.
+Inherited backend tests emit the existing catalog-load warning; applicable regression gates pass and the warning is non-blocking.
+
+Operational dependency
+----------------------
+For OpenTAKServer 1.7.13, retain ots-1.7.13-mission-delete-patch-v3 for the existing server-authoritative final Mission-membership deletion behavior.

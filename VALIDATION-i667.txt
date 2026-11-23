@@ -1,0 +1,14 @@
+TAK Map v1.4.0-i667 — Source release validation
+
+Baseline: v1.4.0-i666 source ZIP; prior rollback ZIP unchanged.
+Changes: i666 field fixes (registry width, custom icon priority, offscreen route labels); Cesium terrain overlays for route/shape geometry and 2D/3D icon parity; Edit Route in contextual sidebar; 3D route labels; current iteration metadata and cache-busting asset refs.
+
+Executed locally prior to archive:
+- 78 Python tests PASS (including mocked Cesium path/shape/custom icon/local DEM fixture).
+- JavaScript syntax PASS on 5 affected runtime scripts; bash install.sh syntax PASS.
+- HTTP /tak-map handler 200 text/html full assembled page PASS with Chromium DOM (map, sidebar, VEIL/MESH card, footer i667, no root element deletion).
+- Chromium contextual sidebar Edit Route identity/action fixture PASS.
+- Chromium route label z10/z11, visible/offscreen endpoint and plain leader fixture PASS.
+
+Not verified in this offline container: live Cesium tile render on the user's Raspberry Pi, locally imported DEM geometry across all coverage boundaries, physical VEIL nodes, actual ATAK icon registry data. Tested logic in mocks and isolated Chromium DOM only.
+Source archives exclude cache/build outputs; the install preserves application data/configuration.

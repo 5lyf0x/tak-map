@@ -1,0 +1,12 @@
+TAK Map v1.4.0-i671 validation
+Baseline: v1.4.0-i670 (Library archive)
+New source files: RELEASE_NOTES_I671.md, test_i671.py
+Source files (excluding SHA256SUMS): 6066
+Node.js syntax: PASS
+Python syntax: PASS
+Chromium Range Rings: PASS
+Chromium tar1090 aircraft icon: PASS
+Python unit tests i669 + i670 + i671: PASS
+Static shell install syntax: PASS
+APRS exact matching: NOT IMPLEMENTED (authoritative XTAK VEIL node-map assets unavailable)
+Live VEIL nodes and outdoor 3D terrain: NOT VERIFIED

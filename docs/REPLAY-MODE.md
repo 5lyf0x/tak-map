@@ -84,3 +84,31 @@ Authenticated TAK Map sessions can access:
 - `/api/tak-map/replay/chunk`
 
 The first v419 browser integration uses bounded Events API windows for playback. The manifest and chunk proxy endpoints are also present for later worker-based large-period optimization.
+
+## Optional certificate-free Replay API (TAK Gateway i210+)
+
+TAK Map preserves client-certificate Replay by default. To use Replay without a
+client certificate, the Gateway administrator must first set **Configure Security →
+Replay API → client certificate not required**, and TAK Map must be on the trusted
+LAN/VPN permitted by the Gateway. Replay remains HTTPS-only on port 9443.
+
+In `/etc/tak-map.env` set:
+
+```text
+TAK_MAP_REPLAY_API_URL=https://10.10.10.101:9443/api/replay/v1
+TAK_MAP_REPLAY_AUTH_MODE=none
+TAK_MAP_REPLAY_CA_CERT=/etc/tak-map/replay-ca.crt
+TAK_MAP_REPLAY_VERIFY_TLS=true
+```
+
+No `TAK_MAP_REPLAY_CLIENT_CERT` or `TAK_MAP_REPLAY_CLIENT_KEY` files are required
+in this mode. The CA path is for **server trust**, not a client certificate. If
+Gateway's HTTPS certificate is signed by a CA trusted by the TAK Map host, the
+custom CA file is optional. No Replay operation is redirected to HTTP/8090.
+
+For the established certificate-authenticated behavior use
+`TAK_MAP_REPLAY_AUTH_MODE=certificate` (the default). Neither mode changes
+Replay period IDs, search, manifest/event/state endpoints, raw gzip chunks,
+replay controls, playback/live isolation, or TAK Map session authentication.
+No automatic downgrade from certificate authentication to anonymous access
+occurs when a certificate is rejected or revoked.

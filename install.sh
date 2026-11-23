@@ -9,7 +9,12 @@ WRAPPER="/usr/local/sbin/tak-map-action"
 SUDOERS="/etc/sudoers.d/tak-map"
 USER_NAME="takmap"
 PAM_SERVICE_FILE="/etc/pam.d/tak-map"
+DEFAULT_OTS_IP="${TAK_MAP_OTS_IP:-10.10.10.2}"
 if [[ "${EUID}" -ne 0 ]]; then echo "Run with sudo: sudo ./install.sh"; exit 1; fi
+
+# i651: install pinned native Valhalla before changing the existing TAK Map tree.
+# Unsupported CPU, missing network or a bad upstream checksum aborts the upgrade safely.
+python3 scripts/install-valhalla-i651.py --dest "$APP_DIR/vendor/valhalla-3.6.3"
 
 # Remember the extracted installer folder so one-off Downloads installs can
 # clean up after themselves without touching a source checkout.
@@ -68,6 +73,16 @@ if ! command -v i3lock >/dev/null 2>&1 && ! command -v swaylock >/dev/null 2>&1 
   fi
 fi
 
+# i685 Infrastructure GIS interoperability: install required OS GIS libraries before
+# changing any live application files. Required for Shapefile/GeoPackage import/export.
+if ! /usr/bin/python3 -c 'import fiona, pyproj' >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3-fiona python3-pyproj
+  fi
+  /usr/bin/python3 -c 'import fiona, pyproj' || { echo 'ERROR: Infrastructure GIS dependencies not available; existing TAK Map not changed.' >&2; exit 1; }
+fi
+
 # Optional topology-identification tools. Passive topology works without these,
 # but the Scan for Details button uses them when available.
 if ! command -v nmap >/dev/null 2>&1 || ! command -v arp-scan >/dev/null 2>&1; then
@@ -113,6 +128,23 @@ rm -f /etc/nginx/sites-enabled/tak-server-dashboard.conf /etc/nginx/sites-availa
 rm -f /etc/nginx/conf.d/99-tak-server-dashboard-proxy-hash.conf 2>/dev/null || true
 rm -f /etc/nginx/conf.d/tak-server-dashboard.conf /etc/nginx/conf.d/tak-server-dashboard-https-9443.conf 2>/dev/null || true
 
+# Token Mesh XMS2/XTP3 AES-256-GCM and HKDF implementation.
+if ! python3 -c 'from cryptography.hazmat.primitives.ciphers.aead import AESGCM' >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3-cryptography || { echo "ERROR: Token Mesh crypto dependency unavailable" >&2; exit 1; }
+  else
+    echo "ERROR: python3-cryptography is required for Token Mesh" >&2
+    exit 1
+  fi
+fi
+
+# Offline Token Mesh invitation QR export (only installed if missing).
+if ! python3 -c 'import qrcode, PIL' >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3-qrcode python3-pil || echo "WARNING: Token Mesh QR PNG export dependencies unavailable. Manual XTM1 codes still work."
+  fi
+fi
+
 # urllib3 provides pooled upstream HTTPS connections for faster online basemap tiles.
 if ! python3 -c 'import urllib3' >/dev/null 2>&1; then
   if command -v apt-get >/dev/null 2>&1; then
@@ -120,11 +152,54 @@ if ! python3 -c 'import urllib3' >/dev/null 2>&1; then
   fi
 fi
 
-mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging" "$DATA_DIR/send_packages" "$DATA_DIR/tak_map_tile_cache" "$DATA_DIR/ots_user_credentials" "$DATA_DIR/sentinel_hub_users" "$DATA_DIR/sentinel_hub_cache" "$DATA_DIR/data_sync_snapshots_i568" "$DATA_DIR/mission_unlock_users_i572" "$DATA_DIR/mission_unlock_users_i575" "$DATA_DIR/data_sync_transport_authority_i584_hf2" "$DATA_DIR/ots_trust"
+# VEIL LAN discovery uses local mDNS advertisements (no internet needed after install).
+# If unavailable on an offline host, manual Add Node remains functional.
+if ! command -v avahi-browse >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y avahi-utils || echo "WARNING: avahi-utils unavailable. VEIL Discover requires avahi-browse; manual Add Node still works."
+  else
+    echo "WARNING: avahi-browse unavailable. VEIL Discover requires Avahi; manual Add Node still works."
+  fi
+fi
+
+mkdir -p "$APP_DIR" "$DATA_DIR" "$DATA_DIR/backup_restore_i674" "$DATA_DIR/diagnostics" "$DATA_DIR/config_backups" "$DATA_DIR/upload_staging" "$DATA_DIR/send_packages" "$DATA_DIR/tak_map_tile_cache" "$DATA_DIR/ots_user_credentials" "$DATA_DIR/sentinel_hub_users" "$DATA_DIR/sentinel_hub_cache" "$DATA_DIR/data_sync_snapshots_i568" "$DATA_DIR/mission_unlock_users_i572" "$DATA_DIR/mission_unlock_users_i575" "$DATA_DIR/data_sync_transport_authority_i584_hf2" "$DATA_DIR/ots_trust" "$DATA_DIR/infrastructure"
+install -m 0644 tak_map_backup_i674.py "$APP_DIR/tak_map_backup_i674.py"
+install -m 0644 ndm_packages_i651.py "$APP_DIR/ndm_packages_i651.py"
+install -m 0644 ndm_valhalla_i651.py "$APP_DIR/ndm_valhalla_i651.py"
+install -m 0644 tak_map_graph_switch_i675.py "$APP_DIR/tak_map_graph_switch_i675.py"
+install -m 0644 road_search_i678.py "$APP_DIR/road_search_i678.py"
+install -m 0644 tak_map_infrastructure_i685.py "$APP_DIR/tak_map_infrastructure_i685.py"
+install -m 0644 tak_map_infrastructure_i686.py "$APP_DIR/tak_map_infrastructure_i686.py"
+install -m 0644 tak_map_infrastructure_i687.py "$APP_DIR/tak_map_infrastructure_i687.py"
+install -m 0644 tak_map_infrastructure_i688.py "$APP_DIR/tak_map_infrastructure_i688.py"
+install -m 0644 scripts/tak_map_import_geometry_audit_i679.py "$APP_DIR/tak_map_import_geometry_audit_i679.py"
+install -m 0644 ndm_elevation_i673.py "$APP_DIR/ndm_elevation_i673.py"
+install -m 0755 ndm_ctl_i651.py "$APP_DIR/ndm_ctl_i651.py"
+install -m 0644 token_mesh_i660.py "$APP_DIR/token_mesh_i660.py"
+install -m 0644 token_mesh_wire_i660.py "$APP_DIR/token_mesh_wire_i660.py"
+install -m 0644 token_mesh_transport_i660.py "$APP_DIR/token_mesh_transport_i660.py"
+install -m 0644 token_mesh_projection_i660.py "$APP_DIR/token_mesh_projection_i660.py"
+install -m 0644 tak_map_radar_i693.py "$APP_DIR/tak_map_radar_i693.py"
+install -m 0644 tak_map_radar_history_i696.py "$APP_DIR/tak_map_radar_history_i696.py"
+# i698 polygon-clipped U.S. state offline downloader (runtime has no GIS library dependency).
+install -m 0644 tak_map_offline_regions_i698.py "$APP_DIR/tak_map_offline_regions_i698.py"
+install -m 0644 tak_map_offline_downloader_i698.py "$APP_DIR/tak_map_offline_downloader_i698.py"
+# i003 offline tile pool is imported unconditionally during TAK Map startup.
+install -m 0644 tak_map_offline_perf_i003.py "$APP_DIR/tak_map_offline_perf_i003.py"
+install -m 0644 tak_map_radar_i692.py "$APP_DIR/tak_map_radar_i692.py"
 cp tak_dashboard.py "$APP_DIR/tak_dashboard.py"
 install -m 0644 VERSION "$APP_DIR/VERSION"
 chmod 0755 "$APP_DIR/tak_dashboard.py"
 mkdir -p "$APP_DIR/assets"
+install -m 0644 assets/tak-map-token-mesh-i661.html "$APP_DIR/assets/tak-map-token-mesh-i661.html"
+install -m 0644 assets/tak-map-token-mesh-i662.html "$APP_DIR/assets/tak-map-token-mesh-i662.html"
+install -m 0644 assets/tak-map-token-mesh-i663.html "$APP_DIR/assets/tak-map-token-mesh-i663.html"
+install -m 0644 assets/tak-map-token-mesh-i664.html "$APP_DIR/assets/tak-map-token-mesh-i664.html"
+install -m 0644 tak_map_veil_i665.py "$APP_DIR/tak_map_veil_i665.py"
+install -m 0644 tak_map_veil_api_i666.py "$APP_DIR/tak_map_veil_api_i666.py"
+install -m 0644 tak_map_veil_identity_i668.py "$APP_DIR/tak_map_veil_identity_i668.py"
+install -m 0644 tak_map_veil_health_i668.py "$APP_DIR/tak_map_veil_health_i668.py"
+install -m 0644 tak_map_veil_aprs_i672.py "$APP_DIR/tak_map_veil_aprs_i672.py"
 # Remove superseded ADS-B modules and every browser-local operational Black Box
 # runtime asset. Historical playback remains provided by the TAK Gateway Replay API.
 rm -f "$APP_DIR/assets"/tak-map-adsb-v*.js \
@@ -149,11 +224,71 @@ rm -f "$APP_DIR/assets"/tak-map-adsb-v*.js \
       "$APP_DIR/assets"/tak-map-popup-localdata-i*.js \
       "$APP_DIR/assets"/tak-map-context-sidebar-i*.js \
       "$APP_DIR/assets"/tak-map-data-sync-unlock-i*.js \
-      "$APP_DIR/assets"/tak-map-data-sync-access-i*.js
+      "$APP_DIR/assets"/tak-map-data-sync-access-i*.js \
+      "$APP_DIR/assets"/tak-map-route-editor-i*.js
 install -m 0644 assets/tak-map-adsb-v491.js "$APP_DIR/assets/tak-map-adsb-v491.js"
 install -m 0644 assets/tak-map-live-interpolation-v491.js "$APP_DIR/assets/tak-map-live-interpolation-v491.js"
 install -m 0644 assets/tak-map-local-elevation-boundary-v491.js "$APP_DIR/assets/tak-map-local-elevation-boundary-v491.js"
 install -m 0644 assets/tak-map-gateway-data-v491.js "$APP_DIR/assets/tak-map-gateway-data-v491.js"
+install -m 0644 assets/tak-map-veil-i665.html "$APP_DIR/assets/tak-map-veil-i665.html"
+install -m 0644 assets/tak-map-nws-i665.html "$APP_DIR/assets/tak-map-nws-i665.html"
+install -m 0644 assets/tak-map-veil-i665.js "$APP_DIR/assets/tak-map-veil-i665.js"
+install -m 0644 assets/tak-map-veil-i666.js "$APP_DIR/assets/tak-map-veil-i666.js"
+install -m 0644 assets/tak-map-veil-phase3-i668.js "$APP_DIR/assets/tak-map-veil-phase3-i668.js"
+install -m 0644 assets/tak-map-veil-visual-i669.js "$APP_DIR/assets/tak-map-veil-visual-i669.js"
+install -m 0644 assets/tak-map-adsbx-i670.js "$APP_DIR/assets/tak-map-adsbx-i670.js"
+install -m 0644 assets/tak-map-veil-visual-i670.js "$APP_DIR/assets/tak-map-veil-visual-i670.js"
+install -m 0644 assets/tak-map-veil-aprs-i672.js "$APP_DIR/assets/tak-map-veil-aprs-i672.js"
+install -d -m 0755 "$APP_DIR/assets/veil-aprs-r50"
+install -m 0644 assets/veil-aprs-r50/aprs-*.svg "$APP_DIR/assets/veil-aprs-r50/"
+install -m 0644 assets/tak-map-range-rings-i669.js "$APP_DIR/assets/tak-map-range-rings-i669.js"
+install -m 0644 assets/tak-map-range-rings-icon-i669.svg "$APP_DIR/assets/tak-map-range-rings-icon-i669.svg"
+install -m 0644 assets/tak-map-i666.css "$APP_DIR/assets/tak-map-i666.css"
+install -m 0644 assets/xtak-veil-discover-i665.svg "$APP_DIR/assets/xtak-veil-discover-i665.svg"
+install -m 0644 assets/tak-map-gateway-config-i645.js "$APP_DIR/assets/tak-map-gateway-config-i645.js"
+install -m 0644 assets/tak-map-cert-setup-i650.js "$APP_DIR/assets/tak-map-cert-setup-i650.js"
+install -m 0644 assets/tak-map-live-search-i650.js "$APP_DIR/assets/tak-map-live-search-i650.js"
+install -m 0644 assets/tak-map-ndm-data-i652.js "$APP_DIR/assets/tak-map-ndm-data-i652.js"
+install -m 0644 assets/tak-map-route-editor-i654.js "$APP_DIR/assets/tak-map-route-editor-i654.js"
+install -m 0644 assets/tak-map-backup-i674.js "$APP_DIR/assets/tak-map-backup-i674.js"
+install -m 0644 assets/tak-map-basemap-stack-i673.js "$APP_DIR/assets/tak-map-basemap-stack-i673.js"
+install -m 0644 tak_map_user_basemap_i699.py "$APP_DIR/tak_map_user_basemap_i699.py"
+# i698 single-pack state/region downloads, browser controls and read-only polygon catalog.
+install -m 0644 assets/tak-map-offline-us-regions-i698.json "$APP_DIR/assets/tak-map-offline-us-regions-i698.json"
+install -m 0644 assets/tak-map-offline-maps-i698.js "$APP_DIR/assets/tak-map-offline-maps-i698.js"
+install -m 0644 assets/tak-map-offline-maps-i698.css "$APP_DIR/assets/tak-map-offline-maps-i698.css"
+install -m 0644 assets/tak-map-mvum-i673.js "$APP_DIR/assets/tak-map-mvum-i673.js"
+install -m 0644 assets/tak-map-routing-dropdown-i675.js "$APP_DIR/assets/tak-map-routing-dropdown-i675.js"
+install -m 0644 assets/tak-map-route-input-i678.js "$APP_DIR/assets/tak-map-route-input-i678.js"
+install -m 0644 assets/tak-map-route-elevation-i681.js "$APP_DIR/assets/tak-map-route-elevation-i681.js"
+install -m 0644 assets/tak-map-sidebar-uniform-i684.css "$APP_DIR/assets/tak-map-sidebar-uniform-i684.css"
+install -m 0644 assets/tak-map-sidebar-order-i684.js "$APP_DIR/assets/tak-map-sidebar-order-i684.js"
+install -m 0644 assets/tak-map-infrastructure-i685.css "$APP_DIR/assets/tak-map-infrastructure-i685.css"
+install -m 0644 assets/tak-map-infrastructure-i685.js "$APP_DIR/assets/tak-map-infrastructure-i685.js"
+install -m 0644 assets/tak-map-infrastructure-i686.css "$APP_DIR/assets/tak-map-infrastructure-i686.css"
+install -m 0644 assets/tak-map-infrastructure-i686.js "$APP_DIR/assets/tak-map-infrastructure-i686.js"
+install -m 0644 assets/tak-map-infrastructure-i687.js "$APP_DIR/assets/tak-map-infrastructure-i687.js"
+install -m 0644 assets/tak-map-infrastructure-i687.css "$APP_DIR/assets/tak-map-infrastructure-i687.css"
+install -m 0644 assets/tak-map-infrastructure-i688.js "$APP_DIR/assets/tak-map-infrastructure-i688.js"
+install -m 0644 assets/tak-map-infrastructure-i688.css "$APP_DIR/assets/tak-map-infrastructure-i688.css"
+install -m 0644 assets/tak-map-infrastructure-i689.js "$APP_DIR/assets/tak-map-infrastructure-i689.js"
+install -m 0644 assets/tak-map-infrastructure-i689.css "$APP_DIR/assets/tak-map-infrastructure-i689.css"
+# i695: existing-card UI migration; preserve i693 radar runtime and i692/i691 compatibility.
+# Use cache-busted HTML to activate the revised styling and sidebar scripts.
+install -m 0644 assets/tak-map-weather-i693.js "$APP_DIR/assets/tak-map-weather-i693.js"
+install -m 0644 assets/tak-map-weather-i693.css "$APP_DIR/assets/tak-map-weather-i693.css"
+install -m 0644 assets/tak-map-radar-history-i696.js "$APP_DIR/assets/tak-map-radar-history-i696.js"
+install -m 0644 assets/tak-map-radar-history-i696.css "$APP_DIR/assets/tak-map-radar-history-i696.css"
+# i692: same-origin radar runtime; keep i691 assets for compatibility.
+install -m 0644 assets/tak-map-weather-i692.js "$APP_DIR/assets/tak-map-weather-i692.js"
+install -m 0644 assets/tak-map-weather-i692.css "$APP_DIR/assets/tak-map-weather-i692.css"
+# i691: native weather runtime (NOAA radar / NWS alerts).
+install -m 0644 assets/tak-map-weather-i691.js "$APP_DIR/assets/tak-map-weather-i691.js"
+install -m 0644 assets/tak-map-weather-i691.css "$APP_DIR/assets/tak-map-weather-i691.css"
+# i690: required integrated status strip runtime.
+install -m 0644 assets/tak-map-status-strip-i690.js "$APP_DIR/assets/tak-map-status-strip-i690.js"
+install -m 0644 assets/tak-map-status-strip-i690.css "$APP_DIR/assets/tak-map-status-strip-i690.css"
+install -m 0644 assets/tak-map-road-search-i678.js "$APP_DIR/assets/tak-map-road-search-i678.js"
 install -m 0644 assets/ais-civil.png "$APP_DIR/assets/ais-civil.png"
 install -m 0644 assets/ais-law.png "$APP_DIR/assets/ais-law.png"
 install -m 0644 assets/tak-map-sidebar-performance-v491.js "$APP_DIR/assets/tak-map-sidebar-performance-v491.js"
@@ -174,10 +309,46 @@ install -m 0644 assets/tak-map-deferred-i553.json "$APP_DIR/assets/tak-map-defer
 install -m 0644 assets/tak-map-icon-registry-i572.js "$APP_DIR/assets/tak-map-icon-registry-i572.js"
 install -m 0644 assets/tak-map-popup-localdata-i572.js "$APP_DIR/assets/tak-map-popup-localdata-i572.js"
 install -m 0644 assets/tak-map-context-sidebar-i572.js "$APP_DIR/assets/tak-map-context-sidebar-i572.js"
+install -m 0644 assets/tak-map-i636.js "$APP_DIR/assets/tak-map-i636.js"
 install -m 0644 assets/tak-map-data-sync-unlock-i572.js "$APP_DIR/assets/tak-map-data-sync-unlock-i572.js"
 install -m 0644 assets/tak-map-data-sync-access-i574.js "$APP_DIR/assets/tak-map-data-sync-access-i574.js"
 install -m 0644 assets/tak-map-data-sync-access-i575.js "$APP_DIR/assets/tak-map-data-sync-access-i575.js"
 install -m 0644 assets/tak-map-data-sync-access-i576.js "$APP_DIR/assets/tak-map-data-sync-access-i576.js"
+
+# i654 runtime deployment gate: a missing browser runtime must fail installation
+# instead of leaving TAK Map partially upgraded with silent 404/MIME failures.
+for runtime_asset in \
+  tak-map-basemap-stack-i673.js \
+  tak-map-infrastructure-i689.js \
+  tak-map-infrastructure-i689.css \
+  tak-map-sidebar-uniform-i684.css \
+  tak-map-veil-i665.js \
+  tak-map-veil-i666.js \
+  tak-map-weather-i693.js \
+  tak-map-weather-i693.css \
+  tak-map-weather-i692.js \
+  tak-map-weather-i692.css \
+  tak-map-weather-i691.js \
+  tak-map-weather-i691.css \
+  tak-map-status-strip-i690.js \
+  tak-map-status-strip-i690.css \
+  tak-map-context-sidebar-i572.js \
+  tak-map-package-i580.js \
+  tak-map-gateway-config-i645.js \
+  tak-map-cert-setup-i650.js \
+  tak-map-live-search-i650.js \
+  tak-map-ndm-data-i652.js \
+  tak-map-route-editor-i654.js \
+  tak-map-routing-dropdown-i675.js \
+  tak-map-route-input-i678.js \
+  tak-map-route-elevation-i681.js \
+  tak-map-road-search-i678.js \
+  tak-map-i636.js; do
+  if [[ ! -s "$APP_DIR/assets/$runtime_asset" ]]; then
+    echo "ERROR: required TAK Map runtime asset was not installed: $APP_DIR/assets/$runtime_asset"
+    exit 1
+  fi
+done
 install -m 0755 scripts/tak-map-enroll /usr/local/sbin/tak-map-enroll
 install -m 0755 scripts/tak-map-replay-enroll /usr/local/sbin/tak-map-replay-enroll
 install -m 0755 scripts/tak-map-local-admin /usr/local/sbin/tak-map-local-admin
@@ -241,6 +412,10 @@ if [[ -d assets/vendor ]]; then
   find "$VENDOR_ASSET_DIR" -type d -exec chmod 0755 {} + 2>/dev/null || true
 fi
 if ! id "$USER_NAME" >/dev/null 2>&1; then useradd --system --home "$APP_DIR" --shell /usr/sbin/nologin "$USER_NAME"; fi
+mkdir -p "$DATA_DIR/ndm/staging" "$DATA_DIR/ndm/imports" "$DATA_DIR/ndm/graphs" "$DATA_DIR/ndm/prepared"
+chown "$USER_NAME:$USER_NAME" "$DATA_DIR/ndm" "$DATA_DIR/ndm/staging" "$DATA_DIR/ndm/imports" "$DATA_DIR/ndm/graphs" "$DATA_DIR/ndm/prepared"
+chmod 0750 "$DATA_DIR/ndm" "$DATA_DIR/ndm/staging" "$DATA_DIR/ndm/imports" "$DATA_DIR/ndm/graphs" "$DATA_DIR/ndm/prepared"
+
 for grp in i2c gpio dialout netdev plugdev video; do if getent group "$grp" >/dev/null 2>&1; then usermod -aG "$grp" "$USER_NAME" || true; fi; done
 
 # Give the dashboard service the minimum filesystem access needed to register
@@ -263,6 +438,7 @@ else
   chmod a+rwx "$OTS_UPLOAD_DIR" 2>/dev/null || true
 fi
 chown -R "$USER_NAME:$USER_NAME" "$DATA_DIR"
+chmod 0750 "$DATA_DIR/backup_restore_i674"
 chmod 0750 "$DATA_DIR"
 chmod 0700 "$DATA_DIR/ots_user_credentials" "$DATA_DIR/sentinel_hub_users" "$DATA_DIR/mission_unlock_users_i572" "$DATA_DIR/mission_unlock_users_i575" "$DATA_DIR/data_sync_transport_authority_i584_hf2" "$DATA_DIR/ots_trust"
 chmod 0750 "$DATA_DIR/sentinel_hub_cache"
@@ -362,6 +538,215 @@ fi
 ALLOWED_SERVICES="${ALLOWED_SERVICES:-$DEFAULT_ALLOWED_SERVICES}"
 DATA_DIR="/var/lib/tak-map"
 DIAG_DIR="$DATA_DIR/diagnostics"
+
+# TAK Map i633 (inherited i630 OTS): narrowly-scoped, reversible OTS hostname bootstrap. The backend
+# can invoke these actions through the existing tak-map-action sudo boundary.
+# Only literal IP addresses and certificate-backed DNS names are accepted.
+if [[ "${1:-}" == "ots-host-bootstrap" || "${1:-}" == "ots-host-clear" ]]; then
+  OTS_HOST_ACTION="${1:-}"
+  OTS_HOST_IP="${2:-}"
+  export OTS_HOST_ACTION OTS_HOST_IP
+  exec /usr/bin/python3 - <<'PYOTSHOSTS'
+import ipaddress, json, os, re, socket, ssl, tempfile, urllib.request
+from pathlib import Path
+
+ACTION=os.environ.get('OTS_HOST_ACTION','').strip()
+IP_RAW=os.environ.get('OTS_HOST_IP','').strip()
+HOSTS=Path('/etc/hosts')
+BEGIN='# BEGIN TAK MAP MANAGED OTS HOSTS'
+END='# END TAK MAP MANAGED OTS HOSTS'
+STANDARD_WEB_PORTS=(443,8443)
+TLS_PORTS=(443,8443,8446,8089)
+
+def emit(**row):
+    print(json.dumps(row, sort_keys=True))
+
+def fail(msg, code=2, **extra):
+    emit(ok=False, action=ACTION, error=msg, **extra)
+    raise SystemExit(code)
+
+def normalize_ip(raw):
+    try: return ipaddress.ip_address(str(raw).strip('[]')).compressed
+    except Exception: return ''
+
+def valid_host(name):
+    if not name or len(name)>253 or name in ('localhost','localhost.localdomain') or name.startswith('*.'):
+        return False
+    if not re.fullmatch(r'[a-z0-9](?:[a-z0-9.-]{0,251}[a-z0-9])?', name):
+        return False
+    return all(part and len(part)<=63 and not part.startswith('-') and not part.endswith('-') for part in name.split('.'))
+
+def read_managed(text):
+    m=re.search(re.escape(BEGIN)+r'\n(.*?)\n'+re.escape(END), text, re.S)
+    rows={}
+    if not m: return rows
+    for line in m.group(1).splitlines():
+        raw=line.split('#',1)[0].strip()
+        if not raw: continue
+        parts=raw.split()
+        if len(parts)<2: continue
+        ip=normalize_ip(parts[0])
+        if not ip: continue
+        for host in parts[1:]:
+            host=host.lower().rstrip('.')
+            if valid_host(host): rows[host]=ip
+    return rows
+
+def write_managed(rows):
+    old=HOSTS.read_text(errors='replace') if HOSTS.exists() else ''
+    pattern=re.compile(r'(?:^|\n)'+re.escape(BEGIN)+r'\n.*?\n'+re.escape(END)+r'\n?', re.S)
+    rest=pattern.sub('\n', old).lstrip('\n')
+    lines=[f'{ip}\t{host}\t# tak-map-ots' for host,ip in sorted(rows.items())]
+    block=(BEGIN+'\n'+'\n'.join(lines)+'\n'+END+'\n') if lines else ''
+    new=block+rest
+    st=HOSTS.stat() if HOSTS.exists() else None
+    fd,tmp=tempfile.mkstemp(prefix='.tak-map-hosts-', dir=str(HOSTS.parent))
+    try:
+        with os.fdopen(fd,'w',encoding='utf-8') as f:
+            f.write(new); f.flush(); os.fsync(f.fileno())
+        if st:
+            os.chmod(tmp, st.st_mode & 0o7777)
+            try: os.chown(tmp, st.st_uid, st.st_gid)
+            except PermissionError: pass
+        else:
+            os.chmod(tmp, 0o644)
+        try:
+            os.replace(tmp, HOSTS)
+        except OSError:
+            # Some Linux/container/network-manager layouts expose /etc/hosts as
+            # a bind-mounted file that cannot be replaced by rename. Preserve
+            # the same bounded content update with an in-place fallback.
+            with HOSTS.open('w', encoding='utf-8') as f:
+                f.write(new); f.flush(); os.fsync(f.fileno())
+    finally:
+        try:
+            if os.path.exists(tmp): os.unlink(tmp)
+        except Exception: pass
+
+def resolved(name):
+    out=[]
+    try:
+        for row in socket.getaddrinfo(name,None,type=socket.SOCK_STREAM):
+            ip=normalize_ip((row[4] or ('',))[0])
+            if ip and ip not in out: out.append(ip)
+    except Exception: pass
+    return out
+
+def decode_cert(ip,port):
+    ctx=ssl._create_unverified_context()
+    with socket.create_connection((ip,int(port)),timeout=4) as raw:
+        with ctx.wrap_socket(raw,server_hostname=ip) as tls:
+            der=tls.getpeercert(binary_form=True)
+    pem=ssl.DER_cert_to_PEM_cert(der)
+    fd,tmp=tempfile.mkstemp(prefix='tak-map-ots-cert-',suffix='.pem')
+    try:
+        os.write(fd,pem.encode()); os.close(fd)
+        return ssl._ssl._test_decode_cert(tmp)
+    finally:
+        try: os.unlink(tmp)
+        except Exception: pass
+
+def cert_names(decoded):
+    dns=[]; ips=[]
+    for kind,value in decoded.get('subjectAltName',[]) or []:
+        if str(kind).lower()=='dns':
+            name=str(value).strip().lower().rstrip('.')
+            if valid_host(name) and name not in dns: dns.append(name)
+        elif str(kind).lower() in ('ip address','ip'):
+            ip=normalize_ip(value)
+            if ip and ip not in ips: ips.append(ip)
+    if not dns:
+        subject={k:v for group in decoded.get('subject',[]) for k,v in group}
+        cn=str(subject.get('commonName') or '').strip().lower().rstrip('.')
+        if valid_host(cn): dns.append(cn)
+    return dns,ips
+
+def rank(name):
+    if name=='opentakserver': return (0,len(name))
+    if name=='opentakserver.local': return (1,len(name))
+    if name.startswith('opentakserver.'): return (2,len(name))
+    if 'opentakserver' in name: return (3,len(name))
+    if name=='ots' or name.startswith('ots.'): return (4,len(name))
+    if 'takserver' in name: return (5,len(name))
+    return (10,len(name))
+
+def truststore_probe(ip, port):
+    host='['+ip+']' if ':' in ip else ip
+    authority=host if int(port)==443 else f'{host}:{int(port)}'
+    url=f'https://{authority}/api/truststore'
+    ctx=ssl._create_unverified_context()
+    req=urllib.request.Request(url,headers={'Accept':'*/*','User-Agent':'TAK-Map/i634 Install OTS Bootstrap'})
+    try:
+        with urllib.request.urlopen(req,timeout=5,context=ctx) as resp:
+            body=resp.read(1024*1024)
+            code=int(getattr(resp,'status',200) or 200)
+            ctype=str(resp.headers.get('Content-Type') or '').lower()
+        # OTS /api/truststore is an unauthenticated binary/certificate download.
+        looks_like=bool(body) and (body[:2]==b'PK' or body[:1]==b'0' or b'BEGIN CERTIFICATE' in body[:4096] or any(t in ctype for t in ('pkcs','octet-stream','certificate','x-x509','pem')))
+        return {'ok': bool(200<=code<300 and looks_like), 'status': code, 'content_type': ctype, 'bytes': len(body), 'url': url}
+    except Exception as exc:
+        return {'ok':False,'status':0,'content_type':'','bytes':0,'url':url,'error':str(exc)}
+
+old=HOSTS.read_text(errors='replace') if HOSTS.exists() else ''
+rows=read_managed(old)
+if ACTION=='ots-host-clear':
+    count=len(rows); write_managed({})
+    emit(ok=True,action=ACTION,removed=count,managed_entries=[])
+    raise SystemExit(0)
+
+ip=normalize_ip(IP_RAW)
+if not ip: fail('A literal IPv4 or IPv6 OTS address is required.')
+
+web_probes=[]; web_port=0
+for port in STANDARD_WEB_PORTS:
+    probe=truststore_probe(ip,port); web_probes.append(probe)
+    if probe.get('ok'):
+        web_port=port; break
+
+cert_order=[]
+if web_port: cert_order.append(web_port)
+for port in TLS_PORTS:
+    if port not in cert_order: cert_order.append(port)
+decoded=None; cert_port=0; errors=[]
+for port in cert_order:
+    try:
+        decoded=decode_cert(ip,port); cert_port=port; break
+    except Exception as exc:
+        errors.append(f'{port}: {exc}')
+if not decoded:
+    fail('Could not read an OpenTAKServer TLS certificate from the configured IP.', ip=ip, web_probes=web_probes, probes=errors)
+
+dns,ip_sans=cert_names(decoded)
+subject={k:v for group in decoded.get('subject',[]) for k,v in group}
+# If the truststore request could not classify the web port (for example a
+# hostname-based redirect/vhost), a certificate seen directly on a standard
+# web port is still a useful fallback. DNS-only certificates get one more
+# truststore probe after the managed hostname mapping is active below.
+if not web_port and cert_port in STANDARD_WEB_PORTS:
+    web_port=cert_port
+if ip in ip_sans:
+    write_managed({})
+    emit(ok=True,action=ACTION,ip=ip,hostname='',mapped=False,mapping_required=False,web_port=web_port,certificate_port=cert_port,certificate_dns_names=dns,certificate_ip_addresses=ip_sans,certificate_subject=subject,web_probes=web_probes,reason='certificate-valid-for-ip')
+    raise SystemExit(0)
+if not dns:
+    fail('The OTS certificate is not valid for the IP and did not advertise a usable DNS hostname.', ip=ip, web_port=web_port, certificate_port=cert_port, certificate_subject=subject, web_probes=web_probes)
+host=sorted(dns,key=rank)[0]
+previous=resolved(host)
+rows={host:ip}; write_managed(rows)
+after=resolved(host)
+if ip not in after:
+    fail('TAK Map could not activate the certificate hostname mapping.', ip=ip, hostname=host, resolved=after, web_port=web_port)
+if not web_port:
+    for port in STANDARD_WEB_PORTS:
+        probe=truststore_probe(host,port); probe['after_managed_host_mapping']=True; web_probes.append(probe)
+        if probe.get('ok'):
+            web_port=port; break
+if not web_port and cert_port in STANDARD_WEB_PORTS:
+    web_port=cert_port
+emit(ok=True,action=ACTION,ip=ip,hostname=host,mapped=True,mapping_required=True,web_port=web_port,certificate_port=cert_port,certificate_dns_names=dns,certificate_ip_addresses=ip_sans,certificate_subject=subject,previous_resolution=previous,resolved=after,managed_entries=rows,web_probes=web_probes)
+PYOTSHOSTS
+fi
+
 is_allowed_service() { local target="$1"; [[ "$target" =~ ^[A-Za-z0-9_.@-]{1,120}$ ]]; }
 run_and_capture() { local title="$1"; shift; { echo; echo "===== $title ====="; echo "\$ $*"; "$@" 2>&1 || true; }; }
 
@@ -668,6 +1053,20 @@ if [[ "${1:-}" == "remote-default" ]]; then
     show-memory-usage) exec /usr/bin/free -h ;;
     *) echo "Unknown default command ID: $cmd_id" >&2; exit 2 ;;
   esac
+fi
+
+if [[ "${1:-}" == "backup-i674" ]]; then
+  case "${2:-}" in create|inspect|restore|schedule|browser) exec /usr/bin/python3 /opt/tak-map/tak_map_backup_i674.py "$2" ;;
+    *) echo "Unknown backup operation" >&2; exit 2 ;;
+  esac
+fi
+
+# i675: fixed-argument, root-only service restart after authenticated catalog
+# activation. The unprivileged dashboard prepares and validates graph contents;
+# this helper cannot select a path, download a file, or modify other services.
+if [[ "${1:-}" == "route-graph-restart-i675" ]]; then
+  [[ "$#" -eq 1 ]] || { echo "Unexpected graph restart arguments" >&2; exit 2; }
+  exec /usr/bin/systemctl restart tak-map-valhalla.service
 fi
 
 if [[ "${1:-}" == "config-backup" ]]; then
@@ -2461,6 +2860,15 @@ ensure_env_default TAK_MAP_REPLAY_CLIENT_KEY /etc/tak-map/replay-client.key
 ensure_env_default TAK_MAP_REPLAY_CA_CERT /etc/tak-map/replay-ca.crt
 ensure_env_default TAK_MAP_REPLAY_VERIFY_TLS true
 ensure_env_default TAK_MAP_REPLAY_TIMEOUT 120
+# Optional client certificates for Gateway Data; Replay remains mTLS by default.
+# ``auto`` keeps existing Gateway Data certificates in use, or uses certificate-free
+# access when the cert/key are absent. Operators can force ``none`` or ``certificate``.
+ensure_env_default TAK_MAP_GATEWAY_DATA_AUTH_MODE auto
+ensure_env_default TAK_MAP_REPLAY_AUTH_MODE certificate
+ensure_env_default TAK_MAP_GATEWAY_DATA_VERIFY_TLS true
+# i630 OpenTAKServer 1.7.13 remote-auth default. Override at install time with TAK_MAP_OTS_IP.
+ensure_env_default TAK_MAP_OTS_DEFAULT_SERVER "https://${DEFAULT_OTS_IP}"
+ensure_env_default TAK_MAP_OTS_TRUSTSTORE_PASSWORD_FALLBACK "atakatak"
 # i508 TAK Gateway split-layer composite basemaps. Enrollment writes the secure Gateway
 # base URL so browsers request composite tiles directly from Gateway over HTTPS.
 ensure_env_default TAK_MAP_GATEWAY_BASEMAP_URL ""
@@ -2474,6 +2882,11 @@ ensure_env_default TAK_MAP_GATEWAY_BASEMAP_TIMEOUT 20
 if grep -qx 'TAK_MAP_REPLAY_TIMEOUT=20' "$ENV_FILE" 2>/dev/null; then
   sed -i 's/^TAK_MAP_REPLAY_TIMEOUT=20$/TAK_MAP_REPLAY_TIMEOUT=120/' "$ENV_FILE"
 fi
+echo "Bootstrapping OpenTAKServer hostname/TLS mapping for ${DEFAULT_OTS_IP}..."
+if ! "$WRAPPER" ots-host-bootstrap "$DEFAULT_OTS_IP"; then
+  echo "WARNING: OTS hostname bootstrap could not complete during install. Configure OTS will retry automatically when the server is reachable."
+fi
+
 mkdir -p /etc/tak-map
 chown root:"$USER_NAME" /etc/tak-map
 chmod 0750 /etc/tak-map
@@ -2497,6 +2910,40 @@ NoNewPrivileges=false
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# i651 local Valhalla routing service: deliberately disabled until live Utah graph
+# and host RAM/disk/latency checks pass. No exposed LAN listening socket.
+valhalla_unit_preexisting=0
+[[ -f /etc/systemd/system/tak-map-valhalla.service ]] && valhalla_unit_preexisting=1
+cat > /etc/systemd/system/tak-map-valhalla.service <<EOF
+[Unit]
+Description=TAK Map local Valhalla 3.6.3 road routing engine
+After=network.target tak-map.service
+PartOf=tak-map.service
+ConditionPathExists=$DATA_DIR/ndm/active/valhalla.json
+
+[Service]
+Type=simple
+User=$USER_NAME
+Group=$USER_NAME
+WorkingDirectory=$DATA_DIR/ndm
+ExecStart=$APP_DIR/vendor/valhalla-3.6.3/valhalla/bin/valhalla_service $DATA_DIR/ndm/active/valhalla.json 1
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=$DATA_DIR/ndm
+MemoryMax=2G
+TasksMax=64
+
+[Install]
+WantedBy=tak-map.service
+EOF
+# The service can run only with a prepared local graph and a pinned Valhalla binary.
+# Existing NDM graph files are never rewritten by installer startup.
+
 
 # Force dashboard backend to localhost-only. Public access is HTTPS via nginx on 9443.
 if grep -q '^TAK_DASHBOARD_BIND=' "$ENV_FILE"; then
@@ -3163,10 +3610,49 @@ if [[ -d "$HOME/ots/ca" ]]; then
 fi
 
 systemctl daemon-reload
+systemctl enable tak-map-valhalla.service >/dev/null
 systemctl enable --now tak-map.service
-systemctl restart tak-map.service || true
+systemctl restart tak-map.service
+if [[ -f "$DATA_DIR/ndm/active/valhalla.json" ]]; then
+  systemctl start tak-map-valhalla.service || echo "WARNING: Routing graph selected, but Valhalla did not start; Manual mode remains available."
+else
+  echo "Routing awaits a validated selected graph; Manual mode remains available."
+fi
+
+# i659 post-start runtime route validation. Validate through the local backend so
+# nginx/TLS/login configuration cannot mask an application packaging defect.
+TAK_MAP_RUNTIME_BASE="http://127.0.0.1:8092/assets/runtime"
+runtime_ready=0
+for _ in $(seq 1 40); do
+  if curl -fsS --max-time 2 "$TAK_MAP_RUNTIME_BASE/tak-map-i636.js?install-check=i659" >/dev/null 2>&1; then
+    runtime_ready=1
+    break
+  fi
+  sleep 0.25
+done
+if [[ "$runtime_ready" != "1" ]]; then
+  echo "ERROR: TAK Map backend did not serve required runtime assets after restart."
+  systemctl status tak-map.service --no-pager -l || true
+  exit 1
+fi
+for runtime_url in \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-i636.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-context-sidebar-i572.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-package-i580.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-gateway-config-i645.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-cert-setup-i650.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-live-search-i650.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-ndm-data-i652.js?install-check=i659" \
+  "$TAK_MAP_RUNTIME_BASE/tak-map-route-editor-i654.js?install-check=i659"; do
+  if ! curl -fsS --max-time 4 "$runtime_url" >/dev/null; then
+    echo "ERROR: required TAK Map runtime route failed: $runtime_url"
+    exit 1
+  fi
+done
+
 echo
 echo "Installed and started tak-map.service"
+echo "Valhalla 3.6.3 auto-start enabled when a valid local graph is selected (localhost only)."
 echo
 echo "Authentication: enabled for dashboard viewing"
 echo "  Sign in with a Raspberry Pi OS/Linux account."
