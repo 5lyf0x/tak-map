@@ -1,9 +1,0 @@
-# TAK Map v1.4.0-i662 — Command Slate Mesh card + Mission creation
-
-- Replaces the previously visible MESH SYNC sidebar card with the approved compact **Command Slate** layout, Manrope button typography (online web font with system sans-serif fallback), icon-left single-line labels, and distinct Mesh Network / Missions sections.
-- Moves state from the title to a right-aligned chip **immediately left** of an actual ON/OFF network toggle. Authenticated-peer connection = green, enrolled without an authenticated peer = yellow, no enrollment = orange, and enrolled but paused = yellow. No false "connected" when only discovered.
-- The network switch persists across service restarts in the existing Token Mesh journal settings; pausing closes UDP/TCP listeners and retains group keys, enabled Mission bindings, journals, and map data.
-- Creates new **local Mesh Missions** with random UUID and independently generated 32-byte Mission key; supports XMS1 export (complete text + QR where QR dependencies installed), joining by XMS1 text or QR image, and a joined-Missions list with Share actions. Mission actions remain disabled without Mesh enrollment or when Mesh networking is paused.
-- Existing Create Mesh, Join Mesh, Upload QR, Show Join Code, Leave Mesh retain their separate roles. Never auto-publishes to Gateway or OpenTAKServer.
-- Preserves the i661 AIS detail field formatting, OTS DATA SYNC card, existing Map/Token Mesh functionality and installed runtime data. Source ZIP contains no real invitation credentials.
-- Full Android↔Linux interoperability, live firewall behavior, and new Mission workflows on production endpoints remain unverified. Browser QR image decoding requires BarcodeDetector; manual XTM1/XMS1 entry remains supported. Manrope loads when Google Fonts is reachable, otherwise falls back to system sans-serif.
