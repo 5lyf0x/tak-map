@@ -13,8 +13,9 @@ assert spec.loader is not None
 sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
 
-assert mod.TAK_MAP_ITERATION == 'i602'
-assert mod.tak_map_config()['version'] == '1.3.0-i602'
+iteration_number = int(str(mod.TAK_MAP_ITERATION).lstrip('iv'))
+assert iteration_number >= 602, mod.TAK_MAP_ITERATION
+assert str(mod.tak_map_config()['version']).endswith('-' + str(mod.TAK_MAP_ITERATION)), mod.tak_map_config()['version']
 
 mission = 'TAKMAP-DATASYNC-TEST2'
 event_uid = 'TAKMAP-MISSION-POINT-f4d266fe311a4995ba7e3d82eeca'

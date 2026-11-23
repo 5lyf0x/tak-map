@@ -1,0 +1,8 @@
+#tokenMeshCardI660 .ms-title,#takVeilCardI665 .tv-head strong{font-family:inherit!important;font-size:.8rem!important;font-weight:700!important;letter-spacing:.1em!important;color:#c8d2da!important;text-transform:uppercase!important}
+#tokenMeshCardI660 .ms-header,#takVeilCardI665 .tv-head{cursor:pointer;user-select:none}
+#tokenMeshCardI660 .ms-header:focus-visible,#takVeilCardI665 .tv-head:focus-visible{outline:2px solid #9bcce8;outline-offset:-3px}
+#takVeilCardI665 .tv-node-actions{display:flex;gap:5px;flex-wrap:wrap}
+#takVeilCardI665 .tv-node-actions button{font-size:11px;color:#d0e7f5;background:#1b3240;border:1px solid #3b5667;padding:5px 7px;border-radius:6px;cursor:pointer}
+.tak-route-saved-total-i666{background:transparent!important;border:0!important;pointer-events:none!important}
+.tak-route-saved-total-i666 .tak-route-total-chip-i666{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;max-width:210px;min-width:52px;padding:5px 6px;gap:2px;color:#f1f7fa;background:#14222cef;border:1px solid #748391;border-radius:6px;font:600 11px/1.25 system-ui,sans-serif;box-shadow:0 2px 7px #0008;white-space:nowrap;pointer-events:none}
+.tak-route-saved-total-i666 .tak-route-total-chip-i666 strong{font-size:11px;max-width:192px;overflow:hidden;text-overflow:ellipsis}

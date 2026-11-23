@@ -1,0 +1,13 @@
+/* TAK Map i691 native weather section follows Command Slate BASEMAP styling */
+#takNativeWeatherI691{margin:10px 0 8px;padding:9px 10px;border:1px solid #344451;border-radius:10px;background:rgba(9,17,23,.72);color:#dbe6eb;font-size:12px}
+.tak-weather-head-i691{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:transparent;color:#c5d3dc;font:800 11px system-ui,sans-serif;letter-spacing:.09em;cursor:pointer;padding:2px 0 8px;text-align:left}.tak-weather-head-i691 span{color:#ff823e}
+.tak-weather-body-i691[hidden],.tak-weather-sub-i691[hidden]{display:none!important}
+.tak-weather-row-i691{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #27343d;padding:10px 1px 8px;cursor:pointer;font-size:12px;font-weight:750}.tak-weather-row-i691 span{display:block}.tak-weather-row-i691 small{display:block;margin-top:3px;color:#8499a7;font-weight:500;font-size:10px}
+.tak-weather-row-i691 input{accent-color:#40bc88;width:17px;height:17px;cursor:pointer}
+.tak-weather-sub-i691{padding:0 2px 9px}.tak-weather-sub-i691>label{display:flex;justify-content:space-between;color:#a9bcc9;font-size:11px;margin:3px 0 5px}.tak-weather-sub-i691>label output{color:#e0eaf0;font-weight:750}
+#takWeatherOpacityI691{width:100%;height:16px;accent-color:#5e92a9;cursor:pointer}.tak-weather-sub-i691>small{display:block;margin-top:3px;color:#899eab;font-size:10px;line-height:1.35}
+.tak-weather-legend-i691{display:flex;align-items:center;gap:4px;color:#aab9c0;font-size:9px;flex-wrap:wrap}.tak-weather-legend-i691 i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-left:4px}
+.tak-weather-credit-i691{display:block;color:#718896;font-size:9px;margin-top:7px}
+.tak-weather-popup-i691{max-height:330px;overflow:auto;color:#dbe6ee;background:#111d26}.tak-weather-popup-i691 p{white-space:pre-wrap;font-size:11px}.tak-weather-popup-i691 a{color:#79c2f8}
+/* Legacy relief control must never reappear even with cached old HTML */
+.relief-controls,.tak-relief-controls-v506,#reliefOverlayButtonV506,#reliefOpacity,#reliefOverlayToggle{display:none!important}

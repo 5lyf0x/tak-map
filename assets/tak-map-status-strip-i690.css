@@ -1,0 +1,48 @@
+/* TAK Map i690 – integrated, read-only status strip. The map's y=86px is unchanged. */
+#mapStatusBanner.map-status-banner{
+  position:fixed!important;top:58px!important;left:396px!important;right:0!important;
+  width:auto!important;max-width:none!important;height:28px!important;min-height:28px!important;
+  box-sizing:border-box!important;margin:0!important;padding:0 14px!important;
+  display:flex!important;align-items:center!important;overflow:hidden!important;
+  border:0!important;border-bottom:1px solid #273740!important;border-radius:0!important;
+  background:#0b131a!important;box-shadow:none!important;backdrop-filter:none!important;
+  color:#dae5ea!important;z-index:850!important;font-family:Manrope,Inter,'Segoe UI',sans-serif!important;
+  font-size:11px!important;font-weight:750!important;letter-spacing:0!important;
+}
+#mapStatusBanner[hidden],.replay-mode-v415 #mapStatusBanner{display:none!important}
+body:has(#sidebar.collapsed) #mapStatusBanner{left:0!important}
+#mapStatusBanner #statusLegacyI690{display:none!important}
+#mapStatusBanner .i690-status-items{display:flex;align-items:center;gap:26px;min-width:0;max-width:100%;height:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;white-space:nowrap}
+#mapStatusBanner .i690-status-items::-webkit-scrollbar{display:none}
+#mapStatusBanner .i690-status-item{display:inline-flex;align-items:center;flex:none;gap:7px;white-space:nowrap;line-height:1;height:25px;min-height:25px;color:#dce6ec;font-size:11px;font-weight:750;font-variant-numeric:tabular-nums}
+#mapStatusBanner .i690-status-item[hidden]{display:none!important}
+#mapStatusBanner .i690-status-item.i690-clickable{cursor:pointer;border:0;background:none;font:inherit;padding:0;transition:color .15s}
+#mapStatusBanner .i690-status-item.i690-clickable:hover{color:#fff}
+#mapStatusBanner .i690-status-item.i690-clickable:focus-visible{outline:1px solid #6cabc5;outline-offset:0;border-radius:3px}
+#mapStatusBanner .i690-status-item .i690-label{font-weight:800}
+#mapStatusBanner .i690-status-item .i690-value{font-weight:700;color:#c3d1d9}
+#mapStatusBanner .i690-status-item .i690-dot{width:7px;height:7px;border-radius:50%;background:#83929b;flex:none}
+#mapStatusBanner .i690-dot.good{background:#35d493;box-shadow:0 0 5px #35d49345}
+#mapStatusBanner .i690-dot.bad{background:#fb6868}
+#mapStatusBanner .i690-dot.warn{background:#efc368}
+#mapStatusBanner .i690-dot.unknown{background:#8495a0}
+#statusDropdownI690{position:fixed;z-index:960;display:none;width:274px;max-width:calc(100vw - 16px);max-height:222px;overflow:auto;overscroll-behavior:contain;box-sizing:border-box;background:#0d171e;border:1px solid #31424c;border-radius:9px;box-shadow:0 12px 30px #0009;color:#dce6eb;padding:7px 8px 9px;font:11px/1.35 Manrope,Inter,'Segoe UI',sans-serif;scrollbar-width:thin;scrollbar-color:#506775 #131e26}
+#statusDropdownI690.active{display:block}
+#statusDropdownI690::-webkit-scrollbar{width:5px}
+#statusDropdownI690::-webkit-scrollbar-track{background:#131e26}
+#statusDropdownI690::-webkit-scrollbar-thumb{background:#506775;border-radius:5px}
+#statusDropdownI690 .i690-panel-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:1px 2px 5px;border-bottom:1px solid #263741}
+#statusDropdownI690 .i690-panel-head b{font-size:11px;letter-spacing:.02em}
+#statusDropdownI690 .i690-panel-head button{width:21px;height:20px;padding:0;border:0;background:transparent;color:#aebfc8;cursor:pointer;font-size:17px}
+#statusDropdownI690 .i690-panel-summary{font-size:10px;color:#93aab6;padding:6px 2px 4px}
+#statusDropdownI690 .i690-panel-rows{display:flex;flex-direction:column}
+#statusDropdownI690 .i690-row{display:block;width:100%;text-align:left;padding:6px 5px;border:0;border-bottom:1px solid #203039;background:transparent;color:#dce6eb;border-radius:3px;font:inherit;cursor:pointer;min-height:36px}
+#statusDropdownI690 .i690-row:hover,#statusDropdownI690 .i690-row:focus-visible{background:#172935;outline:none}
+#statusDropdownI690 .i690-row-title{display:flex;gap:7px;align-items:center;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#statusDropdownI690 .i690-row-sub{color:#9eafba;font-size:10px;margin-left:14px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#statusDropdownI690 .i690-node-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8096a2;flex:none}
+#statusDropdownI690 .i690-node-dot.good{background:#35d493}
+#statusDropdownI690 .i690-node-dot.warn{background:#efc368}
+#statusDropdownI690 .i690-empty{color:#91a6b0;padding:12px 6px}
+#statusDropdownI690 .i690-stale{color:#efc368}
+@media(max-width:900px){#mapStatusBanner.map-status-banner{left:0!important;padding:0 9px!important}#mapStatusBanner .i690-status-items{gap:24px}}

@@ -1,38 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="${1:-v1.4.0-i621}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DIST="$ROOT/dist"
-OUT="$DIST/tak-map-${VERSION}.zip"
-ITERATION="${VERSION##*-}"
-if [[ ! "$ITERATION" =~ ^i[0-9]+$ ]]; then
-  echo "ERROR: version must end in an iteration such as i575: $VERSION" >&2
+VERSION="${1:-$(cat "$ROOT/VERSION")}"; VERSION="${VERSION#v}"
+if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+-i[0-9]+$ ]]; then
+  echo "ERROR: expected version like 1.4.0-i649: $VERSION" >&2
   exit 2
 fi
-ROOT_NAME="tak-map-${VERSION}"
-STAGE="$(mktemp -d /tmp/tak-map-build-${ITERATION}-XXXXXX)"
+DIST="$ROOT/dist"
+OUT="$DIST/tak-map-v${VERSION}.zip"
+STAGE="$(mktemp -d "/tmp/tak-map-build-${VERSION}-XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
+mkdir -p "$DIST"
 
-mkdir -p "$DIST" "$STAGE/$ROOT_NAME"
-rm -f "$OUT"
-
-# Stage a clean, correctly named install root regardless of the source checkout name.
+# Keep the ZIP root flat: extraction creates the one new, versioned source tree.
+# Omit generated outputs, personal configuration and signing/certificate secrets.
 (
   cd "$ROOT"
-  tar \
-    --exclude='./.git' \
-    --exclude='./__pycache__' \
-    --exclude='*/__pycache__' \
-    --exclude='./dist' \
-    --exclude='*.pyc' \
-    --exclude='*.log' \
-    --exclude='*.tmp' \
-    --exclude='*.pem' --exclude='*.key' --exclude='*.crt' \
-    --exclude='*.p12' --exclude='*.pfx' \
-    --exclude='.env' --exclude='*/.env' \
-    -cf - .
-) | (cd "$STAGE/$ROOT_NAME" && tar -xf -)
+  tar --exclude='./.git' --exclude='./dist' --exclude='./build' \
+      --exclude='./.gradle' --exclude='*/__pycache__' --exclude='./__pycache__' \
+      --exclude='*.pyc' --exclude='*.class' --exclude='*.apk' --exclude='*.aab' \
+      --exclude='*.jks' --exclude='*.keystore' \
+      --exclude='*.log' --exclude='*.tmp' --exclude='*.pem' --exclude='*.key' \
+      --exclude='*.crt' --exclude='*.p12' --exclude='*.pfx' \
+      --exclude='.env' --exclude='*/.env' -cf - .
+) | (cd "$STAGE" && tar -xf -)
 
-(cd "$STAGE" && zip -qr "$OUT" "$ROOT_NAME")
+# Hash the exact files that will be placed inside the ZIP.
+(
+ cd "$STAGE"
+ LC_ALL=C find . -type f ! -path './SHA256SUMS' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+)
+rm -f "$OUT"
+(cd "$STAGE" && zip -q -r -X "$OUT" .)
 echo "$OUT"

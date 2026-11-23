@@ -1,0 +1,43 @@
+/* i684: one neutral sidebar visual language; scope strictly to top-level cards. */
+#sidebar > .panel,#sidebar > .panel.collapsible,#sidebar #takVeilCardI665,#sidebar #tokenMeshCardI660{background:var(--panel,#101923)!important;border-color:rgba(191,201,209,.22)!important;border-radius:13px!important;color:#dfe4e8!important}
+#sidebar #takVeilCardI665 .tv-head,#sidebar #tokenMeshCardI660 .ms-header{background:var(--panel,#101923)!important;border-bottom-color:rgba(191,201,209,.22)!important;min-height:50px!important}
+#sidebar .panel > h2,#sidebar #takVeilCardI665 .tv-head strong,#sidebar #tokenMeshCardI660 .ms-title{font-family:Manrope,system-ui,sans-serif!important;font-size:12px!important;font-weight:800!important;letter-spacing:.06em!important;line-height:1.25!important;text-transform:uppercase!important;color:#dfe4e8!important}
+#sidebar #tokenMeshCardI660 .ms-header{font-family:Manrope,system-ui,sans-serif!important;letter-spacing:normal!important}
+#sidebar #takVeilCardI665 .tv-head{gap:7px!important;padding:10px 10px!important}
+#sidebar #takVeilCardI665 .tv-chip{margin-left:auto!important}
+#sidebar #takVeilCardI665 .tv-chevron{flex:0 0 24px!important;width:24px!important;height:26px!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#cbd2d8!important}
+#sidebar #takVeilCardI665 .tv-switch,#sidebar #tokenMeshCardI660 .ms-switch{flex:0 0 38px!important;width:38px!important;height:20px!important;margin:0!important}
+#sidebar #tokenMeshCardI660 .ms-header-right{gap:7px!important}
+#sidebar .panel .chip,#sidebar .panel .status-chip,#sidebar #takVeilCardI665 .tv-chip,#sidebar #tokenMeshCardI660 .ms-chip{font-family:Manrope,system-ui,sans-serif!important;font-size:10px!important;font-weight:800!important;letter-spacing:0!important;line-height:1!important;box-sizing:border-box!important;height:23px!important;min-height:23px!important;padding:0 7px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important;white-space:nowrap!important}
+#sidebar #takVeilCardI665 .tv-chip{color:#b7c8d4;background:#1c2b34;border-color:#354c59}
+#sidebar #tokenMeshCardI660 .ms-chip::before{display:none!important}
+@media(max-width:390px){#sidebar #takVeilCardI665 .tv-head,#sidebar #tokenMeshCardI660 .ms-header{gap:5px!important;padding-left:7px!important;padding-right:7px!important}#sidebar #tokenMeshCardI660 .ms-header-right{gap:5px!important}}
+
+/* Next release: canonical sidebar CARD TITLES — the Infrastructure typography in all states.
+   Styling applies to title elements only, never status badges, switches, chevrons,
+   list/category headings, controls or card contents. */
+#sidebar {
+  --tak-sidebar-heading-font:Manrope,system-ui,sans-serif;
+  --tak-sidebar-heading-size:12px;
+  --tak-sidebar-heading-weight:800;
+  --tak-sidebar-heading-spacing:.06em;
+  --tak-sidebar-heading-line:1.25;
+  --tak-sidebar-heading-color:#dfe4e8;
+}
+#sidebar > .panel > h2,
+#sidebar > .panel:is(.collapsed,.is-collapsed,.tak-card-collapsed-v491,.tak-card-collapsed-v475) > h2,
+#sidebar > .panel.collapsible.collapsed > h2,
+#sidebar > .panel > h2 > .tak-card-title-v491,
+#sidebar > .panel > .tak-card-header-v491 > .tak-card-title-v491,
+#sidebar #takInfraCardI685 .infra-head .infra-title,
+#sidebar #takVeilCardI665 .tv-head strong,
+#sidebar #tokenMeshCardI660 .ms-header .ms-title {
+  font-family:var(--tak-sidebar-heading-font)!important;
+  font-size:var(--tak-sidebar-heading-size)!important;
+  font-weight:var(--tak-sidebar-heading-weight)!important;
+  letter-spacing:var(--tak-sidebar-heading-spacing)!important;
+  line-height:var(--tak-sidebar-heading-line)!important;
+  text-transform:uppercase!important;
+  color:var(--tak-sidebar-heading-color)!important;
+  font-style:normal!important;
+}

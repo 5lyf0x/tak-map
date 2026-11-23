@@ -1,0 +1,8 @@
+TAK Map v1.4.0-i674 — Backup/Restore
+Tests: 126 passed (including 10 focused backup tests)
+Browser smoke: 1440, 820, 420px; all 13 categories visible; no JS console errors/overflow
+JavaScript syntax: PASS
+Python backup engine compile: PASS
+Bash install.sh syntax: PASS
+Source integrity/fresh extraction: see handoff SHA-256
+Known limit: browser-only IndexedDB snapshots larger than 28 MiB fail closed; offline server-backed map files included without this limit.

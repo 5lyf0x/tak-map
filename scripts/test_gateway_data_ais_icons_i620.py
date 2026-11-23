@@ -58,7 +58,7 @@ def test_asset_routes(module) -> None:
 
 
 def main() -> None:
-    assert (ROOT / 'VERSION').read_text().strip() == '1.4.0-i620'
+    assert (ROOT / 'VERSION').read_text().strip() == '1.4.0-i635'
     text = JS.read_text()
     assert "const V='i620',POLL_MS=300000;" in text
     assert 'function aisIconProfile(feature)' in text

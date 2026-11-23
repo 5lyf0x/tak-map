@@ -1,8 +1,8 @@
-/* TAK Map i572 authoritative point/route/shape contextual sidebar and unified silver sidebar theme. */
+/* TAK Map i643 contextual sidebar: validated native TAK Shape save transaction, persistent edit sessions, center translation handle, compact in-place controls. */
 (function (window, document) {
   'use strict';
 
-  const VERSION = 'i572';
+  const VERSION = 'i654';
   const PANEL_ID = 'takMapContextSidebarI572';
   const BODY_ID = 'takMapContextSidebarBodyI572';
   const state = {
@@ -25,6 +25,9 @@
     panelHost: null,
     gatewayOverlayMounted: false,
     windowResizeBound: false,
+    infoSignature: '',
+    pendingInfoSignature: '',
+    shapeEdit: {active:false,snapshot:null,draft:null,draftKey:'',baseObject:null,deferredObject:null,confirmedObject:null,handles:[],labels:[],map:null,eventsBound:false,saveBusy:false,dirty:false,revision:0,lastSaveError:'',lastSaveConfirmation:''},
   };
 
   const text = value => String(value == null ? '' : value).trim();
@@ -73,7 +76,7 @@
       #reliefOverlayButtonV506{border-color:#56636e!important;background:#18232d!important;color:#dce2e6!important}
       #reliefOverlayButtonV506[aria-pressed="true"]{border-color:#e2e6e9!important;background:linear-gradient(180deg,#dce2e6,#aeb8c0)!important;color:#111920!important;box-shadow:0 0 0 1px rgba(255,255,255,.18)!important}
 
-      #${PANEL_ID}{box-sizing:border-box;position:absolute;right:14px;bottom:var(--tak-context-bottom-i572,54px);width:min(400px,calc(100% - 28px));height:auto;max-width:calc(100% - 28px);z-index:4700;color:#edf1f4;background:linear-gradient(180deg,rgba(17,29,40,.985),rgba(7,15,23,.992));border:1px solid #596671;border-radius:13px;box-shadow:0 22px 64px rgba(0,0,0,.62);transform:translateX(0);opacity:1;transition:transform .22s ease,opacity .18s ease;pointer-events:auto;overflow:visible;contain:layout style}
+      #${PANEL_ID}{box-sizing:border-box;position:absolute;right:14px;bottom:var(--tak-context-bottom-i572,54px);width:min(320px,calc(100% - 24px));height:auto;max-width:min(320px,calc(100% - 24px));z-index:4700;color:#edf1f4;background:linear-gradient(180deg,rgba(17,29,40,.985),rgba(7,15,23,.992));border:1px solid #596671;border-radius:13px;box-shadow:0 22px 64px rgba(0,0,0,.62);transform:translateX(0);opacity:1;transition:transform .22s ease,opacity .18s ease;pointer-events:auto;overflow:visible;contain:layout style}
       #${PANEL_ID}.collapsed{transform:translateX(calc(100% + 26px));opacity:0;pointer-events:none}
       #${PANEL_ID} .tak-context-head-i572{min-height:45px;display:flex;align-items:center;gap:8px;padding:0 8px 0 12px;border-bottom:1px solid rgba(203,210,216,.23);background:linear-gradient(180deg,#1a2833,#111c25);border-radius:12px 12px 0 0}
       #${PANEL_ID} .tak-context-head-copy-i572{min-width:0;flex:1}
@@ -81,7 +84,7 @@
       #${PANEL_ID} .tak-context-title-i572{overflow:hidden;color:#e7ebee;font-size:13.5px;font-weight:850;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}
       #${PANEL_ID} .tak-context-hide-i572{width:32px;height:32px;display:grid;place-items:center;border:1px solid #60707c;border-radius:8px;background:#17232d;color:#e4e8eb;font-size:20px;line-height:1;cursor:pointer}
       #${PANEL_ID} .tak-context-hide-i572:hover{border-color:#d7dde1;background:#25323d}
-      #${BODY_ID}{height:auto;max-height:none;padding:0;overflow:visible!important;overscroll-behavior:contain}
+      #${BODY_ID}{box-sizing:border-box;width:100%;min-width:0;max-width:100%;height:auto;max-height:none;margin:0;padding:0;overflow:visible!important;overscroll-behavior:contain;background:rgba(8,13,18,.97)}
       #${BODY_ID}>*{max-width:100%!important}
       #${PANEL_ID} .feature-popup,#${PANEL_ID} .point-info-popup-i556{width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;border:0!important;border-radius:0 0 12px 12px!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;color:#e5eaed!important}
       #${PANEL_ID} .feature-popup h3{margin:0;padding:11px 12px 8px;border-bottom:1px solid rgba(203,210,216,.16);font-size:15px;overflow-wrap:anywhere}
@@ -140,10 +143,18 @@
       #${BODY_ID} .point-button-i556{min-height:34px!important;padding:0 10px!important;font-size:10.5px!important}
 
       /* Route/shape legacy editor becomes an in-place sidebar view. */
-      #${PANEL_ID} details.popup-edit{margin:8px 10px 10px;border:1px solid #56636f;border-radius:9px;background:#0d1821;overflow:visible}
-      #${PANEL_ID} details.popup-edit>summary{min-height:34px;display:flex;align-items:center;justify-content:center;list-style:none;color:#111920;background:linear-gradient(180deg,#dce2e6,#adb7bf);border-radius:8px;font-size:10px;font-weight:850;cursor:pointer}
+      #${PANEL_ID} details.popup-edit{box-sizing:border-box;width:100%;margin:0;border:0;border-radius:9px;background:transparent;overflow:visible}
+      #${PANEL_ID} details.popup-edit>summary{display:none!important}
       #${PANEL_ID} details.popup-edit>summary::-webkit-details-marker{display:none}
-      #${PANEL_ID} details.popup-edit[open]>summary{display:none}
+      #${PANEL_ID} details.popup-edit[open]>summary{display:none!important}
+      #${PANEL_ID} .tak-shape-edit-toggle-i639{box-sizing:border-box;width:100%;min-height:36px;display:flex;align-items:center;justify-content:center;margin:12px 0 0;border:1px solid #9ea9b3;border-radius:8px;background:linear-gradient(180deg,#dce2e6,#adb7bf);color:#111920;font-size:12px;font-weight:850;cursor:pointer}
+      #${PANEL_ID} .tak-shape-edit-toggle-i639:hover,#${PANEL_ID} .tak-shape-edit-toggle-i639:focus-visible{filter:brightness(1.05);outline:none}
+      #${PANEL_ID} .tak-v322-popup{box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
+      #${PANEL_ID} .tak-v322-bar{box-sizing:border-box!important;width:100%!important;margin:0!important}
+      #${PANEL_ID} .tak-v322-inner{box-sizing:border-box!important;width:100%!important;margin:0!important;padding:14px 15px 13px!important}
+      #${PANEL_ID} .tak-v322-table{width:100%!important}
+      #${PANEL_ID} .tak-geometry-i638 span,#${PANEL_ID} .tak-geometry-i639 span{font-variant-numeric:tabular-nums}
+
       #${PANEL_ID} details.popup-edit label{display:block;padding:5px 8px 0;color:#aab4bc;font-size:8px;font-weight:800;text-transform:uppercase}
       #${PANEL_ID} details.popup-edit input,#${PANEL_ID} details.popup-edit textarea{box-sizing:border-box;width:100%;margin-top:3px;border:1px solid #485662;border-radius:6px;background:#08121a;color:#edf1f4;padding:6px 7px;font-size:10px;text-transform:none}
       #${PANEL_ID} details.popup-edit textarea{resize:none}
@@ -155,9 +166,40 @@
       #${PANEL_ID}.generic-edit .feature-popup>h3,#${PANEL_ID}.generic-edit .feature-popup>.kvp{display:none!important}
       #${PANEL_ID}.generic-edit details.popup-edit{margin-top:10px}
 
+      /* i639 Shape editor: in-place fields, silver/gray TAK Map controls, compact action spacing. */
+      #${PANEL_ID}.shape-context-i639 .tak-context-head-i572{min-height:34px}
+      #${PANEL_ID}.shape-context-i639 .tak-context-title-i572{display:none!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-inner{padding-bottom:4px!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-edit-toggle-i639{margin:8px 0 2px!important;border-color:#aeb8c0!important;background:linear-gradient(180deg,#e0e5e8,#aeb7be)!important;color:#111920!important}
+      #${PANEL_ID}.shape-context-i639 .tak-context-delete-row-i572{padding:5px 15px 9px!important}
+      #${PANEL_ID}.shape-context-i639 .tak-context-delete-button-i572{border-color:#7f8b95!important;background:linear-gradient(180deg,#4e5b65,#2b353d)!important;color:#f0f3f5!important}
+      #${PANEL_ID}.shape-context-i639 .tak-context-delete-button-i572:hover,#${PANEL_ID}.shape-context-i639 .tak-context-delete-button-i572:focus-visible{border-color:#cbd2d8!important;background:linear-gradient(180deg,#65727c,#39444d)!important;color:#fff!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-actions,#${PANEL_ID}.shape-context-i639 .popup-edit-actions{padding:6px 0 2px!important;margin:0!important;gap:7px!important;background:transparent!important;border:0!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-actions button,#${PANEL_ID}.shape-context-i639 .popup-edit-actions button{min-height:31px!important;border:1px solid #7b8892!important;border-radius:7px!important;background:linear-gradient(180deg,#4d5a64,#2a353d)!important;color:#f0f3f5!important;font-weight:850!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-actions button:first-child,#${PANEL_ID}.shape-context-i639 .popup-edit-actions button:first-child{border-color:#b8c1c8!important;background:linear-gradient(180deg,#e0e5e8,#aeb7be)!important;color:#111920!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-actions button:hover,#${PANEL_ID}.shape-context-i639 .popup-edit-actions button:hover{filter:brightness(1.08)!important}
+      #${PANEL_ID}.shape-context-i639 .tak-v322-title{font-weight:400!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-name-input-i639{box-sizing:border-box!important;width:100%!important;min-height:31px!important;margin:0!important;padding:5px 7px!important;border:1px solid #71808b!important;border-radius:7px!important;background:#08121a!important;color:#f1f4f6!important;font-size:14px!important;font-weight:400!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-center-input-i639,#${PANEL_ID}.shape-context-i639 .tak-shape-notes-input-i639{box-sizing:border-box!important;width:100%!important;margin:0!important;padding:5px 7px!important;border:1px solid #61707b!important;border-radius:6px!important;background:#08121a!important;color:#edf1f4!important;font-size:10.5px!important;text-transform:none!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-notes-input-i639{min-height:54px!important;resize:vertical!important}
+      #${PANEL_ID}.shape-context-i639.shape-editing-i639 details.popup-edit{display:block!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+      #${PANEL_ID}.shape-context-i639.shape-editing-i639 .tak-shape-edit-toggle-i639{display:none!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-edit-actions-i640{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;width:100%!important;max-width:none!important;gap:8px!important;padding:7px 0 2px!important;margin:0!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-edit-actions-i640 button{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;flex:1 1 0!important;min-height:33px!important;border:1px solid #8a969f!important;border-radius:7px!important;background:linear-gradient(180deg,#d9dfe3,#9da8b0)!important;color:#111920!important;font-size:11.5px!important;font-weight:800!important}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-edit-actions-i640 button:hover,#${PANEL_ID}.shape-context-i639 .tak-shape-edit-actions-i640 button:focus-visible{filter:brightness(1.06)!important;outline:none}
+      #${PANEL_ID}.shape-context-i639 .tak-shape-edit-actions-i640 button:disabled{opacity:.55!important;cursor:wait!important}
+      #${PANEL_ID}.shape-context-i639 .popup-edit-status{padding:4px 0 0!important;color:#c5ced4!important;font-size:10px!important;min-height:0!important}
+      .tak-shape-vector-wrap-i639{background:transparent!important;border:0!important}
+      .tak-shape-vector-i639{display:block;box-sizing:border-box;width:14px;height:14px;border:2px solid #f1f4f6;border-radius:3px;background:#6f7b84;box-shadow:0 0 0 2px rgba(15,24,31,.92),0 2px 8px rgba(0,0,0,.7);cursor:move}
+      .tak-shape-vector-i639.center{width:16px;height:16px;border-radius:999px;background:#cbd2d8;box-shadow:0 0 0 2px rgba(15,24,31,.95),0 0 0 4px rgba(203,210,216,.28),0 2px 8px rgba(0,0,0,.7)}
+      .tak-shape-vector-i639.major{transform:rotate(45deg);background:#9ea9b3}
+      .tak-shape-vector-i639.minor{transform:rotate(45deg);background:#707d87}
+      .tak-shape-distance-wrap-i639{background:transparent!important;border:0!important;overflow:visible!important;pointer-events:none!important}
+      .tak-shape-distance-i639{display:inline-block;transform:translate(-50%,-50%);white-space:nowrap;padding:2px 5px;border:1px solid rgba(203,210,216,.68);border-radius:5px;background:rgba(12,20,27,.91);color:#eef2f4;font-size:10px;font-weight:850;line-height:1.15;box-shadow:0 2px 7px rgba(0,0,0,.55)}
+
       /* i572 source-safe contextual deletion states. */
-      #${PANEL_ID} .tak-context-delete-row-i572{display:flex;gap:8px;padding:0 10px 11px}
-      #${PANEL_ID} .tak-context-delete-button-i572{width:100%;min-height:36px;border:1px solid rgba(219,118,111,.64);border-radius:8px;background:rgba(126,39,36,.22);color:#ffd9d6;font-size:12.5px;font-weight:850;cursor:pointer}
+      #${PANEL_ID} .tak-context-delete-row-i572{box-sizing:border-box;display:flex;justify-content:center;gap:8px;width:100%;margin:0;padding:12px 15px 11px}
+      #${PANEL_ID} .tak-context-delete-button-i572{box-sizing:border-box;width:100%;max-width:none;margin:0;min-height:36px;border:1px solid rgba(219,118,111,.64);border-radius:8px;background:rgba(126,39,36,.22);color:#ffd9d6;font-size:12.5px;font-weight:850;cursor:pointer}
       #${PANEL_ID} .tak-context-delete-button-i572:hover,#${PANEL_ID} .tak-context-delete-button-i572:focus-visible{border-color:#e4a09b;background:rgba(158,54,49,.34);outline:none}
       #${PANEL_ID} .tak-context-delete-button-i572:disabled{cursor:not-allowed;opacity:.48;background:#17232d;color:#9da8b1;border-color:#53616d}
       #${PANEL_ID} .tak-context-delete-unavailable-i572{padding:0 12px 11px;color:#9da8b1;font-size:10px;line-height:1.4}
@@ -180,9 +222,10 @@
       @keyframes takContextDeleteSpinI572{to{transform:rotate(360deg)}}
 
       /* i618 shared top-level, content-aware context sizing. */
-      #${PANEL_ID}.tak-context-top-overlay-i618{position:fixed!important;z-index:2147482000!important;display:flex!important;flex-direction:column!important;max-width:calc(100vw - 24px)!important;overflow:hidden!important;contain:layout style!important;scrollbar-gutter:stable!important}
+      #${PANEL_ID}.tak-context-top-overlay-i618{position:fixed!important;z-index:2147482000!important;display:flex!important;flex-direction:column!important;width:min(320px,calc(100vw - 24px))!important;max-width:min(320px,calc(100vw - 24px))!important;overflow:hidden!important;contain:layout style!important;scrollbar-gutter:auto!important}
       #${PANEL_ID}.tak-context-top-overlay-i618 .tak-context-head-i572{flex:0 0 auto!important}
-      #${PANEL_ID}.tak-context-top-overlay-i618 #${BODY_ID}{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-gutter:stable!important}
+      #${PANEL_ID}.tak-context-top-overlay-i618 #${BODY_ID}{flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-gutter:auto!important;scrollbar-width:none!important}
+      #${PANEL_ID}.tak-context-top-overlay-i618:not(.gateway-data-readonly-i615) #${BODY_ID}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
 
       /* i615 dedicated read-only Gateway Data context mode. */
       #${PANEL_ID}.gateway-data-readonly-i615{--tak-gateway-readonly-accent-i615:#8da4b2}
@@ -324,7 +367,7 @@
     const k = document.getElementById('takMapContextKickerI572');
     const t = document.getElementById('takMapContextTitleI572');
     if (k) k.textContent = text(kicker) || 'Object Details';
-    if (t) t.textContent = text(title) || 'Selected object';
+    if (t) { const value=text(title); t.textContent=value; t.hidden=!value; }
   }
 
   function openPanel() {
@@ -424,19 +467,378 @@
     return `<div class="feature-popup"><h3>${esc(objectName(object))}</h3><div class="kvp"><b>Category</b><span>${esc(kindOf(object))}</span>${center ? `<b>Coordinates</b><span>${esc(center[0].toFixed(6)+', '+center[1].toFixed(6))}</span>` : ''}<b>Source</b><span>${esc(source || object && object.source || 'TAK Map')}</span></div></div>`;
   }
 
-  function renderInfo() {
+
+  function selectedInfoSignature(object, source) {
+    if (!object) return '';
+    const fields = {
+      key: objectKey(object, effectiveSource(object, source)), source: effectiveSource(object, source), kind: kindOf(object), name: objectName(object),
+      uid: text(object.uid || object.cot_uid || object.event_uid || object.id), type: text(object.cot_type || object.type || object.event_type),
+      mission: missionNames(object), category: text(object.category || object.kind || object.geometry || object.shape_kind_i636),
+      coords: object.coords || object.points || object.coordinates || null, lat: object.lat, lon: object.lon,
+      remarks: text(object.remarks || object.notes || object.description), added: text(object.added || object.created || object.time || object.timestamp || object.updated),
+      style: [object.color, object.fill_color, object.opacity, object.fill_opacity, object.weight, object.line_style],
+      major: object.major_m_i636, minor: object.minor_m_i636, angle: object.angle_deg_i636, closed: object.shape_closed_i636,
+      deleteSupported: object.delete_supported, deleteReason: object.delete_unavailable_reason,
+    };
+    try { return JSON.stringify(fields); } catch (_) { return String(fields.key || ''); }
+  }
+
+  function flattenCoords(value, out) {
+    out = out || [];
+    if (!value) return out;
+    if (Array.isArray(value)) {
+      if (value.length >= 2 && finite(value[0]) && finite(value[1]) && !Array.isArray(value[0])) {
+        let a=Number(value[0]), b=Number(value[1]);
+        if (Math.abs(a) > 90 && Math.abs(b) <= 90) out.push([b,a]); else out.push([a,b]);
+      } else for (const child of value) flattenCoords(child,out);
+      return out;
+    }
+    if (finite(value.lat) && finite(value.lng != null ? value.lng : value.lon)) out.push([Number(value.lat),Number(value.lng != null ? value.lng : value.lon)]);
+    return out;
+  }
+
+  function geometryPoints(object, layer) {
+    let points=[];
+    try { points=flattenCoords(object && (object.coords || object.points || object.coordinates || object.geometry && object.geometry.coordinates),[]); } catch (_) {}
+    if (points.length) return points;
+    try { if (layer && typeof layer.getLatLngs === 'function') points=flattenCoords(layer.getLatLngs(),[]); } catch (_) {}
+    return points;
+  }
+
+  function haversineMeters(a,b) {
+    const R=6371008.8, rad=Math.PI/180;
+    const lat1=a[0]*rad,lat2=b[0]*rad,dlat=(b[0]-a[0])*rad,dlon=(b[1]-a[1])*rad;
+    const h=Math.sin(dlat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dlon/2)**2;
+    return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));
+  }
+
+  function polygonAreaMeters(points) {
+    if (!points || points.length < 3) return 0;
+    const R=6371008.8, rad=Math.PI/180;
+    const lat0=points.reduce((a,p)=>a+p[0],0)/points.length*rad;
+    const lon0=points.reduce((a,p)=>a+p[1],0)/points.length;
+    const xy=points.map(p=>[R*(p[1]-lon0)*rad*Math.cos(lat0),R*p[0]*rad]);
+    let sum=0; for(let i=0;i<xy.length;i++){const a=xy[i],b=xy[(i+1)%xy.length];sum+=a[0]*b[1]-b[0]*a[1];}
+    return Math.abs(sum)/2;
+  }
+
+  function perimeterMeters(points,closed) {
+    if (!points || points.length < 2) return 0;
+    let total=0; for(let i=1;i<points.length;i++) total+=haversineMeters(points[i-1],points[i]);
+    if (closed && points.length>2) total+=haversineMeters(points[points.length-1],points[0]);
+    return total;
+  }
+
+  function bearingDegrees(a,b) {
+    const rad=Math.PI/180,deg=180/Math.PI,lat1=a[0]*rad,lat2=b[0]*rad,dlon=(b[1]-a[1])*rad;
+    let v=Math.atan2(Math.sin(dlon)*Math.cos(lat2),Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dlon))*deg;
+    v=(v+360)%360; return v>=180?v-180:v;
+  }
+
+  function measurementSystem() {
+    try {
+      const loc=new Intl.Locale((navigator.languages&&navigator.languages[0])||navigator.language||'en-US');
+      let system='';
+      try { if (typeof loc.getMeasurementSystem === 'function') system=text(loc.getMeasurementSystem()); } catch (_) {}
+      try { if (!system && loc.measurementSystem) system=text(loc.measurementSystem); } catch (_) {}
+      if (/us|imperial/i.test(system)) return 'us';
+      if (/metric/i.test(system)) return 'metric';
+      const region=text(loc.region).toUpperCase();
+      return ['US','LR','MM'].includes(region)?'us':'metric';
+    } catch (_) { return /^en-US\b/i.test(navigator.language||'')?'us':'metric'; }
+  }
+
+  function numberFmt(value, digits) {
+    try { return new Intl.NumberFormat(undefined,{maximumFractionDigits:digits,minimumFractionDigits:0}).format(value); } catch (_) { return Number(value).toFixed(digits); }
+  }
+
+  function formatDistanceMeters(meters) {
+    if (!finite(meters) || Number(meters)<=0) return '';
+    meters=Number(meters); if (measurementSystem()==='us') { const feet=meters*3.280839895; return feet>=5280?`${numberFmt(feet/5280,2)} mi`:`${numberFmt(feet,feet<100?1:0)} ft`; }
+    return meters>=1000?`${numberFmt(meters/1000,2)} km`:`${numberFmt(meters,meters<100?1:0)} m`;
+  }
+
+  function formatAreaMeters(area) {
+    if (!finite(area) || Number(area)<=0) return '';
+    area=Number(area); if (measurementSystem()==='us') { const sqft=area*10.763910417, acres=area/4046.8564224, sqmi=area/2589988.110336; if (sqmi>=1) return `${numberFmt(sqft,0)} sq ft · ${numberFmt(sqmi,2)} sq mi`; if (acres>=0.1) return `${numberFmt(sqft,0)} sq ft · ${numberFmt(acres,2)} ac`; return `${numberFmt(sqft,0)} sq ft`; }
+    const ha=area/10000, sqkm=area/1e6; if (sqkm>=1) return `${numberFmt(area,0)} m² · ${numberFmt(sqkm,2)} km²`; if (ha>=0.1) return `${numberFmt(area,0)} m² · ${numberFmt(ha,2)} ha`; return `${numberFmt(area,0)} m²`;
+  }
+
+  function geometryRows(object, layer) {
+    const kind=kindOf(object), shape=text(object && (object.shape_kind_i636 || object.category || object.geometry || object.kind)).toLowerCase();
+    const cot=text(object && (object.cot_type || object.type)).toLowerCase();
+    const points=geometryPoints(object,layer); const rows=[];
+    const push=(label,value)=>{ if(text(value)) rows.push([label,text(value)]); };
+    if (kind==='Route') { push('Length',formatDistanceMeters(perimeterMeters(points,false))); return rows; }
+    if (kind!=='Shape') return rows;
+    const isCircle=/circle/.test(shape)||cot==='u-d-c-c'||cot==='u-r-b-c-c';
+    const isEllipse=/ellipse/.test(shape)||cot==='u-d-c-e';
+    const isRectangle=/rect|square/.test(shape)||cot==='u-d-r';
+    const closed=object && typeof object.shape_closed_i636==='boolean'?!!object.shape_closed_i636:!(/freehand|line/.test(shape)&&cot!=='u-d-p');
+    const major=Number(object && object.major_m_i636),minor=Number(object && object.minor_m_i636),angle=Number(object && object.angle_deg_i636);
+    if (isCircle && Number.isFinite(major) && major>0) {
+      push('Area',formatAreaMeters(Math.PI*major*major)); push('Circumference',formatDistanceMeters(2*Math.PI*major)); return rows;
+    }
+    if (isEllipse && Number.isFinite(major) && major>0 && Number.isFinite(minor) && minor>0) {
+      const a=major,b=minor,h=((a-b)*(a-b))/((a+b)*(a+b)); const peri=Math.PI*(a+b)*(1+3*h/(10+Math.sqrt(4-3*h)));
+      push('Area',formatAreaMeters(Math.PI*a*b)); push('Perimeter',formatDistanceMeters(peri)); return rows;
+    }
+    if (isRectangle && points.length>=4) {
+      push('Area',formatAreaMeters(polygonAreaMeters(points))); push('Perimeter',formatDistanceMeters(perimeterMeters(points,true))); return rows;
+    }
+    if (points.length>=2) {
+      if (closed && points.length>=3) { push('Area',formatAreaMeters(polygonAreaMeters(points))); push('Perimeter',formatDistanceMeters(perimeterMeters(points,true))); }
+      else push('Length',formatDistanceMeters(perimeterMeters(points,false)));
+    }
+    return rows;
+  }
+
+  function applySourcePresentation() {
+    if (!state.body || !state.selected) return;
+    const popup=state.body.querySelector('.tak-v322-popup'); if (!popup) return;
+    const label=sourceLabel(state.selected.object,state.selected.source), kind=kindOf(state.selected.object);
+    const sub=popup.querySelector('.tak-v322-sub'); if (sub) sub.textContent=`${kind} · ${label}`;
+    popup.dataset.source=label.startsWith('Data Sync')?'Data Sync':'Local Data';
+    popup.querySelectorAll('[data-popup-source]').forEach(node=>node.setAttribute('data-popup-source',label.startsWith('Data Sync')?'Data Sync':'Local Data'));
+  }
+
+  function applyGeometryPresentation() {
+    if (!state.body || !state.selected) return;
+    const table=state.body.querySelector('.tak-v322-table'); if (!table) return;
+    table.querySelectorAll('.tak-geometry-i638,.tak-geometry-i639').forEach(node=>node.remove());
+    const oldRows=Array.from(table.querySelectorAll('.tak-v322-row')).filter(row=>/^(area|distance|length|width|height|perimeter|radius|diameter|circumference|major axis|minor axis|rotation)$/i.test(text(row.querySelector('b')&&row.querySelector('b').textContent)));
+    oldRows.forEach(row=>row.remove());
+    const rows=geometryRows(activeShapeObjectI640(),state.shapeEdit.active?null:state.selected.layer); if (!rows.length) return;
+    const anchor=Array.from(table.querySelectorAll('.tak-v322-row')).find(row=>/^added$/i.test(text(row.querySelector('b')&&row.querySelector('b').textContent))) || null;
+    for (const [label,value] of rows) { const row=document.createElement('div'); row.className='tak-v322-row tak-geometry-i639'; row.innerHTML=`<b>${esc(label)}</b><span>${esc(value)}</span>`; if(anchor)table.insertBefore(row,anchor);else table.appendChild(row); }
+  }
+
+  function applyShapeFieldLabels() {
+    if (!state.body || !state.selected || kindOf(state.selected.object)!=='Shape') return;
+    const table=state.body.querySelector('.tak-v322-table'); if(!table)return;
+    let notesRow=null;
+    for(const row of Array.from(table.querySelectorAll('.tak-v322-row'))){
+      const label=row.querySelector('b'); if(!label)continue;
+      const name=text(label.textContent);
+      if(/^(lat\/lon|coordinates)$/i.test(name)) label.textContent='Center';
+      if(/^(category|rotation)$/i.test(name)) { row.remove(); continue; }
+      if(/^notes$/i.test(name)) notesRow=row;
+    }
+    if(notesRow&&notesRow.parentNode===table)table.appendChild(notesRow);
+  }
+
+  function shapeKindI639(object){
+    const cot=text(object&&(object.cot_type||object.type)).toLowerCase();
+    const kind=text(object&&(object.shape_kind_i636||object.shape_type||object.category||object.geometry)).toLowerCase();
+    if(cot==='u-d-r'||/rect|square/.test(kind))return 'rectangle';
+    if(cot==='u-d-c-c'||cot==='u-r-b-c-c'||/circle/.test(kind))return 'circle';
+    if(cot==='u-d-c-e'||/ellipse/.test(kind))return 'ellipse';
+    if(cot==='u-d-f'||cot==='u-d-f-m'||/freehand|telestrat|line/.test(kind))return 'freeform';
+    return 'polygon';
+  }
+  function cloneI639(value){try{return JSON.parse(JSON.stringify(value))}catch(_){return value}}
+  function normalizePointI639(p){if(Array.isArray(p)&&finite(p[0])&&finite(p[1]))return [Number(p[0]),Number(p[1])];if(p&&finite(p.lat)&&finite(p.lng!=null?p.lng:p.lon))return [Number(p.lat),Number(p.lng!=null?p.lng:p.lon)];return null}
+  function shapePointsFromI640(object,layer){
+    let pts=[];try{pts=flattenCoords(object&&(object.coords||object.points||object.coordinates||object.geometry&&object.geometry.coordinates),[])}catch(_){}
+    if(!pts.length&&layer)try{if(typeof layer.getLatLngs==='function')pts=flattenCoords(layer.getLatLngs(),[])}catch(_){}
+    return pts.map(normalizePointI639).filter(Boolean);
+  }
+  function activeShapeObjectI640(){return state.shapeEdit.active&&state.shapeEdit.draft?state.shapeEdit.draft:(state.selected&&state.selected.object)}
+  function currentShapePointsI639(){const o=activeShapeObjectI640();return shapePointsFromI640(o,state.shapeEdit.active?null:(state.selected&&state.selected.layer))}
+  function shapeCenterI639(object){
+    const o=(state.shapeEdit.active&&state.shapeEdit.draft&&(object===state.selected?.object||object===state.shapeEdit.draft))?state.shapeEdit.draft:object;
+    const k=shapeKindI639(o); if((k==='circle'||k==='ellipse')&&finite(o&&o.lat)&&finite(o&&o.lon))return [Number(o.lat),Number(o.lon)];
+    const pts=shapePointsFromI640(o,null); if(!pts.length)return objectCenter(o,state.shapeEdit.active?null:(state.selected&&state.selected.layer));
+    if((k==='rectangle'||k==='polygon')&&pts.length>=3){
+      const origin=[pts.reduce((a,p)=>a+p[0],0)/pts.length,pts.reduce((a,p)=>a+p[1],0)/pts.length],xy=pts.map(p=>xyFromI639(origin,p));let twice=0,cx=0,cy=0;
+      for(let i=0;i<xy.length;i++){const a=xy[i],b=xy[(i+1)%xy.length],cross=a[0]*b[1]-b[0]*a[1];twice+=cross;cx+=(a[0]+b[0])*cross;cy+=(a[1]+b[1])*cross;}
+      if(Math.abs(twice)>1e-6)return llFromI639(origin,[cx/(3*twice),cy/(3*twice)]);
+    }
+    return [pts.reduce((a,p)=>a+p[0],0)/pts.length,pts.reduce((a,p)=>a+p[1],0)/pts.length];
+  }
+  function xyFromI639(origin,p){const R=6378137,rad=Math.PI/180,cos=Math.max(1e-6,Math.cos(origin[0]*rad));return [(p[1]-origin[1])*rad*R*cos,(p[0]-origin[0])*rad*R]}
+  function llFromI639(origin,xy){const R=6378137,rad=Math.PI/180,cos=Math.max(1e-6,Math.cos(origin[0]*rad));return [origin[0]+xy[1]/R/rad,origin[1]+xy[0]/(R*cos)/rad]}
+  function norm2I639(v){const n=Math.hypot(v[0],v[1]);return n>1e-9?[v[0]/n,v[1]/n]:[1,0]}
+  function midpointI639(a,b){return [(a[0]+b[0])/2,(a[1]+b[1])/2]}
+  function bearing360I639(a,b){const rad=Math.PI/180,deg=180/Math.PI,lat1=a[0]*rad,lat2=b[0]*rad,dlon=(b[1]-a[1])*rad;return (Math.atan2(Math.sin(dlon)*Math.cos(lat2),Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dlon))*deg+360)%360}
+  function destinationI639(center,bearing,distance){const R=6371008.8,rad=Math.PI/180,br=Number(bearing)*rad,lat1=center[0]*rad,lon1=center[1]*rad,dr=Number(distance)/R;const lat2=Math.asin(Math.sin(lat1)*Math.cos(dr)+Math.cos(lat1)*Math.sin(dr)*Math.cos(br));const lon2=lon1+Math.atan2(Math.sin(br)*Math.sin(dr)*Math.cos(lat1),Math.cos(dr)-Math.sin(lat1)*Math.sin(lat2));return [lat2/rad,((lon2/rad+540)%360)-180]}
+  function ellipseCoordsI639(center,major,minor,angle,count){
+    count=count||72;const out=[],a=(Number(angle)||0)*Math.PI/180;const ux=[Math.sin(a),Math.cos(a)],uy=[Math.sin(a+Math.PI/2),Math.cos(a+Math.PI/2)];
+    for(let i=0;i<count;i++){const t=2*Math.PI*i/count,x=Number(major)*Math.cos(t),y=Number(minor)*Math.sin(t);out.push(llFromI639(center,[ux[0]*x+uy[0]*y,ux[1]*x+uy[1]*y]));}return out;
+  }
+  function makeShapeDraftI640(object){
+    const o=object||{},coords=shapePointsFromI640(o,state.selected&&state.selected.layer);
+    return {coords:cloneI639(coords),lat:o.lat,lon:o.lon,major_m_i636:o.major_m_i636,minor_m_i636:o.minor_m_i636,angle_deg_i636:o.angle_deg_i636,name:o.name,callsign:o.callsign,notes:o.notes,remarks:o.remarks,shape_kind_i636:o.shape_kind_i636,shape_type:o.shape_type,shape_closed_i636:o.shape_closed_i636,category:o.category,geometry:o.geometry,kind:o.kind,cot_type:o.cot_type,type:o.type,uid:o.uid,cot_uid:o.cot_uid,event_uid:o.event_uid,id:o.id,is_mission_object:o.is_mission_object,mission_memberships:cloneI639(o.mission_memberships||[]),mission_names:cloneI639(o.mission_names||[]),mission_name:o.mission_name,mission:o.mission,raw_cot_i636:o.raw_cot_i636};
+  }
+  function snapshotShapeI639(){const o=state.selected&&state.selected.object;if(!o)return null;return makeShapeDraftI640(o)}
+  function markShapeDirtyI640(){if(!state.shapeEdit.active)return;state.shapeEdit.dirty=true;state.shapeEdit.revision=Number(state.shapeEdit.revision||0)+1}
+  function applyGeometryObjectI640(target,source){if(!target||!source)return;target.coords=cloneI639(source.coords||[]);target.lat=source.lat;target.lon=source.lon;target.major_m_i636=source.major_m_i636;target.minor_m_i636=source.minor_m_i636;target.angle_deg_i636=source.angle_deg_i636;}
+  function applyDraftToLayerI640(layer){
+    if(!layer||!state.shapeEdit.active||!state.shapeEdit.draft)return;const pts=currentShapePointsI639();
+    try{if(typeof layer.setLatLngs==='function')layer.setLatLngs(pts)}catch(error){state.errors.push(`shape-layer:${error.message||error}`)}
+    try{if(typeof layer.redraw==='function')layer.redraw()}catch(_){}
+  }
+  function activeShapeLayersI640(){const out=[],add=x=>{if(x&&!out.includes(x))out.push(x)};if(state.selected){add(state.selected.layer);add(state.selected.object&&state.selected.object.__layer);add(state.selected.object&&state.selected.object.__hitLayer)}const d=state.shapeEdit.deferredObject;add(d&&d.__layer);add(d&&d.__hitLayer);return out}
+  function updateLayerGeometryI639(){
+    if(!state.selected)return;for(const layer of activeShapeLayersI640())applyDraftToLayerI640(layer);state.selected.center=shapeCenterI639(activeShapeObjectI640());
+  }
+  function setShapePointsI639(points){const o=state.shapeEdit.active&&state.shapeEdit.draft?state.shapeEdit.draft:(state.selected&&state.selected.object);if(!o)return;o.coords=points.map(p=>[Number(p[0]),Number(p[1])]);const pts=shapePointsFromI640(o,null);if(pts.length){o.lat=pts.reduce((a,p)=>a+p[0],0)/pts.length;o.lon=pts.reduce((a,p)=>a+p[1],0)/pts.length;}markShapeDirtyI640();updateLayerGeometryI639()}
+  function setEllipseGeometryI639(center,major,minor,angle){const o=state.shapeEdit.active&&state.shapeEdit.draft?state.shapeEdit.draft:(state.selected&&state.selected.object);if(!o)return;o.lat=center[0];o.lon=center[1];o.major_m_i636=Math.max(.01,Number(major)||.01);o.minor_m_i636=Math.max(.01,Number(minor)||.01);o.angle_deg_i636=((Number(angle)||0)%360+360)%360;o.coords=ellipseCoordsI639(center,o.major_m_i636,o.minor_m_i636,o.angle_deg_i636,72);markShapeDirtyI640();updateLayerGeometryI639()}
+  function restoreShapeI639(){const snap=state.shapeEdit.snapshot,o=state.shapeEdit.baseObject||state.selected&&state.selected.object;if(!snap||!o)return;applyGeometryObjectI640(o,snap);o.name=snap.name;o.callsign=snap.callsign;o.notes=snap.notes;o.remarks=snap.remarks;const draft=state.shapeEdit.draft;state.shapeEdit.draft=snap;updateLayerGeometryI639();state.shapeEdit.draft=draft}
+  function clearMapEditorsI639(){
+    for(const marker of [...(state.shapeEdit.handles||[]),...(state.shapeEdit.labels||[])]){try{marker.remove()}catch(_){try{const m=mapInstance();if(m)m.removeLayer(marker)}catch(__){}}}
+    state.shapeEdit.handles=[];state.shapeEdit.labels=[];
+  }
+  function vectorIconI639(role){return window.L&&L.divIcon?L.divIcon({className:'tak-shape-vector-wrap-i639',html:`<span class="tak-shape-vector-i639 ${esc(role||'vertex')}"></span>`,iconSize:[16,16],iconAnchor:[8,8]}):null}
+  function addHandleI639(latlng,role,onDrag){const m=mapInstance();if(!m||!window.L||!L.marker)return null;const marker=L.marker(latlng,{draggable:true,keyboard:false,bubblingMouseEvents:false,zIndexOffset:12000,icon:vectorIconI639(role)}).addTo(m);marker.on('drag',ev=>{try{onDrag([ev.target.getLatLng().lat,ev.target.getLatLng().lng],ev.target);syncHandlesToDraftI640();syncShapeEditUiI639()}catch(error){state.errors.push(`shape-drag:${error.message||error}`)}});marker.on('dragend',()=>{syncHandlesToDraftI640();syncShapeEditUiI639()});marker.on('click',ev=>{try{if(ev.originalEvent&&window.L&&L.DomEvent)L.DomEvent.stop(ev.originalEvent)}catch(_){}});state.shapeEdit.handles.push(marker);return marker}
+  function rectangleDragI639(index,newPoint){const pts=currentShapePointsI639();if(pts.length<4)return;const i=index%4,o=(i+2)%4,a=(i+1)%4,b=(i+3)%4,origin=pts[o];const av=xyFromI639(origin,pts[a]),bv=xyFromI639(origin,pts[b]),dv=xyFromI639(origin,newPoint),u=norm2I639(av),v=norm2I639(bv);const du=dv[0]*u[0]+dv[1]*u[1],dv2=dv[0]*v[0]+dv[1]*v[1];pts[a]=llFromI639(origin,[u[0]*du,u[1]*du]);pts[b]=llFromI639(origin,[v[0]*dv2,v[1]*dv2]);pts[i]=llFromI639(origin,[u[0]*du+v[0]*dv2,u[1]*du+v[1]*dv2]);setShapePointsI639(pts)}
+  function polygonDragI639(index,newPoint){const pts=currentShapePointsI639();if(index<0||index>=pts.length)return;pts[index]=newPoint;setShapePointsI639(pts)}
+  function translateToCenterI639(center){
+    const o=activeShapeObjectI640();if(!o)return;const old=shapeCenterI639(o);if(!old)return;const kind=shapeKindI639(o);
+    if(kind==='circle'||kind==='ellipse')setEllipseGeometryI639(center,Number(o.major_m_i636)||1,Number(o.minor_m_i636)||Number(o.major_m_i636)||1,Number(o.angle_deg_i636)||0);
+    else{const delta=xyFromI639(old,center),pts=currentShapePointsI639().map(p=>{const xy=xyFromI639(old,p);return llFromI639(old,[xy[0]+delta[0],xy[1]+delta[1]])});setShapePointsI639(pts)}
+    syncHandlesToDraftI640();
+  }
+  function syncHandlesToDraftI640(){
+    if(!state.shapeEdit.active)return;const o=activeShapeObjectI640(),kind=shapeKindI639(o),hs=state.shapeEdit.handles||[],pts=currentShapePointsI639(),c=shapeCenterI639(o);
+    try{
+      if(!c||!hs.length)return;if(hs[0])hs[0].setLatLng(c);
+      if(kind==='rectangle'||kind==='polygon'||kind==='freeform'){pts.forEach((p,i)=>{const h=hs[i+1];if(h)h.setLatLng(p)});return}
+      const major=Number(o.major_m_i636)||1,minor=Number(o.minor_m_i636)||major,angle=Number(o.angle_deg_i636)||0;if(hs[1])hs[1].setLatLng(destinationI639(c,angle,major));if(kind==='ellipse'&&hs[2])hs[2].setLatLng(destinationI639(c,angle+90,minor));
+    }catch(error){state.errors.push(`shape-handle-sync:${error.message||error}`)}
+  }
+  function rebuildHandlesI639(){
+    clearMapEditorsI639();if(!state.shapeEdit.active||!state.selected)return;const o=activeShapeObjectI640(),kind=shapeKindI639(o),pts=currentShapePointsI639(),center=shapeCenterI639(o);if(!center)return;
+    addHandleI639(center,'center',np=>translateToCenterI639(np));
+    if(kind==='rectangle'&&pts.length>=4){pts.slice(0,4).forEach((p,i)=>addHandleI639(p,'vertex',np=>rectangleDragI639(i,np)))}
+    else if(kind==='polygon'||kind==='freeform'){pts.forEach((p,i)=>addHandleI639(p,'vertex',np=>polygonDragI639(i,np)))}
+    else if(kind==='circle'||kind==='ellipse'){
+      let major=Number(o.major_m_i636),minor=Number(o.minor_m_i636),angle=Number(o.angle_deg_i636)||0;if(!Number.isFinite(major)||major<=0)major=pts.length?haversineMeters(center,pts[0]):10;if(!Number.isFinite(minor)||minor<=0)minor=major;
+      addHandleI639(destinationI639(center,angle,major),'major',np=>{const c=shapeCenterI639(o),r=haversineMeters(c,np),br=bearing360I639(c,np);setEllipseGeometryI639(c,r,kind==='circle'?r:(Number(o.minor_m_i636)||minor),br)});
+      if(kind==='ellipse')addHandleI639(destinationI639(center,angle+90,minor),'minor',np=>{const c=shapeCenterI639(o),r=haversineMeters(c,np);setEllipseGeometryI639(c,Number(o.major_m_i636)||major,r,Number(o.angle_deg_i636)||angle)});
+    }
+    syncHandlesToDraftI640();refreshDistanceLabelsI639();
+  }
+  function labelMarkerI639(mid,label){const m=mapInstance();if(!m||!window.L||!L.marker||!L.divIcon)return null;const marker=L.marker(mid,{interactive:false,keyboard:false,bubblingMouseEvents:false,zIndexOffset:11500,icon:L.divIcon({className:'tak-shape-distance-wrap-i639',html:`<span class="tak-shape-distance-i639">${esc(label)}</span>`,iconSize:null,iconAnchor:[0,0]})}).addTo(m);state.shapeEdit.labels.push(marker);return marker}
+  function refreshDistanceLabelsI639(){
+    for(const marker of state.shapeEdit.labels||[])try{marker.remove()}catch(_){}state.shapeEdit.labels=[];if(!state.shapeEdit.active||!state.selected)return;const m=mapInstance();if(!m||typeof m.latLngToContainerPoint!=='function')return;const o=activeShapeObjectI640(),kind=shapeKindI639(o),segments=[];
+    if(kind==='circle'||kind==='ellipse'){const hs=state.shapeEdit.handles||[],center=hs[0]&&hs[0].getLatLng&&hs[0].getLatLng();if(center)for(let i=1;i<hs.length;i++){const ll=hs[i].getLatLng();segments.push([[center.lat,center.lng],[ll.lat,ll.lng]])}}
+    else{const pts=currentShapePointsI639(),closed=kind==='rectangle'||(o&&o.shape_closed_i636!==false&&kind!=='freeform');for(let i=1;i<pts.length;i++)segments.push([pts[i-1],pts[i]]);if(closed&&pts.length>2)segments.push([pts[pts.length-1],pts[0]])}
+    const occupied=[];for(const seg of segments){const dist=haversineMeters(seg[0],seg[1]),label=formatDistanceMeters(dist);if(!label)continue;let a,b;try{a=m.latLngToContainerPoint(seg[0]);b=m.latLngToContainerPoint(seg[1])}catch(_){continue}const px=Math.hypot(b.x-a.x,b.y-a.y),need=Math.max(76,label.length*7+22);if(px<need)continue;const midPx={x:(a.x+b.x)/2,y:(a.y+b.y)/2},box={l:midPx.x-need/2,r:midPx.x+need/2,t:midPx.y-13,b:midPx.y+13};if(occupied.some(q=>!(box.r<q.l||box.l>q.r||box.b<q.t||box.t>q.b)))continue;occupied.push(box);labelMarkerI639(midpointI639(seg[0],seg[1]),label)}
+  }
+  function findRowI639(label){if(!state.body)return null;return Array.from(state.body.querySelectorAll('.tak-v322-row')).find(row=>new RegExp(`^${label}$`,'i').test(text(row.querySelector('b')&&row.querySelector('b').textContent)))||null}
+  function updateCenterEditorI639(){const input=state.body&&state.body.querySelector('.tak-shape-center-input-i639'),c=state.selected&&shapeCenterI639(activeShapeObjectI640());if(input&&c)input.value=`${c[0].toFixed(6)}, ${c[1].toFixed(6)}`;const details=state.body&&state.body.querySelector('details.popup-edit');if(details&&c){const la=details.querySelector('[name="lat"]'),lo=details.querySelector('[name="lon"]');if(la)la.value=c[0].toFixed(6);if(lo)lo.value=c[1].toFixed(6)}}
+  function syncShapeEditUiI639(){if(!state.shapeEdit.active)return;updateCenterEditorI639();applyGeometryPresentation();syncHandlesToDraftI640();refreshDistanceLabelsI639()}
+  function parseCenterI639(value){const m=text(value).match(/^\s*([-+]?\d+(?:\.\d+)?)\s*,\s*([-+]?\d+(?:\.\d+)?)\s*$/);if(!m)return null;const lat=Number(m[1]),lon=Number(m[2]);return Number.isFinite(lat)&&Number.isFinite(lon)&&lat>=-90&&lat<=90&&lon>=-180&&lon<=180?[lat,lon]:null}
+  function shapePayloadI639(name,notes){const o=activeShapeObjectI640(),c=shapeCenterI639(o);return {kind:shapeKindI639(o),cot_type:text(o.cot_type||o.type),uid:text(o.uid||o.cot_uid||o.event_uid||o.id),is_mission_object:!!o.is_mission_object,mission_names:missionNames(o),coords:currentShapePointsI639(),center:c,closed:o.shape_closed_i636!==false,major_m:Number(o.major_m_i636),minor_m:Number(o.minor_m_i636),angle_deg:Number(o.angle_deg_i636)||0,raw_cot_i636:text(o.raw_cot_i636),name:text(name),notes:text(notes)}}
+  function shapeUidI641(object){return text(object&&(object.uid||object.cot_uid||object.event_uid||object.id)).trim().toLowerCase()}
+  function geometryOfI641(object){if(!object)return null;const kind=shapeKindI639(object),center=shapeCenterI639(object);return {kind,cot_type:text(object.cot_type||object.type).toLowerCase(),uid:shapeUidI641(object),coords:shapePointsFromI640(object,null),center,major_m:Number(object.major_m_i636!=null?object.major_m_i636:object.major_m),minor_m:Number(object.minor_m_i636!=null?object.minor_m_i636:object.minor_m),angle_deg:Number(object.angle_deg_i636!=null?object.angle_deg_i636:object.angle_deg)||0}}
+  function geometryMatchesI641(candidate,target){
+    if(!candidate||!target)return false;const a=candidate.kind?candidate:geometryOfI641(candidate),b=target.kind?target:geometryOfI641(target);if(!a||!b)return false;
+    if(text(a.kind).toLowerCase()!==text(b.kind).toLowerCase())return false;if(b.uid&&a.uid&&text(a.uid).toLowerCase()!==text(b.uid).toLowerCase())return false;
+    const close=(x,y,t)=>Number.isFinite(Number(x))&&Number.isFinite(Number(y))&&Math.abs(Number(x)-Number(y))<=t;
+    if((b.kind==='circle'||b.kind==='ellipse')){if(!a.center||!b.center||!close(a.center[0],b.center[0],2e-6)||!close(a.center[1],b.center[1],2e-6))return false;if(!close(a.major_m,b.major_m,.25))return false;if(b.kind==='ellipse'&&!close(a.minor_m,b.minor_m,.25))return false;return true;}
+    const ac=(a.coords||[]),bc=(b.coords||[]);if(ac.length!==bc.length||!ac.length)return false;const same=(p,q)=>close(p&&p[0],q&&q[0],2e-6)&&close(p&&p[1],q&&q[1],2e-6);for(let shift=0;shift<bc.length;shift++){let f=true,r=true;for(let i=0;i<ac.length;i++){if(!same(ac[i],bc[(i+shift)%bc.length]))f=false;if(!same(ac[i],bc[(shift-i+bc.length*4)%bc.length]))r=false}if(f||r)return true}return false;
+  }
+  function payloadGeometryI641(payload){if(!payload||typeof payload!=='object')return null;const out={kind:text(payload.kind).toLowerCase(),cot_type:text(payload.cot_type).toLowerCase(),uid:text(payload.uid).toLowerCase(),coords:(payload.coords||[]).map(normalizePointI639).filter(Boolean),center:normalizePointI639(payload.center),major_m:Number(payload.major_m),minor_m:Number(payload.minor_m),angle_deg:Number(payload.angle_deg)||0};return out}
+  function findReadbackObjectI641(data,target){const rows=data&&Array.isArray(data.objects)?data.objects:[],uid=text(target&&target.uid).toLowerCase();if(uid){const hit=rows.find(o=>shapeUidI641(o)===uid);if(hit)return hit}return rows.find(o=>{try{return objectKey(o,effectiveSource(o,'datasync'))===state.shapeEdit.draftKey}catch(_){return false}})||null}
+  function sleepI641(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
+  async function confirmSavedDraftI641(target,result,source,status){
+    const echoed=payloadGeometryI641(result&&result.shape_geometry_i639);if(!echoed||!geometryMatchesI641(echoed,target))throw new Error('Saved geometry response did not match the visible edit draft.');
+    const persisted=!!(result&&result.shape_edit_i639&&result.shape_edit_i639.persisted_overlay);const mission=!!(target&&target.is_mission_object)||String(source||'').toLowerCase()==='datasync';
+    if(!mission){if(!persisted)throw new Error('Local Shape persistence was not confirmed.');return {method:'persistent-overlay',object:null};}
+    const tx=result&&(result.shape_edit_i643||result.shape_edit_i642);if(!tx||!tx.authoritative_mission_readback_confirmed){const stage=text(tx&&tx.stage),failed=text(tx&&tx.failed_mission);throw new Error('Saved Shape was not authoritatively confirmed as native TAK geometry'+(failed?` for ${failed}`:'')+(stage?` (${stage})`:'.'));}
+    if(result&&result.shape_edit_i643&&!result.shape_edit_i643.authoritative_global_readback_confirmed)throw new Error('Saved native Shape was not confirmed by global TAK CoT geometry read-back.');
+    if(status)status.textContent='Saved · Native TAK Shape verified';return {method:'native-shape-global-mission-readback-i643',object:null};
+  }
+  function commitDraftI640(result,name,notes,confirmedObject){
+    const draft=state.shapeEdit.draft,base=state.shapeEdit.baseObject||state.selected&&state.selected.object;if(!draft||!base)return;const targets=[base,state.shapeEdit.deferredObject,confirmedObject].filter(Boolean);for(const o of targets){applyGeometryObjectI640(o,draft);o.name=name;o.callsign=name;o.notes=notes;o.remarks=notes;if(result&&result.shape_geometry_i639&&result.shape_geometry_i639.raw_cot_i636)o.raw_cot_i636=result.shape_geometry_i639.raw_cot_i636}
+    if(result&&result.shape_geometry_i639)draft.raw_cot_i636=result.shape_geometry_i639.raw_cot_i636||draft.raw_cot_i636;const chosen=(confirmedObject&&confirmedObject.__layer)?confirmedObject:((state.shapeEdit.deferredObject&&state.shapeEdit.deferredObject.__layer)?state.shapeEdit.deferredObject:base);state.selected.object=chosen;state.selected.layer=chosen.__layer||chosen.__hitLayer||state.selected.layer;state.selected.center=shapeCenterI639(draft);
+  }
+  async function saveShapeEditI639(event){
+    if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation()}if(state.shapeEdit.saveBusy||!state.shapeEdit.active||!state.selected)return;const details=state.body.querySelector('details.popup-edit'),save=details&&details.querySelector('[data-i640-shape-save]'),cancel=details&&details.querySelector('[data-i640-shape-cancel]'),nameInput=state.body.querySelector('.tak-shape-name-input-i639'),notesInput=state.body.querySelector('.tak-shape-notes-input-i639'),status=details&&details.querySelector('.popup-edit-status');const name=text(nameInput&&nameInput.value)||objectName(state.shapeEdit.baseObject||state.selected.object),notes=text(notesInput&&notesInput.value);const key=state.shapeEdit.draftKey||text(details&&details.dataset.key)||objectKey(state.selected.object,state.selected.source),source=text(details&&details.dataset.source)||state.selected.source;
+    state.shapeEdit.saveBusy=true;state.shapeEdit.lastSaveError='';state.shapeEdit.lastSaveConfirmation='';if(save)save.disabled=true;if(cancel)cancel.disabled=true;if(status)status.textContent='Saving…';
+    try{
+      const target=shapePayloadI639(name,notes);const targetGeometry=payloadGeometryI641(target);const payload={key,source,name,notes,lat:target.center&&target.center[0],lon:target.center&&target.center[1],shape_geometry_i639:target};const response=await fetch('/api/tak-map/popup-edit',{method:'POST',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});let result={};try{result=await response.json()}catch(_){throw new Error(`HTTP ${response.status}: invalid server response`)}if(!response.ok||!result.ok)throw new Error(result.error||`HTTP ${response.status}`);
+      if(result.shape_geometry_i639&&result.shape_geometry_i639.raw_cot_i636)state.shapeEdit.draft.raw_cot_i636=result.shape_geometry_i639.raw_cot_i636;reassertActiveShapeDraftI640();const confirmation=await confirmSavedDraftI641(targetGeometry,result,source,status);state.shapeEdit.lastSaveConfirmation=confirmation.method;state.shapeEdit.confirmedObject=confirmation.object||null;commitDraftI640(result,name,notes,confirmation.object||null);
+      clearMapEditorsI639();state.shapeEdit.active=false;state.shapeEdit.snapshot=null;state.shapeEdit.draft=null;state.shapeEdit.draftKey='';state.shapeEdit.baseObject=null;state.shapeEdit.deferredObject=null;state.shapeEdit.confirmedObject=null;state.shapeEdit.dirty=false;state.mode='info';state.panel.classList.remove('shape-editing-i639');renderInfo(true);try{if(typeof window.refreshCot==='function')await window.refreshCot()}catch(_){}try{if(typeof window.refreshLocalData==='function')await window.refreshLocalData()}catch(_){}
+    }catch(error){state.shapeEdit.lastSaveError=String(error.message||error);if(status)status.textContent='Save failed: '+state.shapeEdit.lastSaveError;state.errors.push(`shape-save:${state.shapeEdit.lastSaveError}`);reassertActiveShapeDraftI640()}
+    finally{state.shapeEdit.saveBusy=false;if(save&&save.isConnected)save.disabled=false;if(cancel&&cancel.isConnected)cancel.disabled=false}
+  }
+  function cancelShapeEditI639(event,render){if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation()}if(!state.shapeEdit.active)return;restoreShapeI639();clearMapEditorsI639();state.shapeEdit.active=false;state.shapeEdit.draft=null;state.shapeEdit.draftKey='';state.shapeEdit.baseObject=null;state.shapeEdit.deferredObject=null;state.shapeEdit.confirmedObject=null;state.shapeEdit.snapshot=null;state.shapeEdit.saveBusy=false;state.shapeEdit.dirty=false;state.shapeEdit.lastSaveError='';state.shapeEdit.lastSaveConfirmation='';state.mode='info';if(state.panel)state.panel.classList.remove('shape-editing-i639');if(render!==false)renderInfo(true)}
+  function makeShapeActionButtonsI640(details){
+    const actions=details&&details.querySelector('.tak-v322-actions,.popup-edit-actions');if(!actions)return;actions.className='tak-v322-actions popup-edit-actions tak-shape-edit-actions-i640';actions.replaceChildren();
+    const save=document.createElement('button');save.type='button';save.textContent='Save';save.dataset.i640ShapeSave='1';save.dataset.i641ShapeSave='1';save.addEventListener('click',saveShapeEditI639,true);
+    const cancel=document.createElement('button');cancel.type='button';cancel.textContent='Cancel';cancel.dataset.i640ShapeCancel='1';cancel.dataset.i641ShapeCancel='1';cancel.addEventListener('click',ev=>cancelShapeEditI639(ev,true),true);
+    actions.append(save,cancel);
+  }
+  function enterShapeEditI639(){
+    if(!state.body||!state.selected||kindOf(state.selected.object)!=='Shape'||state.shapeEdit.active)return;const popup=state.body.querySelector('.tak-v322-popup'),details=popup&&popup.querySelector('details.popup-edit');if(!popup||!details)return;state.shapeEdit.active=true;state.shapeEdit.snapshot=snapshotShapeI639();state.shapeEdit.draft=makeShapeDraftI640(state.selected.object);state.shapeEdit.baseObject=state.selected.object;state.shapeEdit.draftKey=state.selected.key||objectKey(state.selected.object,state.selected.source);state.shapeEdit.deferredObject=null;state.shapeEdit.dirty=false;state.shapeEdit.revision=0;state.shapeEdit.lastSaveError='';state.shapeEdit.lastSaveConfirmation='';state.shapeEdit.confirmedObject=null;state.mode='shape-edit-i643';state.panel.classList.add('shape-editing-i639');setHeader('Edit Shape','');details.open=true;const toggle=popup.querySelector('.tak-shape-edit-toggle-i639');if(toggle)toggle.style.display='none';
+    const title=popup.querySelector('.tak-v322-title'),nameInput=details.querySelector('[name="name"]'),centerInput=details.querySelector('[name="latlon"]'),notesInput=details.querySelector('[name="notes"]'),fields=details.querySelector('.tak-v322-edit-fields');if(nameInput&&title){nameInput.classList.add('tak-shape-name-input-i639');nameInput.setAttribute('aria-label','Name');nameInput.addEventListener('input',markShapeDirtyI640);title.replaceChildren(nameInput)}
+    let centerRow=findRowI639('Center');if(!centerRow)centerRow=findRowI639('Lat/Lon')||findRowI639('Coordinates');if(centerRow){const label=centerRow.querySelector('b'),value=centerRow.querySelector('span');if(label)label.textContent='Center';if(centerInput&&value){centerInput.classList.add('tak-shape-center-input-i639');centerInput.setAttribute('aria-label','Center');value.replaceChildren(centerInput);centerInput.addEventListener('change',()=>{const c=parseCenterI639(centerInput.value);if(c){translateToCenterI639(c);syncShapeEditUiI639()}else updateCenterEditorI639()})}}
+    let notesRow=findRowI639('Notes');if(!notesRow&&notesInput){const table=popup.querySelector('.tak-v322-table'),anchor=findRowI639('Added');notesRow=document.createElement('div');notesRow.className='tak-v322-row tak-edit-notes-row-i639';notesRow.innerHTML='<b>Notes</b><span></span>';if(anchor)table.insertBefore(notesRow,anchor);else table.appendChild(notesRow)}if(notesRow&&notesInput){notesInput.classList.add('tak-shape-notes-input-i639');notesInput.setAttribute('aria-label','Notes');notesInput.addEventListener('input',markShapeDirtyI640);notesRow.querySelector('span').replaceChildren(notesInput);const table=popup.querySelector('.tak-v322-table');if(table&&notesRow.parentNode===table)table.appendChild(notesRow)}
+    if(fields)fields.style.display='none';const catInput=details.querySelector('[name="category"]');if(catInput)catInput.disabled=true;makeShapeActionButtonsI640(details);rebuildHandlesI639();syncShapeEditUiI639();try{nameInput&&nameInput.focus()}catch(_){}
+  }
+  function installShapeEditToggle(openWanted){
+    if(!state.body||!state.selected||kindOf(state.selected.object)!=='Shape')return;const popup=state.body.querySelector('.tak-v322-popup'),details=popup&&popup.querySelector('details.popup-edit');if(!details)return;const summary=details.querySelector('summary');if(summary)summary.style.setProperty('display','none','important');if(!state.shapeEdit.active)details.open=false;
+    let button=popup.querySelector('.tak-shape-edit-toggle-i639');if(!button){button=document.createElement('button');button.type='button';button.className='tak-shape-edit-toggle-i639';details.parentNode.insertBefore(button,details);button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();enterShapeEditI639()})}button.textContent='Edit';button.style.display=state.shapeEdit.active?'none':'';
+  }
+  function activeShapeMatchesI640(object,source){return !!(state.shapeEdit.active&&state.shapeEdit.draftKey&&object&&objectKey(object,effectiveSource(object,source))===state.shapeEdit.draftKey)}
+  function protectActiveShapeLayerI640(layer,object,source){if(!activeShapeMatchesI640(object,source)||!layer)return false;state.shapeEdit.deferredObject=object;state.selected.layer=layer;state.selected.center=shapeCenterI639(state.shapeEdit.draft);applyDraftToLayerI640(layer);syncHandlesToDraftI640();refreshDistanceLabelsI639();return true}
+  function reassertActiveShapeDraftI640(){if(!state.shapeEdit.active||!state.shapeEdit.draft)return;updateLayerGeometryI639();syncHandlesToDraftI640();updateCenterEditorI639();applyGeometryPresentation();refreshDistanceLabelsI639()}
+
+  // i684: presentation-only. Never shorten or rewrite the saved route geometry.
+  function formatRouteDetailsI684(){
+    if(!state.body||!state.selected||kindOf(state.selected.object)!=='Route')return;
+    const table=state.body.querySelector('.tak-v322-table');if(!table)return;
+    for(const row of Array.from(table.querySelectorAll('.tak-v322-row'))){
+      const label=row.querySelector('b');if(!label)continue;
+      const key=text(label.textContent);
+      if(/^points$/i.test(key)){row.remove();continue}
+      if(!/^notes$/i.test(key))continue;
+      const cell=row.querySelector('span');if(!cell)continue;
+      const original=cell.textContent||'';
+      const lineKeys=/\b(Method|Direction|Route Type|Order|Prefix|Line Style|Notes)\s*:\s*/gi;
+      const matches=Array.from(original.matchAll(lineKeys));
+      if(!matches.length){cell.style.whiteSpace='pre-line';continue}
+      const entries=[];
+      if(original.slice(0,matches[0].index).trim())entries.push(original.slice(0,matches[0].index).trim());
+      for(let i=0;i<matches.length;i++){
+        const current=matches[i],next=matches[i+1];
+        const value=original.slice(current.index+current[0].length,next?next.index:original.length).trim();
+        if(value)entries.push(current[1]+': '+value);
+      }
+      if(!entries.length){cell.textContent='';continue}
+      cell.replaceChildren();
+      entries.forEach(value=>{const line=document.createElement('div');line.textContent=value;line.style.marginBottom='3px';line.style.overflowWrap='anywhere';cell.appendChild(line)});
+    }
+  }
+  function decorateInfo(openWanted) { applySourcePresentation(); applyShapeFieldLabels(); applyGeometryPresentation(); formatRouteDetailsI684(); installShapeEditToggle(openWanted); }
+
+  function renderInfo(force) {
     if (!state.selected || !ensurePanel()) return;
+    const previousMode=state.mode;
+    const signature=selectedInfoSignature(state.selected.object,state.selected.source);
+    const openEdit=!!(state.body && state.body.querySelector('details.popup-edit[open]'));
+    if (!force && previousMode==='info' && state.infoSignature===signature && state.body && state.body.firstElementChild) return;
+    if (!force && previousMode==='info' && openEdit) { state.pendingInfoSignature=signature; return; }
     restorePanelHost();
     state.mode = 'info';
-    state.panel.classList.remove('generic-edit','gateway-data-readonly-i615','gateway-data-nifc-i620');
+    const shapeContext=kindOf(state.selected.object)==='Shape';
+    state.panel.classList.remove('generic-edit','gateway-data-readonly-i615','gateway-data-nifc-i620','shape-editing-i639');
+    state.panel.classList.toggle('shape-context-i639',shapeContext);
     state.panel.removeAttribute('data-context-mode');
     state.panel.removeAttribute('data-gateway-source-key-i620');
     if (state.body) delete state.body.dataset.gatewayReadonlySignatureI615;
-    setHeader(kindOf(state.selected.object), objectName(state.selected.object));
+    setHeader(kindOf(state.selected.object), shapeContext?'':objectName(state.selected.object));
     state.body.innerHTML = infoHtml(state.selected.object, state.selected.source, state.selected.layer);
     state.body.querySelectorAll('.leaflet-popup-close-button').forEach(node => node.remove());
+    decorateInfo(openEdit);
     appendInfoDeleteAction();
+    appendRouteEditActionI667();
+    combineLocalRouteActionsI668();
     sanitizeSidebarDeleteButtons();
+    state.infoSignature=signature; state.pendingInfoSignature='';
     openPanel();
   }
 
@@ -448,8 +850,24 @@
     try { m.panTo(center, {animate:true, duration:.25}); } catch (_) { try { m.setView(center, m.getZoom(), {animate:true}); } catch (_) {} }
   }
 
+  // i684: The Object Details panel uses its own selection lifecycle, not
+  // Leaflet popupopen. Tell the elevation profile when the authoritative
+  // selection changes; do not clone or serialize a full route geometry.
+  function announceSelectionI684(selected) {
+    try {
+      const item = selected || null;
+      window.dispatchEvent(new CustomEvent('tak-map-context-selection-i684', {
+        detail: item ? {
+          selected: true, kind: kindOf(item.object), object: item.object,
+          source: item.source, key: item.key
+        } : { selected: false }
+      }));
+    } catch (error) { console.warn('[TAK Map] context selection notification failed', error); }
+  }
+
   function showObject(object, source, layer, shouldCenter) {
     if (!object) return;
+    if (state.shapeEdit.active) cancelShapeEditI639(null,false);
     if (object.__gatewayDataI614 || object.__gatewayDataReadOnlyI615 || source === 'gateway-data') {
       return showReadOnly({
         object, layer:layer || object.__layer || null,
@@ -460,10 +878,13 @@
         signature:text(object.__gatewayDataSignatureI615 || '')
       });
     }
+    source=effectiveSource(object,source);
     const key = objectKey(object, source);
     state.selected = {object, source:source || 'datasync', layer:layer || object.__layer || null, key, center:objectCenter(object, layer || object.__layer)};
     state.suppressMapClickUntil = Date.now() + 360;
-    renderInfo();
+    state.infoSignature=''; state.pendingInfoSignature='';
+    renderInfo(true);
+    announceSelectionI684(state.selected);
     if (shouldCenter !== false) centerSelected();
   }
 
@@ -495,10 +916,12 @@
     }
     state.body.querySelectorAll('.leaflet-popup-close-button,details.popup-edit,.popup-edit,.tak-context-delete-row-i572,.tak-context-delete-unavailable-i572,[data-i556-point-edit],[data-i572-point-edit],[data-tak-i572-delete-current]').forEach(node => node.remove());
     openPanel();
+    announceSelectionI684(state.selected);
     return true;
   }
 
   function hide(reason) {
+    if (state.shapeEdit.active) { state.suppressMapClickUntil=Date.now()+360; reassertActiveShapeDraftI640(); return false; }
     const panel = ensurePanel();
     if (!panel || panel.classList.contains('collapsed')) return;
     state.hiding = true;
@@ -517,7 +940,8 @@
     panel.setAttribute('aria-hidden', 'true');
     restorePanelHost();
     state.mode = 'info';
-    state.selected = null;
+    state.selected = null; state.infoSignature=''; state.pendingInfoSignature='';
+    announceSelectionI684(null);
     setTimeout(() => { state.hiding = false; if (state.body) { state.body.innerHTML = ''; delete state.body.dataset.gatewayReadonlySignatureI615; } }, 230);
   }
 
@@ -551,6 +975,64 @@
     return {supported:true, objectId, reason:''};
   }
 
+  // i667: Local saved routes must expose Edit Route in the contextual sidebar.
+  // Previous popupopen handlers are removed when this sidebar owns the selection.
+  function locateSavedRouteI667(object){
+    if(!object||!window.takRouteEditorI654)return null;
+    const id=String(object.object_id||object.local_id||'');
+    const importId=String(object.import_id||'');
+    if(!id||!importId||!object.route_revision_i659)return null;
+    let imports=[];
+    try{imports=Array.isArray(lastImports)?lastImports:(window.lastImports||[])}catch(_){imports=window.lastImports||[]}
+    for(const file of imports){
+      if(String(file.id||'')!==importId)continue;
+      for(const feature of file.features||[]){
+        if(String(feature.object_id||feature.local_id||'')===id&&feature.kind==='route'
+            &&String(feature.route_revision_i659||'')===String(object.route_revision_i659))
+          return {feature,file};
+      }
+    }
+    return null;
+  }
+  function appendRouteEditActionI667(){
+    if(!state.body||!state.selected||state.selected.source!=='local'||kindOf(state.selected.object)!=='Route')return;
+    state.body.querySelectorAll('.tak-context-route-edit-row-i667').forEach(x=>x.remove());
+    const entry=locateSavedRouteI667(state.selected.object);
+    const row=document.createElement('div');row.className='tak-context-route-edit-row-i667';
+    row.style.cssText='margin:12px 0 9px;';
+    const button=document.createElement('button');button.type='button';
+    button.dataset.takI667EditRoute='1';button.textContent='Edit Route';
+    button.style.cssText='display:block;width:100%;border:1px solid #94a4b0;border-radius:9px;background:linear-gradient(#d7dce0,#bfc9d0);color:#15212a;font-weight:800;font-size:13px;padding:10px 14px;cursor:pointer;';
+    if(!entry){button.disabled=true;button.title='Refresh the saved route to confirm its editable revision and identity';button.style.opacity='.55'}
+    row.appendChild(button);
+    const del=state.body.querySelector('.tak-context-delete-row-i572');
+    if(del)state.body.insertBefore(row,del);else state.body.appendChild(row);
+  }
+  function combineLocalRouteActionsI668(){
+    if(!state.body||!state.selected||state.selected.source!=='local'||kindOf(state.selected.object)!=='Route')return;
+    const edit=state.body.querySelector('.tak-context-route-edit-row-i667');
+    const del=state.body.querySelector('.tak-context-delete-row-i572');
+    if(!edit||!del)return;
+    const eb=edit.querySelector('button'),db=del.querySelector('button');
+    if(!eb||!db)return;
+    const row=document.createElement('div');row.className='tak-context-route-actions-i668';
+    row.style.cssText='box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;margin:12px 0 9px;padding:0 12px 12px;align-items:stretch;';
+    eb.textContent='Edit';db.textContent='Delete';
+    eb.style.width='100%';db.style.width='100%';
+    eb.style.height='34px';db.style.height='34px';
+    eb.style.margin='0';db.style.margin='0';
+    eb.style.minWidth='0';db.style.minWidth='0';
+    edit.replaceWith(row);row.append(eb,db);del.remove();
+  }
+  function beginSavedRouteEditI667(){
+    if(!state.selected||state.selected.source!=='local')return;
+    const entry=locateSavedRouteI667(state.selected.object);
+    const api=window.takRouteEditorI654;
+    if(!entry||!api||typeof api.startEditingSavedRoute!=='function')return;
+    const ok=api.startEditingSavedRoute(entry.feature,entry.file);
+    if(ok&&state.panel){state.panel.classList.add('collapsed');state.panel.setAttribute('aria-hidden','true')}
+  }
+
   function appendInfoDeleteAction() {
     if (!state.body || !state.selected) return;
     state.body.querySelectorAll('.tak-context-delete-row-i572,.tak-context-delete-unavailable-i572').forEach(node => node.remove());
@@ -578,9 +1060,28 @@
     }
   }
 
+  function missionNames(object) {
+    const names = [];
+    const add = value => { const v=text(value); if (v && !names.some(x=>x.toLowerCase()===v.toLowerCase())) names.push(v); };
+    try { for (const value of (object && object.mission_memberships) || []) add(value); } catch (_) {}
+    try { for (const value of (object && object.mission_names) || []) add(value); } catch (_) {}
+    add(object && object.mission_name); add(object && object.mission);
+    return names;
+  }
+
+  function missionBacked(object) {
+    return !!(missionNames(object).length || object && (object.is_mission_object === true || object.association_scope === 'mission' || object.cot_xml_projected_i598 === true));
+  }
+
+  function effectiveSource(object, source) {
+    if (missionBacked(object)) return 'datasync';
+    return source === 'local' ? 'local' : (source || 'datasync');
+  }
+
   function sourceLabel(object, source) {
-    if (source === 'local') return 'Local Data';
-    const mission = text(object && (object.mission_name || object.mission));
+    const effective = effectiveSource(object, source);
+    if (effective === 'local') return 'Local Data';
+    const mission = missionNames(object)[0] || '';
     return mission ? `Data Sync · ${mission}` : 'Data Sync';
   }
 
@@ -727,9 +1228,10 @@
     assign('deleteDataSyncItem', deleteDataSyncByIndex);
     try { const lifecycle = lifecycleApi(); if (lifecycle) lifecycle.deleteDataSyncItem = deleteDataSyncByIndex; } catch (_) {}
     document.addEventListener('click', event => {
-      const target = event.target && event.target.closest && event.target.closest('[data-tak-i572-delete-index],[data-tak-i572-delete-current],[data-i572-delete-confirm],[data-i572-delete-cancel]');
+      const target = event.target && event.target.closest && event.target.closest('[data-tak-i667-edit-route],[data-tak-i572-delete-index],[data-tak-i572-delete-current],[data-i572-delete-confirm],[data-i572-delete-cancel]');
       if (!target) return;
       try { event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation(); } catch (_) {}
+      if (target.hasAttribute('data-tak-i667-edit-route')) { beginSavedRouteEditI667(); return; }
       if (target.hasAttribute('data-i572-delete-cancel')) { renderInfo(); return; }
       if (target.hasAttribute('data-i572-delete-confirm')) { confirmCurrentDelete(); return; }
       if (target.hasAttribute('data-tak-i572-delete-current')) { renderDeleteConfirmation(''); return; }
@@ -871,6 +1373,7 @@
     const layer = event && (event.target || event.sourceTarget) || this;
     const record = state.layerObjects.get(layer);
     if (!record) return;
+    if (state.shapeEdit.active) { state.suppressMapClickUntil=Date.now()+360; try { if (event.originalEvent && window.L && window.L.DomEvent) window.L.DomEvent.stop(event.originalEvent); } catch (_) {} reassertActiveShapeDraftI640(); return; }
     state.suppressMapClickUntil = Date.now() + 360;
     try { if (event.originalEvent && window.L && window.L.DomEvent) window.L.DomEvent.stop(event.originalEvent); } catch (_) {}
     showObject(record.object, record.source, layer, true);
@@ -878,6 +1381,7 @@
 
   function bindObjectLayer(layer, object, source) {
     if (!layer || !object || typeof layer.on !== 'function') return layer;
+    source=effectiveSource(object,source);
     const key = objectKey(object, source);
     const previous = state.layerObjects.get(layer);
     if (previous && previous.key === key) { previous.object = object; previous.source = source; }
@@ -888,6 +1392,7 @@
     const record = {object, source:source || 'datasync', key};
     state.layerObjects.set(layer, record);
     state.keyLayers.set(key, layer);
+    if (state.shapeEdit.active && key===state.shapeEdit.draftKey) protectActiveShapeLayerI640(layer,object,source);
     try { layer.options = layer.options || {}; layer.options.bubblingMouseEvents = false; } catch (_) {}
     return layer;
   }
@@ -902,17 +1407,27 @@
       const imported = typeof window.importedFeatures === 'function' ? window.importedFeatures() : (typeof importedFeatures === 'function' ? importedFeatures() : []);
       for (const object of imported || []) rows.push([object, 'local']);
     } catch (_) {}
-    for (const [object, source] of rows) {
+    for (const [object, source0] of rows) {
+      const source=effectiveSource(object,source0);
       if (object && object.__layer) bindObjectLayer(object.__layer, object, source);
       if (object && object.__hitLayer) bindObjectLayer(object.__hitLayer, object, source);
       if (state.selected && objectKey(object, source) === state.selected.key) {
-        state.selected.object = object;
-        state.selected.source = source;
-        state.selected.layer = object.__layer || object.__hitLayer || state.selected.layer;
-        state.selected.center = objectCenter(object, state.selected.layer);
+        if (state.shapeEdit.active && state.shapeEdit.draftKey===state.selected.key) {
+          state.shapeEdit.deferredObject=object;
+          state.selected.source=source;
+          state.selected.layer=object.__layer||object.__hitLayer||state.selected.layer;
+          state.selected.center=shapeCenterI639(state.shapeEdit.draft);
+          if(object.__layer)applyDraftToLayerI640(object.__layer);
+          if(object.__hitLayer)applyDraftToLayerI640(object.__hitLayer);
+        } else {
+          state.selected.object = object;
+          state.selected.source = source;
+          state.selected.layer = object.__layer || object.__hitLayer || state.selected.layer;
+          state.selected.center = objectCenter(object, state.selected.layer);
+        }
       }
     }
-    if (state.selected && state.mode === 'info' && state.panel && !state.panel.classList.contains('collapsed')) renderInfo();
+    if (state.selected && state.mode === 'info' && state.panel && !state.panel.classList.contains('collapsed')) renderInfo(false);
   }
 
   function assignGlobal(name, value) {
@@ -928,7 +1443,7 @@
         setTimeout(() => {
           if (object && object.__layer) bindObjectLayer(object.__layer, object, sourceKey || 'datasync');
           if (object && object.__hitLayer) bindObjectLayer(object.__hitLayer, object, sourceKey || 'datasync');
-          if (layer) bindObjectLayer(layer, object, sourceKey || 'datasync');
+          if (layer) { bindObjectLayer(layer, object, sourceKey || 'datasync'); protectActiveShapeLayerI640(layer,object,sourceKey||'datasync'); }
         }, 0);
         return layer;
       };
@@ -939,7 +1454,7 @@
     for (const name of ['drawDataSyncObjects','drawImportedObjects']) {
       if (!state.wrapped[name] && typeof window[name] === 'function') {
         const base = window[name];
-        const wrapper = function () { const result = base.apply(this, arguments); setTimeout(scanObjects, 0); setTimeout(scanObjects, 80); return result; };
+        const wrapper = function () { const result = base.apply(this, arguments); try{scanObjects();reassertActiveShapeDraftI640()}catch(_){} setTimeout(()=>{scanObjects();reassertActiveShapeDraftI640()},0); setTimeout(()=>{scanObjects();reassertActiveShapeDraftI640()},80); return result; };
         wrapper.__takMapContextI572 = true;
         state.wrapped[name] = base;
         assignGlobal(name, wrapper);
@@ -1005,10 +1520,12 @@
       if (Date.now() < state.suppressMapClickUntil) return;
       const target = event && event.originalEvent && event.originalEvent.target;
       if (target && state.panel && state.panel.contains(target)) return;
+      if(state.shapeEdit.active){reassertActiveShapeDraftI640();return;}
       hide('map');
     });
     m.on('moveend zoomend', () => {
       positionPanel();
+      if(state.shapeEdit.active)reassertActiveShapeDraftI640();
       if (state.selected && !selectedStillVisible()) hide('offscreen');
     });
     m.on('resize', positionPanel);
@@ -1059,7 +1576,7 @@
       gatewayTopOverlay: state.gatewayOverlayMounted,
       themedGatewayScrollbar: true,
       adaptiveGatewayWidth: true,
-      sharedDynamicWidthI618: !!window.TakMapContextPanelSizingI618, nifcContentWidthI620: true,
+      sharedDynamicWidthI618: !!window.TakMapContextPanelSizingI618, compactShapeWidthI638:true, stableShapeInfoI638:true, localizedGeometryI638:true, missionSourceAttributionI638:true, inPlaceShapeEditI639:true, geometryHandlesI639:true, dynamicSegmentLabelsI639:true, silverShapeButtonsI639:true, centerLabelI639:true, panelWidthHeightRemovedI639:true, shapeEditActiveI639:!!state.shapeEdit.active, shapeEditHandleCountI639:(state.shapeEdit.handles||[]).length, shapeEditLabelCountI639:(state.shapeEdit.labels||[]).length, authoritativeDraftI640:true, refreshProtectedDraftI640:true, dedicatedSaveCancelI640:true, closeEditRemovedI640:true, categoryRowRemovedI640:true, rotationRowRemovedI640:true, normalWeightShapeNameI640:true, verifiedSaveReadbackI641:true, authoritativeMissionSaveI642:true, aggregateDataSyncCommitGateI642:false, ringOrderIndependentI642:true, nativeShapeSaveI643:true, globalNativeShapeReadbackI643:true, missionContentsUidAssociationI643:true, missionCotGetOnlyI643:true, persistentEditUntilExplicitExitI641:true, centerTranslationHandleI641:true, notesLastI641:true, largerSaveCancelTextI641:true, shapeEditActiveI640:!!state.shapeEdit.active, shapeEditDirtyI640:!!state.shapeEdit.dirty, shapeEditRevisionI640:Number(state.shapeEdit.revision||0), shapeEditDraftKeyI640:state.shapeEdit.draftKey||'', shapeEditSaveErrorI640:state.shapeEdit.lastSaveError||'', shapeEditSaveConfirmationI641:state.shapeEdit.lastSaveConfirmation||'', nifcContentWidthI620: true,
       topOverlayAllContextsI618: !!(state.panel && state.panel.classList.contains('tak-context-top-overlay-i618')),
       nativeDeleteDialogs: false,
       sharedDeleteController: true,

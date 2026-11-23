@@ -9,9 +9,9 @@ MANIFEST_PATH = ROOT / "assets" / "tak-map-deferred-i553.json"
 
 
 def main() -> int:
-    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i620"
+    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i635"
     manifest = json.loads(MANIFEST_PATH.read_text())
-    assert manifest["version"] == "1.4.0-i620"
+    assert manifest["version"] == "1.4.0-i635"
     assert manifest["count"] == len(manifest["scripts"])
     rows = [row for row in manifest["scripts"] if row.get("id") == "takMapGatewayDataLoaderV476"]
     assert len(rows) == 1, len(rows)
@@ -47,7 +47,7 @@ def main() -> int:
     assert "const V='i523'" not in embedded
     assert "const V='i612'" not in embedded
     startup = (ROOT / "assets" / "tak-map-startup-i553.js").read_text()
-    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i620" in startup
+    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i635" in startup
     assert "/assets/runtime/tak-map-deferred-i553.json?v=1.3.0-i613" not in startup
     package = (ROOT / "assets" / "tak-map-package-i580.js").read_text()
     assert "const VERSION='i620';" in package

@@ -546,7 +546,7 @@
   function iconImg(icon, canvas, footprint, className) {
     const src = selectionImage(icon);
     if (!src) return '<span class="unavailable-i556">?</span>';
-    return `<img class="${esc(className || '')}" src="${esc(src)}" data-icon-src="${esc(src)}" data-canvas="${Number(canvas || 96)}" data-footprint="${Number(footprint || 72)}" alt="">`;
+    return `<img class="${esc(className || '')}" loading="lazy" decoding="async" src="${esc(src)}" data-icon-src="${esc(src)}" data-canvas="${Number(canvas || 96)}" data-footprint="${Number(footprint || 72)}" alt="">`;
   }
 
   function addStyle() {
@@ -555,7 +555,7 @@
     style.id = 'takMapIconRegistryStyleI556';
     style.textContent = `
       :root{--i556-bg:#071019;--i556-panel:#0d1822;--i556-panel2:#111e29;--i556-panel3:#152430;--i556-line:#35434f;--i556-line2:#53616d;--i556-text:#edf1f4;--i556-muted:#9ea9b3;--i556-silver:#c8cfd5;--i556-silver2:#a8b1ba}
-      #milPicker.mil-picker{position:fixed!important;inset:12px!important;width:auto!important;height:auto!important;max-width:1560px!important;max-height:860px!important;margin:auto!important;transform:none!important;display:none!important;grid-template-rows:58px minmax(0,1fr) 58px!important;overflow:hidden!important;border:1px solid #596671!important;border-radius:14px!important;background:linear-gradient(180deg,#111e29,#09131c)!important;color:var(--i556-text)!important;box-shadow:0 28px 88px rgba(0,0,0,.68)!important;z-index:2147483300!important}
+      #milPicker.mil-picker{position:fixed!important;inset:12px!important;width:auto!important;height:auto!important;max-width:1560px!important;max-height:860px!important;margin:auto!important;transform:none!important;display:none!important;grid-template-rows:58px minmax(0,1fr) 58px!important;grid-template-columns:minmax(0,1fr)!important;overflow:hidden!important;border:1px solid #596671!important;border-radius:14px!important;background:linear-gradient(180deg,#111e29,#09131c)!important;color:var(--i556-text)!important;box-shadow:0 28px 88px rgba(0,0,0,.68)!important;z-index:2147483300!important}
       #milPicker.mil-picker.active{display:grid!important}
       #milPicker .registry-head-i556{display:flex;align-items:center;gap:11px;padding:0 15px;border-bottom:1px solid var(--i556-line);background:linear-gradient(180deg,#15232f,#0f1a24)}
       #milPicker .registry-head-icon-i556{width:34px;height:34px;display:grid;place-items:center;border:1px solid #65727d;border-radius:9px;background:#1b2833;color:#e3e7ea;font-weight:900}
@@ -852,6 +852,11 @@
   function applyPickerSelection() {
     const icon = state.selected;
     if (!icon) return;
+    if (state.pickerTarget === 'infrastructure') {
+      document.dispatchEvent(new CustomEvent('takmap:infrastructure-icon-selected', { detail: {icon:JSON.parse(JSON.stringify(icon))} }));
+      closePicker();
+      return;
+    }
     if (state.pickerTarget === 'editor') {
       if (state.editorPoint && state.editorPoint.symbol_locked) return;
       state.editorSymbol = icon;
@@ -1516,9 +1521,16 @@
   }
 
   function popupImageHtml(object) {
+    // A user-selected custom icon outranks the generic affiliation CoT frame.
     const icon = objectSymbol(object);
     if (icon && (icon.kind === 'custom' || icon.kind === 'unregistered') && icon.iconsetpath) {
       return `<img src="${esc(customAssetUrl(icon.iconsetpath))}" alt="" onerror="TakMapCustomIconI572.onImageError(this)">`;
+    }
+    if (tacticalSourceMetadata(object)) {
+      const api = milResolverApi();
+      const html = api && typeof api.iconHtml === 'function' ? api.iconHtml(object) : '';
+      const match = String(html).match(/<img\b[^>]*\bsrc="([^"]+)"/);
+      return match ? `<img src="${esc(match[1])}" alt="">` : '<span class="point-popup-unavailable-i556" title="MIL-STD-2525C catalog loading">…</span>';
     }
     const src = selectionImage(icon);
     return src ? `<img src="${esc(src)}" alt="">` : '<span class="point-popup-unavailable-i556">?</span>';
@@ -1890,9 +1902,21 @@
     return `<div class="tak-icon-wrap tak-custom-icon-i556"><img src="${esc(customAssetUrl(path))}" alt="${esc(text(object && (object.callsign || object.name || path)))}" onerror="TakMapCustomIconI572.onImageError(this)"></div>`;
   }
 
+  function tacticalSourceMetadata(object) {
+    const sources = [object,object && object.properties,object && object.details];
+    return sources.some(source => {
+      if (!source || typeof source !== 'object') return false;
+      const cot = text(source.cot_type || source.atak_cot_type || source.event_type || source.type);
+      const sidc = text(source.sidc || source.SIDC || source.mil2525_sidc);
+      return /^a-[fhnu]-[gasupe](?:-|$)/i.test(cot) || /^S[FHNU][GASUPE]/i.test(sidc);
+    });
+  }
+
   function authoritativeMilIconHtml(object) {
+    // An explicitly chosen custom icon wins over affiliation-only CoT/SIDC.
     const icon = objectSymbol(object);
-    const custom = icon && (icon.kind === 'custom' || icon.kind === 'unregistered') ? customIconHtml(object) : null;
+    const custom = icon && (icon.kind === 'custom' || icon.kind === 'unregistered') && icon.iconsetpath
+      ? customIconHtml(object) : null;
     if (custom) return custom;
     const base = state.baseMilIconHtml;
     return typeof base === 'function' ? base(object) : '';
@@ -1901,8 +1925,10 @@
 
   function authoritativeDataSyncIcon(object) {
     const icon = objectSymbol(object);
-    if (icon && (icon.kind === 'custom' || icon.kind === 'unregistered') && window.L && typeof window.L.divIcon === 'function') {
-      return window.L.divIcon({className:'',html:customIconHtml(object),iconSize:[40,40],iconAnchor:[20,20],popupAnchor:[0,-18]});
+    // Preserve the selected icon even if the CoT type is a generic affiliation frame.
+    if (icon && (icon.kind === 'custom' || icon.kind === 'unregistered') && icon.iconsetpath && window.L && typeof window.L.divIcon === 'function') {
+      const custom = customIconHtml(object);
+      if (custom) return window.L.divIcon({className:'',html:custom,iconSize:[40,40],iconAnchor:[20,20],popupAnchor:[0,-18]});
     }
     const base = state.baseDataSyncIcon;
     if (typeof base === 'function') return base(object);
@@ -2079,6 +2105,7 @@
       closePointEditor:(reason)=>closeEditor(true, reason || 'external'),
       pointInfoHtml:(object,sourceKind)=>pointInfoPopupHtml(object,sourceKind),
       resolveObjectSymbol:object=>objectSymbol(object),
+      imageFor:icon=>selectionImage(icon),
       isPoint:objectIsPoint,
       isLocalPoint:localPoint,
       pointUid:objectUid,

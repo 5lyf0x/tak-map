@@ -1,0 +1,174 @@
+/* TAK Map i687 Infrastructure: sidebar visuals inherit i684/i685 typography. */
+#sidebar #takInfraCardI685{background:var(--panel,#101923)!important;border:1px solid rgba(191,201,209,.22)!important;border-radius:13px!important;padding:0!important;color:#dfe4e8!important}
+#takInfraCardI685,#takInfraCardI685 button,#takInfraCardI685 input,#takInfraCardI685 select{font-family:Manrope,system-ui,sans-serif!important}
+#sidebar #takInfraCardI685 .infra-title{font-family:Manrope,system-ui,sans-serif!important;font-size:12px!important;font-weight:800!important;letter-spacing:.06em!important;line-height:1.25!important;text-transform:uppercase!important;color:#dfe4e8!important}
+#takInfraCardI685 .infra-head{height:49px;min-height:49px;display:flex;align-items:center;padding:9px 10px;gap:7px;cursor:pointer}
+#takInfraCardI685 .infra-head .infra-title{margin-right:auto}
+#takInfraCardI685 .infra-chevron{font-size:16px;color:#c2cbd2;min-width:20px;text-align:center}
+#takInfraCardI685 .infra-status{font-size:10px!important;font-weight:800!important;line-height:1!important;min-height:23px!important;height:23px!important;border:1px solid #445968;border-radius:999px;padding:0 7px;display:inline-flex;align-items:center;justify-content:center;color:#bed2df;background:#21313b;white-space:nowrap}
+#takInfraCardI685 .infra-body{border-top:1px solid #35434e;padding:10px;display:grid;gap:9px}
+#takInfraCardI685 .infra-body[hidden]{display:none!important}
+#takInfraCardI685 .infra-mode{display:grid;grid-template-columns:1fr 1fr;border-radius:8px;padding:3px;background:#0a131b;border:1px solid #384a54;gap:3px}
+#takInfraCardI685 .infra-mode button{height:29px;background:transparent;border:0;border-radius:6px;color:#93a7b6;font-size:11px;font-weight:800;cursor:pointer}
+#takInfraCardI685 .infra-mode button[aria-pressed="true"]{background:#304657;color:#f0f6fa}
+#takInfraCardI685 .infra-row{display:flex;align-items:center;gap:6px;min-width:0}
+#takInfraCardI685 .infra-row.between{justify-content:space-between}
+#takInfraCardI685 .infra-help{font-size:10px;color:#99abb6;line-height:1.45}
+#takInfraCardI685 .infra-category{border-top:1px solid rgba(255,255,255,.1);padding:5px 0}
+#takInfraCardI685 .infra-cat-head{border:0;background:transparent;color:#dce6ed;font-size:11px;font-weight:750;min-height:30px;display:flex;align-items:center;text-align:left;gap:6px;cursor:pointer;padding:3px 2px;width:100%}
+#takInfraCardI685 .infra-cat-head .name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+#takInfraCardI685 .infra-cat-count{color:#a5b6c0;font-size:10px}
+#takInfraCardI685 .infra-layer{display:grid;grid-template-columns:17px minmax(0,1fr) auto;align-items:start;gap:5px;margin:5px 0;padding:6px 4px 6px 7px;border-left:2px solid #526a79;background:rgba(255,255,255,.025);border-radius:5px}
+#takInfraCardI685 .infra-layer-name{font-size:11px;color:#dce8f0;word-break:break-word;line-height:1.4}
+#takInfraCardI685 .infra-layer-meta{font-size:9px;color:#8ba4b4;margin-top:2px;line-height:1.4}
+#takInfraCardI685 .infra-tools{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+#takInfraCardI685 .infra-btn{min-height:25px;padding:4px 7px;border:1px solid #4b6171;border-radius:5px;background:#1b303e;color:#d9e5ec;font-size:10px;font-weight:700;cursor:pointer;line-height:1.2}
+#takInfraCardI685 .infra-btn:hover{border-color:#87adbd;background:#284657}
+#takInfraCardI685 .infra-btn:disabled{opacity:.5;cursor:default}
+#takInfraCardI685 .infra-inline{font-size:10px;color:#a6bbc6;display:flex;gap:6px;align-items:center}
+#takInfraCardI685 .infra-inline input,#takInfraCardI685 .infra-inline select{background:#09151e;border:1px solid #405461;color:#dce6eb;border-radius:5px;padding:4px;min-width:0;font-size:11px}
+#takInfraCardI685 .infra-inline input[type=number]{width:68px}
+#takInfraCardI685 .infra-empty{font-size:10px;color:#899dab;padding:7px 4px}
+#takInfraCardI685 .infra-message{font-size:10px;line-height:1.4;color:#abc5d3;overflow-wrap:anywhere}
+#takInfraCardI685 .infra-message.error{color:#ffb1a6}
+#takInfraCardI685 .infra-job{padding:7px;border:1px solid #344752;border-radius:5px;font-size:10px;line-height:1.5;color:#bfd3df}
+#takInfraCardI685 .infra-job .infra-progress{font-variant-numeric:tabular-nums}
+#takInfraCardI685 .infra-actions{display:flex;gap:5px;flex-wrap:wrap}
+#takInfraCardI685 .infra-actions .infra-btn{flex:1}
+.tak-infra-properties-i685{font-size:12px;line-height:1.45}
+.tak-infra-properties-i685 .kvp{display:grid;grid-template-columns:40% minmax(0,1fr);gap:6px;border-bottom:1px solid #ffffff15;padding:6px 0;overflow-wrap:anywhere}
+.tak-infra-properties-i685 .kvp b{font-weight:700;color:#aebec9}
+.tak-infra-properties-i685 details{margin-top:9px;padding:7px;border:1px solid #3f5362;border-radius:6px;max-height:230px;overflow:auto}
+.tak-infra-properties-i685 summary{cursor:pointer;font-weight:750}
+.tak-infra-properties-i685 .infra-detail-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tak-infra-properties-i685 .infra-detail-actions button{font-family:Manrope,system-ui,sans-serif;font-size:11px;font-weight:750;background:#254357;border:1px solid #587488;border-radius:6px;color:#e4f3fa;cursor:pointer;padding:6px 8px}
+
+/* i686 approved interactive layer controls and dense-layer visibility. */
+#takInfraCardI685 .infra-origin{display:flex;align-items:center;justify-content:space-between;gap:9px;border-bottom:1px solid #263641;padding:4px 0 9px}
+#takInfraCardI685 .infra-origin label{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:750;color:#c1d3de;white-space:nowrap}
+#takInfraCardI685 .infra-origin input{accent-color:#61c7aa;width:14px;height:14px}
+#takInfraCardI685 .infra-color{background:#1b303e;border:1px solid #516a79;border-radius:5px;height:25px;width:27px;padding:2px;cursor:pointer}
+#takInfraCardI685 .infra-reset-color{border:0;background:transparent;font-size:9px;color:#a2b9c7;text-decoration:underline;cursor:pointer;padding:3px 0}
+#takInfraCardI685 .infra-layer-meta{font-size:10px;line-height:1.45;font-variant-numeric:tabular-nums;color:#91b3c5}
+#takInfraCardI685 .infra-layer-meta:has(+ .infra-state-limited){color:#f8c77d}
+#takInfraCardI685 .infra-category{border-top:0;border-bottom:1px solid rgba(255,255,255,.12);padding:5px 0}
+#takInfraCardI685 .infra-layer{background:#17212b;min-height:55px;padding:7px 5px 7px 8px;gap:6px}
+#takInfraCardI685 .infra-cat-head{min-height:35px}
+#takInfraCardI685 .infra-body{gap:8px}
+
+/* i687: compact per-layer min-zoom selector, close to the color swatch. */
+#takInfraCardI685 .infra-minzoom{height:25px;max-width:65px;border:1px solid #516a79;border-radius:5px;background:#152a37;color:#dce8f0;padding:2px;font-size:10px;cursor:pointer}
+#takInfraCardI685 .infra-tools{align-items:center}
+
+/* i688: single offline card, no mode selectors; stable settings, accessible inspector. */
+#takInfraCardI685 .infra-layer{grid-template-columns:17px minmax(0,1fr);align-items:start}
+#takInfraCardI685 .infra-layer-name-area{min-width:0}
+#takInfraCardI685 .infra-tools{grid-column:2;justify-content:flex-start;min-width:0}
+#takInfraCardI685 .infra-color{flex:0 0 28px}
+#takInfraCardI685 .infra-minzoom{max-width:75px}
+#takInfraCardI685 .infra-cat-head{min-height:33px}
+#takInfraCardI685 .infra-layer:focus-within{outline:1px solid rgba(110,180,215,.35);outline-offset:-1px}
+.tak-infra-properties-i685{box-sizing:border-box;padding:10px 12px 14px!important;margin:0!important;max-width:100%;min-width:0;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.tak-infra-properties-i685 .kvp{display:grid;grid-template-columns:minmax(82px,38%) minmax(0,1fr);gap:10px;border-bottom:1px solid rgba(255,255,255,.08);padding:8px 0;max-width:100%;min-width:0;align-items:start;overflow-wrap:anywhere;word-break:break-word}
+.tak-infra-properties-i685 .kvp span{min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.tak-infra-properties-i685 .infra-detail-actions{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 0;margin:12px 0 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:0}
+.tak-infra-properties-i685 .infra-detail-actions button{min-height:29px;padding:7px 10px}
+.tak-infra-properties-i685 .infra-raw-attrs{margin-top:10px;padding:0;max-height:none;overflow:visible;min-width:0}
+.tak-infra-properties-i685 .infra-raw-attrs h3{font-size:11px;font-weight:800;letter-spacing:.05em;color:#d6e2e8;margin:8px 0 4px}
+.tak-infra-properties-i685 .infra-raw-attrs .kvp{padding:7px 0}
+.infra-line-hit-i688{pointer-events:stroke;cursor:pointer}
+.infra-registry-icon-i688{background:transparent!important;border:0!important}
+.infra-filter-backdrop{position:fixed;inset:0;background:rgba(2,6,10,.58);z-index:30000;display:flex;justify-content:center;align-items:center;padding:16px}
+.infra-filter-modal{width:min(510px,calc(100vw - 24px));max-height:min(83vh,720px);overflow:auto;background:#101c27;color:#e0eaf0;border:1px solid #486174;border-radius:13px;box-shadow:0 22px 55px #0009;padding:14px;display:grid;gap:12px;font-family:Manrope,system-ui,sans-serif;font-size:12px}
+.infra-filter-title{display:flex;align-items:center;justify-content:space-between;gap:12px;overflow-wrap:anywhere}
+.infra-filter-title button{border:0;background:transparent;color:#c9dce8;cursor:pointer;font-size:17px}
+.infra-filter-rule{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr) minmax(0,1fr);gap:6px;margin:6px 0;padding:8px;background:#1a2a36;border-radius:7px}
+.infra-filter-rule [data-type]{grid-column:1/3}
+.infra-filter-rule [data-remove]{grid-column:3/5;justify-self:end}
+.infra-filter-rule input,.infra-filter-rule select,.infra-filter-modal select{min-width:0;max-width:100%;height:30px;background:#091722;border:1px solid #3f5667;color:#e8eef3;border-radius:5px;padding:4px 5px;font-size:11px}
+.infra-filter-rule input[hidden]{display:none!important}
+.infra-filter-modal .infra-inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.infra-filter-modal .infra-actions{display:flex;gap:8px;justify-content:flex-end}
+@media(max-width:400px){.tak-infra-properties-i685{padding:9px 12px!important}.tak-infra-properties-i685 .kvp{grid-template-columns:minmax(72px,35%) minmax(0,1fr);gap:8px}.infra-filter-rule{grid-template-columns:1fr 74px}.infra-filter-rule [data-other],.infra-filter-rule [data-value]{grid-column:1/3}.infra-filter-rule [data-type]{grid-column:1}.infra-filter-rule [data-remove]{grid-column:2}}
+
+/* i689: compact native-looking TAK popover and 5 px themed scrollbar. */
+#takInfraCardI685 .infra-zoom-control-i689{display:inline-flex;align-items:center}
+#takInfraCardI685 .infra-zoom-trigger-i689{font-family:Manrope,system-ui,sans-serif;position:relative;min-width:64px;height:25px;padding:3px 17px 3px 6px;border:1px solid #516a79;border-radius:5px;background:#152a37;color:#dce8f0;font-size:10px;font-weight:700;white-space:nowrap;cursor:pointer}
+#takInfraCardI685 .infra-zoom-trigger-i689::after{content:'▾';position:absolute;right:5px;top:4px;color:#b7cfdf;font-size:11px}
+#takInfraCardI685 .infra-zoom-trigger-i689:focus-visible{outline:2px solid #78b6d2;outline-offset:1px}
+.infra-zoom-menu-i689{position:fixed;z-index:2147482000;display:block;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#567789 #101923;border:1px solid #516a79;border-radius:7px;background:#101923;box-shadow:0 12px 25px #0009;padding:3px;font-family:Manrope,system-ui,sans-serif;box-sizing:border-box}
+.infra-zoom-menu-i689::-webkit-scrollbar{width:5px}
+.infra-zoom-menu-i689::-webkit-scrollbar-track{background:#101923}
+.infra-zoom-menu-i689::-webkit-scrollbar-thumb{background:#567789;border-radius:6px}
+.infra-zoom-menu-i689::-webkit-scrollbar-thumb:hover{background:#81a8ba}
+.infra-zoom-choice-i689{display:block;width:100%;min-height:28px;padding:5px 8px;border:0;border-radius:4px;background:transparent;color:#dce8f0;font-size:11px;font-weight:600;text-align:left;cursor:pointer}
+.infra-zoom-choice-i689:hover,.infra-zoom-choice-i689:focus-visible{background:#294759;outline:none}
+.infra-zoom-choice-i689[aria-selected="true"]{background:#345466;color:#eff8ff;font-weight:800}
+/* Failed registry-image requests fall back to a circular colored dot, while the Leaflet marker keeps its click handler. */
+.infra-symbol-fallback-i689{display:grid;width:28px;height:28px;place-items:center;cursor:pointer}
+.infra-symbol-fallback-i689 img{width:28px;height:28px;object-fit:contain}
+.infra-symbol-fallback-i689.infra-icon-failed-i689::after{content:'';width:11px;height:11px;border-radius:50%;background:var(--infra-dot,#b1a2f1);border:2px solid #101923}
+
+/* Next release: persistent, independent Infrastructure visibility switch in the header. */
+#takInfraCardI685 .infra-head{gap:8px;cursor:default}
+#takInfraCardI685 .infra-collapse{appearance:none;border:0;background:transparent;color:inherit;cursor:pointer;min-width:0;padding:0}
+#takInfraCardI685 .infra-header-title{display:flex;flex:1 1 auto;align-items:center;gap:8px;text-align:left;min-height:32px}
+#takInfraCardI685 .infra-header-title .infra-title{margin-right:auto}
+#takInfraCardI685 .infra-chevron-button{display:grid;place-items:center;width:22px;height:30px;flex:none}
+#takInfraCardI685 .infra-collapse:focus-visible{outline:2px solid #76b6d2;outline-offset:2px;border-radius:4px}
+#takInfraCardI685 .infra-switch{position:relative;display:inline-flex;width:38px;height:20px;flex:none;cursor:pointer}
+#takInfraCardI685 .infra-switch input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;z-index:2;cursor:pointer}
+#takInfraCardI685 .infra-switch span{position:absolute;inset:0;background:#17212a;border:1px solid #455561;border-radius:12px;transition:background .15s}
+#takInfraCardI685 .infra-switch span:after{content:'';display:block;width:14px;height:14px;margin:2px;background:#91a2ad;border-radius:50%;transition:transform .15s}
+#takInfraCardI685 .infra-switch input:checked+span{background:rgba(57,217,138,.18);border-color:rgba(57,217,138,.65)}
+#takInfraCardI685 .infra-switch input:checked+span:after{transform:translateX(18px);background:#39d98a;box-shadow:0 0 7px rgba(57,217,138,.5)}
+#takInfraCardI685 .infra-switch input:focus-visible+span{outline:2px solid #76b6d2;outline-offset:2px}
+
+/* i695 selected Infrastructure typography:
+ * H / Extended Divider; Manrope 550 / 14px / .01em.
+ * A / Clear Type for layer titles; existing metadata typography retained.
+ */
+#takInfraCardI685 .infra-cat-head .name{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  overflow:visible;
+  text-overflow:clip;
+  white-space:normal;
+  font-family:Manrope,system-ui,sans-serif;
+  font-size:14px;
+  font-weight:550;
+  letter-spacing:.01em;
+  line-height:1.25;
+}
+#takInfraCardI685 .infra-cat-head .name::after{
+  content:"";
+  display:block;
+  flex:1 1 16px;
+  min-width:10px;
+  height:1px;
+  background:#63879b;
+}
+#takInfraCardI685 .infra-layer-name-area{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:baseline;
+  column-gap:12px;
+  min-width:0;
+}
+#takInfraCardI685 .infra-layer-name{
+  font-size:12.5px;
+  font-weight:750;
+  line-height:1.3;
+  color:#f2f7fb;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+#takInfraCardI685 .infra-layer-meta{
+  margin-top:0;
+  min-width:0;
+  max-width:135px;
+  overflow-wrap:anywhere;
+  /* Keep the existing font-size, weight, color and numeric formatting. */
+}

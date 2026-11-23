@@ -1,0 +1,29 @@
+/* TAK Map i696 compact NOAA radar observation playback; no separate card. */
+#takRadarHistoryI696[hidden]{display:none!important}
+.tak-radar-history-i696{margin:10px 0 2px;padding:10px 2px 3px;border-top:1px solid #354754;color:#dbe6eb;max-width:100%;min-width:0}
+.tak-radar-history-head-i696{display:flex;align-items:center;justify-content:space-between;gap:7px;font:700 10px Manrope,system-ui,sans-serif;letter-spacing:.065em;color:#aebfc9}
+.tak-radar-history-head-i696 span{font-weight:500;letter-spacing:0;color:#899da9}
+.tak-radar-history-windows-i696,.tak-radar-history-controls-i696{display:flex;gap:4px;justify-content:space-between;min-width:0;margin-top:9px}
+.tak-radar-history-i696 button,.tak-radar-history-i696 select{font:700 11px Manrope,system-ui,sans-serif;color:#cfdee6;background:#15242e;border:1px solid #3b5160;border-radius:6px;min-height:30px;padding:5px 8px;cursor:pointer;min-width:0}
+.tak-radar-history-windows-i696 button{flex:1 1 0}
+.tak-radar-history-controls-i696 button{flex:1 1 0;padding:4px 2px;font-size:12px}
+.tak-radar-history-controls-i696 .tak-radar-live-i696{flex:1.5 1 0;font-size:10px;letter-spacing:.02em}
+.tak-radar-history-i696 button.active{background:#254939;border-color:#3d916a;color:#e7fff1}
+.tak-radar-history-i696 button:hover:not(:disabled){background:#314857}
+.tak-radar-history-i696 button:disabled{opacity:.42;cursor:not-allowed}
+.tak-radar-history-i696 button:focus-visible,.tak-radar-history-i696 select:focus-visible,#takRadarTimelineI696:focus-visible{outline:2px solid #8adab9;outline-offset:2px}
+.tak-radar-history-clock-i696{display:flex;justify-content:space-between;gap:5px;align-items:center;margin-top:10px;color:#9baeb9;font-size:10px;font-variant-numeric:tabular-nums}
+.tak-radar-history-clock-i696 #takRadarSelectedI696{color:#e5f3f6;font-weight:750;white-space:nowrap}
+/* Use the exact BASEMAP LAYERS opacity Soft Pill track/thumb (i695 canonical colors and metrics). */
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678{appearance:none!important;-webkit-appearance:none!important;box-sizing:border-box!important;display:block!important;min-width:0!important;width:100%!important;height:24px!important;margin:4px 0 2px!important;padding:0!important;border:0!important;background:transparent!important;outline:none;cursor:pointer}
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678::-webkit-slider-runnable-track{height:10px!important;border-radius:99px!important;background:linear-gradient(90deg,#4f6878 0%,#4f6878 var(--tak-soft-pill-pct),#283c48 var(--tak-soft-pill-pct),#283c48 100%)!important;border:1px solid #3b5262!important}
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678::-moz-range-track{height:10px!important;border-radius:99px!important;background:linear-gradient(90deg,#4f6878 0%,#4f6878 var(--tak-soft-pill-pct),#283c48 var(--tak-soft-pill-pct),#283c48 100%)!important;border:1px solid #3b5262!important}
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678::-webkit-slider-thumb{appearance:none!important;-webkit-appearance:none!important;width:16px!important;height:16px!important;margin-top:-4px!important;border-radius:50%!important;background:#dceaf0!important;border:3px solid #263a47!important;box-shadow:0 1px 3px #0008!important}
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678::-moz-range-thumb{width:16px!important;height:16px!important;border-radius:50%!important;background:#dceaf0!important;border:3px solid #263a47!important}
+#takNativeWeatherI691 #takRadarTimelineI696.tak-soft-pill-i678:focus-visible{outline:2px solid #96cde4!important;outline-offset:2px;border-radius:20px}
+#takRadarTimelineI696:disabled{opacity:.4;cursor:not-allowed}
+.tak-radar-history-options-i696{display:flex;align-items:center;justify-content:space-between;margin-top:8px;color:#9fb4bd;font-size:10px}
+.tak-radar-history-options-i696 label{display:inline-flex;align-items:center;gap:7px}
+.tak-radar-history-options-i696 select{min-height:29px;padding:4px 6px}
+.tak-radar-history-options-i696 input[type=checkbox]{accent-color:#4cae88;width:15px;height:15px}
+.tak-radar-history-status-i696{display:block;min-height:17px;margin-top:9px;color:#96abb7;font-size:10px;line-height:1.4;overflow-wrap:anywhere}

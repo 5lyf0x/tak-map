@@ -1,0 +1,48 @@
+TAK Map v1.4.0-i649 — Release validation
+Date: 2026-11-04
+Source: fresh i649 directory derived from staged registry-only changes based on validated i648.
+Rollback: i648 archive preserved and SHA-256 verified.
+
+Complete automated validation suite: PASSED
+Validation entry point: bash scripts/validate_package.sh
+
+PASS: i649 release/runtime/install contract
+PASS: i649 retained AIS artwork and Nginx origin proxy
+PASS: i649 inherited shadow and owner source contracts
+PASS: i648 inherited ADS-B selection and owner browser regression
+PASS: i648 MIL-STD-2525C renderer and AIS priority
+PASS: i648 MIL-STD-2525C SVG and Chromium shadow checks
+PASS: i649 registry-only tactical symbology (source and deferred)
+PASS: i649 universal AIS neutral classification
+PASS: i649 Gateway AIS neutral symbols
+PASS: i643 inherited Shape release contract
+PASS: i643 native Shape Save + center translation + persistent edit browser regression
+PASS: i643 native Mission Shape transport/association/read-back backend contract
+PASS: i639 native Shape raw CoT/UID/Mission/style preservation under i643 transaction
+PASS: canonical TAK shape codec + legacy readers + exact Mission delete readback + Mission-only server invariant
+PASS: browser shape rendering: closed/open geometry + TAK style
+PASS: persistent per-user card states inherited from i635
+PASS: ADS-B i633 failover/cadence/hard-OFF inherited regression
+PASS: OTS 1.7.13 configure/login/trust inherited regression
+PASS: Data Sync exact deletion identity inherited regression
+PASS: Gateway Data + Replay optional certificate authentication
+PASS: i645 Gateway Configure backend
+PASS: i645 Gateway Configure UI
+PASS: backend Python compilation
+PASS: context runtime JavaScript syntax
+PASS: context sizing/package JavaScript syntax
+PASS: i636 shape runtime JavaScript syntax
+PASS: i645 Gateway Configure JavaScript syntax
+PASS: startup JavaScript syntax
+PASS: deferred manifest identity/count
+PASS: installer shell syntax
+PASS: uninstaller shell syntax
+
+Release-specific validation:
+- All tactical CoT/SIDC icon fallbacks use registered MIL-STD-2525C artwork, not inline line-art X/frame placeholders.
+- Gateway AIS source-wide neutral maritime classification handles known, unknown, missing, and conflicting SIDC metadata.
+- Active JavaScript and embedded deferred manifest are synchronized.
+- 1448 tactical SVGs parse and normal symbols have no drop shadow; selected AIS red and ADS-B white highlights preserved.
+- Existing i643 native Mission Shape, ADS-B failover, OTS, Data Sync and Gateway/Replay certificate tests passed.
+
+Scope: automated local source/runtime simulation and Chromium tests. Not a live deployment verification.

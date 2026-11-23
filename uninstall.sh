@@ -3,8 +3,13 @@ set -euo pipefail
 PURGE=false
 if [[ "${1:-}" == "--purge" ]]; then PURGE=true; fi
 if [[ "${EUID}" -ne 0 ]]; then echo "Run with sudo: sudo ./uninstall.sh [--purge]"; exit 1; fi
+systemctl disable --now tak-map-valhalla.service 2>/dev/null || true
 systemctl disable --now tak-map.service 2>/dev/null || true
-rm -f /etc/systemd/system/tak-map.service
+# Remove only the /etc/hosts entries created by TAK Map's OTS bootstrap.
+if [[ -x /usr/local/sbin/tak-map-action ]]; then
+  /usr/local/sbin/tak-map-action ots-host-clear >/dev/null 2>&1 || true
+fi
+rm -f /etc/systemd/system/tak-map-valhalla.service /etc/systemd/system/tak-map.service
 systemctl daemon-reload
 rm -f /etc/nginx/sites-enabled/tak-map-https-9444 /etc/nginx/sites-available/tak-map-https-9444 /etc/nginx/conf.d/tak-map-https-9444.conf 2>/dev/null || true
 if command -v nginx >/dev/null 2>&1; then

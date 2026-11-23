@@ -1,0 +1,14 @@
+TAK Map v1.4.0-i662 source validation — 2026-11-06
+Baseline i661 source ZIP SHA-256: d476d40259f02137b1aeb001e3ea7f6b5201c9736f96eb570bb35eb2ad6834a5; preserved unchanged.
+18 Python unit/source regression tests: PASS.
+XMS1 Mission creation, 32-byte key, token decode, second-store enrollment, QR exporter: PASS (local tests).
+Persisted Mesh ON/OFF and retained secret/Mission bindings across restart: PASS.
+Final assembled i662 sidebar: one Command Slate Mesh card, correct Gateway Data / MESH SYNC / OTS DATA SYNC order: PASS.
+New action handler registration, Manrope CSS family with fallback, header status chip to left of switch: source inspection PASS.
+New and prior inline JavaScript: Node --check PASS.
+Backend Python parse/compile: PASS.
+Bash installer -n: PASS.
+Real browser screenshot/interaction test: NOT COMPLETED (automated Chromium navigation blocked by environment policy).
+Android/Linux live interoperability and deployment: NOT TESTED.
+Existing i660 transport localhost regression: PASS.
+Fresh ZIP extraction and file-by-file digest check: performed during packaging.

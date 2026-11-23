@@ -1,0 +1,28 @@
+name: Finalize TAK Map i004 source sync
+on:
+  push:
+    branches:
+      - tak-map-i004-sync
+permissions:
+  contents: write
+jobs:
+  publish-complete-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reassemble verified source and update main
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat source_parts/tak_dashboard.py.part* > tak_dashboard.py
+          test "$(git hash-object tak_dashboard.py)" = "eda05486d4f25f7a8d3ee80612a6330c09a5134e"
+          chmod 755 tak_dashboard.py
+          rm -rf source_parts
+          rm -f .github/workflows/tak-map-sync-i004.yml
+          git add -A
+          git fetch origin main
+          git reset --soft origin/main
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Update TAK Map source to v1.5.0-i004'
+          git push origin HEAD:main

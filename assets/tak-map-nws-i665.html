@@ -1,0 +1,54 @@
+<!-- i665 NWS-only context panel containment; all other Gateway Data sources unchanged. -->
+<style id="takNwsViewportI665">
+.gateway-context-i617 .gateway-nws-description-i665{grid-column:1/-1;display:block;width:100%;min-width:0;margin-top:7px;border-top:1px solid rgba(255,255,255,.12);padding:9px 4px 2px}
+.gateway-context-i617 .gateway-nws-description-i665>b{display:block;margin-bottom:7px;color:#aabcc7;font-weight:800;font-size:11px;letter-spacing:.02em}
+.gateway-context-i617 .gateway-nws-description-text-i665{box-sizing:border-box;max-height:min(180px,25vh);min-height:40px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#60727f #111f28;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.48;background:#111f28;border:1px solid #2b3c48;border-radius:7px;padding:10px;color:#e7eff4}
+.gateway-context-i617 .gateway-nws-description-text-i665::-webkit-scrollbar{width:4px}
+.gateway-context-i617 .gateway-nws-description-text-i665::-webkit-scrollbar-track{background:#111f28}
+.gateway-context-i617 .gateway-nws-description-text-i665::-webkit-scrollbar-thumb{background:#60727f;border-radius:5px}
+#takMapContextSidebarI572:has(.gateway-nws-description-i665),[id^="takMapContextSidebarI"]:has(.gateway-nws-description-i665){overflow:hidden!important}
+#takMapContextSidebarI572:has(.gateway-nws-description-i665) [id^="takMapContextSidebarBody"],[id^="takMapContextSidebarI"]:has(.gateway-nws-description-i665) [id^="takMapContextSidebarBody"]{overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#60727f #111f28}
+</style>
+<script id="takNwsViewportBehaviorI665">
+(()=>{'use strict';let scheduled=false;function apply(){scheduled=false;
+// Reformat NWS rows even if the browser has retained an older cached Gateway module.
+const context=document.querySelector('.gateway-context-i617');
+const kicker=document.getElementById('takMapContextKickerI572')||document.querySelector('[id^="takMapContextKickerI"]');
+if(context&&(/NWS Weather Alerts/i.test(kicker?.textContent||'')||/NWS Weather Alerts/i.test(context.textContent||''))){
+ const kvp=context.querySelector('.kvp');
+ if(kvp&&!kvp.querySelector('.gateway-nws-description-i665')){
+  for(const label of Array.from(kvp.children)){
+   if(label.tagName!=='B')continue;
+   const name=label.textContent.trim();const val=label.nextElementSibling;
+   if(name==='Instruction'){val?.remove();label.remove();continue;}
+   if(name!=='Description'||!val)continue;
+   const wrap=document.createElement('div');wrap.className='gateway-nws-description-i665';
+   const title=document.createElement('b');title.textContent='Description';
+   const content=document.createElement('div');content.className='gateway-nws-description-text-i665';content.textContent=val.textContent;
+   wrap.append(title,content);label.replaceWith(wrap);val.remove();
+  }
+ }
+}
+const description=document.querySelector('.gateway-nws-description-i665');const panel=document.getElementById('takMapContextSidebarI572')||document.querySelector('[id^="takMapContextSidebarI"]');
+if(!panel)return;
+if(!description){if(panel.dataset.nwsViewportI665){panel.style.removeProperty('max-height');panel.style.removeProperty('top');panel.dataset.nwsViewportI665=''}return;}
+const map=window.map&&window.map.getContainer?window.map.getContainer():document.querySelector('.leaflet-container');if(!map)return;
+const rect=map.getBoundingClientRect();if(rect.height<80)return;
+const available=Math.max(80,rect.height-16);
+const body=panel.querySelector('[id^="takMapContextSidebarBody"]');
+panel.style.setProperty('max-height',available+'px','important');
+if(body)body.style.setProperty('max-height',Math.max(40,available-65)+'px','important');
+const cs=getComputedStyle(panel);
+if(cs.position==='fixed')panel.style.setProperty('top',(rect.top+8)+'px','important');
+else if(cs.position==='absolute'){
+ const parent=panel.offsetParent;
+ if(parent){const pr=parent.getBoundingClientRect();panel.style.setProperty('top',Math.max(0,rect.top-pr.top+8)+'px','important');}
+}
+description.querySelector('.gateway-nws-description-text-i665')?.style.setProperty('max-height','min(180px,'+Math.floor(rect.height*.25)+'px)');
+panel.dataset.nwsViewportI665='1';}
+function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(apply)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule);else schedule();
+window.addEventListener('resize',schedule,{passive:true});
+const observe=()=>{const el=document.getElementById('takMapContextSidebarI572')||document.querySelector('[id^="takMapContextSidebarI"]');if(!el){setTimeout(observe,500);return;}const obs=new MutationObserver(schedule);obs.observe(el,{subtree:true,childList:true});schedule()};observe();
+})();
+</script>

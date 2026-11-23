@@ -1,7 +1,7 @@
 (function(w,d){
 'use strict';
 const VERSION='i491';
-const S={map:null,mousemoveBound:false,toolWrappers:false,routePreview:null,measurePreviewHalo:null,measurePreviewLine:null,measurePreviewLabel:null,lastPointer:null,lastTool:'move',boots:0,statusSuppressions:0,cursorUpdates:0,routePreviewUpdates:0,measurePreviewUpdates:0,measureDraftClears:0,routeCancelInstalls:0,basemapSyncs:0,basemapHeaderBound:false,keyBound:false,colorPickerBound:false,colorPickerCloses:0,colorPickerOpens:0,colorPickerInput:null};
+const S={map:null,mousemoveBound:false,toolWrappers:false,routePreview:null,measurePreviewHalo:null,measurePreviewLine:null,measurePreviewLabel:null,lastPointer:null,lastTool:'move',boots:0,statusSuppressions:0,cursorUpdates:0,routePreviewUpdates:0,measurePreviewUpdates:0,measureDraftClears:0,routeCancelInstalls:0,keyBound:false,colorPickerBound:false,colorPickerCloses:0,colorPickerOpens:0,colorPickerInput:null};
 function $(id){try{return d.getElementById(id)}catch(_){return null}}
 function q(sel,root){try{return (root||d).querySelector(sel)}catch(_){return null}}
 function qa(sel,root){try{return Array.from((root||d).querySelectorAll(sel))}catch(_){return []}}
@@ -20,7 +20,6 @@ function installCss(){
 #routeMiniToolbar .tak-route-clear-v491{border-color:rgba(255,204,102,.55)!important}
 .tak-measure-preview-pane-v491{z-index:625!important;pointer-events:none!important}.tak-measure-preview-halo-v491{stroke:#061019!important;stroke-opacity:.94!important;stroke-width:7px!important;stroke-dasharray:10 8!important;stroke-linecap:round!important;pointer-events:none!important}.tak-measure-live-preview-v491{stroke-dasharray:10 8!important;stroke-linecap:round!important;filter:drop-shadow(0 0 3px rgba(255,255,255,.42));pointer-events:none!important}.measure-preview-seg-label-v491{display:block;width:max-content;padding:3px 6px;border:1px dashed currentColor;border-radius:7px;background:rgba(6,10,14,.94);font-size:.68rem;font-weight:850;line-height:1.1;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.42);transform:translate(5px,-5px)}
 .tak-color-picker-v491{position:fixed;z-index:21040;width:238px;padding:10px;border:1px solid rgba(255,111,46,.45);border-radius:13px;background:linear-gradient(180deg,rgba(17,26,35,.99),rgba(7,12,18,.99));box-shadow:0 20px 55px rgba(0,0,0,.65);color:#dce6ea}.tak-color-picker-grid-v491{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.tak-color-swatch-v491{width:21px!important;height:21px!important;min-width:21px!important;min-height:21px!important;margin:0!important;padding:0!important;border:1px solid rgba(255,255,255,.32)!important;border-radius:6px!important;background:var(--swatch)!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.28)!important}.tak-color-swatch-v491:hover,.tak-color-swatch-v491:focus-visible{outline:2px solid #fff!important;outline-offset:1px!important}.tak-color-picker-custom-v491{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;margin-top:9px}.tak-color-picker-custom-v491 input{width:100%;min-width:0;padding:6px 8px;border:1px solid #3b4b57;border-radius:8px;background:#091018;color:#eef5f8;font:700 .72rem ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase}.tak-color-picker-custom-v491 button{margin:0!important;padding:6px 9px!important;border:1px solid rgba(255,111,46,.55)!important;border-radius:8px!important;background:rgba(255,111,46,.15)!important;color:#ffd8c5!important;font-size:.7rem!important;font-weight:850!important}
-.panel.collapsed #basemapCacheControlsV462,.panel.collapsed #basemapCacheControlsV463,.panel.collapsed #basemapCacheControlsV480,.panel.collapsed #basemapCacheControlsV486,.panel.is-collapsed #basemapCacheControlsV462,.panel.is-collapsed #basemapCacheControlsV463,.panel.is-collapsed #basemapCacheControlsV480,.panel.is-collapsed #basemapCacheControlsV486{display:none!important;visibility:hidden!important}
 `;
   d.head.appendChild(st)
 }
@@ -152,22 +151,6 @@ function installRouteButtons(){
   if(clear){clear.classList.remove('tak-route-clear-v480','tak-route-clear-v482');clear.classList.add('tak-route-clear-v491');clear.title='Start Over — remove all route points and keep Route Creation active';clear.setAttribute('aria-label','Start Over — clear route points but stay in Route Creation')}
   return !!cancel
 }
-function basemapPanel(){return qa('.panel').find(p=>{const h=q(':scope > h2',p)||q('h2',p);return h&&/^Basemap$/i.test(String(h.textContent||'').replace(/[▸▾]/g,'').trim())})||null}
-function basemapControls(){return $('basemapCacheControlsV462')||$('basemapCacheControlsV463')||$('basemapCacheControlsV480')||$('basemapCacheControlsV486')}
-function repairBasemapPrecache(){
-  const panel=basemapPanel(),controls=basemapControls();if(!panel||!controls)return false;
-  const collapsed=panel.classList.contains('collapsed')||panel.classList.contains('is-collapsed')||panel.getAttribute('aria-expanded')==='false';
-  controls.hidden=collapsed;controls.setAttribute('aria-hidden',collapsed?'true':'false');
-  controls.style.display=collapsed?'none':'';controls.style.visibility=collapsed?'hidden':'';
-  S.basemapSyncs++;return true
-}
-function bindBasemapHeader(){
-  if(S.basemapHeaderBound)return;
-  S.basemapHeaderBound=true;
-  d.addEventListener('click',function(ev){
-    try{const header=ev.target&&ev.target.closest&&ev.target.closest('.panel > h2,.tak-card-header-v480,.tak-card-header-v491');if(!header)return;const panel=header.closest('.panel');if(panel!==basemapPanel())return;setTimeout(repairBasemapPrecache,0)}catch(_){}
-  },false)
-}
 function wrapFunction(name,after){
   try{
     const old=w[name];if(typeof old!=='function'||old.__takToolUxV486)return false;
@@ -199,7 +182,6 @@ function installWrappers(){
   wrapFunction('measureUnitsToggle',function(){setTimeout(syncMeasurePreview,0)});
   wrapFunction('setMeasureLineColor',function(){setTimeout(syncMeasurePreview,0)});
   wrapFunction('setMeasureTextColor',function(){setTimeout(syncMeasurePreview,0)});
-  wrapFunction('togglePanelCollapse',function(){setTimeout(repairBasemapPrecache,0)});
   S.toolWrappers=true
 }
 function bindKeyboard(){
@@ -235,12 +217,12 @@ function bindMap(){
   }
   return true
 }
-function boot(){S.boots++;installCss();suppressToolStatus();installWrappers();bindMap();bindKeyboard();bindColorPickers();installRouteButtons();bindBasemapHeader();repairBasemapPrecache();updateCursor()}
+function boot(){S.boots++;installCss();suppressToolStatus();installWrappers();bindMap();bindKeyboard();bindColorPickers();installRouteButtons();updateCursor()}
 const api=Object.freeze({
-  version:VERSION,boot,cancelRoute,updateCursor,drawRoutePreview,clearRoutePreview,drawMeasurePreview,clearMeasurePreview,clearMeasureDraft,repairBasemapPrecache,
+  version:VERSION,boot,cancelRoute,updateCursor,drawRoutePreview,clearRoutePreview,drawMeasurePreview,clearMeasurePreview,clearMeasureDraft,
   diagnostics:function(){
-    const panel=basemapPanel(),controls=basemapControls(),bar=$('routeMiniToolbar'),container=mapContainer();
-    return {version:VERSION,tool:currentTool(),crosshairActive:!!(container&&container.classList.contains('tak-create-crosshair-v491')),routeCancelInstalled:!!(bar&&bar.querySelector('.tak-route-cancel-v491')),routeCancelLabel:bar&&bar.querySelector('.tak-route-cancel-v491')&&bar.querySelector('.tak-route-cancel-v491').getAttribute('aria-label')||'',routePreviewActive:!!S.routePreview,measurePreviewActive:!!S.measurePreviewLine,measurePreviewHaloActive:!!S.measurePreviewHalo,measurePreviewLabelActive:!!S.measurePreviewLabel,measurePreviewDashArray:asMeasureDash(S.measurePreviewLine),measurePreviewDirectMap:!!(S.measurePreviewLine&&S.measurePreviewLine.target===mapObj()),measurePreviewInMeasureLayer:!!(S.measurePreviewLine&&S.measurePreviewLine.target===measureLayerObj()),measurePreviewPane:measurePreviewPaneName(),routePointCount:(routeState()&&routeState().points||[]).length,measurePointCount:measurePointsRef().length,mapStatusHidden:!!($('mapStatus')&&($('mapStatus').hidden||getComputedStyle($('mapStatus')).display==='none')),basemapPanelCollapsed:!!(panel&&(panel.classList.contains('collapsed')||panel.classList.contains('is-collapsed'))),basemapPrecacheHidden:!!(controls&&(controls.hidden||getComputedStyle(controls).display==='none')),boots:S.boots,statusSuppressions:S.statusSuppressions,cursorUpdates:S.cursorUpdates,routePreviewUpdates:S.routePreviewUpdates,measurePreviewUpdates:S.measurePreviewUpdates,measureDraftClears:S.measureDraftClears,routeCancelInstalls:S.routeCancelInstalls,basemapSyncs:S.basemapSyncs,colorPickerCloses:S.colorPickerCloses,colorPickerOpens:S.colorPickerOpens,customColorPicker:!!$('takMapColorPickerV486'),documentWideObserver:false,classAttributeObserver:false}
+    const bar=$('routeMiniToolbar'),container=mapContainer();
+    return {version:VERSION,tool:currentTool(),crosshairActive:!!(container&&container.classList.contains('tak-create-crosshair-v491')),routeCancelInstalled:!!(bar&&bar.querySelector('.tak-route-cancel-v491')),routeCancelLabel:bar&&bar.querySelector('.tak-route-cancel-v491')&&bar.querySelector('.tak-route-cancel-v491').getAttribute('aria-label')||'',routePreviewActive:!!S.routePreview,measurePreviewActive:!!S.measurePreviewLine,measurePreviewHaloActive:!!S.measurePreviewHalo,measurePreviewLabelActive:!!S.measurePreviewLabel,measurePreviewDashArray:asMeasureDash(S.measurePreviewLine),measurePreviewDirectMap:!!(S.measurePreviewLine&&S.measurePreviewLine.target===mapObj()),measurePreviewInMeasureLayer:!!(S.measurePreviewLine&&S.measurePreviewLine.target===measureLayerObj()),measurePreviewPane:measurePreviewPaneName(),routePointCount:(routeState()&&routeState().points||[]).length,measurePointCount:measurePointsRef().length,mapStatusHidden:!!($('mapStatus')&&($('mapStatus').hidden||getComputedStyle($('mapStatus')).display==='none')),boots:S.boots,statusSuppressions:S.statusSuppressions,cursorUpdates:S.cursorUpdates,routePreviewUpdates:S.routePreviewUpdates,measurePreviewUpdates:S.measurePreviewUpdates,measureDraftClears:S.measureDraftClears,routeCancelInstalls:S.routeCancelInstalls,colorPickerCloses:S.colorPickerCloses,colorPickerOpens:S.colorPickerOpens,customColorPicker:!!$('takMapColorPickerV486'),documentWideObserver:false,classAttributeObserver:false}
   }
 });
 w.TakMapToolUxV486=api;w.TakMapToolUxV482=api;w.TakMapToolUxV480=api;

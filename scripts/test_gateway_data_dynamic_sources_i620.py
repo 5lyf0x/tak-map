@@ -8,12 +8,12 @@ JS = (ROOT / "assets" / "tak-map-gateway-data-v491.js").read_text()
 
 
 def main() -> int:
-    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i620"
+    assert (ROOT / "VERSION").read_text().strip() == "1.4.0-i635"
     manifest = json.loads((ROOT / "assets" / "tak-map-deferred-i553.json").read_text())
-    assert manifest["version"] == "1.4.0-i620"
+    assert manifest["version"] == "1.4.0-i635"
     startup = (ROOT / "assets" / "tak-map-startup-i553.js").read_text()
     package = (ROOT / "assets" / "tak-map-package-i580.js").read_text()
-    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i620" in startup
+    assert "/assets/runtime/tak-map-deferred-i553.json?v=1.4.0-i635" in startup
     assert "const VERSION='i620';" in package
     assert "const PACKAGE='1.4.0-i620';" in package
     for marker in (
